@@ -8,7 +8,7 @@
    ============================================================ */
 
 .nlp-cine {
-  --cine-ink: #0a0b0f;
+  --cine-ink: #0A2B1E;
   --cine-paper: #f5f6f7;
   --cine-accent: #14523A; /* brand green, readable on dark */
   position: relative;
@@ -24,7 +24,7 @@
   height: 100dvh;
   width: 100%;
   overflow: hidden;
-  background: var(--cine-ink);
+  background: radial-gradient(ellipse 120% 95% at 50% 22%, #12543A 0%, #0A2B1E 46%, #061c14 100%);
 }
 
 .nlp-cine__layer { position: absolute; inset: 0; }
