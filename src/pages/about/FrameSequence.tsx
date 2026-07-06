@@ -63,17 +63,20 @@ export default function FrameSequence({
     ctx.imageSmoothingEnabled = true;
     ctx.imageSmoothingQuality = 'high';
 
-    // object-cover math
     const iw = img.naturalWidth;
     const ih = img.naturalHeight;
     const ir = iw / ih;
     const cr = w / h;
+    // Portrait-ish (mobile) viewports use "contain" so the entire frame — and
+    // any text baked into it — stays visible. Landscape uses "cover" to fill.
+    const contain = cr < 1.15;
     let dw: number, dh: number, dx: number, dy: number;
-    if (ir > cr) {
+    if (contain ? ir < cr : ir > cr) {
       dh = h; dw = h * ir; dx = (w - dw) / 2; dy = 0;
     } else {
       dw = w; dh = w / ir; dx = 0; dy = (h - dh) / 2;
     }
+    ctx.clearRect(0, 0, w, h);
     ctx.drawImage(img, dx, dy, dw, dh);
     lastIdxRef.current = idx;
   }

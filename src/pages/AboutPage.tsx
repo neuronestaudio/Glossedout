@@ -4,7 +4,7 @@ import CTABlock from '../components/CTABlock';
 import PageMeta from '../components/PageMeta';
 import AboutHero from './about/AboutHero';
 import TeamPanorama from './about/TeamPanorama';
-import panoramaImg from '../assets/glossed/gallery-1.jpg';
+import panoramaImg from '../assets/glossed/hero-maserati-mc20.webp';
 import founderImg from '../assets/glossed/detailing-gen.jpg';
 import craftBg from '../assets/team/craft-bg.jpg';
 
