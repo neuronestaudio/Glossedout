@@ -17,6 +17,7 @@ const OG_IMAGE = `${SITE_ORIGIN}/NLP-Shop.jpeg`;
 const ROUTES = [
   '/',
   '/detailing-packages-melbourne',
+  '/home-sportscar',
   '/next-level-protection-brisbane',
   '/ppf-brisbane',
   '/ceramic-coating-brisbane',
