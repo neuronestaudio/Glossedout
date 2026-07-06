@@ -149,12 +149,12 @@ export default function HomePage() {
             Melbourne's <span style={{ color: 'var(--brand-gold-lt)', fontWeight: 600 }}>prestige mobile detailer</span> — 10+ years' experience and a ceramic coating specialist. Where precision meets passion.
           </p>
 
-          <div className="hero-anim hero-cta-group" style={{ display: 'flex', gap: 16, marginTop: 40, justifyContent: 'center', flexWrap: 'wrap' }}>
-            <Link to="/get-a-quote" className="btn-primary" style={{ padding: '14px 32px', fontSize: 15, border: '1.5px solid var(--brand-gold)', boxShadow: '0 8px 28px rgba(0,0,0,0.35), 0 0 0 1px rgba(201,162,39,0.35)' }}>
+          <div className="hero-anim hero-cta-group" style={{ display: 'flex', gap: 12, marginTop: 36, justifyContent: 'center', flexWrap: 'wrap' }}>
+            <Link to="/get-a-quote" className="btn-primary" style={{ padding: '11px 26px', fontSize: 14, border: '1px solid var(--brand-gold)' }}>
               <span className="btn-slide" />
               <span>Contact Us</span>
             </Link>
-            <Link to="/detailing-packages-melbourne" className="btn-ghost" style={{ borderColor: 'var(--brand-gold)', color: 'var(--brand-gold-dk)', padding: '14px 32px', fontSize: 15, boxShadow: '0 0 0 1px rgba(201,162,39,0.25)' }}>View Packages</Link>
+            <Link to="/warranties" className="btn-emerald" style={{ padding: '11px 26px', fontSize: 14 }}>Warranties</Link>
           </div>
         </div>
       </section>

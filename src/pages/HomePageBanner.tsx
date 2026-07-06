@@ -129,12 +129,12 @@ export default function HomePageBanner() {
           <p className="hero-anim" style={{ color: 'rgba(255,255,255,0.72)', fontSize: 'clamp(13px, 2vw, 16px)', fontWeight: 500, margin: 0, letterSpacing: '0.14em', textTransform: 'uppercase' }}>
             Melbourne's prestige mobile detailer · 10+ years
           </p>
-          <div className="hero-anim hero-cta-group" style={{ display: 'flex', gap: 16, marginTop: 26, justifyContent: 'center', flexWrap: 'wrap' }}>
-            <Link to="/get-a-quote" className="btn-primary" style={{ padding: '14px 32px', fontSize: 15, border: '1.5px solid var(--brand-gold)' }}>
+          <div className="hero-anim hero-cta-group" style={{ display: 'flex', gap: 12, marginTop: 24, justifyContent: 'center', flexWrap: 'wrap' }}>
+            <Link to="/get-a-quote" className="btn-primary" style={{ padding: '11px 26px', fontSize: 14, border: '1px solid var(--brand-gold)' }}>
               <span className="btn-slide" />
-              <span>Get a Quote</span>
+              <span>Contact Us</span>
             </Link>
-            <Link to="/detailing-packages-melbourne" className="btn-emerald">View Packages</Link>
+            <Link to="/warranties" className="btn-emerald" style={{ padding: '11px 26px', fontSize: 14 }}>Warranties</Link>
           </div>
         </div>
       </section>

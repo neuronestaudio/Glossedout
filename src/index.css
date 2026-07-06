@@ -789,6 +789,46 @@ label { display: block; font-size: var(--size-label); text-transform: uppercase;
   filter: brightness(1.08);
 }
 
+/* Centered, curved 3D pill treatment for the primary CTAs */
+.btn-primary, .btn-emerald, .btn-ghost { justify-content: center; }
+.btn-primary {
+  box-shadow: 0 8px 22px rgba(6, 28, 20, 0.32), inset 0 1px 0 rgba(255, 255, 255, 0.2), inset 0 -3px 8px rgba(0, 0, 0, 0.25);
+}
+.btn-emerald {
+  box-shadow: 0 12px 26px rgba(6, 28, 20, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.2), inset 0 -3px 8px rgba(0, 0, 0, 0.28);
+}
+
+/* Package tier grid — responsive 3 → 2 → 1 (fixes cramped 3-col on mobile) */
+.tier-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; align-items: stretch; }
+@media (max-width: 900px) { .tier-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 600px) { .tier-grid { grid-template-columns: 1fr; } }
+
+/* Package carousel */
+.pkg-carousel { position: relative; }
+.pkg-carousel__stage { position: relative; display: flex; align-items: stretch; justify-content: center; }
+.pkg-carousel__card { width: 100%; max-width: 460px; }
+.pkg-carousel__arrow {
+  flex-shrink: 0; width: 48px; height: 48px; border-radius: 50%; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  background: linear-gradient(135deg, #1B6B4A 0%, #0C3B2A 100%);
+  color: #fff; border: 1px solid rgba(201,162,39,0.5);
+  box-shadow: 0 8px 20px rgba(6,28,20,0.4), inset 0 1px 0 rgba(255,255,255,0.2);
+  transition: transform 0.2s ease, box-shadow 0.2s ease; z-index: 3;
+}
+.pkg-carousel__arrow:hover { transform: scale(1.08); box-shadow: 0 10px 26px rgba(6,28,20,0.5), 0 0 16px rgba(201,162,39,0.3); }
+.pkg-carousel__arrow--l { margin-right: -24px; }
+.pkg-carousel__arrow--r { margin-left: -24px; }
+@media (max-width: 560px) { .pkg-carousel__arrow { width: 42px; height: 42px; } .pkg-carousel__arrow--l { margin-right: -14px; } .pkg-carousel__arrow--r { margin-left: -14px; } }
+.pkg-carousel__chip {
+  padding: 9px 16px; border-radius: 100px; cursor: pointer; font-family: var(--font-body);
+  font-size: 12px; font-weight: 600; letter-spacing: 0.02em; white-space: nowrap;
+  border: 1px solid var(--color-border); background: var(--color-bg-secondary); color: var(--color-text-secondary);
+  transition: all 0.2s ease;
+}
+.pkg-carousel__chip.is-active { background: var(--brand-green); color: #fff; border-color: var(--brand-green); box-shadow: 0 6px 16px rgba(12,59,42,0.3); }
+@keyframes pkgFade { from { opacity: 0; transform: translateY(10px) scale(0.985); } to { opacity: 1; transform: none; } }
+.pkg-carousel__anim { animation: pkgFade 0.35s cubic-bezier(0.22,1,0.36,1); }
+
 /* Service cards — remove dead space on mobile (drop the 320px height floor) */
 @media (max-width: 768px) {
   .service-card { height: auto !important; min-height: 0 !important; }

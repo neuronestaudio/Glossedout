@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { Check, Star, ArrowRight, Sparkles } from 'lucide-react';
+import { Check, Star, ArrowRight, Sparkles, ChevronLeft, ChevronRight } from 'lucide-react';
 import CTABlock from '../components/CTABlock';
 import PageMeta from '../components/PageMeta';
 import Accreditations from '../components/Accreditations';
@@ -245,11 +245,55 @@ function PackageGroup({ id, eyebrow, title, intro, tiers }: { id: string; eyebro
         <p style={{ fontSize: 'var(--size-label)', textTransform: 'uppercase', letterSpacing: '0.12em', color: 'var(--brand-gold-dk)', marginBottom: 12 }}>{eyebrow}</p>
         <h2 className="font-display" style={{ fontSize: 'var(--size-h2)', color: 'var(--color-text-primary)', marginBottom: 14, lineHeight: 1.05 }}>{title}</h2>
         <p style={{ color: 'var(--color-text-secondary)', fontSize: 16, lineHeight: 1.7, maxWidth: 640, marginBottom: 44 }}>{intro}</p>
-        <div className="services-grid" style={{ gridTemplateColumns: `repeat(${Math.min(tiers.length, 3)}, 1fr)`, alignItems: 'stretch', gap: 24 }}>
+        <div className="tier-grid">
           {tiers.map((t, i) => <PriceCard key={i} tier={t} />)}
         </div>
       </div>
     </section>
+  );
+}
+
+function shortTierName(name: string) {
+  return name
+    .replace('Ceramic Coating', '').replace('Coating', '')
+    .replace('(Self-Healing)', '').replace('Graphene', '')
+    .replace(/\s+/g, ' ').trim();
+}
+
+function PackageCarousel({ tiers }: { tiers: Tier[] }) {
+  const [i, setI] = useState(0);
+  const n = tiers.length;
+  const touchX = useRef<number | null>(null);
+  const go = (d: number) => setI(v => (v + d + n) % n);
+  return (
+    <div className="pkg-carousel">
+      <div
+        className="pkg-carousel__stage"
+        onTouchStart={(e) => { touchX.current = e.touches[0].clientX; }}
+        onTouchEnd={(e) => {
+          if (touchX.current == null) return;
+          const dx = e.changedTouches[0].clientX - touchX.current;
+          if (dx > 45) go(-1); else if (dx < -45) go(1);
+          touchX.current = null;
+        }}
+      >
+        <button className="pkg-carousel__arrow pkg-carousel__arrow--l" onClick={() => go(-1)} aria-label="Previous package"><ChevronLeft size={22} /></button>
+        <div className="pkg-carousel__card">
+          <div key={i} className="pkg-carousel__anim"><PriceCard tier={tiers[i]} /></div>
+        </div>
+        <button className="pkg-carousel__arrow pkg-carousel__arrow--r" onClick={() => go(1)} aria-label="Next package"><ChevronRight size={22} /></button>
+      </div>
+      <div style={{ display: 'flex', gap: 8, justifyContent: 'center', flexWrap: 'wrap', marginTop: 28 }}>
+        {tiers.map((t, idx) => (
+          <button key={idx} className={`pkg-carousel__chip${idx === i ? ' is-active' : ''}`} onClick={() => setI(idx)}>{shortTierName(t.name)}</button>
+        ))}
+      </div>
+      <div style={{ display: 'flex', gap: 8, justifyContent: 'center', marginTop: 18 }}>
+        {tiers.map((_, idx) => (
+          <button key={idx} onClick={() => setI(idx)} aria-label={`Package ${idx + 1}`} style={{ width: idx === i ? 24 : 8, height: 8, borderRadius: 100, border: 'none', cursor: 'pointer', background: idx === i ? 'var(--brand-gold)' : 'var(--color-border)', transition: 'all 0.25s ease', padding: 0 }} />
+        ))}
+      </div>
+    </div>
   );
 }
 
@@ -382,9 +426,7 @@ Our Packages
             ))}
           </div>
 
-          <div className="services-grid" style={{ gridTemplateColumns: 'repeat(3, 1fr)', alignItems: 'stretch', gap: 24 }}>
-            {ceramicTiers.map((t, i) => <PriceCard key={`${ceramicMode}-${i}`} tier={t} />)}
-          </div>
+          <PackageCarousel key={ceramicMode} tiers={ceramicTiers} />
           <p style={{ color: 'var(--color-text-muted)', fontSize: 13, lineHeight: 1.7, marginTop: 28 }}>
             {ceramicMode === 'used'
               ? 'All used-car packages include decontamination and a one-step paint correction. A two-step correction upgrade is available on request.'
