@@ -606,8 +606,11 @@ label { display: block; font-size: var(--size-label); text-transform: uppercase;
 
 @media (max-width: 640px) {
   .hero-cta-group {
-    flex-direction: column;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 10px;
   }
+  .hero-cta-group > a { white-space: nowrap; }
 }
 
 /* MobileAccordion — show accordion on mobile, direct render on desktop */
