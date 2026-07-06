@@ -102,7 +102,7 @@ export default function HomePageBanner() {
             position: 'absolute', inset: '-12% 0 0 0', zIndex: 0,
             backgroundColor: '#0A2B1E',
             backgroundImage: 'url(/glossed/hero-banner.png)',
-            backgroundSize: 'contain', backgroundPosition: 'center 44%', backgroundRepeat: 'no-repeat',
+            backgroundSize: 'contain', backgroundPosition: 'center 38%', backgroundRepeat: 'no-repeat',
           }}
           aria-hidden="true"
         />
@@ -125,7 +125,7 @@ export default function HomePageBanner() {
         <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: 120, zIndex: 2, background: 'linear-gradient(to bottom, transparent 0%, #0A2B1E 100%)' }} aria-hidden="true" />
 
         {/* Content */}
-        <div ref={heroContentRef} style={{ position: 'relative', zIndex: 2, maxWidth: 900, padding: '0 24px 6vh' }}>
+        <div ref={heroContentRef} style={{ position: 'relative', zIndex: 2, maxWidth: 900, padding: '0 24px 4vh' }}>
           <p className="hero-anim" style={{ color: 'rgba(255,255,255,0.72)', fontSize: 'clamp(13px, 2vw, 16px)', fontWeight: 500, margin: 0, letterSpacing: '0.14em', textTransform: 'uppercase' }}>
             Melbourne's prestige mobile detailer · 10+ years
           </p>
