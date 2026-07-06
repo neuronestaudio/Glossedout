@@ -58,6 +58,7 @@ const NextLevelProtectionPage   = lazy(() => import('./pages/NextLevelProtection
 const ProductTDSPage             = lazy(() => import('./pages/ProductTDSPage'));
 const ServicesPage               = lazy(() => import('./pages/ServicesPage'));
 const HomePageSportscar          = lazy(() => import('./pages/HomePageSportscar'));
+const HomePageIntro              = lazy(() => import('./pages/HomePageIntro'));
 
 function PageLoader() {
   return (
@@ -134,6 +135,7 @@ export default function App() {
             <Route path="/" element={<HomePage />} />
             <Route path="/detailing-packages-melbourne" element={<ServicesPage />} />
             <Route path="/home-sportscar" element={<HomePageSportscar />} />
+            <Route path="/home-intro" element={<HomePageIntro />} />
             <Route path="/ppf-brisbane" element={<PPFPage />} />
             <Route path="/ceramic-coating-brisbane" element={<CeramicCoatingPage />} />
             <Route path="/automotive-window-tinting-brisbane" element={<AutomotiveTintPage />} />

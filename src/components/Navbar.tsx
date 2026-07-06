@@ -14,6 +14,7 @@ const services = [
 const interfaceVersions = [
   { label: 'Home — Video hero', href: '/' },
   { label: 'Home — Sports-car hero', href: '/home-sportscar' },
+  { label: 'Home — Cinematic intro', href: '/home-intro' },
 ];
 
 export default function Navbar() {
