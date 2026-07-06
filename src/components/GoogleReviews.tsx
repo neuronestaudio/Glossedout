@@ -83,6 +83,8 @@ export default function GoogleReviews({ reviews, googleUrl, rating = '5.0', coun
                 display: 'flex',
                 flexDirection: 'column',
                 justifyContent: 'space-between',
+                alignItems: 'center',
+                textAlign: 'center',
                 overflow: 'hidden',
               }}
             >
@@ -90,7 +92,7 @@ export default function GoogleReviews({ reviews, googleUrl, rating = '5.0', coun
               <div aria-hidden="true" style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 3, background: 'linear-gradient(to right, transparent, var(--brand-gold), transparent)' }} />
               <Quote size={30} style={{ color: 'var(--brand-gold)', opacity: 0.55, marginBottom: 14 }} fill="currentColor" />
               <div>
-                <div style={{ display: 'flex', gap: 3, marginBottom: 14 }}>
+                <div style={{ display: 'flex', gap: 3, marginBottom: 14, justifyContent: 'center' }}>
                   {Array.from({ length: 5 }).map((_, j) => (
                     <Star key={j} size={15} fill="#C9A227" color="#C9A227" strokeWidth={0} />
                   ))}
@@ -99,10 +101,10 @@ export default function GoogleReviews({ reviews, googleUrl, rating = '5.0', coun
                   “{r.text}”
                 </p>
               </div>
-              <div style={{ borderTop: '1px solid var(--color-border)', paddingTop: 16 }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+              <div style={{ borderTop: '1px solid var(--color-border)', paddingTop: 16, width: '100%' }}>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 10 }}>
                   <GoogleG size={16} />
-                  <div>
+                  <div style={{ textAlign: 'left' }}>
                     <p style={{ fontWeight: 600, color: 'var(--color-text-primary)', fontSize: 14 }}>{r.name}</p>
                     <p style={{ color: 'var(--color-text-muted)', fontSize: 12, marginTop: 1 }}>{r.suburb} · {r.service}</p>
                   </div>

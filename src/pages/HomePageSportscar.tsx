@@ -215,39 +215,11 @@ export default function HomePageSportscar() {
         </div>
       </section>
 
-      {/* DIFFERENTIATORS */}
-      <section className="section" style={{ background: 'var(--color-bg-primary)', position: 'relative' }}>
-        <div className="container" style={{ position: 'relative', zIndex: 2 }}>
-          <div className="grid-2col" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 80, alignItems: 'center' }}>
-            <div className="diff-info">
-              <p style={{ fontSize: 'var(--size-label)', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--color-text-muted)', marginBottom: 16 }}>Why Glossed Out</p>
-              <h2 className="font-display" style={{ fontSize: 'var(--size-h1)', marginBottom: 24, lineHeight: 1.05 }}>
-                Certified Product.<br /><span style={{ color: 'var(--color-accent)' }}>Precision Install.</span>
-              </h2>
-              <p style={{ color: 'var(--color-text-secondary)', lineHeight: 1.75, marginBottom: 32 }}>
-                Any detailer can buy a bottle off the shelf. Gtechniq, Magnum, Kraken and CarPro certified — these accreditations mean we've been trained and vetted by the brands that make the best coatings on the market.
-              </p>
-              <Link to="/about" className="btn-ghost">About the Studio</Link>
-            </div>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
-              {[
-                { num: '01', title: 'Named coatings, not generic', desc: 'Gtechniq, Magnum, Kraken and CarPro — professional-grade coatings, not a generic bottle from an unknown supplier.' },
-                { num: '02', title: 'Quality over volume', desc: 'Precision work, never a conveyor-belt shop. Every car gets full attention.' },
-                { num: '03', title: 'Detailing done properly', desc: 'Car detailing, paint correction and ceramic coating — mobile across Melbourne plus our Craigieburn studio.' },
-              ].map(d => (
-                <div key={d.num} style={{ display: 'flex', gap: 20 }}>
-                  <span style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: 40, color: 'var(--color-accent)', opacity: 0.25, lineHeight: 1, flexShrink: 0 }}>{d.num}</span>
-                  <div>
-                    <h3 style={{ fontSize: 16, fontWeight: 600, marginBottom: 4 }}>{d.title}</h3>
-                    <p style={{ color: 'var(--color-text-secondary)', fontSize: 14, lineHeight: 1.65 }}>{d.desc}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
+      {/* GOOGLE REVIEWS — moved up: social proof immediately after services */}
+      <GoogleReviews
+        reviews={reviews}
+        googleUrl="https://www.google.com/maps/search/Glossed+Out+Detailing+Craigieburn"
+      />
 
       {/* INSTAGRAM GALLERY */}
       <section className="section" style={{ background: '#0A2B1E', position: 'relative', overflow: 'hidden', paddingTop: 'clamp(40px, 5vw, 64px)' }}>
@@ -301,11 +273,38 @@ export default function HomePageSportscar() {
         </div>
       </section>
 
-      {/* GOOGLE REVIEWS — custom section with 4 cards and link */}
-      <GoogleReviews
-        reviews={reviews}
-        googleUrl="https://www.google.com/maps/search/Glossed+Out+Detailing+Craigieburn"
-      />
+      {/* DIFFERENTIATORS — moved down: the "why us" story after the proof + gallery */}
+      <section className="section" style={{ background: 'var(--color-bg-primary)', position: 'relative' }}>
+        <div className="container" style={{ position: 'relative', zIndex: 2 }}>
+          <div className="grid-2col" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 80, alignItems: 'center' }}>
+            <div className="diff-info">
+              <p style={{ fontSize: 'var(--size-label)', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--color-text-muted)', marginBottom: 16 }}>Why Glossed Out</p>
+              <h2 className="font-display" style={{ fontSize: 'var(--size-h1)', marginBottom: 24, lineHeight: 1.05 }}>
+                Certified Product.<br /><span style={{ color: 'var(--color-accent)' }}>Precision Install.</span>
+              </h2>
+              <p style={{ color: 'var(--color-text-secondary)', lineHeight: 1.75, marginBottom: 32 }}>
+                Any detailer can buy a bottle off the shelf. Gtechniq, Magnum, Kraken and CarPro certified — these accreditations mean we've been trained and vetted by the brands that make the best coatings on the market.
+              </p>
+              <Link to="/about" className="btn-ghost">About the Studio</Link>
+            </div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
+              {[
+                { num: '01', title: 'Named coatings, not generic', desc: 'Gtechniq, Magnum, Kraken and CarPro — professional-grade coatings, not a generic bottle from an unknown supplier.' },
+                { num: '02', title: 'Quality over volume', desc: 'Precision work, never a conveyor-belt shop. Every car gets full attention.' },
+                { num: '03', title: 'Detailing done properly', desc: 'Car detailing, paint correction and ceramic coating — mobile across Melbourne plus our Craigieburn studio.' },
+              ].map(d => (
+                <div key={d.num} style={{ display: 'flex', gap: 20 }}>
+                  <span style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: 40, color: 'var(--color-accent)', opacity: 0.25, lineHeight: 1, flexShrink: 0 }}>{d.num}</span>
+                  <div>
+                    <h3 style={{ fontSize: 16, fontWeight: 600, marginBottom: 4 }}>{d.title}</h3>
+                    <p style={{ color: 'var(--color-text-secondary)', fontSize: 14, lineHeight: 1.65 }}>{d.desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* CTA */}
       <CTABlock service="Protection Package" />
