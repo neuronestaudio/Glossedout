@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://glossedoutdetailing.com.au/sitemap.xml

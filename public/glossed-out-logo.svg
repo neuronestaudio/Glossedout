@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512" role="img" aria-label="Glossed Out Detailing">
+  <!-- PLACEHOLDER LOGO — replace public/glossed-out-logo.svg (and add a PNG) with Mohamed's real logo asset -->
+  <defs>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#E4C766"/>
+      <stop offset="0.5" stop-color="#C9A227"/>
+      <stop offset="1" stop-color="#A17E12"/>
+    </linearGradient>
+    <linearGradient id="green" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0E4636"/>
+      <stop offset="1" stop-color="#072A20"/>
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="96" fill="url(#green)"/>
+  <!-- Gold "G" mark -->
+  <path fill="none" stroke="url(#gold)" stroke-width="34" stroke-linecap="round"
+        d="M330 176a108 108 0 1 0 20 118h-70"/>
+  <circle cx="360" cy="150" r="10" fill="#E4C766"/>
+</svg>

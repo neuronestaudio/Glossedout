@@ -1,0 +1,153 @@
+/* ============================================================
+   About — Team panorama
+   Full-bleed workshop group photo with a gentle scroll parallax
+   and glassmorphism name pills above each person. Bridges the
+   cinematic "Meet the Team" handoff into the profile cards.
+   ============================================================ */
+
+.nlp-pano {
+  position: relative;
+  width: 100%;
+  background: var(--color-bg-secondary);
+}
+
+/* Lift the panorama up into the tail of the cinematic white "Meet the Team"
+   screen (both are light), closing the otherwise full-viewport gap. */
+.nlp-pano--pull {
+  margin-top: -30vh;
+  z-index: 1;
+}
+@media (max-width: 768px) {
+  .nlp-pano--pull { margin-top: -42vh; }
+}
+
+/* Viewport locked to the photo's aspect ratio — no letterboxing at any width. */
+.nlp-pano__viewport {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+}
+
+/* Layer is slightly over-scaled to give the parallax vertical headroom. Pills
+   are children of this layer, so they scale and translate with the photo and
+   stay locked to each person. JS sets the full transform each frame. */
+.nlp-pano__layer {
+  position: absolute;
+  inset: 0;
+  transform: scale(1.1);
+  transform-origin: center center;
+  will-change: transform;
+}
+
+.nlp-pano__img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Pills live inside the parallax layer so they stay locked to each person. */
+.nlp-pano__pills { position: absolute; inset: 0; }
+
+/* Each pill is a full-size transparent overlay; the dot, the two connector
+   segments and the label are positioned inside it by explicit percentages
+   (computed from measured shoulder + label coords). `opacity` + `transform`
+   are JS-driven (scroll reveal + upward parallax drift). Fonts use clamp() so
+   the verified desktop AND mobile layouts both hold — nothing overlaps. */
+.nlp-pano__pill {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  will-change: transform, opacity;
+}
+
+/* Dot on the shoulder. */
+.nlp-pano__pill-dot {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.85);
+  transform: translate(-50%, -50%);
+}
+/* Vertical riser (shoulder up/down to the corner). */
+.nlp-pano__pill-v {
+  position: absolute;
+  width: 1px;
+  transform: translateX(-50%);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.25));
+}
+/* Horizontal run (corner out to the label). */
+.nlp-pano__pill-h {
+  position: absolute;
+  height: 1px;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.55);
+}
+
+/* The glass label, anchored by its near edge at (lx, ly) and centred on the
+   horizontal run; it extends away from the connector. */
+.nlp-pano__pill-inner {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: clamp(5px, 0.55vw, 7px) clamp(11px, 1.15vw, 15px) clamp(6px, 0.62vw, 8px);
+  border-radius: 999px;
+  background: rgba(12, 14, 20, 0.45);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  backdrop-filter: blur(14px) saturate(140%);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  box-shadow: 0 10px 34px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.18);
+  white-space: nowrap;
+}
+.nlp-pano__pill-inner--right { transform: translateY(-50%); align-items: flex-start; }
+.nlp-pano__pill-inner--left  { transform: translate(-100%, -50%); align-items: flex-end; }
+
+.nlp-pano__pill-name {
+  font-family: 'Bebas Neue', sans-serif;
+  font-weight: 400;
+  font-size: clamp(13px, 1.25vw, 16px);
+  line-height: 1;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #fff;
+}
+.nlp-pano__pill-role {
+  font-family: var(--font-body), sans-serif;
+  font-size: clamp(8px, 0.66vw, 9px);
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.72);
+}
+
+/* Editorial caption strip, bottom-left. */
+.nlp-pano__caption {
+  position: absolute;
+  left: clamp(20px, 8vw, 120px);
+  bottom: 24px;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--font-body), sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: #fff;
+  text-shadow: 0 1px 12px rgba(0, 0, 0, 0.55);
+}
+.nlp-pano__caption-tick { display: block; width: 26px; height: 1px; background: var(--cine-accent, #3b82f6); }
+
+@media (prefers-reduced-motion: reduce) {
+  .nlp-pano__pill { opacity: 1; transform: none; }
+}
+
+@media (max-width: 768px) {
+  /* Names only — keeps labels narrow and the verified mobile layout clean. */
+  .nlp-pano__pill-role { display: none; }
+}

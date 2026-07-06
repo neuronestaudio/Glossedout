@@ -1,0 +1,11 @@
+{
+  "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "www.glossedoutdetailing.com.au" }],
+      "destination": "https://glossedoutdetailing.com.au/:path*",
+      "statusCode": 308
+    }
+  ]
+}
