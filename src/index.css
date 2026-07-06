@@ -753,6 +753,23 @@ label { display: block; font-size: var(--size-label); text-transform: uppercase;
   box-shadow: 0 8px 24px rgba(201, 162, 39, 0.35);
 }
 
+/* Emerald gradient pill — filled, rounded, shaded edges */
+.btn-emerald {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 14px 32px; border-radius: 100px;
+  background: linear-gradient(135deg, #2E8560 0%, #1B6B4A 45%, #0C3B2A 100%);
+  color: #fff; border: 1px solid rgba(201, 162, 39, 0.55);
+  font-family: var(--font-body); font-weight: 600; font-size: 14px;
+  text-decoration: none; cursor: pointer;
+  box-shadow: 0 10px 26px rgba(6, 28, 20, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.18);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+}
+.btn-emerald:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 36px rgba(6, 28, 20, 0.6), 0 0 22px rgba(201, 162, 39, 0.3);
+  filter: brightness(1.08);
+}
+
 /* Service cards — remove dead space on mobile (drop the 320px height floor) */
 @media (max-width: 768px) {
   .service-card { height: auto !important; min-height: 0 !important; }

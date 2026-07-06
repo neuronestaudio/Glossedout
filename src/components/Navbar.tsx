@@ -9,6 +9,13 @@ const services = [
   { label: 'Ceramic Coating', href: '/detailing-packages-melbourne#ceramic' },
 ];
 
+// Preview links so we can swap between home-page interfaces easily.
+// TODO: remove this block before final client hand-off.
+const interfaceVersions = [
+  { label: 'Home — Video hero', href: '/' },
+  { label: 'Home — Sports-car hero', href: '/home-sportscar' },
+];
+
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -167,6 +174,11 @@ export default function Navbar() {
                   >
                     {s.label}
                   </Link>
+                ))}
+                <div style={{ height: 1, background: 'var(--color-border)', margin: '6px 0' }} />
+                <p style={{ padding: '6px 20px 4px', fontSize: 10, textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--color-text-muted)' }}>Interface versions (preview)</p>
+                {interfaceVersions.map(v => (
+                  <Link key={v.href} to={v.href} role="menuitem" className="nav-dropdown-item">{v.label}</Link>
                 ))}
               </div>
             )}
