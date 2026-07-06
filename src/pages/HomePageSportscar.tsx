@@ -14,24 +14,28 @@ const services = [
     title: 'Car Detailing',
     desc: 'Hand wash, interior steam clean and a full reset — from a light refresh to a showroom-grade Prestige detail.',
     href: '/detailing-packages-melbourne#detailing',
+    img: '/glossed/detailing-gen.jpg',
   },
   {
     icon: Sparkles,
     title: 'Paint Correction',
     desc: 'Machine polishing that removes swirls, oxidation and scratches — from a gloss enhancement to a full multi-stage cut.',
     href: '/detailing-packages-melbourne#correction',
+    img: '/glossed/paint-correction-altima.jpg',
   },
   {
     icon: Shield,
     title: 'Ceramic Coating',
     desc: 'Named, professional-grade coatings up to 10 years — deep gloss, UV protection and hydrophobic self-cleaning.',
     href: '/detailing-packages-melbourne#ceramic',
+    img: '/glossed/ceramic-coating.jpg',
   },
   {
     icon: Armchair,
     title: 'Interior Detailing',
     desc: 'Deep interior clean and protection — leather, fabric and trim refreshed, UV protected and odour neutralised.',
     href: '/detailing-packages-melbourne#detailing',
+    img: '/glossed/gallery-3.jpg',
   },
 ];
 
@@ -191,11 +195,14 @@ export default function HomePageSportscar() {
               return (
                 <Link to={s.href} key={s.title} className="gold-card" aria-label={s.title}>
                   <div className="gold-card__inner">
-                    <div className="gold-card__icon">
-                      <Icon size={26} color="#E4C766" strokeWidth={1.75} />
+                    <div className="gold-card__reveal" style={{ backgroundImage: `url("${s.img}")` }} />
+                    <div className="gold-card__body">
+                      <div className="gold-card__icon">
+                        <Icon size={26} color="#E4C766" strokeWidth={1.75} />
+                      </div>
+                      <h3 className="gold-card__title">{s.title}</h3>
+                      <p className="gold-card__desc">{s.desc}</p>
                     </div>
-                    <h3 className="gold-card__title">{s.title}</h3>
-                    <p className="gold-card__desc">{s.desc}</p>
                   </div>
                 </Link>
               );

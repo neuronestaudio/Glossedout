@@ -5,7 +5,6 @@ import { Shield, Car, Sparkles, Armchair, Instagram } from 'lucide-react';
 import GoogleReviews from '../components/GoogleReviews';
 import CTABlock from '../components/CTABlock';
 import PageMeta from '../components/PageMeta';
-import heroHome from '../assets/glossed/hero-maserati-mc20.webp';
 import { galleryPhotos } from '../data/galleryPhotos';
 
 const services = [
@@ -107,7 +106,7 @@ export default function HomePage() {
             loop
             muted
             playsInline
-            poster={heroHome}
+            poster="/about-frames/f001.webp"
             style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 30%', display: 'block' }}
           >
             <source src="/glossed/hero.mp4" type="video/mp4" />
