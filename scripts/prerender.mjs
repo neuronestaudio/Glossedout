@@ -19,6 +19,7 @@ const ROUTES = [
   '/detailing-packages-melbourne',
   '/home-sportscar',
   '/home-intro',
+  '/home-banner',
   '/next-level-protection-brisbane',
   '/ppf-brisbane',
   '/ceramic-coating-brisbane',

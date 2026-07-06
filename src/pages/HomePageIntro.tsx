@@ -28,7 +28,7 @@ const services = [
     title: 'Ceramic Coating',
     desc: 'The best long-term paint protection there is — an ultra-strong, hydrophobic, chemical-resistant layer over your paint, lasting up to 10 years.',
     href: '/detailing-packages-melbourne#ceramic',
-    img: '/glossed/ceramic-coating.jpg',
+    img: '/glossed/porsche.jpg',
   },
   {
     icon: Armchair,

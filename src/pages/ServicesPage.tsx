@@ -211,9 +211,8 @@ function PriceCard({ tier }: { tier: Tier }) {
       >
         {tier.name}
       </h3>
-      <div style={{ display: 'flex', alignItems: 'baseline', gap: 6, marginBottom: 12 }}>
-        <span style={{ fontSize: 13, color: 'var(--color-text-muted)', textTransform: 'uppercase', letterSpacing: '0.08em' }}>From</span>
-        <span style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: 40, lineHeight: 1, color: 'var(--brand-green)' }}>${tier.price.toLocaleString()}</span>
+      <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, marginBottom: 14, padding: '6px 14px', borderRadius: 100, border: '1px solid rgba(201,162,39,0.35)', background: 'rgba(201,162,39,0.08)' }}>
+        <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--brand-gold-dk)' }}>Tailored to your car</span>
       </div>
       <p style={{ color: 'var(--color-text-secondary)', fontSize: 14, lineHeight: 1.6, marginBottom: 20 }}>{tier.blurb}</p>
       <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: 11, marginBottom: 26, flex: 1 }}>
@@ -233,7 +232,7 @@ function PriceCard({ tier }: { tier: Tier }) {
         style={{ justifyContent: 'center', width: '100%' }}
       >
         {tier.featured && <span className="btn-slide" />}
-        <span style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}>Book This Package <ArrowRight size={16} /></span>
+        <span style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}>Enquire Now <ArrowRight size={16} /></span>
       </Link>
     </div>
   );
@@ -262,7 +261,7 @@ export default function ServicesPage() {
     <>
       <PageMeta
         title="Detailing Packages & Pricing — Glossed Out Detailing Melbourne"
-        description="Car detailing, paint correction and ceramic coating packages in Melbourne. From $229 detailing to 10-year Gtechniq, Magnum & Kraken ceramic coatings. Transparent pricing."
+        description="Premium mobile car detailing, paint correction and ceramic coating in Melbourne — Gtechniq, Magnum & Kraken certified. Every package tailored to your car. Enquire for a quote."
         canonical="https://glossedoutdetailing.com.au/detailing-packages-melbourne"
         jsonLd={[
           {
@@ -299,10 +298,10 @@ export default function ServicesPage() {
             <Sparkles size={14} /> Glossed Out Detailing — Melbourne
           </p>
           <h1 className="font-display" style={{ fontSize: 'var(--size-h1)', color: '#fff', lineHeight: 1.03, marginBottom: 20 }}>
-            Packages &amp; Pricing
+Our Packages
           </h1>
           <p style={{ color: 'rgba(255,255,255,0.72)', fontSize: 17, lineHeight: 1.75, maxWidth: 620, margin: '0 auto 36px' }}>
-            Transparent, honest pricing across detailing, paint correction and ceramic coating. Every price is a starting point — your final quote is confirmed after a quick vehicle inspection.
+            A premium mobile detailing experience across detailing, paint correction and ceramic coating. Every package is tailored to your car — enquire and we'll put together a personalised quote.
           </p>
           <div style={{ display: 'flex', gap: 14, justifyContent: 'center', flexWrap: 'wrap' }}>
             {[
@@ -355,7 +354,7 @@ export default function ServicesPage() {
           <p style={{ fontSize: 'var(--size-label)', textTransform: 'uppercase', letterSpacing: '0.12em', color: 'var(--brand-gold-dk)', marginBottom: 12 }}>Gtechniq · Magnum · Kraken Elite</p>
           <h2 className="font-display" style={{ fontSize: 'var(--size-h2)', color: 'var(--color-text-primary)', marginBottom: 14, lineHeight: 1.05 }}>Ceramic Coating Packages</h2>
           <p style={{ color: 'var(--color-text-secondary)', fontSize: 16, lineHeight: 1.7, maxWidth: 640, marginBottom: 28 }}>
-            Long-term gloss, UV protection and hydrophobic self-cleaning, backed by up to a 10-year coating. Choose your vehicle type — pricing differs because used cars include a full one-step paint correction first.
+            Long-term gloss, UV protection and hydrophobic self-cleaning, backed by up to a 10-year coating. Choose your vehicle type — used cars include a full one-step paint correction first, so the process differs.
           </p>
 
           {/* Toggle */}
@@ -399,7 +398,7 @@ export default function ServicesPage() {
         <div className="container">
           <div style={{ padding: '20px 24px', background: 'rgba(27,107,74,0.06)', border: '1px solid var(--color-border)', borderRadius: 12 }}>
             <p style={{ color: 'var(--color-text-secondary)', fontSize: 14, lineHeight: 1.7 }}>
-              <strong style={{ color: 'var(--color-text-primary)' }}>Every price is a “from” starting point.</strong> Final pricing depends on vehicle size, paint condition and options. Send a few photos through the quote form and we'll come back with an exact figure — no surprises.
+              <strong style={{ color: 'var(--color-text-primary)' }}>Every detail is tailored to your car.</strong> Send a few photos through the enquiry form and we'll put together a personalised quote — no obligation, no pressure. Premium mobile service, brought to you.
             </p>
           </div>
         </div>

@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import type LenisType from 'lenis';
@@ -9,46 +9,29 @@ if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
 }
 
-/* Scroll-scrubbed cinematic hero for the "intro" home demo.
-   Frames are stitched from /d/glossed out intro.mp4 via ffmpeg and scrubbed
-   by scroll progress (Lenis smooth-scroll). Ends by fading to the brand dark
-   green so it hands off seamlessly into the page below. */
+/* Scroll-scrubbed cinematic intro hero.
+   The mp4 (stitched to frames via ffmpeg) already carries the "Glossed Out
+   Detailing" branding, so the footage scrubs CLEAN — no overlays fighting it.
+   At the end it fades to a radial emerald→black frame and cross-fades a couple
+   of centred "sayings", settling on the hero tagline. Lenis = smooth scroll. */
 
 const FRAMES_DIR = 'intro-frames';
 const FRAME_COUNT = 228;
 const MAX_FRAME_INDEX = 227;
-const SCROLL_VH = 440;
+const SCROLL_VH = 460;
 
-const INTRO_OUT_START = 0.08;
-const FOOTAGE_IN = 0.15;
-const FOOTAGE_OUT = 0.72;
-const END_IN_START = 0.80;
-const END_IN_END = 0.94;
-const END_TEXT_IN = 0.86;
+const FOOTAGE_IN = 0.02;
+const FOOTAGE_OUT = 0.64;
 
-const CHAPTERS = [
-  {
-    eyebrow: '01 · Melbourne',
-    heading: 'Precision meets\npassion.',
-    sub: "Melbourne's prestige mobile detailer — detailing, paint correction and ceramic coating, done properly and never rushed.",
-  },
-  {
-    eyebrow: '02 · The Craft',
-    heading: '10+ years\nof it.',
-    sub: 'A ceramic coating specialist accredited in Gtechniq, Magnum, Kraken and CarPro — applied to spec, backed to last.',
-  },
-  {
-    eyebrow: '03 · The Proof',
-    heading: '113 five-star\nreviews.',
-    sub: "From Melbourne drivers who don't leave reviews lightly. The finish speaks for itself.",
-  },
+const SAYINGS = [
+  { eyebrow: 'Ten years · Melbourne', l1: 'Detailing done', l2: 'properly.' },
+  { eyebrow: 'Glossed Out Detailing', l1: 'Where precision', l2: 'meets passion.' },
 ];
 
-const CHAPTER_LABELS = ['Melbourne', 'Craft', 'Proof'];
-const CHAPTER_TIMINGS = [
-  { in: 0.21, out: 0.35 },
-  { in: 0.40, out: 0.54 },
-  { in: 0.58, out: 0.70 },
+// [appearAt, disappearAt] within pinned progress. Last one holds to the end.
+const SAYING_WINDOWS: [number, number][] = [
+  [0.70, 0.82],
+  [0.88, 1.01],
 ];
 
 const clamp01 = (v: number) => Math.max(0, Math.min(1, v));
@@ -57,21 +40,11 @@ const ramp = (p: number, a: number, b: number) => clamp01((p - a) / (b - a));
 export default function IntroCineHero() {
   const stageRef = useRef<HTMLDivElement>(null);
   const footageProgRef = useRef(0);
-
-  const introRef = useRef<HTMLDivElement>(null);
-  const introRuleRef = useRef<HTMLSpanElement>(null);
-  const introMarkRef = useRef<HTMLHeadingElement>(null);
-  const introSubRef = useRef<HTMLSpanElement>(null);
-
   const footageLayerRef = useRef<HTMLDivElement>(null);
-  const chapterRefs = useRef<(HTMLDivElement | null)[]>([]);
-  const cueRef = useRef<HTMLDivElement>(null);
-  const railWrapRef = useRef<HTMLDivElement>(null);
   const vignetteRef = useRef<HTMLDivElement>(null);
   const endRef = useRef<HTMLDivElement>(null);
-  const endTextRef = useRef<HTMLDivElement>(null);
-
-  const [activeChapter, setActiveChapter] = useState(0);
+  const sayingRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const cueRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const stage = stageRef.current;
@@ -100,15 +73,6 @@ export default function IntroCineHero() {
     }
 
     const ctx = gsap.context(() => {
-      gsap.set(introMarkRef.current, { opacity: 0, y: 16, scale: 1.04, filter: 'blur(10px)', letterSpacing: '0.12em' });
-      gsap.set(introSubRef.current, { opacity: 0, y: 10, letterSpacing: '0.9em' });
-      gsap.set(introRuleRef.current, { width: 0, opacity: 0 });
-
-      gsap.timeline({ defaults: { ease: 'power3.out' } })
-        .to(introRuleRef.current, { width: 72, opacity: 1, duration: 0.9 }, 0.15)
-        .to(introMarkRef.current, { opacity: 1, y: 0, scale: 1, filter: 'blur(0px)', letterSpacing: '0.02em', duration: 1.5 }, 0.2)
-        .to(introSubRef.current, { opacity: 1, y: 0, letterSpacing: '0.55em', duration: 1.4 }, 0.6);
-
       ScrollTrigger.create({
         trigger: stage,
         start: 'top top',
@@ -121,33 +85,19 @@ export default function IntroCineHero() {
           const p = self.progress;
           footageProgRef.current = ramp(p, FOOTAGE_IN, FOOTAGE_OUT);
 
-          const introOut = 1 - ramp(p, INTRO_OUT_START, FOOTAGE_IN);
-          if (introRef.current) introRef.current.style.opacity = String(introOut);
-          if (footageLayerRef.current) footageLayerRef.current.style.opacity = String(ramp(p, INTRO_OUT_START, FOOTAGE_IN));
+          if (footageLayerRef.current) footageLayerRef.current.style.opacity = String(ramp(p, 0, 0.03));
+          if (vignetteRef.current) vignetteRef.current.style.opacity = String(ramp(p, 0.56, 0.70));
+          if (endRef.current) endRef.current.style.opacity = String(ramp(p, 0.66, 0.80));
+          if (cueRef.current) cueRef.current.style.opacity = p < 0.05 ? '1' : '0';
 
-          if (vignetteRef.current) vignetteRef.current.style.opacity = String(ramp(p, FOOTAGE_OUT, END_IN_START));
-          if (endRef.current) endRef.current.style.opacity = String(ramp(p, END_IN_START, END_IN_END));
-          if (endTextRef.current) endTextRef.current.style.opacity = String(ramp(p, END_TEXT_IN, 0.985));
-
-          if (railWrapRef.current) {
-            railWrapRef.current.style.opacity = String(
-              ramp(p, FOOTAGE_IN, FOOTAGE_IN + 0.03) * (1 - ramp(p, FOOTAGE_OUT - 0.04, FOOTAGE_OUT)),
-            );
-          }
-          if (cueRef.current) cueRef.current.style.opacity = p < 0.04 ? '1' : '0';
-
-          CHAPTER_TIMINGS.forEach((t, i) => {
-            const el = chapterRefs.current[i];
+          SAYING_WINDOWS.forEach(([a, b], i) => {
+            const el = sayingRefs.current[i];
             if (!el) return;
-            const appear = ramp(p, t.in, t.in + 0.03);
-            const disappear = ramp(p, t.out, t.out + 0.03);
+            const appear = ramp(p, a, a + 0.05);
+            const disappear = ramp(p, b - 0.05, b);
             el.style.opacity = String(appear * (1 - disappear));
-            el.style.transform = `translateY(${(1 - appear) * 12 - disappear * 10}px)`;
+            el.style.transform = `translateY(${(1 - appear) * 26 - disappear * 22}px)`;
           });
-
-          const local = ramp(p, FOOTAGE_IN, FOOTAGE_OUT);
-          const idx = Math.min(CHAPTER_LABELS.length - 1, Math.floor(local * CHAPTER_LABELS.length));
-          setActiveChapter((curr) => (curr === idx ? curr : idx));
         },
       });
     }, stage);
@@ -164,9 +114,9 @@ export default function IntroCineHero() {
 
   return (
     <section className="nlp-cine">
-      <div ref={stageRef} className="nlp-cine__stage">
-        {/* Footage */}
-        <div ref={footageLayerRef} className="nlp-cine__footage">
+      <div ref={stageRef} className="nlp-cine__stage" style={{ background: '#061c14' }}>
+        {/* Footage — scrubbed, clean */}
+        <div ref={footageLayerRef} className="nlp-cine__footage" style={{ opacity: 0 }}>
           <FrameSequence
             progressRef={footageProgRef}
             framesDir={FRAMES_DIR}
@@ -174,74 +124,40 @@ export default function IntroCineHero() {
             maxFrameIndex={MAX_FRAME_INDEX}
             scrubEnd={1}
           />
-          <div className="nlp-cine__grad-v" />
-          <div className="nlp-cine__grad-h" />
           <div className="nlp-cine__grain" />
         </div>
 
-        {/* Chapters */}
-        {CHAPTERS.map((c, i) => (
-          <div
-            key={c.eyebrow}
-            ref={(el) => { chapterRefs.current[i] = el; }}
-            className="nlp-cine__chapter"
-          >
-            <div className="nlp-cine__chapter-inner">
-              <span className="nlp-cine__eyebrow">
-                <span className="nlp-cine__tick" />
-                {c.eyebrow}
-              </span>
-              <h2 className="nlp-cine__heading">{c.heading}</h2>
-              <p className="nlp-cine__sub">{c.sub}</p>
-            </div>
-          </div>
-        ))}
-
-        {/* Scroll cue */}
-        <div ref={cueRef} className="nlp-cine__cue">
-          <span>Scroll</span>
-          <span className="nlp-cine__cue-line" />
-        </div>
-
-        {/* Right rail indicator */}
-        <div ref={railWrapRef} className="nlp-cine__rail" style={{ opacity: 0 }}>
-          <ul>
-            {CHAPTER_LABELS.map((label, i) => (
-              <li key={label}>
-                <span className={`nlp-cine__rail-label${activeChapter === i ? ' is-active' : ''}`}>{label}</span>
-                <span className={`nlp-cine__rail-dot${activeChapter === i ? ' is-active' : ''}`} />
-              </li>
-            ))}
-          </ul>
-        </div>
-
         {/* Vignette darkens the footage before the handoff */}
-        <div ref={vignetteRef} className="nlp-cine__vignette" />
+        <div ref={vignetteRef} className="nlp-cine__vignette" style={{ opacity: 0 }} />
 
-        {/* Dark-green end overlay — fades in and hands off into the page */}
+        {/* Radial emerald → black end frame */}
         <div
           ref={endRef}
           aria-hidden="true"
           style={{
-            position: 'absolute', inset: 0, opacity: 0, pointerEvents: 'none',
-            background: 'radial-gradient(ellipse 90% 80% at 50% 40%, #0E4636 0%, #0A2B1E 55%, #061c14 100%)',
-            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            position: 'absolute', inset: 0, opacity: 0, zIndex: 20,
+            background: 'radial-gradient(ellipse 95% 85% at 50% 42%, #0E4636 0%, #0A2B1E 46%, #04140e 100%)',
           }}
-        >
-          <div ref={endTextRef} style={{ opacity: 0, textAlign: 'center', padding: '0 24px' }}>
-            <p style={{ fontSize: 12, letterSpacing: '0.24em', textTransform: 'uppercase', color: 'var(--brand-gold-lt)', marginBottom: 18 }}>Glossed Out Detailing</p>
-            <h2 className="font-display" style={{ fontSize: 'clamp(34px, 6vw, 76px)', lineHeight: 0.98, color: '#fff' }}>
-              Where precision<br /><span style={{ color: 'var(--brand-gold)' }}>meets passion.</span>
-            </h2>
-          </div>
+        />
+
+        {/* Cross-fading centred sayings */}
+        <div style={{ position: 'absolute', inset: 0, zIndex: 21, display: 'flex', alignItems: 'center', justifyContent: 'center', pointerEvents: 'none' }}>
+          {SAYINGS.map((s, i) => (
+            <div
+              key={i}
+              ref={(el) => { sayingRefs.current[i] = el; }}
+              style={{ position: 'absolute', opacity: 0, textAlign: 'center', padding: '0 24px', maxWidth: 1000 }}
+            >
+              <p style={{ fontSize: 12, letterSpacing: '0.24em', textTransform: 'uppercase', color: 'var(--brand-gold-lt)', marginBottom: 18 }}>{s.eyebrow}</p>
+              <h2 className="font-display" style={{ fontSize: 'clamp(38px, 7vw, 92px)', lineHeight: 0.96, color: '#fff', margin: 0 }}>
+                {s.l1}<br /><span style={{ color: 'var(--brand-gold)' }}>{s.l2}</span>
+              </h2>
+            </div>
+          ))}
         </div>
 
-        {/* Intro wordmark */}
-        <div ref={introRef} className="nlp-cine__intro">
-          <span ref={introRuleRef} className="nlp-cine__intro-rule" />
-          <h1 ref={introMarkRef} className="nlp-cine__intro-mark">Glossed Out</h1>
-          <span ref={introSubRef} className="nlp-cine__intro-sub">Detailing</span>
-        </div>
+        {/* Scroll cue (fades out immediately) */}
+        <div ref={cueRef} className="nlp-cine__cue"><span>Scroll</span><span className="nlp-cine__cue-line" /></div>
       </div>
     </section>
   );

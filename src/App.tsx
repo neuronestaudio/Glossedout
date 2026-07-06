@@ -59,6 +59,7 @@ const ProductTDSPage             = lazy(() => import('./pages/ProductTDSPage'));
 const ServicesPage               = lazy(() => import('./pages/ServicesPage'));
 const HomePageSportscar          = lazy(() => import('./pages/HomePageSportscar'));
 const HomePageIntro              = lazy(() => import('./pages/HomePageIntro'));
+const HomePageBanner             = lazy(() => import('./pages/HomePageBanner'));
 
 function PageLoader() {
   return (
@@ -93,32 +94,36 @@ function Layout() {
       <Footer />
       <Link
         to="/get-a-quote"
+        aria-label="Enquire now — get a quote"
+        className="sticky-enquire-btn btn-shine"
         style={{
           position: 'fixed',
-          bottom: 68,
-          left: '50%',
-          transform: 'translateX(-50%)',
+          bottom: 28,
+          right: 28,
           zIndex: 9999,
-          background: 'var(--color-accent)',
+          display: 'inline-flex',
+          alignItems: 'center',
+          gap: 8,
+          background: 'linear-gradient(135deg, #2E8560 0%, #1B6B4A 45%, #0C3B2A 100%)',
           color: '#FFFFFF',
           fontFamily: 'Bebas Neue, sans-serif',
-          fontSize: 16,
+          fontSize: 17,
           fontWeight: 700,
           letterSpacing: '0.08em',
-          padding: '14px 36px',
-          borderRadius: 4,
-          boxShadow: '0 6px 28px rgba(0,0,0,0.45), 0 0 0 1px rgba(255,255,255,0.08)',
+          padding: '15px 32px',
+          borderRadius: 100,
+          border: '1px solid rgba(201,162,39,0.5)',
+          boxShadow: '0 12px 30px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.18)',
           whiteSpace: 'nowrap',
-          display: 'none',
           textDecoration: 'none',
         }}
-        className="sticky-enquire-btn"
       >
         Enquire Now
       </Link>
       <style>{`
+        /* Mobile already has the bottom Call/Quote/Directions bar — hide the floating CTA there */
         @media (max-width: 768px) {
-          .sticky-enquire-btn { display: block !important; }
+          .sticky-enquire-btn { display: none !important; }
         }
       `}</style>
     </div>
@@ -136,6 +141,7 @@ export default function App() {
             <Route path="/detailing-packages-melbourne" element={<ServicesPage />} />
             <Route path="/home-sportscar" element={<HomePageSportscar />} />
             <Route path="/home-intro" element={<HomePageIntro />} />
+            <Route path="/home-banner" element={<HomePageBanner />} />
             <Route path="/ppf-brisbane" element={<PPFPage />} />
             <Route path="/ceramic-coating-brisbane" element={<CeramicCoatingPage />} />
             <Route path="/automotive-window-tinting-brisbane" element={<AutomotiveTintPage />} />

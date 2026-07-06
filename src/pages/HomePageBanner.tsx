@@ -25,7 +25,7 @@ const services = [
   {
     icon: Shield,
     title: 'Ceramic Coating',
-    desc: 'The best long-term paint protection there is — an ultra-strong, hydrophobic, chemical-resistant layer over your paint, lasting up to 10 years.',
+    desc: 'Named, professional-grade coatings up to 10 years — deep gloss, UV protection and hydrophobic self-cleaning.',
     href: '/detailing-packages-melbourne#ceramic',
     img: '/glossed/porsche.jpg',
   },
@@ -45,10 +45,9 @@ const reviews = [
   { name: 'Google review', suburb: 'Craigieburn', service: 'Ceramic Coating', text: 'Muhammad was a champion — very happy with what he did. He went above and beyond, and the car looked as new.' },
   { name: 'Google review', suburb: 'Melbourne', service: 'Full Detail', text: 'Amazing outcome — very satisfied with how the car turned out. Highly recommended!' },
   { name: 'Google review', suburb: 'Craigieburn', service: 'Car Detailing', text: 'Excellent car detailing — the car looks like new. Great effort done inside and out.' },
-  { name: 'Google review', suburb: 'Melbourne', service: 'Ceramic Coating', text: 'Booked in for a ceramic coating and couldn\'t be happier — great communication start to finish and the gloss on the paint is unreal. Highly recommend.' },
 ];
 
-export default function HomePage() {
+export default function HomePageBanner() {
   const heroRef = useRef<HTMLElement>(null);
   const heroBgRef = useRef<HTMLDivElement>(null);
   const heroContentRef = useRef<HTMLDivElement>(null);
@@ -83,35 +82,30 @@ export default function HomePage() {
   return (
     <>
       <PageMeta
-        title="Glossed Out Detailing — Car Detailing, Paint Correction & Ceramic Coating Melbourne"
-        description="Melbourne car detailing, paint correction and ceramic coating — based in Craigieburn. Gtechniq, Magnum & Kraken certified. 113 five-star Google reviews."
-        canonical="https://glossedoutdetailing.com.au/"
+        title="Glossed Out Detailing — Home (Banner hero)"
+        description="Reference version of the home page with the branded banner hero."
+        canonical="https://glossedoutdetailing.com.au/home-banner"
+        noindex
       />
 
       {/* HERO */}
       <section
         ref={heroRef}
         className="home-hero"
-        style={{ position: 'relative', height: '85dvh', overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center', textAlign: 'center' }}
+        style={{ position: 'relative', height: '85dvh', overflow: 'hidden', display: 'flex', alignItems: 'flex-end', justifyContent: 'center', textAlign: 'center', background: '#0A2B1E' }}
         aria-label="Hero — Car Detailing & Ceramic Coating Melbourne"
       >
-        {/* Background video (parallax) — poster falls back to the still while it loads */}
+        {/* Background image */}
         <div
           ref={heroBgRef}
-          style={{ position: 'absolute', inset: '-20% 0 0 0', zIndex: 0 }}
+          style={{
+            position: 'absolute', inset: '-12% 0 0 0', zIndex: 0,
+            backgroundColor: '#0A2B1E',
+            backgroundImage: 'url(/glossed/hero-banner.png)',
+            backgroundSize: 'contain', backgroundPosition: 'center 44%', backgroundRepeat: 'no-repeat',
+          }}
           aria-hidden="true"
-        >
-          <video
-            autoPlay
-            loop
-            muted
-            playsInline
-            poster="/about-frames/f001.webp"
-            style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 30%', display: 'block' }}
-          >
-            <source src="/glossed/hero.mp4" type="video/mp4" />
-          </video>
-        </div>
+        />
         {/* Grain overlay at 50% opacity */}
         <div
           style={{
@@ -131,30 +125,16 @@ export default function HomePage() {
         <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: 120, zIndex: 2, background: 'linear-gradient(to bottom, transparent 0%, #0A2B1E 100%)' }} aria-hidden="true" />
 
         {/* Content */}
-        <div ref={heroContentRef} style={{ position: 'relative', zIndex: 2, maxWidth: 900, padding: '0 24px' }}>
-          <h1 style={{ marginTop: 0, marginBottom: 0 }}>
-            <span
-              className="hero-anim font-display hero-text-mono"
-              style={{ fontSize: 'clamp(48px, 8vw, 96px)', letterSpacing: '-0.02em', lineHeight: 0.95, WebkitTextStroke: '0.5px rgba(255,255,255,0.01)' }}
-            >
-              Glossed Out{' '}<span style={{ color: '#fff' }}>Detailing.</span>
-            </span>
-          </h1>
-
-          <p className="hero-anim" style={{ color: 'rgba(255,255,255,0.6)', fontSize: 'clamp(15px, 2vw, 18px)', fontWeight: 400, margin: 0, marginTop: 20, letterSpacing: '0.12em', textTransform: 'uppercase' }}>
-            Detailing · Paint Correction · Ceramic Coating — Melbourne
+        <div ref={heroContentRef} style={{ position: 'relative', zIndex: 2, maxWidth: 900, padding: '0 24px 6vh' }}>
+          <p className="hero-anim" style={{ color: 'rgba(255,255,255,0.72)', fontSize: 'clamp(13px, 2vw, 16px)', fontWeight: 500, margin: 0, letterSpacing: '0.14em', textTransform: 'uppercase' }}>
+            Melbourne's prestige mobile detailer · 10+ years
           </p>
-
-          <p className="hero-anim" style={{ color: 'rgba(255,255,255,0.85)', fontSize: 'clamp(15px, 1.8vw, 18px)', margin: '16px auto 0', lineHeight: 1.6, maxWidth: 620 }}>
-            Melbourne's <span style={{ color: 'var(--brand-gold-lt)', fontWeight: 600 }}>prestige mobile detailer</span> — 10+ years' experience and a ceramic coating specialist. Where precision meets passion.
-          </p>
-
-          <div className="hero-anim hero-cta-group" style={{ display: 'flex', gap: 16, marginTop: 40, justifyContent: 'center', flexWrap: 'wrap' }}>
-            <Link to="/get-a-quote" className="btn-primary" style={{ padding: '14px 32px', fontSize: 15, border: '1.5px solid var(--brand-gold)', boxShadow: '0 8px 28px rgba(0,0,0,0.35), 0 0 0 1px rgba(201,162,39,0.35)' }}>
+          <div className="hero-anim hero-cta-group" style={{ display: 'flex', gap: 16, marginTop: 26, justifyContent: 'center', flexWrap: 'wrap' }}>
+            <Link to="/get-a-quote" className="btn-primary" style={{ padding: '14px 32px', fontSize: 15, border: '1.5px solid var(--brand-gold)' }}>
               <span className="btn-slide" />
-              <span>Contact Us</span>
+              <span>Get a Quote</span>
             </Link>
-            <Link to="/detailing-packages-melbourne" className="btn-ghost" style={{ borderColor: 'var(--brand-gold)', color: 'var(--brand-gold-dk)', padding: '14px 32px', fontSize: 15, boxShadow: '0 0 0 1px rgba(201,162,39,0.25)' }}>View Packages</Link>
+            <Link to="/detailing-packages-melbourne" className="btn-emerald">View Packages</Link>
           </div>
         </div>
       </section>
@@ -192,7 +172,7 @@ export default function HomePage() {
               Our Services.
             </h2>
             <p className="home-intro-para" style={{ color: 'rgba(255,255,255,0.65)', fontSize: 'clamp(15px, 1.5vw, 17px)', lineHeight: 1.7, margin: '20px 0 0' }}>
-              Glossed Out Detailing is Melbourne's mobile specialist for car detailing, paint correction and ceramic coating — certified in Gtechniq, Magnum, Kraken and CarPro. Where precision meets passion.
+              Glossed Out Detailing is Melbourne's specialist studio for car detailing, paint correction and ceramic coating. Certified in Gtechniq, Magnum, Kraken and CarPro — obsessive attention to every panel.
             </p>
           </div>
           <div className="gold-grid">

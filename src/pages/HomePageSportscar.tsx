@@ -28,7 +28,7 @@ const services = [
     title: 'Ceramic Coating',
     desc: 'Named, professional-grade coatings up to 10 years — deep gloss, UV protection and hydrophobic self-cleaning.',
     href: '/detailing-packages-melbourne#ceramic',
-    img: '/glossed/ceramic-coating.jpg',
+    img: '/glossed/porsche.jpg',
   },
   {
     icon: Armchair,

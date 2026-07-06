@@ -15,6 +15,7 @@ const interfaceVersions = [
   { label: 'Home — Video hero', href: '/' },
   { label: 'Home — Sports-car hero', href: '/home-sportscar' },
   { label: 'Home — Cinematic intro', href: '/home-intro' },
+  { label: 'Home — Banner hero', href: '/home-banner' },
 ];
 
 export default function Navbar() {
@@ -126,7 +127,7 @@ export default function Navbar() {
           style={{ display: 'flex', alignItems: 'center', gap: 10, textDecoration: 'none', whiteSpace: 'nowrap' }}
           aria-label="Glossed Out Detailing — Home"
         >
-          <img src="/glossed-out-logo.svg" alt="" aria-hidden="true" style={{ height: 46, width: 'auto', display: 'block' }} />
+          <img src="/glossed-emblem.png" alt="" aria-hidden="true" style={{ height: 46, width: 'auto', display: 'block', borderRadius: 8 }} />
           <span style={{ display: 'flex', flexDirection: 'column', alignItems: 'stretch', fontFamily: 'Bebas Neue, sans-serif', lineHeight: 0.88 }}>
             <span style={{ fontSize: 23, letterSpacing: '0.05em', color: scrolled ? 'var(--brand-green)' : '#fff', whiteSpace: 'nowrap' }}>GLOSSED OUT</span>
             <span aria-hidden="true" style={{ display: 'flex', justifyContent: 'space-between', fontSize: 13, marginTop: 3, color: scrolled ? '#0A2B1E' : 'var(--brand-gold-lt)' }}>

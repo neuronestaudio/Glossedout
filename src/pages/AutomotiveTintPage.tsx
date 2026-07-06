@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { gsap } from 'gsap';
 
-const automotiveHero = '/glossed/ceramic-coating.jpg';
+const automotiveHero = '/glossed/porsche.jpg';
 import { Sun, Shield, Eye, Thermometer, Award, Zap, Check } from 'lucide-react';
 import TrustBadges from '../components/TrustBadges';
 import PackageVisualizer from '../components/PackageVisualizer';
