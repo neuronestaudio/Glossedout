@@ -73,18 +73,8 @@ export default function AboutHero() {
   const teamTextRef = useRef<HTMLDivElement>(null);
 
   const [activeChapter, setActiveChapter] = useState(0);
-  const [isMobile, setIsMobile] = useState<boolean | null>(null);
 
   useEffect(() => {
-    const mq = window.matchMedia('(max-width: 768px)');
-    const update = () => setIsMobile(mq.matches);
-    update();
-    mq.addEventListener('change', update);
-    return () => mq.removeEventListener('change', update);
-  }, []);
-
-  useEffect(() => {
-    if (isMobile !== false) return; // scroll-pinned cinematic is desktop-only
     const stage = stageRef.current;
     if (!stage) return;
 
@@ -179,30 +169,7 @@ export default function AboutHero() {
       if (tickerFn) gsap.ticker.remove(tickerFn);
       lenis?.destroy();
     };
-  }, [isMobile]);
-
-  if (isMobile === null) {
-    return <div style={{ height: '60vh', background: '#0A2B1E' }} aria-hidden="true" />;
-  }
-
-  // Mobile: static, clean hero — no pin, no scrub (prevents the scroll obstruction).
-  if (isMobile) {
-    return (
-      <section
-        aria-label="About Glossed Out Detailing"
-        style={{ position: 'relative', height: '78vh', minHeight: 500, overflow: 'hidden', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', background: 'radial-gradient(ellipse 130% 90% at 50% 30%, #12543A 0%, #0A2B1E 50%, #061c14 100%)' }}
-      >
-        <img src="/about-frames/f110.webp" alt="" aria-hidden="true" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', opacity: 0.4 }} />
-        <div aria-hidden="true" style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, rgba(6,28,20,0.5) 0%, rgba(10,43,30,0.25) 45%, rgba(6,28,20,0.9) 100%)' }} />
-        <div style={{ position: 'relative', zIndex: 2, padding: '0 24px' }}>
-          <span style={{ display: 'block', fontSize: 11, letterSpacing: '0.24em', textTransform: 'uppercase', color: 'var(--brand-gold-lt)', marginBottom: 16 }}>The People</span>
-          <h1 className="font-display" style={{ fontSize: 'clamp(44px, 13vw, 72px)', lineHeight: 0.92, color: '#fff', margin: 0 }}>
-            Meet the<br /><span style={{ color: 'var(--brand-gold)' }}>Detailer.</span>
-          </h1>
-        </div>
-      </section>
-    );
-  }
+  }, []);
 
   return (
     <section className="nlp-cine">
