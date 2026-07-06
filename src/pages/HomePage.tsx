@@ -26,7 +26,7 @@ const services = [
   {
     icon: Shield,
     title: 'Ceramic Coating',
-    desc: 'Named, professional-grade coatings up to 10 years — deep gloss, UV protection and hydrophobic self-cleaning.',
+    desc: 'The best long-term paint protection there is — an ultra-strong, hydrophobic, chemical-resistant layer over your paint, lasting up to 10 years.',
     href: '/detailing-packages-melbourne#ceramic',
     img: '/glossed/ceramic-coating.jpg',
   },
@@ -147,7 +147,7 @@ export default function HomePage() {
           </p>
 
           <p className="hero-anim" style={{ color: 'rgba(255,255,255,0.85)', fontSize: 'clamp(15px, 1.8vw, 18px)', margin: '16px auto 0', lineHeight: 1.6, maxWidth: 620 }}>
-            Melbourne's <span style={{ color: 'var(--brand-gold-lt)', fontWeight: 600 }}>prestige auto detailer</span> — 10+ years' experience and a ceramic coating specialist. Prestige service, obsessive attention to detail.
+            Melbourne's <span style={{ color: 'var(--brand-gold-lt)', fontWeight: 600 }}>prestige mobile detailer</span> — 10+ years' experience and a ceramic coating specialist. Where precision meets passion.
           </p>
 
           <div className="hero-anim hero-cta-group" style={{ display: 'flex', gap: 16, marginTop: 40, justifyContent: 'center', flexWrap: 'wrap' }}>
@@ -193,7 +193,7 @@ export default function HomePage() {
               Our Services.
             </h2>
             <p className="home-intro-para" style={{ color: 'rgba(255,255,255,0.65)', fontSize: 'clamp(15px, 1.5vw, 17px)', lineHeight: 1.7, margin: '20px 0 0' }}>
-              Glossed Out Detailing is Melbourne's specialist studio for car detailing, paint correction and ceramic coating. Certified in Gtechniq, Magnum, Kraken and CarPro — obsessive attention to every panel.
+              Glossed Out Detailing is Melbourne's mobile specialist for car detailing, paint correction and ceramic coating — certified in Gtechniq, Magnum, Kraken and CarPro. Where precision meets passion.
             </p>
           </div>
           <div className="gold-grid">

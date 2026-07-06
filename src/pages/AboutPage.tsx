@@ -75,13 +75,13 @@ export default function AboutPage() {
             </div>
             <div>
               <h2 className="font-display" style={{ fontSize: 'var(--size-h2)', marginBottom: 20, lineHeight: 1.05 }}>
-                Cars have been the <span style={{ color: 'var(--brand-gold-dk)' }}>whole story.</span>
+                From a Craigieburn <span style={{ color: 'var(--brand-gold-dk)' }}>garage.</span>
               </h2>
               <p style={{ color: 'var(--color-text-secondary)', fontSize: 15, lineHeight: 1.85, marginBottom: 18 }}>
-                Glossed Out Detailing is Mohammed — a car enthusiast his whole life who turned an obsession into a craft. Over 10 years in car detailing and paint protection have gone into one thing: making paint look better than the day it left the showroom, and keeping it that way.
+                Glossed Out Detailing started modestly as a small home-based business in Craigieburn, Victoria, operating from a garage with limited space and equipment. Despite our humble beginnings, our commitment to delivering top-quality ceramic coating, paint correction and auto detailing across Craigieburn and greater Victoria has always been unwavering. What truly sets us apart is a genuine dedication to our clients — and as we've grown over the years, one principle has stayed at the core: putting our clients' needs first.
               </p>
               <p style={{ color: 'var(--color-text-secondary)', fontSize: 15, lineHeight: 1.85, marginBottom: 28 }}>
-                He's a ceramic coating specialist, accredited across every product he uses — Gtechniq, Magnum, Kraken and CarPro — so the coating on your car is applied to spec and backed to last. When you book Glossed Out, the person who quotes your car is the person who details it.
+                Though we now specialise in advanced ceramic coating and paint correction, we stay connected to our roots. We start by understanding each customer's specific needs and craft personalised solutions that exceed expectations. Our Craigieburn-based operation may have transformed over time, but we're far from your typical auto detailers — we go above and beyond to build lasting relationships and provide unparalleled service to every client who trusts us with their vehicle.
               </p>
               <div style={{ display: 'flex', gap: 28, flexWrap: 'wrap' }}>
                 <div>
