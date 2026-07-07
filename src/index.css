@@ -939,6 +939,19 @@ label { display: block; font-size: var(--size-label); text-transform: uppercase;
   filter: brightness(1.05);
 }
 
+/* "The Detailer" reveal — fades/rises in out of the cinematic handoff so it
+   reads as a reveal, not a plain scroll onto the next section. */
+.detailer-reveal {
+  opacity: 0;
+  transform: translateY(48px) scale(0.99);
+  transition: opacity 1.05s ease, transform 1.05s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+.detailer-reveal.is-in {
+  opacity: 1;
+  transform: none;
+}
+
 /* Tinted "canvas" behind glass content — gives the frosted panels something
    to refract so they read as glass instead of white-on-white paper. */
 .pkg-canvas {

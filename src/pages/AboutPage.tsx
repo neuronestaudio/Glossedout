@@ -1,3 +1,4 @@
+import { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { Award, MapPin, Clock, Phone, Mail, Shield, Star } from 'lucide-react';
 import CTABlock from '../components/CTABlock';
@@ -20,6 +21,28 @@ const values = [
 ];
 
 export default function AboutPage() {
+  const detailerRef = useRef<HTMLElement>(null);
+
+  // Reveal "The Detailer" as it scrolls out of the cinematic — a soft fade/rise
+  // so it reads as a reveal rather than scrolling onto a plain section. Class is
+  // added in JS so the content is never hidden if scripts don't run (SSR-safe).
+  useEffect(() => {
+    const el = detailerRef.current;
+    if (!el) return;
+    if (window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) return;
+    el.classList.add('detailer-reveal');
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) { el.classList.add('is-in'); io.disconnect(); }
+        });
+      },
+      { threshold: 0.14 },
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
   return (
     <>
       <PageMeta
@@ -51,7 +74,7 @@ export default function AboutPage() {
 
       {/* The Detailer — founder feature (flows straight out of the cinematic
           "Meet the Detailer" handoff) */}
-      <section className="section" style={{ background: 'var(--color-bg-secondary)' }}>
+      <section ref={detailerRef} className="section" style={{ background: 'var(--color-bg-secondary)' }}>
         <div className="container">
           <p style={{ fontSize: 'var(--size-label)', textTransform: 'uppercase', letterSpacing: '0.12em', color: 'var(--brand-gold-dk)', marginBottom: 12 }}>The Detailer</p>
           <div className="grid-2col" style={{ display: 'grid', gridTemplateColumns: '0.9fr 1.1fr', gap: 56, alignItems: 'center' }}>
