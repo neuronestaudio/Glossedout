@@ -14,11 +14,13 @@
 /* Lift the panorama up into the tail of the cinematic white "Meet the Team"
    screen (both are light), closing the otherwise full-viewport gap. */
 .nlp-pano--pull {
-  margin-top: -30vh;
+  /* Tuck up under the "Meet the Detailer" handoff, but leave a clear gap so the
+     photo never collides with the title as it scrolls in. */
+  margin-top: -10vh;
   z-index: 1;
 }
 @media (max-width: 768px) {
-  .nlp-pano--pull { margin-top: -42vh; }
+  .nlp-pano--pull { margin-top: -14vh; }
 }
 
 /* Viewport locked to the photo's aspect ratio — no letterboxing at any width. */
