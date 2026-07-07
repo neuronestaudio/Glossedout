@@ -46,6 +46,7 @@ const reviews = [
   { name: 'Google review', suburb: 'Craigieburn', service: 'Ceramic Coating', text: 'Muhammad was a champion — very happy with what he did. He went above and beyond, and the car looked as new.' },
   { name: 'Google review', suburb: 'Melbourne', service: 'Full Detail', text: 'Amazing outcome — very satisfied with how the car turned out. Highly recommended!' },
   { name: 'Google review', suburb: 'Craigieburn', service: 'Car Detailing', text: 'Excellent car detailing — the car looks like new. Great effort done inside and out.' },
+  { name: 'Google review', suburb: 'Melbourne', service: 'Ceramic Coating', text: 'Booked in for a ceramic coating and couldn\'t be happier — great communication start to finish and the gloss on the paint is unreal. Highly recommend.' },
 ];
 
 export default function HomePageSportscar() {
