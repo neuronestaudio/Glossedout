@@ -60,6 +60,7 @@ export default function AboutHero() {
   const footageProgRef = useRef(0);
 
   const introRef = useRef<HTMLDivElement>(null);
+  const introLogoRef = useRef<HTMLDivElement>(null);
   const introRuleRef = useRef<HTMLSpanElement>(null);
   const introMarkRef = useRef<HTMLHeadingElement>(null);
   const introSubRef = useRef<HTMLSpanElement>(null);
@@ -103,15 +104,22 @@ export default function AboutHero() {
     }
 
     const ctx = gsap.context(() => {
-      // Intro wordmark animate-in on load.
+      // Intro: gold G logo reveals first (enlarged, centered, glowing), then
+      // hands off to the "Glossed Out Detailing" wordmark.
+      gsap.set(introLogoRef.current, { opacity: 0, scale: 0.7 });
       gsap.set(introMarkRef.current, { opacity: 0, y: 16, scale: 1.04, filter: 'blur(10px)', letterSpacing: '0.12em' });
       gsap.set(introSubRef.current, { opacity: 0, y: 10, letterSpacing: '0.9em' });
       gsap.set(introRuleRef.current, { width: 0, opacity: 0 });
 
       gsap.timeline({ defaults: { ease: 'power3.out' } })
-        .to(introRuleRef.current, { width: 72, opacity: 1, duration: 0.9 }, 0.15)
-        .to(introMarkRef.current, { opacity: 1, y: 0, scale: 1, filter: 'blur(0px)', letterSpacing: '0.02em', duration: 1.5 }, 0.2)
-        .to(introSubRef.current, { opacity: 1, y: 0, letterSpacing: '0.55em', duration: 1.4 }, 0.6);
+        // G logo in
+        .to(introLogoRef.current, { opacity: 1, scale: 1, duration: 1.0, ease: 'power2.out' }, 0.1)
+        // hold, then G logo out
+        .to(introLogoRef.current, { opacity: 0, scale: 1.16, filter: 'blur(8px)', duration: 0.75, ease: 'power2.in' }, 1.35)
+        // wordmark hands in as the G leaves
+        .to(introRuleRef.current, { width: 72, opacity: 1, duration: 0.9 }, 1.5)
+        .to(introMarkRef.current, { opacity: 1, y: 0, scale: 1, filter: 'blur(0px)', letterSpacing: '0.02em', duration: 1.4 }, 1.6)
+        .to(introSubRef.current, { opacity: 1, y: 0, letterSpacing: '0.55em', duration: 1.3 }, 2.0);
 
       // Pin the stage and scrub everything off a single trigger. Uses
       // ScrollTrigger pin (not CSS sticky) because the site sets
@@ -238,6 +246,10 @@ export default function AboutHero() {
 
         {/* Intro wordmark */}
         <div ref={introRef} className="nlp-cine__intro">
+          <div ref={introLogoRef} className="nlp-cine__intro-logo" aria-hidden="true">
+            <span className="nlp-cine__intro-logo-glow" />
+            <img src="/glossed-g.png" alt="" />
+          </div>
           <span ref={introRuleRef} className="nlp-cine__intro-rule" />
           <h1 ref={introMarkRef} className="nlp-cine__intro-mark">Glossed Out</h1>
           <span ref={introSubRef} className="nlp-cine__intro-sub">Detailing</span>

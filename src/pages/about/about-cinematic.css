@@ -145,6 +145,21 @@
   display: flex; flex-direction: column; align-items: center; justify-content: center;
   background: var(--cine-ink);
 }
+.nlp-cine__intro-logo {
+  position: absolute; left: 50%; top: 50%;
+  transform: translate(-50%, -50%);
+  width: clamp(180px, 32vw, 400px); height: auto;
+  opacity: 0; /* revealed by GSAP; avoids pre-JS flash */
+  will-change: transform, opacity, filter;
+  filter: drop-shadow(0 0 30px rgba(201, 162, 39, 0.5)) drop-shadow(0 14px 44px rgba(0, 0, 0, 0.55));
+}
+.nlp-cine__intro-logo img { display: block; width: 100%; height: auto; position: relative; z-index: 1; }
+.nlp-cine__intro-logo-glow {
+  position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
+  width: 150%; height: 150%; border-radius: 50%; z-index: 0; pointer-events: none;
+  background: radial-gradient(circle, rgba(201, 162, 39, 0.40) 0%, rgba(201, 162, 39, 0.12) 38%, transparent 66%);
+  filter: blur(26px);
+}
 .nlp-cine__intro-rule { display: block; height: 1px; width: 0; background: rgba(245,246,247,0.5); }
 .nlp-cine__intro-mark {
   margin-top: 30px; text-align: center; text-transform: uppercase; color: var(--cine-paper);
