@@ -854,8 +854,34 @@ label { display: block; font-size: var(--size-label); text-transform: uppercase;
 @media (max-width: 600px) { .tier-grid { grid-template-columns: 1fr; } }
 
 /* Package carousel */
+/* Shiny 3D gold pill — nav anchors / chips that need to pop */
+.gold-pill-3d {
+  display: inline-flex; align-items: center; justify-content: center;
+  padding: 11px 24px; border-radius: 100px;
+  background: linear-gradient(135deg, #F6DE8A 0%, #E4C766 32%, #C9A227 66%, #A17E12 100%);
+  color: #0A2B1E; font-size: 14px; font-weight: 700; letter-spacing: 0.01em;
+  text-decoration: none; white-space: nowrap; cursor: pointer;
+  border: 1px solid rgba(246, 222, 138, 0.7);
+  box-shadow: 0 8px 20px rgba(201, 162, 39, 0.32), inset 0 1px 0 rgba(255, 255, 255, 0.6), inset 0 -3px 8px rgba(120, 90, 10, 0.35);
+  transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
+}
+.gold-pill-3d:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 13px 30px rgba(201, 162, 39, 0.46), inset 0 1px 0 rgba(255, 255, 255, 0.7), inset 0 -3px 8px rgba(120, 90, 10, 0.35);
+  filter: brightness(1.05);
+}
+
+/* Warranty products table */
+.warranty-table { width: 100%; border-collapse: collapse; font-size: 14px; min-width: 640px; }
+.warranty-table thead th { text-align: left; padding: 15px 20px; background: var(--brand-green); color: var(--brand-gold-lt); font-size: 11px; text-transform: uppercase; letter-spacing: 0.09em; font-weight: 700; white-space: nowrap; }
+.warranty-table tbody td { padding: 18px 20px; border-top: 1px solid var(--color-border); color: var(--color-text-secondary); vertical-align: middle; line-height: 1.5; }
+.warranty-table tbody tr:nth-child(even) { background: rgba(27, 107, 74, 0.045); }
+.warranty-table .wt-product { display: block; font-weight: 700; color: var(--color-text-primary); font-size: 15px; }
+.warranty-table .wt-brand { display: block; color: var(--color-text-muted); font-size: 12px; margin-top: 2px; }
+.warranty-table .wt-years { display: inline-flex; align-items: center; padding: 6px 14px; border-radius: 100px; background: linear-gradient(135deg, #E4C766 0%, #C9A227 50%, #A17E12 100%); color: #0A2B1E; font-weight: 700; font-size: 12px; letter-spacing: 0.02em; white-space: nowrap; box-shadow: 0 4px 12px rgba(201, 162, 39, 0.28); }
+
 .pkg-carousel { position: relative; }
-.pkg-carousel__stage { position: relative; display: flex; align-items: stretch; justify-content: center; }
+.pkg-carousel__stage { position: relative; display: flex; align-items: center; justify-content: center; }
 .pkg-carousel__card { width: 100%; max-width: 460px; }
 .pkg-carousel__arrow {
   flex-shrink: 0; width: 48px; height: 48px; border-radius: 50%; cursor: pointer;

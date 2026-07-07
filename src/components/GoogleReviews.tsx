@@ -53,8 +53,8 @@ export default function GoogleReviews({ reviews, googleUrl, rating = '5.0', coun
             >
               {rating}
             </span>
-            <div style={{ textAlign: 'left' }}>
-              <div style={{ display: 'flex', gap: 4, marginBottom: 8 }}>
+            <div style={{ textAlign: 'center' }}>
+              <div style={{ display: 'flex', gap: 4, marginBottom: 8, justifyContent: 'center' }}>
                 {Array.from({ length: 5 }).map((_, j) => (
                   <Star key={j} size={26} fill="#C9A227" color="#C9A227" strokeWidth={0} />
                 ))}

@@ -1,6 +1,6 @@
 import { useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { Check, Star, ArrowRight, Sparkles, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Check, Star, ArrowRight, Sparkles, ChevronLeft, ChevronRight, ShieldCheck, Minus } from 'lucide-react';
 import CTABlock from '../components/CTABlock';
 import PageMeta from '../components/PageMeta';
 import Accreditations from '../components/Accreditations';
@@ -95,41 +95,6 @@ const correction: Tier[] = [
       'Heavy swirl, oxidation & scratch removal',
       '~80–90% defect removal',
     ],
-  },
-];
-
-const ceramicNew: Tier[] = [
-  {
-    name: 'CSL 5-Year Ceramic Coating',
-    price: 999,
-    blurb: 'Gtechniq CSL — high gloss, UV protection & hydrophobic finish.',
-    includes: ['Decontamination & clay bar', 'Machine polishing', 'Gtechniq CSL ceramic coating', 'Interior detailing', 'Wheel coating + glass coating', 'FREE leather & fabric coating'],
-  },
-  {
-    name: 'Magnum Graphene 7-Year Coating',
-    price: 1399,
-    blurb: 'Enhanced durability & chemical resistance.',
-    includes: ['Decontamination & clay bar', 'Machine polishing', 'Magnum Graphene coating', 'Interior detailing', 'Wheel coating + glass coating', 'FREE leather & fabric coating'],
-  },
-  {
-    name: 'Magnum Borophene 10-Year Coating',
-    price: 1599,
-    blurb: 'Maximum protection & longevity.',
-    includes: ['Decontamination & clay bar', 'Machine polishing', 'Magnum Borophene coating', 'Interior detailing', 'Wheel coating + glass coating', 'FREE leather & fabric coating'],
-  },
-  {
-    name: 'Kraken Elite Plus 7-Year Graphene (Self-Healing)',
-    price: 2099,
-    blurb: 'Self-heals light imperfections. Superior gloss & chemical resistance.',
-    badge: 'Premium',
-    featured: true,
-    includes: ['Decontamination & clay bar', 'Machine polishing', 'Kraken Elite Plus Graphene coating', 'Interior detailing', 'Wheel coating + glass coating', 'FREE leather & fabric coating'],
-  },
-  {
-    name: 'Kraken Elite Graphene Titanium 10-Year (Self-Healing)',
-    price: 2299,
-    blurb: 'Ultimate protection, durability & gloss retention.',
-    includes: ['Decontamination & clay bar', 'Machine polishing', 'Kraken Elite Graphene Titanium coating', 'Interior detailing', 'Wheel coating + glass coating', 'FREE leather & fabric coating'],
   },
 ];
 
@@ -245,15 +210,85 @@ function PackageGroup({ id, eyebrow, title, intro, tiers }: { id: string; eyebro
         <p style={{ fontSize: 'var(--size-label)', textTransform: 'uppercase', letterSpacing: '0.12em', color: 'var(--brand-gold-dk)', marginBottom: 12 }}>{eyebrow}</p>
         <h2 className="font-display" style={{ fontSize: 'var(--size-h2)', color: 'var(--color-text-primary)', marginBottom: 14, lineHeight: 1.05 }}>{title}</h2>
         <p style={{ color: 'var(--color-text-secondary)', fontSize: 16, lineHeight: 1.7, maxWidth: 640, marginBottom: 44 }}>{intro}</p>
-        <div className="tier-grid">
-          {tiers.map((t, i) => <PriceCard key={i} tier={t} />)}
+        <PackageCarousel tiers={tiers} />
+      </div>
+    </section>
+  );
+}
+
+/* Coating products & their manufacturer-backed warranties */
+interface Warranty {
+  product: string;
+  brand: string;
+  tech: string;
+  years: number;
+  selfHeal: boolean;
+  note: string;
+}
+
+const warranties: Warranty[] = [
+  { product: 'Gtechniq CSL', brand: 'Gtechniq', tech: 'Ceramic', years: 5, selfHeal: false, note: 'High gloss, UV protection & hydrophobic finish' },
+  { product: 'Magnum Graphene', brand: 'Magnum', tech: 'Graphene', years: 7, selfHeal: false, note: 'Enhanced durability & chemical resistance' },
+  { product: 'Magnum Borophene', brand: 'Magnum', tech: 'Borophene', years: 10, selfHeal: false, note: 'Maximum protection & longevity' },
+  { product: 'Kraken Elite Plus Graphene', brand: 'Kraken Elite', tech: 'Graphene', years: 7, selfHeal: true, note: 'Self-heals light imperfections; superior gloss & chemical resistance' },
+  { product: 'Kraken Elite Graphene Titanium', brand: 'Kraken Elite', tech: 'Graphene Titanium', years: 10, selfHeal: true, note: 'Ultimate protection, durability & gloss retention' },
+];
+
+function WarrantyTable() {
+  return (
+    <section id="warranties" className="section" style={{ background: 'var(--color-bg-secondary)' }}>
+      <div className="container">
+        <p style={{ display: 'inline-flex', alignItems: 'center', gap: 8, fontSize: 'var(--size-label)', textTransform: 'uppercase', letterSpacing: '0.12em', color: 'var(--brand-gold-dk)', marginBottom: 12 }}>
+          <ShieldCheck size={15} /> Coating Warranties
+        </p>
+        <h2 className="font-display" style={{ fontSize: 'var(--size-h2)', color: 'var(--color-text-primary)', marginBottom: 14, lineHeight: 1.05 }}>Products &amp; Warranties</h2>
+        <p style={{ color: 'var(--color-text-secondary)', fontSize: 16, lineHeight: 1.7, maxWidth: 660, marginBottom: 40 }}>
+          Every ceramic package uses a named, professional-grade coating with a manufacturer-backed warranty — never a generic bottle. Here's exactly what each product covers and how long it's protected for.
+        </p>
+
+        <div style={{ overflowX: 'auto', border: '1px solid var(--color-border)', borderRadius: 14, WebkitOverflowScrolling: 'touch' }}>
+          <table className="warranty-table">
+            <thead>
+              <tr>
+                <th>Coating</th>
+                <th>Technology</th>
+                <th>Warranty</th>
+                <th style={{ textAlign: 'center' }}>Self-Healing</th>
+                <th>Best For</th>
+              </tr>
+            </thead>
+            <tbody>
+              {warranties.map(w => (
+                <tr key={w.product}>
+                  <td>
+                    <span className="wt-product">{w.product}</span>
+                    <span className="wt-brand">{w.brand}</span>
+                  </td>
+                  <td>{w.tech}</td>
+                  <td><span className="wt-years">{w.years}-Year</span></td>
+                  <td style={{ textAlign: 'center' }}>
+                    {w.selfHeal
+                      ? <Check size={18} strokeWidth={2.5} style={{ color: 'var(--brand-emerald)' }} />
+                      : <Minus size={16} style={{ color: 'var(--color-text-muted)' }} />}
+                  </td>
+                  <td>{w.note}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
+
+        <p style={{ color: 'var(--color-text-muted)', fontSize: 13, lineHeight: 1.7, marginTop: 20 }}>
+          Warranty terms are set and backed by the coating manufacturer (Gtechniq, Magnum, Kraken) and are subject to their care &amp; maintenance requirements. We'll walk you through the right coating for your car and how to keep it covered.
+        </p>
       </div>
     </section>
   );
 }
 
 function shortTierName(name: string) {
+  // "Level 1 — Paint Enhancement Polish" -> "Level 1"
+  if (name.includes(' — ')) return name.split(' — ')[0].trim();
   return name
     .replace('Ceramic Coating', '').replace('Coating', '')
     .replace('(Self-Healing)', '').replace('Graphene', '')
@@ -267,6 +302,12 @@ function PackageCarousel({ tiers }: { tiers: Tier[] }) {
   const go = (d: number) => setI(v => (v + d + n) % n);
   return (
     <div className="pkg-carousel">
+      {/* Selectable options — sit directly under the title, above the carousel */}
+      <div style={{ display: 'flex', gap: 8, justifyContent: 'center', flexWrap: 'wrap', marginBottom: 34 }}>
+        {tiers.map((t, idx) => (
+          <button key={idx} className={`pkg-carousel__chip${idx === i ? ' is-active' : ''}`} onClick={() => setI(idx)}>{shortTierName(t.name)}</button>
+        ))}
+      </div>
       <div
         className="pkg-carousel__stage"
         onTouchStart={(e) => { touchX.current = e.touches[0].clientX; }}
@@ -283,12 +324,7 @@ function PackageCarousel({ tiers }: { tiers: Tier[] }) {
         </div>
         <button className="pkg-carousel__arrow pkg-carousel__arrow--r" onClick={() => go(1)} aria-label="Next package"><ChevronRight size={22} /></button>
       </div>
-      <div style={{ display: 'flex', gap: 8, justifyContent: 'center', flexWrap: 'wrap', marginTop: 28 }}>
-        {tiers.map((t, idx) => (
-          <button key={idx} className={`pkg-carousel__chip${idx === i ? ' is-active' : ''}`} onClick={() => setI(idx)}>{shortTierName(t.name)}</button>
-        ))}
-      </div>
-      <div style={{ display: 'flex', gap: 8, justifyContent: 'center', marginTop: 18 }}>
+      <div style={{ display: 'flex', gap: 8, justifyContent: 'center', marginTop: 22 }}>
         {tiers.map((_, idx) => (
           <button key={idx} onClick={() => setI(idx)} aria-label={`Package ${idx + 1}`} style={{ width: idx === i ? 24 : 8, height: 8, borderRadius: 100, border: 'none', cursor: 'pointer', background: idx === i ? 'var(--brand-gold)' : 'var(--color-border)', transition: 'all 0.25s ease', padding: 0 }} />
         ))}
@@ -298,8 +334,7 @@ function PackageCarousel({ tiers }: { tiers: Tier[] }) {
 }
 
 export default function ServicesPage() {
-  const [ceramicMode, setCeramicMode] = useState<'new' | 'used'>('used');
-  const ceramicTiers = ceramicMode === 'new' ? ceramicNew : ceramicUsed;
+  const ceramicTiers = ceramicUsed;
 
   return (
     <>
@@ -349,15 +384,33 @@ Our Packages
           </p>
           <div style={{ display: 'flex', gap: 14, justifyContent: 'center', flexWrap: 'wrap' }}>
             {[
+              { label: 'Warranties', href: '#warranties' },
+              { label: 'Ceramic Coating', href: '#ceramic' },
               { label: 'Detailing', href: '#detailing' },
               { label: 'Paint Correction', href: '#correction' },
-              { label: 'Ceramic Coating', href: '#ceramic' },
             ].map(a => (
-              <a key={a.href} href={a.href} className="btn-gold">
-                {a.label}
-              </a>
+              <a key={a.href} href={a.href} className="gold-pill-3d">{a.label}</a>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* COATING WARRANTIES — top billing */}
+      <WarrantyTable />
+
+      {/* CERAMIC COATING (toggle) */}
+      <section id="ceramic" className="section" style={{ background: 'var(--color-bg-primary)' }}>
+        <div className="container">
+          <p style={{ fontSize: 'var(--size-label)', textTransform: 'uppercase', letterSpacing: '0.12em', color: 'var(--brand-gold-dk)', marginBottom: 12 }}>Gtechniq · Magnum · Kraken Elite</p>
+          <h2 className="font-display" style={{ fontSize: 'var(--size-h2)', color: 'var(--color-text-primary)', marginBottom: 14, lineHeight: 1.05 }}>Ceramic Coating Packages</h2>
+          <p style={{ color: 'var(--color-text-secondary)', fontSize: 16, lineHeight: 1.7, maxWidth: 640, marginBottom: 44 }}>
+            Long-term gloss, UV protection and hydrophobic self-cleaning, backed by up to a 10-year coating. Every package includes decontamination and a full one-step paint correction so the coating bonds to flawless paint.
+          </p>
+
+          <PackageCarousel tiers={ceramicTiers} />
+          <p style={{ color: 'var(--color-text-muted)', fontSize: 13, lineHeight: 1.7, marginTop: 28 }}>
+            All ceramic packages include decontamination and a one-step paint correction. A two-step correction upgrade is available on request.
+          </p>
         </div>
       </section>
 
@@ -379,49 +432,6 @@ Our Packages
         intro="Swirls, oxidation and scratches removed with the right level of machine correction for your paint — from a gloss-boosting enhancement to a full multi-stage restoration."
         tiers={correction}
       />
-
-      {/* CERAMIC COATING (toggle) */}
-      <section id="ceramic" className="section" style={{ background: 'var(--color-bg-primary)' }}>
-        <div className="container">
-          <p style={{ fontSize: 'var(--size-label)', textTransform: 'uppercase', letterSpacing: '0.12em', color: 'var(--brand-gold-dk)', marginBottom: 12 }}>Gtechniq · Magnum · Kraken Elite</p>
-          <h2 className="font-display" style={{ fontSize: 'var(--size-h2)', color: 'var(--color-text-primary)', marginBottom: 14, lineHeight: 1.05 }}>Ceramic Coating Packages</h2>
-          <p style={{ color: 'var(--color-text-secondary)', fontSize: 16, lineHeight: 1.7, maxWidth: 640, marginBottom: 28 }}>
-            Long-term gloss, UV protection and hydrophobic self-cleaning, backed by up to a 10-year coating. Choose your vehicle type — used cars include a full one-step paint correction first, so the process differs.
-          </p>
-
-          {/* Toggle */}
-          <div style={{ display: 'inline-flex', padding: 4, background: 'var(--color-bg-tertiary)', borderRadius: 100, marginBottom: 44, border: '1px solid var(--color-border)' }}>
-            {(['used', 'new'] as const).map(mode => (
-              <button
-                key={mode}
-                onClick={() => setCeramicMode(mode)}
-                style={{
-                  padding: '10px 24px',
-                  borderRadius: 100,
-                  border: 'none',
-                  cursor: 'pointer',
-                  fontFamily: 'var(--font-body)',
-                  fontSize: 14,
-                  fontWeight: 600,
-                  width: 'auto',
-                  transition: 'all 200ms ease',
-                  background: ceramicMode === mode ? 'var(--brand-green)' : 'transparent',
-                  color: ceramicMode === mode ? '#fff' : 'var(--color-text-secondary)',
-                }}
-              >
-                {mode === 'used' ? 'Used / Existing Car' : 'New / Near-New Car'}
-              </button>
-            ))}
-          </div>
-
-          <PackageCarousel key={ceramicMode} tiers={ceramicTiers} />
-          <p style={{ color: 'var(--color-text-muted)', fontSize: 13, lineHeight: 1.7, marginTop: 28 }}>
-            {ceramicMode === 'used'
-              ? 'All used-car packages include decontamination and a one-step paint correction. A two-step correction upgrade is available on request.'
-              : 'New-car packages are designed for brand-new or near-new vehicles and include interior detailing, wheel + glass coating and a complimentary leather & fabric coating.'}
-          </p>
-        </div>
-      </section>
 
       {/* PRICING NOTE */}
       <section style={{ background: 'var(--color-bg-secondary)', padding: '0 var(--section-padding-x) 20px' }}>
