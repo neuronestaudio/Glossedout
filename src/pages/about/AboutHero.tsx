@@ -251,8 +251,8 @@ export default function AboutHero() {
             <img src="/glossed-g.png" alt="" />
           </div>
           <span ref={introRuleRef} className="nlp-cine__intro-rule" />
-          <h1 ref={introMarkRef} className="nlp-cine__intro-mark">Glossed Out</h1>
-          <span ref={introSubRef} className="nlp-cine__intro-sub">Detailing</span>
+          <h1 ref={introMarkRef} className="nlp-cine__intro-mark hero-text-mono">Glossed Out</h1>
+          <span ref={introSubRef} className="nlp-cine__intro-sub hero-text-mono">Detailing</span>
         </div>
       </div>
     </section>
