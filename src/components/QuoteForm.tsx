@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Loader2 } from 'lucide-react';
 import { pushGtmEvent } from '../lib/gtm';
 
-const GHL_WEBHOOK = 'https://services.leadconnectorhq.com/hooks/zM2njfm3k4rchqX8UD3u/webhook-trigger/92c7737c-f2ed-45c7-be3c-db69f9343157';
+const GHL_WEBHOOK = 'https://services.leadconnectorhq.com/hooks/ed6fxFrV8P1iGtkwL7D7/webhook-trigger/I3moCd8GTaDTsQUIdzvF';
 
 interface QuoteFormProps {
   defaultService?: string;
