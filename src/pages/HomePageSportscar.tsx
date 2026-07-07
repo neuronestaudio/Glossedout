@@ -5,10 +5,18 @@ import { Shield, Car, Sparkles, Armchair, Instagram } from 'lucide-react';
 import GoogleReviews from '../components/GoogleReviews';
 import CTABlock from '../components/CTABlock';
 import PageMeta from '../components/PageMeta';
+import ServicesShowcase from '../components/ServicesShowcase';
 import heroHome from '../assets/glossed/hero-maserati-mc20.webp';
 import { galleryPhotos } from '../data/galleryPhotos';
 
 const services = [
+  {
+    icon: Shield,
+    title: 'Ceramic Coating',
+    desc: 'Named, professional-grade coatings up to 10 years — deep gloss, UV protection and hydrophobic self-cleaning.',
+    href: '/detailing-packages-melbourne#ceramic',
+    img: '/glossed/porsche.jpg',
+  },
   {
     icon: Car,
     title: 'Car Detailing',
@@ -22,13 +30,6 @@ const services = [
     desc: 'Machine polishing that removes swirls, oxidation and scratches — from a gloss enhancement to a full multi-stage cut.',
     href: '/detailing-packages-melbourne#correction',
     img: '/glossed/paint-correction-altima.jpg',
-  },
-  {
-    icon: Shield,
-    title: 'Ceramic Coating',
-    desc: 'Named, professional-grade coatings up to 10 years — deep gloss, UV protection and hydrophobic self-cleaning.',
-    href: '/detailing-packages-melbourne#ceramic',
-    img: '/glossed/porsche.jpg',
   },
   {
     icon: Armchair,
@@ -190,25 +191,7 @@ export default function HomePageSportscar() {
               Glossed Out Detailing is Melbourne's specialist studio for car detailing, paint correction and ceramic coating. Certified in Gtechniq, Magnum, Kraken and CarPro — obsessive attention to every panel.
             </p>
           </div>
-          <div className="gold-grid">
-            {services.map(s => {
-              const Icon = s.icon;
-              return (
-                <Link to={s.href} key={s.title} className="gold-card" aria-label={s.title}>
-                  <div className="gold-card__inner">
-                    <div className="gold-card__reveal" style={{ backgroundImage: `url("${s.img}")` }} />
-                    <div className="gold-card__body">
-                      <div className="gold-card__icon">
-                        <Icon size={26} color="#E4C766" strokeWidth={1.75} />
-                      </div>
-                      <h3 className="gold-card__title">{s.title}</h3>
-                      <p className="gold-card__desc">{s.desc}</p>
-                    </div>
-                  </div>
-                </Link>
-              );
-            })}
-          </div>
+          <ServicesShowcase services={services} />
           <div style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: 16, marginTop: 'clamp(40px, 6vw, 56px)' }}>
             <Link to="/detailing-packages-melbourne" className="btn-emerald">View Packages</Link>
             <Link to="/product-tds" className="btn-emerald">Coating TDS</Link>

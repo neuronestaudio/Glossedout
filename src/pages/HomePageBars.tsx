@@ -9,6 +9,13 @@ import { galleryPhotos } from '../data/galleryPhotos';
 
 const services = [
   {
+    icon: Shield,
+    title: 'Ceramic Coating',
+    desc: 'The best long-term paint protection there is — an ultra-strong, hydrophobic, chemical-resistant layer over your paint, lasting up to 10 years.',
+    href: '/detailing-packages-melbourne#ceramic',
+    img: '/glossed/porsche.jpg',
+  },
+  {
     icon: Car,
     title: 'Car Detailing',
     desc: 'Hand wash, interior steam clean and a full reset — from a light refresh to a showroom-grade Prestige detail.',
@@ -21,13 +28,6 @@ const services = [
     desc: 'Machine polishing that removes swirls, oxidation and scratches — from a gloss enhancement to a full multi-stage cut.',
     href: '/detailing-packages-melbourne#correction',
     img: '/glossed/paint-correction-altima.jpg',
-  },
-  {
-    icon: Shield,
-    title: 'Ceramic Coating',
-    desc: 'The best long-term paint protection there is — an ultra-strong, hydrophobic, chemical-resistant layer over your paint, lasting up to 10 years.',
-    href: '/detailing-packages-melbourne#ceramic',
-    img: '/glossed/porsche.jpg',
   },
   {
     icon: Armchair,

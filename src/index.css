@@ -722,6 +722,13 @@ label { display: block; font-size: var(--size-label); text-transform: uppercase;
   .gold-bar__desc { display: none; }
 }
 
+/* Desktop shows cards, mobile shows the compact bars — everywhere. */
+.services-mobile { display: none; }
+@media (max-width: 768px) {
+  .services-desktop { display: none; }
+  .services-mobile { display: flex; }
+}
+
 .gold-card {
   position: relative;
   display: block;
