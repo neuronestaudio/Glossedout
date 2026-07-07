@@ -4,7 +4,6 @@ import CTABlock from '../components/CTABlock';
 import PageMeta from '../components/PageMeta';
 import AboutHero from './about/AboutHero';
 import TeamPanorama from './about/TeamPanorama';
-import panoramaImg from '../assets/glossed/hero-maserati-mc20.webp';
 import founderImg from '../assets/glossed/detailing-gen.jpg';
 import craftBg from '../assets/team/craft-bg.jpg';
 
@@ -51,10 +50,10 @@ export default function AboutPage() {
           scrubbed by scroll progress (Lenis smooth-scroll active site-wide). */}
       <AboutHero />
 
-      {/* Wide banner — placeholder car photo until studio/owner photos arrive */}
+      {/* Wide banner — the detailer at work (same photo as The Detailer feature) */}
       <TeamPanorama
-        src={panoramaImg}
-        alt="Glossed Out Detailing — finished car"
+        src={founderImg}
+        alt="Mohammed — Glossed Out Detailing"
         caption="Craigieburn · Melbourne"
         people={[]}
         pullUp
