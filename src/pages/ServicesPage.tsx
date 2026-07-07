@@ -353,19 +353,7 @@ Our Packages
               { label: 'Paint Correction', href: '#correction' },
               { label: 'Ceramic Coating', href: '#ceramic' },
             ].map(a => (
-              <a
-                key={a.href}
-                href={a.href}
-                style={{
-                  padding: '10px 22px',
-                  borderRadius: 100,
-                  border: '1px solid rgba(228,199,102,0.35)',
-                  color: 'var(--brand-gold-lt)',
-                  fontSize: 14,
-                  fontWeight: 600,
-                  textDecoration: 'none',
-                }}
-              >
+              <a key={a.href} href={a.href} className="btn-gold">
                 {a.label}
               </a>
             ))}

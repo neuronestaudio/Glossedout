@@ -183,6 +183,7 @@ export default function App() {
             <Route path="/3m-commercial-window-film-brisbane" element={<ThreeMCommercialFilmPage />} />
             <Route path="/next-level-protection-brisbane" element={<NextLevelProtectionPage />} />
             <Route path="/warranties" element={<WarrantyPage />} />
+            <Route path="/product-tds" element={<ProductTDSPage />} />
             <Route path="/next-level-protection-tds" element={<ProductTDSPage />} />
             <Route path="/sitemap" element={<SitemapPage />} />
             <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />

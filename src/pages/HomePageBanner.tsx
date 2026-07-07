@@ -91,13 +91,16 @@ export default function HomePageBanner() {
       {/* HERO */}
       <section
         ref={heroRef}
-        className="home-hero"
+        className="home-hero home-hero-banner"
         style={{ position: 'relative', height: '85dvh', overflow: 'hidden', display: 'flex', alignItems: 'flex-end', justifyContent: 'center', textAlign: 'center', background: '#0A2B1E' }}
         aria-label="Hero — Car Detailing & Ceramic Coating Melbourne"
       >
+        {/* Mobile-only stacked wordmark — shown instead of the background on small screens so nothing overlaps */}
+        <img className="home-hero-banner__img" src="/glossed/hero-banner.png" alt="Glossed Out Detailing" />
         {/* Background image */}
         <div
           ref={heroBgRef}
+          className="home-hero-banner__bg"
           style={{
             position: 'absolute', inset: '-12% 0 0 0', zIndex: 0,
             backgroundColor: '#0A2B1E',
@@ -108,6 +111,7 @@ export default function HomePageBanner() {
         />
         {/* Grain overlay at 50% opacity */}
         <div
+          className="home-hero-banner__fx"
           style={{
             position: 'absolute', inset: 0, zIndex: 1,
             pointerEvents: 'none',
@@ -120,12 +124,12 @@ export default function HomePageBanner() {
           aria-hidden="true"
         />
         {/* Gradient overlay — dark cinematic */}
-        <div style={{ position: 'absolute', inset: 0, zIndex: 2, background: 'linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.25) 40%, rgba(0,0,0,0.25) 60%, rgba(0,0,0,0.7) 100%)' }} aria-hidden="true" />
+        <div className="home-hero-banner__fx" style={{ position: 'absolute', inset: 0, zIndex: 2, background: 'linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.25) 40%, rgba(0,0,0,0.25) 60%, rgba(0,0,0,0.7) 100%)' }} aria-hidden="true" />
         {/* Feathered bottom edge — blends into brand bar */}
         <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: 120, zIndex: 2, background: 'linear-gradient(to bottom, transparent 0%, #0A2B1E 100%)' }} aria-hidden="true" />
 
         {/* Content */}
-        <div ref={heroContentRef} style={{ position: 'relative', zIndex: 2, maxWidth: 900, padding: '0 24px 4vh' }}>
+        <div ref={heroContentRef} className="home-hero-banner__content" style={{ position: 'relative', zIndex: 2, maxWidth: 900, padding: '0 24px 4vh' }}>
           <p className="hero-anim" style={{ color: 'rgba(255,255,255,0.72)', fontSize: 'clamp(13px, 2vw, 16px)', fontWeight: 500, margin: 0, letterSpacing: '0.14em', textTransform: 'uppercase' }}>
             Melbourne's prestige mobile detailer · 10+ years
           </p>
