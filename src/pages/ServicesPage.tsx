@@ -434,9 +434,9 @@ Our Packages
       />
 
       {/* PRICING NOTE */}
-      <section style={{ background: 'var(--color-bg-secondary)', padding: '0 var(--section-padding-x) 20px' }}>
+      <section className="pkg-canvas" style={{ padding: 'clamp(40px, 6vw, 64px) var(--section-padding-x) clamp(44px, 6vw, 68px)' }}>
         <div className="container">
-          <div style={{ padding: '20px 24px', background: 'rgba(27,107,74,0.06)', border: '1px solid var(--color-border)', borderRadius: 12 }}>
+          <div className="card" style={{ padding: '24px 26px' }}>
             <p style={{ color: 'var(--color-text-secondary)', fontSize: 14, lineHeight: 1.7 }}>
               <strong style={{ color: 'var(--color-text-primary)' }}>Every detail is tailored to your car.</strong> Send a few photos through the enquiry form and we'll put together a personalised quote — no obligation, no pressure. Premium mobile service, brought to you.
             </p>
