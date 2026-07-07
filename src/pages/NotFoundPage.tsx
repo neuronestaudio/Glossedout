@@ -5,8 +5,8 @@ export default function NotFoundPage() {
   return (
     <>
       <PageMeta
-        title="Page Not Found — Glossed Out Detailing Brisbane"
-        description="The page you're looking for doesn't exist. Return to Glossed Out Detailing for PPF, ceramic coating and window tinting in Brisbane."
+        title="Page Not Found — Glossed Out Detailing Melbourne"
+        description="The page you're looking for doesn't exist. Return to Glossed Out Detailing for PPF, ceramic coating and window tinting in Melbourne."
         canonical="https://glossedoutdetailing.com.au/404"
         noindex
       />

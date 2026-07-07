@@ -20,7 +20,7 @@ export default function ThankYouPage() {
 
   const meta = (
     <PageMeta
-      title="Thank You — Glossed Out Detailing Brisbane"
+      title="Thank You — Glossed Out Detailing Melbourne"
       description="Your quote request has been received. We'll be in touch within 2 business hours."
       canonical="https://glossedoutdetailing.com.au/thank-you"
       noindex

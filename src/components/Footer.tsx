@@ -12,7 +12,7 @@ const quickLinks = [
 ];
 
 const popularLinks = [
-  { label: 'Coating TDS', href: '/next-level-protection-tds' },
+  { label: 'Coating TDS', href: '/product-tds' },
   { label: 'Ceramic Coating Questions', href: '/ceramic-coating-questions' },
   { label: 'Warranties', href: '/warranties' },
   { label: 'Gallery', href: '/gallery' },

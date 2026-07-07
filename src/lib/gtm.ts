@@ -51,7 +51,7 @@ export function initPhoneCtaTracking() {
   window.__nextLvlPhoneTrackingBound = true;
 }
 
-const KEY_SERVICE_PATHS = ['/next-level-protection-brisbane', '/ppf-brisbane', '/ceramic-coating-brisbane', '/automotive-window-tinting-brisbane', '/residential-window-tinting-brisbane', '/commercial-window-tinting-brisbane'];
+const KEY_SERVICE_PATHS = ['/detailing-packages-melbourne', '/ceramic-coating-melbourne'];
 
 export function trackPageView(pathname: string) {
   pushGtmEvent('page_view', { page_path: pathname });

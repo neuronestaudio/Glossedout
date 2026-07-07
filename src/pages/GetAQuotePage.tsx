@@ -6,8 +6,8 @@ export default function GetAQuotePage() {
   return (
     <main style={{ background: 'var(--color-bg-primary)', minHeight: '100dvh', paddingTop: 100, paddingBottom: 80 }}>
       <PageMeta
-        title="Get a Quote — Glossed Out Detailing Brisbane"
-        description="Request a quote for PPF, ceramic coating or window tinting in Brisbane. We respond within 2 business hours."
+        title="Get a Quote — Glossed Out Detailing Melbourne"
+        description="Request a quote for PPF, ceramic coating or window tinting in Melbourne. We respond within 2 business hours."
         canonical="https://glossedoutdetailing.com.au/get-a-quote"
         jsonLd={[
           {
@@ -15,7 +15,7 @@ export default function GetAQuotePage() {
             "@type": "ContactPage",
             "name": "Get a Quote — Glossed Out Detailing",
             "url": "https://glossedoutdetailing.com.au/get-a-quote",
-            "description": "Request a quote for PPF, ceramic coating or window tinting in Brisbane. We respond within 2 business hours.",
+            "description": "Request a quote for PPF, ceramic coating or window tinting in Melbourne. We respond within 2 business hours.",
             "about": { "@id": "https://glossedoutdetailing.com.au/#business" },
           },
           {
@@ -29,7 +29,7 @@ export default function GetAQuotePage() {
         ]}
       />
       <section style={{ padding: '40px var(--section-padding-x) 60px', maxWidth: 780, margin: '0 auto', textAlign: 'center' }}>
-        <p style={{ color: 'var(--color-accent)', fontSize: 12, letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: 16 }}>Glossed Out Detailing — Brisbane</p>
+        <p style={{ color: 'var(--color-accent)', fontSize: 12, letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: 16 }}>Glossed Out Detailing — Melbourne</p>
         <h1 className="font-display" style={{ fontSize: 'var(--size-h1)', lineHeight: 1, marginBottom: 20 }}>Get a Quote</h1>
         <p style={{ color: 'var(--color-text-secondary)', fontSize: 16, lineHeight: 1.75, maxWidth: 520, margin: '0 auto 0' }}>
           Tell us about your vehicle or property and we'll come back to you with a detailed quote. Usually within one business day.

@@ -9,19 +9,19 @@ import PageMeta from '../components/PageMeta';
 
 
 const benefits = [
-  { icon: MapPin, title: 'Acacia Ridge — Central South Brisbane', desc: 'Our studio at Goodrich Ct, Acacia Ridge is 15 minutes from the CBD. Easy freeway access via the M3 and Logan Motorway. Acacia Ridge is accessible from Sunnybank, Calamvale, Stretton, Runcorn, Eight Mile Plains, Rochedale, and Carindale without crossing the city.' },
-  { icon: Shield, title: 'NXTZEN Certified — Not a Detail Shop', desc: 'We are a NXTZEN Certified applicator and dedicated paint protection studio, not a general detailing operation that upsells ceramic coating as an add-on. Every application is performed using NXTZEN professional products with manufacturer training — not available through retail or grey-market channels.' },
+  { icon: MapPin, title: 'Craigieburn — Central South Melbourne', desc: 'Our studio at Goodrich Ct, Craigieburn is 15 minutes from the CBD. Easy freeway access via the M3 and Logan Motorway. Craigieburn is accessible from Sunnybank, Calamvale, Stretton, Runcorn, Eight Mile Plains, Rochedale, and Carindale without crossing the city.' },
+  { icon: Shield, title: 'Gtechniq, Magnum & Kraken Certified — Not a Detail Shop', desc: 'We are a certified applicator and dedicated paint protection studio, not a general detailing operation that upsells ceramic coating as an add-on. Every application is performed using professional-grade Gtechniq, Magnum and Kraken coatings with manufacturer training — not available through retail or grey-market channels.' },
   { icon: Clock, title: 'Same-Week Availability', desc: 'We operate five days per week with a bookings structure that accommodates same-week appointments for most packages. Essential and Protection packages are typically available within 3–5 business days. Elite and Signature packages require scheduling for the full-day or multi-day studio time they require.' },
   { icon: Droplets, title: 'Studio-Controlled Application', desc: 'Temperature, humidity, and airborne contamination are managed in our climate-controlled studio. Ceramic application performed in uncontrolled environments — car parks, driveways, general workshops — produces inconsistent results because the coating cannot cure uniformly. A studio environment is not optional for professional ceramic.' },
   { icon: CheckCircle, title: 'Manufacturer-Backed Warranty', desc: 'All our ceramic packages carry manufacturer warranty from the coating producer — not a dealer-only or installer-only promise. The warranty is registered against your vehicle and the product batch. It is not voided if the studio closes. We provide warranty documentation at collection.' },
-  { icon: TrendingUp, title: 'Full Brisbane Region Coverage', desc: 'We service vehicles from across the greater Brisbane region. Clients regularly travel from the northern suburbs (Chermside, Stafford, Kedron) and the eastern suburbs (Wynnum, Manly, Cleveland) — the Acacia Ridge location is typically a 20–35 minute drive from most Brisbane postcodes.' },
+  { icon: TrendingUp, title: 'Full Melbourne Region Coverage', desc: 'We service vehicles from across the greater Melbourne region. Clients regularly travel from the northern suburbs (Chermside, Stafford, Kedron) and the eastern suburbs (Wynnum, Manly, Cleveland) — the Craigieburn location is typically a 20–35 minute drive from most Melbourne postcodes.' },
 ];
 
 const faqs = [
-  { q: 'Where is the Glossed Out Detailing studio located?', a: 'Goodrich Ct, Craigieburn VIC 3064. We are in the southern industrial precinct of Brisbane — easy access from the M3 Pacific Motorway, Logan Motorway, and Ipswich Motorway. 15 minutes from the Brisbane CBD. GPS coordinates and exact access instructions are provided with booking confirmation.' },
-  { q: 'How far is Acacia Ridge from the Brisbane CBD?', a: 'Approximately 12–15 km south of the Brisbane CBD. Travel time is 15–20 minutes via the M3 in normal traffic. The location is directly accessible from South Brisbane, Woolloongabba, and Eight Mile Plains without requiring CBD travel.' },
-  { q: 'Do you service the North Brisbane suburbs?', a: 'Yes — clients from Chermside, Stafford, Nundah, Windsor, Newmarket, and the northern suburbs regularly book with us. The freeway corridor makes travel time manageable. We do not offer mobile ceramic application as studio conditions are required for correct application.' },
-  { q: 'Is there a ceramic coating studio closer to me?', a: 'There are other applicators operating in Brisbane. We would encourage you to ask any applicator about: the specific ceramic product used, whether it carries a manufacturer warranty, what preparation steps are included, and whether the application environment is climate-controlled. These are the baseline standards for professional ceramic. Proximity is less relevant than application quality and warranty backing.' },
+  { q: 'Where is the Glossed Out Detailing studio located?', a: 'Goodrich Ct, Craigieburn VIC 3064. We are in the southern industrial precinct of Melbourne — easy access from the M3 Pacific Motorway, Logan Motorway, and Ipswich Motorway. 15 minutes from the Melbourne CBD. GPS coordinates and exact access instructions are provided with booking confirmation.' },
+  { q: 'How far is Craigieburn from the Melbourne CBD?', a: 'Approximately 12–15 km south of the Melbourne CBD. Travel time is 15–20 minutes via the M3 in normal traffic. The location is directly accessible from South Melbourne, Woolloongabba, and Eight Mile Plains without requiring CBD travel.' },
+  { q: 'Do you service the North Melbourne suburbs?', a: 'Yes — clients from Chermside, Stafford, Nundah, Windsor, Newmarket, and the northern suburbs regularly book with us. The freeway corridor makes travel time manageable. We do not offer mobile ceramic application as studio conditions are required for correct application.' },
+  { q: 'Is there a ceramic coating studio closer to me?', a: 'There are other applicators operating in Melbourne. We would encourage you to ask any applicator about: the specific ceramic product used, whether it carries a manufacturer warranty, what preparation steps are included, and whether the application environment is climate-controlled. These are the baseline standards for professional ceramic. Proximity is less relevant than application quality and warranty backing.' },
   { q: 'How long does the application take and do you offer drop-off service?', a: 'Yes — all our packages are drop-off. The Essential package takes 1 day. Protection takes 1–2 days. Elite takes 2 days (includes stage 1 correction). Signature is 2–3 days (multi-stage correction plus all surfaces). We provide estimated completion time at booking. Most clients drop off in the morning and collect the following day. We provide collection time estimates via SMS.' },
   { q: 'Can I get a quote online without visiting the studio?', a: 'Yes. Use the quote form on our website or call 0481 327 250 to discuss pricing for your vehicle. We quote on vehicle size and condition — for Elite and Signature packages, we may request photos of the paint to assess correction requirements before finalising pricing. Essential and Protection packages have standard pricing by vehicle size.' },
 ];
@@ -46,21 +46,21 @@ export default function CeramicNearMePage() {
   return (
     <>
       <PageMeta
-        title="Ceramic Coating Near Me Brisbane | Acacia Ridge Studio"
-        description="Looking for ceramic coating near you in Brisbane? Glossed Out Detailing is in Acacia Ridge, serving all southside Brisbane suburbs."
-        canonical="https://glossedoutdetailing.com.au/ceramic-coating-near-me-brisbane"
+        title="Ceramic Coating Near Me Melbourne | Craigieburn Studio"
+        description="Looking for ceramic coating near you in Melbourne? Glossed Out Detailing is in Craigieburn, serving all southside Melbourne suburbs."
+        canonical="https://glossedoutdetailing.com.au/ceramic-coating-near-me-melbourne"
       />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
         "@context": "https://schema.org",
         "@type": "LocalBusiness",
-        "name": "Glossed Out Detailing — Ceramic Coating Brisbane",
+        "name": "Glossed Out Detailing — Ceramic Coating Melbourne",
         "telephone": "0481327250",
         "url": "https://glossedoutdetailing.com.au",
         "address": { "@type": "PostalAddress", "streetAddress": "Goodrich Ct", "addressLocality": "Craigieburn", "addressRegion": "VIC", "postalCode": "3064" },
         "geo": { "@type": "GeoCoordinates", "latitude": -27.5585, "longitude": 153.0197 },
         "openingHoursSpecification": [{ "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "08:00", "closes": "17:00" }],
-        "areaServed": "Brisbane",
-        "description": "Professional ceramic coating studio in Acacia Ridge, South Brisbane. Studio-controlled application, manufacturer warranty, certified applicators. Serving all Brisbane suburbs.",
+        "areaServed": "Melbourne",
+        "description": "Professional ceramic coating studio in Craigieburn, South Melbourne. Studio-controlled application, manufacturer warranty, certified applicators. Serving all Melbourne suburbs.",
       })}} />
 
       <section ref={heroRef} style={{ position: 'relative', height: '100dvh', overflow: 'hidden', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', padding: '0 8vw 10vh' }}>
@@ -69,17 +69,17 @@ export default function CeramicNearMePage() {
         <div ref={heroContentRef} style={{ position: 'relative', zIndex: 2 }}>
           <div className="hero-anim"><TrustBadges services={['ceramic']} /></div>
           <h1 style={{ marginTop: 28 }}>
-            <span className="hero-anim font-display hero-text-mono" style={{ fontSize: 'var(--size-h1)', color: 'var(--color-text-primary)', lineHeight: 1 }}>Ceramic Coating Near Me — Brisbane</span>
-            <span className="hero-anim font-display" style={{ display: 'block', fontSize: 'var(--size-hero)', color: 'var(--color-accent)', lineHeight: 0.95, marginTop: 4 }}>Acacia Ridge. South Brisbane.</span>
+            <span className="hero-anim font-display hero-text-mono" style={{ fontSize: 'var(--size-h1)', color: 'var(--color-text-primary)', lineHeight: 1 }}>Ceramic Coating Near Me — Melbourne</span>
+            <span className="hero-anim font-display" style={{ display: 'block', fontSize: 'var(--size-hero)', color: 'var(--color-accent)', lineHeight: 0.95, marginTop: 4 }}>Craigieburn. South Melbourne.</span>
           </h1>
           <p className="hero-anim" style={{ color: 'var(--color-text-secondary)', fontSize: 'clamp(15px, 2vw, 18px)', marginTop: 20, maxWidth: 560 }}>
-            Professional ceramic coating studio at Goodrich Ct, Acacia Ridge. 15 minutes from Brisbane CBD. Studio-controlled application with manufacturer warranty.
+            Professional ceramic coating studio at Goodrich Ct, Craigieburn. 15 minutes from Melbourne CBD. Studio-controlled application with manufacturer warranty.
           </p>
           <div className="hero-anim" style={{ display: 'flex', gap: 16, marginTop: 32, flexWrap: 'wrap' }}>
             <Link to="/get-a-quote" className="btn-primary"><span className="btn-slide" /><span>Book at Our Studio</span></Link>
-            <Link to="/ceramic-coating-brisbane" className="btn-ghost">View All Packages</Link>
+            <Link to="/ceramic-coating-melbourne" className="btn-ghost">View All Packages</Link>
             <Link to="/warranties" className="btn-ghost">View Warranties</Link>
-            <Link to="/next-level-protection-tds" className="btn-ghost">View Product TDS</Link>
+            <Link to="/product-tds" className="btn-ghost">View Product TDS</Link>
           </div>
         </div>
       </section>
@@ -89,7 +89,7 @@ export default function CeramicNearMePage() {
         <span className="section-number" aria-hidden="true">02</span>
         <div className="container">
           <p style={{ fontSize: 'var(--size-label)', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--color-text-muted)', marginBottom: 12 }}>Studio Location</p>
-          <h2 className="font-display" style={{ fontSize: 'var(--size-h2)', marginBottom: 48 }}>Find Us in Acacia Ridge</h2>
+          <h2 className="font-display" style={{ fontSize: 'var(--size-h2)', marginBottom: 48 }}>Find Us in Craigieburn</h2>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: 20, marginBottom: 48 }}>
             {[
               { label: 'Address', value: 'Goodrich Ct\nCraigieburn VIC 3064' },
@@ -129,9 +129,9 @@ export default function CeramicNearMePage() {
         <div className="container">
           <p style={{ fontSize: 'var(--size-label)', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--color-text-muted)', marginBottom: 16 }}>Related</p>
           <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap' }}>
-            <Link to="/ceramic-coating-brisbane" className="btn-ghost" style={{ padding: '10px 20px', fontSize: 13 }}>All Ceramic Packages</Link>
-            <Link to="/ceramic-coating-cost-brisbane" className="btn-ghost" style={{ padding: '10px 20px', fontSize: 13 }}>Ceramic Coating Cost</Link>
-            <Link to="/ppf-near-me-brisbane" className="btn-ghost" style={{ padding: '10px 20px', fontSize: 13 }}>PPF Near Me</Link>
+            <Link to="/ceramic-coating-melbourne" className="btn-ghost" style={{ padding: '10px 20px', fontSize: 13 }}>All Ceramic Packages</Link>
+            <Link to="/ceramic-coating-cost-melbourne" className="btn-ghost" style={{ padding: '10px 20px', fontSize: 13 }}>Ceramic Coating Cost</Link>
+            <Link to="/detailing-packages-melbourne" className="btn-ghost" style={{ padding: '10px 20px', fontSize: 13 }}>PPF Near Me</Link>
           </div>
         </div>
       </section>

@@ -20,7 +20,7 @@ const afterImg2 = '/d.jpg';
 const tiers: PackageTier[] = [
   {
     name: 'Essential',
-    subtitle: 'Package 1: NXTZEN Ceramic Professional\n\nRecommended for: Daily drivers seeking long-term protection, enhanced gloss, and easier maintenance.',
+    subtitle: 'Package 1: Gtechniq CSL (Crystal Serum Light) — 5-Year\n\nRecommended for: Daily drivers seeking long-term protection, enhanced gloss, and easier maintenance.',
     inclusions: [
       '5 Year Protection Coating System',
       'Interior & Exterior Detail (Including Claybar)',
@@ -31,7 +31,7 @@ const tiers: PackageTier[] = [
   },
   {
     name: 'Protection',
-    subtitle: 'Package 2: NXTZEN Graphene Serum Coating\n\nRecommended for: Daily driven vehicles needing stronger protection, superior gloss, and advanced UV and scratch resistance.',
+    subtitle: 'Package 2: Magnum Graphene — 7-Year\n\nRecommended for: Daily driven vehicles needing stronger protection, superior gloss, and advanced UV and scratch resistance.',
     inclusions: [
       '7 Year warranty',
       'Interior & Exterior Detail (Including Claybar)',
@@ -43,9 +43,9 @@ const tiers: PackageTier[] = [
   },
   {
     name: 'Elite',
-    subtitle: 'Package 3: NXTZEN Elite Coating\n\nRecommended for: A professional-grade, multi-layer ceramic coating with heat-activated self-healing, maximum gloss, and best UV and bird-dropping resistance, tested by CSIRO.',
+    subtitle: 'Package 3: Kraken Graphene Titanium — 10-Year (Self-Healing)\n\nRecommended for: A professional-grade, multi-layer ceramic coating with heat-activated self-healing, maximum gloss, and best UV and bird-dropping resistance.',
     inclusions: [
-      '9 Year warranty',
+      '10 Year warranty',
       'Interior & Exterior Detail (Including Claybar)',
       'Stage 1-3 Paint correction',
       'Self-healing memory polymer helps reduce minor surface imperfections',
@@ -57,20 +57,20 @@ const tiers: PackageTier[] = [
 
 const benefits = [
   { icon: Droplets, title: 'Permanent hydrophobic surface', desc: 'Water, mud, and road grime bead and roll off. Between washes, the car stays cleaner longer.' },
-  { icon: Sun, title: 'UV and oxidation resistance', desc: 'Brisbane\'s UV index is relentless. Ceramic coating slows paint oxidation and colour fade significantly.' },
+  { icon: Sun, title: 'UV and oxidation resistance', desc: 'Melbourne\'s UV index is relentless. Ceramic coating slows paint oxidation and colour fade significantly.' },
   { icon: Shield, title: 'Chemical and contaminant resistance', desc: 'Bird droppings, tree sap, brake dust, and industrial fallout have less chance of bonding to the paint surface.' },
   { icon: Eye, title: 'Amplified gloss depth', desc: 'Ceramic coating fills microscopic surface imperfections and adds a depth of gloss that wax and sealant can\'t replicate.' },
-  { icon: TrendingUp, title: 'Long-term paint preservation', desc: 'A ceramic-coated car in Queensland retains paint condition that an unprotected car loses within 2–3 years of sun exposure.' },
+  { icon: TrendingUp, title: 'Long-term paint preservation', desc: 'A ceramic-coated car in Victoria retains paint condition that an unprotected car loses within 2–3 years of sun exposure.' },
   { icon: Clock, title: 'Reduced maintenance time', desc: 'Coated cars are faster to wash — contamination doesn\'t bond. Less effort per clean, less time in the driveway.' },
 ];
 
 const faqs = [
-  { q: 'How much does ceramic coating cost in Brisbane?', a: 'Pricing varies based on vehicle size, paint condition, and package selected. Contact us for a personalised quote.' },
-  { q: 'How long does ceramic coating last in Brisbane\'s heat?', a: 'Quality ceramic coating installed correctly lasts 1 to 7 years depending on the product and package. Our Protection tier carries a 3-year warranty; our Signature tier is warranted for 7 years. Brisbane\'s UV environment accelerates degradation of budget coatings — product quality matters here.' },
+  { q: 'How much does ceramic coating cost in Melbourne?', a: 'Pricing varies based on vehicle size, paint condition, and package selected. Contact us for a personalised quote.' },
+  { q: 'How long does ceramic coating last in Melbourne\'s heat?', a: 'Quality ceramic coating installed correctly lasts 1 to 7 years depending on the product and package. Our Protection tier carries a 3-year warranty; our Signature tier is warranted for 7 years. Melbourne\'s UV environment accelerates degradation of budget coatings — product quality matters here.' },
   { q: 'Does my car need paint correction before ceramic coating?', a: 'It depends on paint condition. If your paint has swirl marks, light scratches, or oxidation, those defects will be sealed under the coating permanently. Our Elite and Signature packages include paint correction. We inspect every car before coating and advise honestly on what\'s needed.' },
   { q: 'How long does ceramic coating take to apply?', a: 'Our Essential package typically takes 1 day. Protection takes 1–2 days. Elite and Signature packages include paint correction and take 2–4 days. The curing process continues for 7–14 days after application — we provide specific aftercare instructions for this period.' },
   { q: 'Can ceramic coating be applied to a matte finish?', a: 'Yes — there are ceramic coatings specifically formulated for matte and satin finishes that preserve the texture without adding gloss. Standard gloss ceramic coating should not be applied to matte paint. We use the correct product for each finish type.' },
-  { q: 'Is ceramic coating worth it on a new car?', a: 'Yes — particularly in Queensland. Applying ceramic coating within the first few months keeps the paint in showroom condition before Brisbane\'s UV exposure begins degrading it. It\'s significantly more cost-effective to protect early than to correct later.' },
+  { q: 'Is ceramic coating worth it on a new car?', a: 'Yes — particularly in Victoria. Applying ceramic coating within the first few months keeps the paint in showroom condition before Melbourne\'s UV exposure begins degrading it. It\'s significantly more cost-effective to protect early than to correct later.' },
   { q: 'What\'s the difference between ceramic coating and PPF?', a: 'PPF is a physical urethane film that absorbs rock chips and physical impacts. Ceramic coating is a chemical bond that adds a hard, hydrophobic surface layer — it improves gloss and chemical resistance but does not protect against rock chips. For maximum protection, PPF and ceramic coating are often combined.' },
   { q: 'How do I wash my car after ceramic coating?', a: 'Wait at least 7 days after application before washing. Use pH-neutral car shampoo and a soft microfibre wash mitt. Avoid automatic car washes with abrasive brushes. Don\'t apply wax or sealant over a ceramic coating — they don\'t bond properly and can reduce performance.' },
 ];
@@ -94,9 +94,9 @@ export default function CeramicCoatingPage() {
   return (
     <>
       <PageMeta
-        title="Ceramic Coating Brisbane — NXTZEN Certified"
-        description="NXTZEN Certified ceramic coating in Brisbane. Hydrophobic, UV-resistant nano-ceramic layer. Acacia Ridge studio."
-        canonical="https://glossedoutdetailing.com.au/ceramic-coating-brisbane"
+        title="Ceramic Coating Melbourne — Gtechniq, Magnum & Kraken Certified"
+        description="Gtechniq, Magnum & Kraken certified ceramic coating in Melbourne. Hydrophobic, UV-resistant nano-ceramic layer. Craigieburn studio."
+        canonical="https://glossedoutdetailing.com.au/ceramic-coating-melbourne"
         jsonLd={[
           {
             "@context": "https://schema.org",
@@ -104,8 +104,8 @@ export default function CeramicCoatingPage() {
             "name": "Ceramic Coating",
             "provider": { "@id": "https://glossedoutdetailing.com.au/#business" },
             "serviceType": "Ceramic Coating Application",
-            "areaServed": { "@type": "City", "name": "Brisbane" },
-            "description": "NXTZEN Certified ceramic coating in Brisbane. Hydrophobic, UV-resistant nano-ceramic layer. Acacia Ridge studio.",
+            "areaServed": { "@type": "City", "name": "Melbourne" },
+            "description": "Gtechniq, Magnum & Kraken certified ceramic coating in Melbourne. Hydrophobic, UV-resistant nano-ceramic layer. Craigieburn studio.",
           },
           {
             "@context": "https://schema.org",
@@ -121,7 +121,7 @@ export default function CeramicCoatingPage() {
             "@type": "BreadcrumbList",
             "itemListElement": [
               { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://glossedoutdetailing.com.au/" },
-              { "@type": "ListItem", "position": 2, "name": "Ceramic Coating Brisbane", "item": "https://glossedoutdetailing.com.au/ceramic-coating-brisbane" },
+              { "@type": "ListItem", "position": 2, "name": "Ceramic Coating Melbourne", "item": "https://glossedoutdetailing.com.au/ceramic-coating-melbourne" },
             ],
           },
         ]}
@@ -133,17 +133,17 @@ export default function CeramicCoatingPage() {
         <div ref={heroContentRef} style={{ position: 'relative', zIndex: 2 }}>
           <div className="hero-anim"><TrustBadges services={['ceramic']} /></div>
           <h1 style={{ marginTop: 28 }}>
-            <span className="hero-anim font-display hero-text-mono" style={{ fontSize: 'var(--size-h1)', color: 'var(--color-text-primary)', lineHeight: 1 }}>Ceramic Coating — Brisbane</span>
+            <span className="hero-anim font-display hero-text-mono" style={{ fontSize: 'var(--size-h1)', color: 'var(--color-text-primary)', lineHeight: 1 }}>Ceramic Coating — Melbourne</span>
             <span className="hero-anim font-display" style={{ display: 'block', fontSize: 'var(--size-hero)', color: 'var(--color-accent)', lineHeight: 0.95, marginTop: 4 }}>Precision Application.</span>
-              <span className="hero-anim font-display" style={{ display: 'block', fontSize: 'clamp(20px,3vw,36px)', color: '#0C3B2A', marginTop: 12, letterSpacing: '0.01em' }}>Up to 9 Year Warranty</span>
+              <span className="hero-anim font-display" style={{ display: 'block', fontSize: 'clamp(20px,3vw,36px)', color: '#0C3B2A', marginTop: 12, letterSpacing: '0.01em' }}>Up to 10 Year Warranty</span>
           </h1>
           <p className="hero-anim" style={{ color: 'var(--color-text-secondary)', fontSize: 'clamp(15px, 2vw, 18px)', marginTop: 20, maxWidth: 500 }}>
-            A nano-ceramic layer chemically bonded to your paint. Hydrophobic, UV-resistant, and built for Brisbane's climate.
+            A nano-ceramic layer chemically bonded to your paint. Hydrophobic, UV-resistant, and built for Melbourne's climate.
           </p>
           <div className="hero-anim" style={{ display: 'flex', gap: 16, marginTop: 32, flexWrap: 'wrap' }}>
             <Link to="/get-a-quote" className="btn-primary"><span className="btn-slide" /><span>Get a Quote</span></Link>
             <Link to="/warranties" className="btn-ghost">View Warranties</Link>
-            <Link to="/next-level-protection-tds" className="btn-ghost">View Product TDS</Link>
+            <Link to="/product-tds" className="btn-ghost">View Product TDS</Link>
           </div>
         </div>
       </section>
@@ -209,7 +209,7 @@ export default function CeramicCoatingPage() {
               <p style={{ color: 'var(--color-text-secondary)', lineHeight: 1.7 }}>Standard across all ceramic coating packages at Glossed Out Detailing.</p>
             </div>
             <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: 14 }}>
-              {['Full decontamination wash prior to coating', 'Iron fallout removal and clay bar treatment', 'Pre-coating paint inspection', 'Ceramic coating applied by experienced installer', 'Post-application quality check under workshop lights', 'Warranty documentation provided at handover', 'Written aftercare instructions', 'Acacia Ridge, Brisbane — precision installation studio'].map((inc, i) => (
+              {['Full decontamination wash prior to coating', 'Iron fallout removal and clay bar treatment', 'Pre-coating paint inspection', 'Ceramic coating applied by experienced installer', 'Post-application quality check under workshop lights', 'Warranty documentation provided at handover', 'Written aftercare instructions', 'Craigieburn, Melbourne — precision installation studio'].map((inc, i) => (
                 <li key={i} style={{ display: 'flex', gap: 12, alignItems: 'flex-start' }}>
                   <Check size={16} color="var(--color-accent)" style={{ flexShrink: 0, marginTop: 3 }} />
                   <span style={{ color: 'var(--color-text-secondary)', fontSize: 14 }}>{inc}</span>
@@ -288,18 +288,18 @@ export default function CeramicCoatingPage() {
         <div className="container">
           <p style={{ fontSize: 'var(--size-label)', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--color-text-muted)', marginBottom: 16 }}>Explore More Ceramic</p>
           <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
-            <Link to="/ceramic-coating-new-car-brisbane" className="btn-ghost" style={{ padding: '10px 20px', fontSize: 13 }}>Ceramic for New Cars</Link>
-            <Link to="/ceramic-coating-uv-brisbane" className="btn-ghost" style={{ padding: '10px 20px', fontSize: 13 }}>Ceramic UV Protection</Link>
-            <Link to="/ceramic-coating-paint-correction-brisbane" className="btn-ghost" style={{ padding: '10px 20px', fontSize: 13 }}>Paint Correction + Ceramic</Link>
-            <Link to="/ceramic-glass-coating-brisbane" className="btn-ghost" style={{ padding: '10px 20px', fontSize: 13 }}>Ceramic Glass Coating</Link>
-            <Link to="/ceramic-coating-wheels-brisbane" className="btn-ghost" style={{ padding: '10px 20px', fontSize: 13 }}>Ceramic Wheel Coating</Link>
-            <Link to="/ceramic-ppf-brisbane" className="btn-ghost" style={{ padding: '10px 20px', fontSize: 13 }}>PPF + Ceramic Combo</Link>
-            <Link to="/ceramic-coating-longevity-brisbane" className="btn-ghost" style={{ padding: '10px 20px', fontSize: 13 }}>How Long Does Ceramic Last?</Link>
-            <Link to="/ceramic-vs-dealer-paint-protection-brisbane" className="btn-ghost" style={{ padding: '10px 20px', fontSize: 13 }}>Ceramic vs Dealer Pack</Link>
-            <Link to="/ceramic-coating-matte-paint-brisbane" className="btn-ghost" style={{ padding: '10px 20px', fontSize: 13 }}>Ceramic on Matte Paint</Link>
-            <Link to="/ceramic-coating-maintenance-brisbane" className="btn-ghost" style={{ padding: '10px 20px', fontSize: 13 }}>Ceramic Maintenance</Link>
-            <Link to="/ceramic-coating-resale-brisbane" className="btn-ghost" style={{ padding: '10px 20px', fontSize: 13 }}>Ceramic & Resale Value</Link>
-            <Link to="/ceramic-coating-near-me-brisbane" className="btn-ghost" style={{ padding: '10px 20px', fontSize: 13 }}>Ceramic Near Me Brisbane</Link>
+            <Link to="/ceramic-coating-new-car-melbourne" className="btn-ghost" style={{ padding: '10px 20px', fontSize: 13 }}>Ceramic for New Cars</Link>
+            <Link to="/ceramic-coating-uv-melbourne" className="btn-ghost" style={{ padding: '10px 20px', fontSize: 13 }}>Ceramic UV Protection</Link>
+            <Link to="/ceramic-coating-paint-correction-melbourne" className="btn-ghost" style={{ padding: '10px 20px', fontSize: 13 }}>Paint Correction + Ceramic</Link>
+            <Link to="/ceramic-glass-coating-melbourne" className="btn-ghost" style={{ padding: '10px 20px', fontSize: 13 }}>Ceramic Glass Coating</Link>
+            <Link to="/ceramic-coating-wheels-melbourne" className="btn-ghost" style={{ padding: '10px 20px', fontSize: 13 }}>Ceramic Wheel Coating</Link>
+            <Link to="/ceramic-coating-melbourne" className="btn-ghost" style={{ padding: '10px 20px', fontSize: 13 }}>PPF + Ceramic Combo</Link>
+            <Link to="/ceramic-coating-longevity-melbourne" className="btn-ghost" style={{ padding: '10px 20px', fontSize: 13 }}>How Long Does Ceramic Last?</Link>
+            <Link to="/ceramic-vs-dealer-paint-protection-melbourne" className="btn-ghost" style={{ padding: '10px 20px', fontSize: 13 }}>Ceramic vs Dealer Pack</Link>
+            <Link to="/ceramic-coating-matte-paint-melbourne" className="btn-ghost" style={{ padding: '10px 20px', fontSize: 13 }}>Ceramic on Matte Paint</Link>
+            <Link to="/ceramic-coating-maintenance-melbourne" className="btn-ghost" style={{ padding: '10px 20px', fontSize: 13 }}>Ceramic Maintenance</Link>
+            <Link to="/ceramic-coating-resale-melbourne" className="btn-ghost" style={{ padding: '10px 20px', fontSize: 13 }}>Ceramic & Resale Value</Link>
+            <Link to="/ceramic-coating-near-me-melbourne" className="btn-ghost" style={{ padding: '10px 20px', fontSize: 13 }}>Ceramic Near Me Melbourne</Link>
             <Link to="/ceramic-coating-questions" className="btn-ghost" style={{ padding: '10px 20px', fontSize: 13 }}>Ceramic Coating Questions</Link>
           </div>
         </div>
@@ -310,10 +310,10 @@ export default function CeramicCoatingPage() {
         <div className="container">
           <p style={{ fontSize: 'var(--size-label)', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--color-text-muted)', marginBottom: 16 }}>Related Services</p>
           <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
-            <Link to="/ppf-brisbane" className="btn-ghost" style={{ padding: '10px 20px', fontSize: 13 }}>Paint Protection Film Brisbane</Link>
-            <Link to="/automotive-window-tinting-brisbane" className="btn-ghost" style={{ padding: '10px 20px', fontSize: 13 }}>Automotive Window Tinting</Link>
+            <Link to="/detailing-packages-melbourne" className="btn-ghost" style={{ padding: '10px 20px', fontSize: 13 }}>Paint Protection Film Melbourne</Link>
+            <Link to="/detailing-packages-melbourne" className="btn-ghost" style={{ padding: '10px 20px', fontSize: 13 }}>Automotive Window Tinting</Link>
             <Link to="/warranties" className="btn-ghost" style={{ padding: '10px 20px', fontSize: 13 }}>View Warranties</Link>
-            <Link to="/next-level-protection-tds" className="btn-ghost" style={{ padding: '10px 20px', fontSize: 13 }}>View Product TDS</Link>
+            <Link to="/product-tds" className="btn-ghost" style={{ padding: '10px 20px', fontSize: 13 }}>View Product TDS</Link>
           </div>
         </div>
       </section>

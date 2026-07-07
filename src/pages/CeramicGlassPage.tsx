@@ -19,7 +19,7 @@ const benefits = [
 
 const faqs = [
   { q: 'Is ceramic coating on car glass worth it?', a: 'Yes — glass is one of the highest-value surfaces for ceramic coating. The hydrophobic effect on glass has an immediate daily benefit: rain sheets off at speed, reducing wiper dependency and improving visibility in wet conditions. The coating also makes glass significantly easier to clean — contamination doesn\'t bond to the surface the same way as on uncoated glass.' },
-  { q: 'How long does ceramic glass coating last?', a: 'Our Protection package glass coating is warranted for 3 years. Elite is warranted for 5 years. Unlike spray products that last 4–8 weeks, a properly applied professional ceramic glass coating maintains its hydrophobic performance for years under normal Queensland driving conditions.' },
+  { q: 'How long does ceramic glass coating last?', a: 'Our Protection package glass coating is warranted for 3 years. Elite is warranted for 5 years. Unlike spray products that last 4–8 weeks, a properly applied professional ceramic glass coating maintains its hydrophobic performance for years under normal Victoria driving conditions.' },
   { q: 'Does ceramic glass coating interfere with defrost or embedded antennas?', a: 'No. The coating is applied to the outer surface of all glass — windscreen, side windows, and rear glass. It does not contact heated rear window elements or embedded antenna wires on the inner surface. The coating is exterior only.' },
   { q: 'Can I still use wiper blades after ceramic glass coating?', a: 'Yes — blades operate normally on coated glass. The hydrophobic surface means blades operate across a smoother, cleaner surface. Some customers find they use wipers less frequently at highway speeds because water sheets off without blade assistance.' },
   { q: 'Does ceramic coating replace Rain-X or similar products?', a: 'Yes — and outperforms them significantly in durability. Rain-X is a spray sealant that lasts 4–8 weeks. Ceramic glass coating is a permanently bonded hydrophobic layer warranted for 3–5 years. The upfront cost is higher; the cost per year of protection is significantly lower.' },
@@ -47,17 +47,17 @@ export default function CeramicGlassPage() {
   return (
     <>
       <PageMeta
-        title="Ceramic Glass Coating Brisbane | Hydrophobic Glass"
-        description="Ceramic coating for glass in Brisbane. Hydrophobic glass coating improves rain visibility and reduces cleaning. Glossed Out Detailing."
-        canonical="https://glossedoutdetailing.com.au/ceramic-glass-coating-brisbane"
+        title="Ceramic Glass Coating Melbourne | Hydrophobic Glass"
+        description="Ceramic coating for glass in Melbourne. Hydrophobic glass coating improves rain visibility and reduces cleaning. Glossed Out Detailing."
+        canonical="https://glossedoutdetailing.com.au/ceramic-glass-coating-melbourne"
       />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
         "@context": "https://schema.org",
         "@type": "Service",
-        "name": "Ceramic Coating for Car Glass Brisbane",
+        "name": "Ceramic Coating for Car Glass Melbourne",
         "provider": { "@type": "LocalBusiness", "name": "Glossed Out Detailing", "telephone": "0481327250", "address": { "@type": "PostalAddress", "streetAddress": "Goodrich Ct", "addressLocality": "Craigieburn", "addressRegion": "VIC", "postalCode": "3064" }},
-        "areaServed": "Brisbane",
-        "description": "Ceramic coating for car glass in Brisbane. Hydrophobic windscreen, side windows, and rear glass. Rain sheets off at speed. 3-year warranty. Acacia Ridge studio.",
+        "areaServed": "Melbourne",
+        "description": "Ceramic coating for car glass in Melbourne. Hydrophobic windscreen, side windows, and rear glass. Rain sheets off at speed. 3-year warranty. Craigieburn studio.",
       })}} />
 
       <section ref={heroRef} style={{ position: 'relative', height: '100dvh', overflow: 'hidden', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', padding: '0 8vw 10vh' }}>
@@ -66,17 +66,17 @@ export default function CeramicGlassPage() {
         <div ref={heroContentRef} style={{ position: 'relative', zIndex: 2 }}>
           <div className="hero-anim"><TrustBadges services={['ceramic']} /></div>
           <h1 style={{ marginTop: 28 }}>
-            <span className="hero-anim font-display hero-text-mono" style={{ fontSize: 'var(--size-h1)', color: 'var(--color-text-primary)', lineHeight: 1 }}>Ceramic Glass Coating Brisbane</span>
+            <span className="hero-anim font-display hero-text-mono" style={{ fontSize: 'var(--size-h1)', color: 'var(--color-text-primary)', lineHeight: 1 }}>Ceramic Glass Coating Melbourne</span>
             <span className="hero-anim font-display" style={{ display: 'block', fontSize: 'var(--size-hero)', color: 'var(--color-accent)', lineHeight: 0.95, marginTop: 4 }}>Rain Sheets Off. Wipers Optional.</span>
           </h1>
           <p className="hero-anim" style={{ color: 'var(--color-text-secondary)', fontSize: 'clamp(15px, 2vw, 18px)', marginTop: 20, maxWidth: 560 }}>
-            Ceramic-coated glass is hydrophobic, contamination-resistant, and optically clear. The visibility improvement in Brisbane rain is immediately noticeable. Warranted for 3–5 years.
+            Ceramic-coated glass is hydrophobic, contamination-resistant, and optically clear. The visibility improvement in Melbourne rain is immediately noticeable. Warranted for 3–5 years.
           </p>
           <div className="hero-anim" style={{ display: 'flex', gap: 16, marginTop: 32, flexWrap: 'wrap' }}>
             <Link to="/get-a-quote" className="btn-primary"><span className="btn-slide" /><span>Get a Quote</span></Link>
-            <Link to="/ceramic-coating-brisbane" className="btn-ghost">View All Packages</Link>
+            <Link to="/ceramic-coating-melbourne" className="btn-ghost">View All Packages</Link>
             <Link to="/warranties" className="btn-ghost">View Warranties</Link>
-            <Link to="/next-level-protection-tds" className="btn-ghost">View Product TDS</Link>
+            <Link to="/product-tds" className="btn-ghost">View Product TDS</Link>
           </div>
         </div>
       </section>
@@ -112,9 +112,9 @@ export default function CeramicGlassPage() {
         <div className="container">
           <p style={{ fontSize: 'var(--size-label)', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--color-text-muted)', marginBottom: 16 }}>Related</p>
           <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap' }}>
-            <Link to="/ceramic-coating-brisbane" className="btn-ghost" style={{ padding: '10px 20px', fontSize: 13 }}>All Ceramic Packages</Link>
-            <Link to="/ceramic-coating-wheels-brisbane" className="btn-ghost" style={{ padding: '10px 20px', fontSize: 13 }}>Ceramic Coating for Wheels</Link>
-            <Link to="/automotive-window-tinting-brisbane" className="btn-ghost" style={{ padding: '10px 20px', fontSize: 13 }}>Automotive Window Tinting</Link>
+            <Link to="/ceramic-coating-melbourne" className="btn-ghost" style={{ padding: '10px 20px', fontSize: 13 }}>All Ceramic Packages</Link>
+            <Link to="/ceramic-coating-wheels-melbourne" className="btn-ghost" style={{ padding: '10px 20px', fontSize: 13 }}>Ceramic Coating for Wheels</Link>
+            <Link to="/detailing-packages-melbourne" className="btn-ghost" style={{ padding: '10px 20px', fontSize: 13 }}>Automotive Window Tinting</Link>
           </div>
         </div>
       </section>

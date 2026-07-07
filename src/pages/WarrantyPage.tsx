@@ -2,79 +2,73 @@ import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { gsap } from 'gsap';
 import { Shield, Award, Check, ChevronDown, X } from 'lucide-react';
-import TrustBadges from '../components/TrustBadges';
 import FAQAccordion from '../components/FAQAccordion';
 import CTABlock from '../components/CTABlock';
 import PageMeta from '../components/PageMeta';
 
+/* Coating range + durability mirror the Product TDS (/product-tds) and are cross-checked
+   against each manufacturer's published guarantee:
+     - Gtechniq CSL (Crystal Serum Light): 5-year guarantee via Gtechniq Accredited Detailer
+     - Magnum Graphene: 7-year · Magnum Borophene: 10-year (accredited applicator + annual inspection)
+     - Kraken Elite Plus (graphene, self-healing): 7-year · Kraken Graphene Titanium: 10-year
+   Formal warranty mechanics (transferability, registration specifics) are noted as
+   "confirm at handover" rather than asserted — do not invent terms. */
 const brands = [
   {
-    name: 'SunTek',
-    desc: 'Manufactured by Eastman Performance Films (NYSE: EMN). Global leader in PPF. Tetrashield technology.',
-    status: 'SunTek Authorised Installer — Queensland',
+    name: 'Gtechniq',
+    desc: 'British-engineered SiO₂ ceramic coatings. Crystal Serum Light is a benchmark accredited-installer coating, backed by a 5-year guarantee.',
+    status: 'Gtechniq Accredited Detailer',
   },
   {
-    name: 'NXTZEN',
-    desc: 'Australian-developed ceramic coating. Developed and manufactured in Sydney. Proprietary graphene-oxide technology.',
-    status: 'NXTZEN Certified Applicator',
+    name: 'Magnum',
+    desc: 'Advanced graphene and borophene ceramic coatings with manufacturer-backed guarantees up to 10 years when applied by an accredited applicator.',
+    status: 'Magnum Accredited Applicator',
   },
   {
-    name: '3M',
-    desc: 'Fortune 500 (NYSE: MMM). 120+ years, $30B+ revenue. Global leader in window film and surface protection.',
-    status: '3M Authorised Window Film Installer — Queensland',
+    name: 'Kraken Elite',
+    desc: 'Graphene and graphene-titanium self-healing coatings — light surface marring recovers with heat. Certified-installer guarantees up to 10 years.',
+    status: 'Kraken Certified Installer',
   },
   {
-    name: 'Solar Gard',
-    desc: 'Part of Saint-Gobain group (Fortune 500). 50+ years in window film. VTX PRO premium ceramic tint.',
-    status: 'Solar Gard VTX PRO Certified Installer',
+    name: 'CarPro',
+    desc: 'Globally recognised coating and detailing chemistry — used through our decontamination, correction and protection process.',
+    status: 'CarPro Certified',
   },
 ];
 
 const warrantyTable = [
-  { category: 'PAINT PROTECTION FILM', items: [
-    { product: 'SunTek Reaction PPF', warranty: '12 Years', covers: 'Cracking, bubbling, yellowing, discolouration, wear and tear', backedBy: 'Eastman Performance Films' },
-    { product: 'SunTek Ultra Matte PPF', warranty: '10 Years', covers: 'Cracking, bubbling, yellowing, discolouration, wear and tear', backedBy: 'Eastman Performance Films' },
-  ]},
   { category: 'CERAMIC COATING', items: [
-    { product: 'NXTZEN Ceramic Professional', warranty: '5 Years', covers: 'UV damage, permanent stains (bird/bat droppings, bug splatter)', backedBy: 'NXTZEN (Sydney, AU)' },
-    { product: 'NXTZEN Graphene Serum', warranty: '7 Years', covers: 'UV damage, permanent stains', backedBy: 'NXTZEN (Sydney, AU)' },
-    { product: 'NXTZEN Elite', warranty: '9 Years', covers: 'UV damage, permanent stains, Self Healing Technology', backedBy: 'NXTZEN (Sydney, AU)' },
-    { product: 'NXTZEN Elite GS02 (Graphene + Ceramic)', warranty: '9 Years', covers: 'UV damage, permanent stains, Self Healing Technology', backedBy: 'NXTZEN (Sydney, AU)' },
+    { product: 'Gtechniq CSL — Crystal Serum Light', warranty: '5 Years', covers: 'Coating durability, gloss retention, UV protection, hydrophobic performance', backedBy: 'Gtechniq (UK)' },
+    { product: 'Magnum Graphene', warranty: '7 Years', covers: 'Coating durability, gloss retention, UV protection, reduced water spotting', backedBy: 'Magnum' },
+    { product: 'Magnum Borophene', warranty: '10 Years', covers: 'Coating durability, gloss retention, UV protection, chemical resistance', backedBy: 'Magnum' },
+    { product: 'Kraken Elite Plus (Graphene, Self-Healing)', warranty: '7 Years', covers: 'Coating durability, gloss retention, self-healing of light marring', backedBy: 'Kraken Elite' },
+    { product: 'Kraken Graphene Titanium (Self-Healing)', warranty: '10 Years', covers: 'Coating durability, gloss retention, self-healing, chemical resistance', backedBy: 'Kraken Elite' },
   ]},
-  { category: 'AUTOMOTIVE WINDOW TINTING', items: [
-    { product: 'Solar Gard VTX PRO', warranty: 'Lifetime', covers: 'Bubbling, peeling, discolouration, edge lifting', backedBy: 'Solar Gard (Saint-Gobain)' },
-  ]},
-  { category: 'RESIDENTIAL WINDOW TINTING', items: [
-    { product: '3M Night Vision/Frosted', warranty: 'Lifetime', covers: 'Delamination, adhesive failure, discolouration, bubbling, cracking', backedBy: '3M Corporation' },
-  ]},
-  { category: 'COMMERCIAL WINDOW TINTING', items: [
-    { product: '3M Commercial Films', warranty: 'Lifetime', covers: 'Delamination, adhesive failure, discolouration', backedBy: '3M Corporation' },
-  ]},
-  { category: 'BONUS COATINGS', items: [
-    { product: 'NXTZEN L-Coat (Leather/Fabric)', warranty: '5 Years', covers: 'Interior surface protection', backedBy: 'NXTZEN' },
-    { product: 'NXTZEN Glass Coat', warranty: '2 Years', covers: 'Glass surface hydrophobic coating', backedBy: 'NXTZEN' },
+  { category: 'INCLUDED PROTECTION COATINGS', items: [
+    { product: 'Wheel Face Ceramic Coating', warranty: 'Coating-dependent', covers: 'Brake-dust and grime resistance on the wheel face', backedBy: 'Included on premium tiers' },
+    { product: 'Glass Coating', warranty: 'Coating-dependent', covers: 'Hydrophobic windscreen and side glass', backedBy: 'Included on premium tiers' },
+    { product: 'Leather & Fabric Coating', warranty: 'Coating-dependent', covers: 'Interior stain and UV-fade protection', backedBy: 'Included on new-car packages' },
   ]},
 ];
 
 const comparisonData = [
-  { nlp: 'Manufacturer warranty: 5-12+ years', other: 'No warranty or 1-2yr installer-only' },
-  { nlp: 'Backed by Eastman, NXTZEN, 3M, Solar Gard', other: 'Backed by a local ABN' },
-  { nlp: 'Genuine manufacturer products — full range', other: 'Generic, unbranded, grey-market film' },
-  { nlp: 'Trained, vetted, certified by each manufacturer', other: 'Self-taught, no oversight' },
-  { nlp: 'Specs documented per international standards', other: 'No verifiable performance data' },
-  { nlp: 'Return to any authorised dealer for claims', other: 'Hope the installer answers their phone' },
-  { nlp: 'Performance independently tested', other: 'No third-party testing' },
+  { nlp: 'Manufacturer-backed guarantee: 5–10 years', other: 'No guarantee, or installer-only 1–2yr' },
+  { nlp: 'Backed by Gtechniq, Magnum & Kraken', other: 'Backed only by a local ABN' },
+  { nlp: 'Genuine, named professional coatings', other: 'Generic, unbranded bottle' },
+  { nlp: 'Trained, vetted & certified by each brand', other: 'Self-taught, no oversight' },
+  { nlp: 'Correct prep — decontamination + paint correction', other: 'Coating over unprepared paint' },
+  { nlp: 'Guarantee honoured through the accredited network', other: 'Hope the installer answers their phone' },
+  { nlp: 'Documented application & aftercare records', other: 'No records, no proof' },
 ];
 
 const faqs = [
-  { q: 'What does \'Authorised Installer\' actually mean?', a: 'It means the installer has been vetted, trained, and certified by the manufacturer. Only authorised installers can offer the full manufacturer warranty. The manufacturer has verified the installer meets their standards for equipment, technique, and materials. At Glossed Out Detailing, we hold authorised status with SunTek, NXTZEN, 3M, and Solar Gard.' },
-  { q: 'Is the warranty transferable if I sell my car?', a: 'SunTek PPF warranty is transferable with documentation — proof of purchase and installation records must be provided. For NXTZEN ceramic coatings, transferability should be confirmed at the time of sale. We keep records of all installations to support warranty transfers.' },
-  { q: 'What happens if a defect appears?', a: 'Bring the vehicle back to Glossed Out Detailing or any authorised dealer for the relevant product. The manufacturer covers repair or replacement of the defective product. You will need proof of purchase and installation records.' },
-  { q: 'Does the warranty cover stone chips through PPF?', a: 'No. Extreme impacts that exceed the film\'s absorption capacity are not covered. However, the film is designed to absorb the impact and protect the paint underneath — so even if the film is damaged, your paint is preserved.' },
-  { q: 'Will ceramic coating lose hydrophobic properties?', a: 'Some reduction in hydrophobic performance over time is normal and is not covered under warranty. Maintain the coating with manufacturer-approved products to extend hydrophobic life. We provide a care guide at handover.' },
-  { q: 'What voids the warranty?', a: 'Common warranty exclusions include: use of abrasive compounds or unapproved cleaning products, neglected maintenance, accident damage, application to repainted or vinyl-wrapped surfaces (PPF), and failure to follow aftercare instructions.' },
-  { q: 'Is the 3M residential warranty really lifetime?', a: 'Yes. 3M offers a limited lifetime warranty on residential window films — covering defects in materials and workmanship for as long as you own the property. The warranty is backed by 3M Corporation, not by the installer.' },
-  { q: 'Do I need to maintain my vehicle to keep warranty valid?', a: 'Yes. All warranties require that you follow the recommended care standards. We provide a written aftercare guide at handover that covers washing, products to avoid, and maintenance intervals. Following this guide keeps your warranty valid.' },
+  { q: 'What does an \'Accredited Applicator\' actually mean?', a: 'It means the installer has been vetted, trained and certified by the coating manufacturer. Only accredited applicators can register the full manufacturer guarantee — the brand has verified the installer meets their standards for surface prep, application and materials. Glossed Out Detailing holds accredited/certified status with Gtechniq, Magnum and Kraken, and is CarPro certified.' },
+  { q: 'Is the guarantee transferable if I sell my car?', a: 'Transferability varies by coating brand and should be confirmed at handover. We keep records of every application to support a transfer or a future claim — please ask us for the specifics of your coating before you sell.' },
+  { q: 'What do I need to do to keep the guarantee valid?', a: 'Follow the written aftercare guide we provide at handover. Some manufacturers (for example Magnum) also require online guarantee registration and periodic inspections during the guarantee period. We\'ll walk you through any registration or inspection requirements that apply to your coating.' },
+  { q: 'What is and isn\'t covered?', a: 'The guarantee covers the coating\'s durability — its gloss, hydrophobic performance and UV resistance — for the stated period when properly maintained. It does not cover stone chips, accident or impact damage, neglect, use of abrasive or unapproved products, hard-water spotting, or failure of the underlying clear coat/paint.' },
+  { q: 'How does the self-healing on Kraken coatings work?', a: 'Kraken Elite Plus and Graphene Titanium use a self-healing graphene chemistry — light swirls and surface marring recover with heat from the sun or warm water. Deeper scratches that reach the paint are not covered by self-healing.' },
+  { q: 'Will the coating lose its water beading over time?', a: 'Some reduction in hydrophobic performance over the years is normal and expected. Maintaining the coating with approved products (and a periodic top-up/maintenance service) keeps beading strong and protects the guarantee.' },
+  { q: 'What voids the guarantee?', a: 'Common exclusions: abrasive compounds or unapproved cleaning products, neglected maintenance, missed registration or inspection requirements, accident damage, and application over defective or repainted clear coat. Following the aftercare guide keeps your guarantee valid.' },
 ];
 
 function ExpandableSection({ title, children }: { title: string; children: React.ReactNode }) {
@@ -111,8 +105,8 @@ export default function WarrantyPage() {
   return (
     <>
       <PageMeta
-        title="Warranties — SunTek, NXTZEN & 3M Coverage"
-        description="Full warranty details for SunTek PPF, NXTZEN ceramic coating & 3M tinting installed at Glossed Out Detailing."
+        title="Warranties — Gtechniq, Magnum & Kraken Ceramic Coating Guarantees"
+        description="Manufacturer-backed ceramic coating guarantees up to 10 years — Gtechniq, Magnum and Kraken — professionally applied by Glossed Out Detailing in Melbourne."
         canonical="https://glossedoutdetailing.com.au/warranties"
         jsonLd={[
           {
@@ -137,14 +131,19 @@ export default function WarrantyPage() {
 
       {/* SECTION 1: HERO */}
       <section ref={heroRef} style={{ position: 'relative', height: '100dvh', overflow: 'hidden', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', padding: '0 8vw 10vh', background: '#000' }}>
-        {/* TODO: drop in Glossed Out hero footage/photo here when assets arrive */}
         <div ref={heroBgRef} style={{ position: 'absolute', inset: '-20% 0 0 0', zIndex: 0, pointerEvents: 'none', background: 'radial-gradient(ellipse 90% 70% at 50% 20%, #0E4636 0%, #072A20 55%, #000 100%)' }} aria-hidden="true" />
         <div style={{ position: 'absolute', inset: 0, zIndex: 1, background: 'linear-gradient(to top, #000 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.6) 100%)' }} aria-hidden="true" />
         <div ref={heroContentRef} style={{ position: 'relative', zIndex: 2 }}>
-          <div className="hero-anim"><TrustBadges services={['ppf', 'ceramic', 'window']} /></div>
+          <div className="hero-anim" style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
+            {['Gtechniq Accredited', 'Magnum Applicator', 'Kraken Certified', 'CarPro Certified'].map(b => (
+              <span key={b} style={{ display: 'inline-flex', alignItems: 'center', gap: 8, border: '1px solid rgba(255,255,255,0.08)', borderRadius: 100, padding: '9px 16px', background: '#0C3B2A', color: '#fff', fontSize: 13, fontWeight: 500, letterSpacing: '0.02em' }}>
+                <Award size={14} color="var(--color-accent)" /> {b}
+              </span>
+            ))}
+          </div>
           <h1 style={{ marginTop: 28 }}>
             <span className="hero-anim font-display" style={{ fontSize: 'var(--size-h1)', color: '#fff', lineHeight: 1, textShadow: '0 1px 6px rgba(0,0,0,0.15)' }}>
-              Lifetime Protection — Up to 12 Years Warranty on PPF.
+              Manufacturer-Backed Ceramic Coating — Up to 10 Years.
             </span>
             <span className="hero-anim font-display" style={{ display: 'block', fontSize: 'clamp(20px,3vw,36px)', color: 'rgba(255,255,255,0.78)', lineHeight: 1.1, marginTop: 12 }}>
               Not a promise from us — a guarantee from them.
@@ -153,22 +152,22 @@ export default function WarrantyPage() {
           <div className="hero-anim" style={{ display: 'flex', gap: 16, marginTop: 32, flexWrap: 'wrap' }}>
             <Link to="/get-a-quote" className="btn-primary"><span className="btn-slide" /><span>Get a Quote</span></Link>
             <a href="#warranty-table" className="btn-ghost">View Warranties</a>
-            <Link to="/next-level-protection-tds" className="btn-ghost">View Product TDS</Link>
+            <Link to="/product-tds" className="btn-ghost">View Product TDS</Link>
           </div>
         </div>
       </section>
 
-      {/* SECTION 2: WARRANTY COMPARISON TABLE (Full Picture) */}
+      {/* SECTION 2: WARRANTY OVERVIEW TABLE */}
       <section id="warranty-table" className="section" style={{ background: 'var(--color-bg-primary)' }}>
         <div className="container">
           <p style={{ fontSize: 'var(--size-label)', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--color-text-muted)', marginBottom: 12 }}>Full Picture</p>
-          <h2 className="font-display" style={{ fontSize: 'var(--size-h2)', marginBottom: 40 }}>Warranty Overview — Every Product We Install</h2>
+          <h2 className="font-display" style={{ fontSize: 'var(--size-h2)', marginBottom: 40 }}>Warranty Overview — Every Coating We Apply</h2>
           <div style={{ overflowX: 'auto', WebkitOverflowScrolling: 'touch' }}>
             <table style={{ width: '100%', borderCollapse: 'collapse', minWidth: 680 }}>
               <thead>
                 <tr style={{ borderBottom: '2px solid var(--color-border)' }}>
                   <th style={{ textAlign: 'left', padding: '12px 16px', fontSize: 12, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--color-text-muted)' }}>Product</th>
-                  <th style={{ textAlign: 'left', padding: '12px 16px', fontSize: 12, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--color-text-muted)' }}>Warranty</th>
+                  <th style={{ textAlign: 'left', padding: '12px 16px', fontSize: 12, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--color-text-muted)' }}>Guarantee</th>
                   <th style={{ textAlign: 'left', padding: '12px 16px', fontSize: 12, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--color-text-muted)' }}>Covers</th>
                   <th style={{ textAlign: 'left', padding: '12px 16px', fontSize: 12, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--color-text-muted)' }}>Backed By</th>
                 </tr>
@@ -194,6 +193,9 @@ export default function WarrantyPage() {
               </tbody>
             </table>
           </div>
+          <p style={{ color: 'var(--color-text-muted)', fontSize: 12, lineHeight: 1.6, marginTop: 20, fontStyle: 'italic' }}>
+            Guarantee periods reflect each manufacturer's published durability when the coating is applied by an accredited installer and maintained per the aftercare guide. Exact terms, registration and transferability are confirmed at handover.
+          </p>
         </div>
       </section>
 
@@ -201,7 +203,7 @@ export default function WarrantyPage() {
       <section className="section" style={{ background: 'var(--color-bg-secondary)' }}>
         <div className="container">
           <p style={{ fontSize: 'var(--size-label)', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--color-text-muted)', marginBottom: 12 }}>Our Partners</p>
-          <h2 className="font-display" style={{ fontSize: 'var(--size-h2)', marginBottom: 40 }}>Authorised by the Brands That Matter</h2>
+          <h2 className="font-display" style={{ fontSize: 'var(--size-h2)', marginBottom: 40 }}>Accredited by the Brands That Matter</h2>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(260px, 100%), 1fr))', gap: 20 }}>
             {brands.map((b, i) => (
               <div key={i} className="card" style={{ padding: '28px 24px' }}>
@@ -217,19 +219,19 @@ export default function WarrantyPage() {
         </div>
       </section>
 
-      {/* SECTION 4: PPF WARRANTY DEEP-DIVE */}
+      {/* SECTION 4: FLAGSHIP HIGHLIGHT */}
       <section className="section" style={{ background: 'var(--color-bg-secondary)' }}>
         <div className="container" style={{ maxWidth: 900 }}>
-          <p style={{ fontSize: 'var(--size-label)', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--color-text-muted)', marginBottom: 12 }}>Paint Protection Film</p>
-          <h2 className="font-display" style={{ fontSize: 'var(--size-h2)', marginBottom: 40 }}>SunTek Reaction & Ultra Matte PPF</h2>
+          <p style={{ fontSize: 'var(--size-label)', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--color-text-muted)', marginBottom: 12 }}>Flagship Protection</p>
+          <h2 className="font-display" style={{ fontSize: 'var(--size-h2)', marginBottom: 40 }}>10-Year Coatings — Magnum Borophene & Kraken Titanium</h2>
 
           <div style={{ background: '#0C3B2A', borderRadius: 8, padding: '40px 36px', marginBottom: 32, position: 'relative', overflow: 'hidden' }}>
             <div style={{ position: 'absolute', top: 20, right: 24, opacity: 0.06 }}>
               <Shield size={120} />
             </div>
-            <p style={{ color: 'rgba(255,255,255,0.5)', fontSize: 12, textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: 8 }}>SunTek by Eastman</p>
-            <p style={{ color: '#C7A74C', fontFamily: 'Bebas Neue, sans-serif', fontSize: 'clamp(40px, 6vw, 56px)', letterSpacing: '0.02em', lineHeight: 1 }}>12-Year Limited Warranty</p>
-            <p style={{ color: 'rgba(255,255,255,0.7)', fontSize: 14, marginTop: 12 }}>Reaction PPF with Tetrashield Resin Technology</p>
+            <p style={{ color: 'rgba(255,255,255,0.5)', fontSize: 12, textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: 8 }}>Top of the range</p>
+            <p style={{ color: '#C7A74C', fontFamily: 'Bebas Neue, sans-serif', fontSize: 'clamp(40px, 6vw, 56px)', letterSpacing: '0.02em', lineHeight: 1 }}>10-Year Durability Guarantee</p>
+            <p style={{ color: 'rgba(255,255,255,0.7)', fontSize: 14, marginTop: 12 }}>Borophene &amp; Graphene-Titanium chemistry — free wheel-face and glass coating included</p>
           </div>
 
           <div className="grid-2col" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 24, marginBottom: 32 }}>
@@ -238,7 +240,7 @@ export default function WarrantyPage() {
                 <Check size={16} color="var(--color-accent)" /> Covered
               </h3>
               <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: 10 }}>
-                {['Cracking', 'Bubbling', 'Yellowing', 'Discolouration', 'Wear and tear'].map((item, i) => (
+                {['Coating durability & adhesion', 'Gloss retention', 'UV protection', 'Hydrophobic performance', 'Self-healing of light marring (Kraken)'].map((item, i) => (
                   <li key={i} style={{ display: 'flex', gap: 10, alignItems: 'center' }}>
                     <Check size={14} color="var(--color-accent)" style={{ flexShrink: 0 }} />
                     <span style={{ color: 'var(--color-text-secondary)', fontSize: 14 }}>{item}</span>
@@ -251,7 +253,7 @@ export default function WarrantyPage() {
                 <X size={16} color="var(--color-text-muted)" /> Not Covered
               </h3>
               <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: 10 }}>
-                {['Improper care or maintenance', 'Abrasive products or non-wax coatings', 'Repainted or vinyl-wrapped surfaces', 'Stone chips exceeding film capacity', 'Hydrophobic degradation over time'].map((item, i) => (
+                {['Stone chips & impact damage', 'Accident or collision damage', 'Abrasive or unapproved products', 'Hard-water spotting', 'Neglected maintenance', 'Underlying clear-coat failure'].map((item, i) => (
                   <li key={i} style={{ display: 'flex', gap: 10, alignItems: 'center' }}>
                     <X size={14} color="var(--color-text-muted)" style={{ flexShrink: 0 }} />
                     <span style={{ color: 'var(--color-text-secondary)', fontSize: 14 }}>{item}</span>
@@ -262,20 +264,16 @@ export default function WarrantyPage() {
           </div>
 
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: 12, marginBottom: 24 }}>
-            {['Self-healing topcoat', 'Superhydrophobic surface', '25% more stain resistance', 'Tetrashield resin', 'Optically clear'].map((f, i) => (
+            {['Graphene & borophene chemistry', 'Self-healing (Kraken)', 'Deep gloss & slickness', 'Free wheel + glass coating', 'Hydrophobic'].map((f, i) => (
               <span key={i} style={{ padding: '6px 14px', background: 'rgba(199,167,76,0.08)', border: '1px solid rgba(199,167,76,0.2)', borderRadius: 4, fontSize: 12, color: 'var(--color-accent)', fontWeight: 500 }}>{f}</span>
             ))}
           </div>
 
           <div style={{ padding: '16px 20px', background: 'var(--color-surface)', borderRadius: 4, border: '1px solid var(--color-border)' }}>
             <p style={{ color: 'var(--color-text-secondary)', fontSize: 14, lineHeight: 1.7 }}>
-              <strong>Conditions:</strong> Must be installed by a SunTek Authorised dealer. Proof of purchase and registration required. Warranty is transferable with documentation.
+              <strong>Conditions:</strong> Must be applied by an accredited/certified installer. Guarantee registration and any required periodic inspections must be completed. Recommended aftercare must be followed.
             </p>
           </div>
-
-          <p style={{ color: 'var(--color-text-secondary)', fontSize: 14, lineHeight: 1.7, marginTop: 20, fontStyle: 'italic' }}>
-            This warranty is backed by Eastman Performance Films — not by a local installer who might not exist in 5 years.
-          </p>
         </div>
       </section>
 
@@ -283,63 +281,68 @@ export default function WarrantyPage() {
       <section className="section" style={{ background: 'var(--color-bg-primary)' }}>
         <div className="container" style={{ maxWidth: 900 }}>
           <p style={{ fontSize: 'var(--size-label)', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--color-text-muted)', marginBottom: 12 }}>Ceramic Coating</p>
-          <h2 className="font-display" style={{ fontSize: 'var(--size-h2)', marginBottom: 32 }}>NXTZEN Ceramic — 5 to 9-Year Protection Guarantee</h2>
+          <h2 className="font-display" style={{ fontSize: 'var(--size-h2)', marginBottom: 32 }}>Our Ceramic Range — 5 to 10-Year Guarantees</h2>
 
           <div style={{ display: 'flex', flexDirection: 'column', gap: 16, marginBottom: 32 }}>
-            <ExpandableSection title="NXTZEN Ceramic Professional — 5-Year Protection Guarantee">
+            <ExpandableSection title="Gtechniq CSL (Crystal Serum Light) — 5-Year Guarantee">
               <div style={{ display: 'grid', gap: 16 }}>
-                <div>
-                  <p style={{ fontSize: 13, color: 'var(--color-text-secondary)', lineHeight: 1.7 }}>
-                    <strong style={{ color: 'var(--color-text-primary)' }}>Covers:</strong> UV damage, permanent stains from bird/bat droppings, bug splatter.
-                  </p>
-                </div>
+                <p style={{ fontSize: 13, color: 'var(--color-text-secondary)', lineHeight: 1.7 }}>
+                  <strong style={{ color: 'var(--color-text-primary)' }}>Covers:</strong> Coating durability, gloss retention, UV protection and hydrophobic performance. Backed by a 5-year guarantee when applied by a Gtechniq Accredited Detailer.
+                </p>
                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
-                  {['Silane precursor hybrid ceramic', 'Covalent bond to paint', 'Low/high pH resistance', 'Made in Sydney'].map((f, i) => (
+                  {['SiO₂ ceramic', 'High gloss', 'Hydrophobic', 'UV protection', 'Made in the UK'].map((f, i) => (
                     <span key={i} style={{ padding: '4px 12px', background: 'rgba(199,167,76,0.08)', borderRadius: 4, fontSize: 12, color: 'var(--color-accent)' }}>{f}</span>
                   ))}
                 </div>
               </div>
             </ExpandableSection>
 
-            <ExpandableSection title="NXTZEN Graphene Serum — 7-Year Protection Guarantee">
+            <ExpandableSection title="Magnum Graphene — 7-Year Guarantee">
               <div style={{ display: 'grid', gap: 16 }}>
-                <div>
-                  <p style={{ fontSize: 13, color: 'var(--color-text-secondary)', lineHeight: 1.7 }}>
-                    <strong style={{ color: 'var(--color-text-primary)' }}>Covers:</strong> UV damage, permanent stains from bird/bat droppings, bug splatter. Extended to 7 years.
-                  </p>
-                </div>
+                <p style={{ fontSize: 13, color: 'var(--color-text-secondary)', lineHeight: 1.7 }}>
+                  <strong style={{ color: 'var(--color-text-primary)' }}>Covers:</strong> Coating durability, gloss retention, UV protection and enhanced chemical resistance with reduced water spotting. 7-year manufacturer guarantee (accredited applicator, registration + annual inspection).
+                </p>
                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
-                  {['Graphene nano-particles', '110% greater adhesion (third-party tested)', 'Stronger than steel / harder than diamond'].map((f, i) => (
+                  {['Graphene ceramic', '7-year durability', 'Enhanced chemical resistance', 'Reduced water spotting'].map((f, i) => (
                     <span key={i} style={{ padding: '4px 12px', background: 'rgba(199,167,76,0.08)', borderRadius: 4, fontSize: 12, color: 'var(--color-accent)' }}>{f}</span>
                   ))}
                 </div>
               </div>
             </ExpandableSection>
 
-            <ExpandableSection title="NXTZEN Elite — 9-Year Protection Guarantee (Flagship)">
+            <ExpandableSection title="Magnum Borophene — 10-Year Guarantee">
               <div style={{ display: 'grid', gap: 16 }}>
-                <div>
-                  <p style={{ fontSize: 13, color: 'var(--color-text-secondary)', lineHeight: 1.7 }}>
-                    <strong style={{ color: 'var(--color-text-primary)' }}>Covers:</strong> UV damage, permanent stains, Self Healing Technology. Extended to 9 years.
-                  </p>
-                </div>
+                <p style={{ fontSize: 13, color: 'var(--color-text-secondary)', lineHeight: 1.7 }}>
+                  <strong style={{ color: 'var(--color-text-primary)' }}>Covers:</strong> Maximum coating durability, gloss retention, UV protection and very high chemical resistance. Top of the Magnum range — includes free wheel-face and glass coating. 10-year guarantee.
+                </p>
                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
-                  {['Multi-Cure layer technology', 'Self-healing memory polymer', 'CSIRO-tested', 'Best UV/bird-dropping resistance'].map((f, i) => (
+                  {['Borophene ceramic', '10-year durability', 'Maximum protection', 'Free wheel + glass coating'].map((f, i) => (
                     <span key={i} style={{ padding: '4px 12px', background: 'rgba(199,167,76,0.08)', borderRadius: 4, fontSize: 12, color: 'var(--color-accent)' }}>{f}</span>
                   ))}
                 </div>
               </div>
             </ExpandableSection>
 
-            <ExpandableSection title="NXTZEN Elite GS02 (Graphene + Ceramic) — 9-Year Protection Guarantee">
+            <ExpandableSection title="Kraken Elite Plus (Graphene, Self-Healing) — 7-Year Guarantee">
               <div style={{ display: 'grid', gap: 16 }}>
-                <div>
-                  <p style={{ fontSize: 13, color: 'var(--color-text-secondary)', lineHeight: 1.7 }}>
-                    <strong style={{ color: 'var(--color-text-primary)' }}>Covers:</strong> UV damage, permanent stains, Self Healing Technology. 9-year warranty.
-                  </p>
-                </div>
+                <p style={{ fontSize: 13, color: 'var(--color-text-secondary)', lineHeight: 1.7 }}>
+                  <strong style={{ color: 'var(--color-text-primary)' }}>Covers:</strong> Coating durability, superior gloss and slickness, and self-healing of light surface marring with heat. Includes free wheel-face and glass coating. 7-year guarantee.
+                </p>
                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
-                  {['Graphene + Ceramic hybrid', 'Self Healing Technology', 'CSIRO-tested', 'Made in Sydney'].map((f, i) => (
+                  {['Self-healing graphene', '7-year durability', 'Superior gloss', 'Free wheel + glass coating'].map((f, i) => (
+                    <span key={i} style={{ padding: '4px 12px', background: 'rgba(199,167,76,0.08)', borderRadius: 4, fontSize: 12, color: 'var(--color-accent)' }}>{f}</span>
+                  ))}
+                </div>
+              </div>
+            </ExpandableSection>
+
+            <ExpandableSection title="Kraken Graphene Titanium (Self-Healing) — 10-Year Guarantee">
+              <div style={{ display: 'grid', gap: 16 }}>
+                <p style={{ fontSize: 13, color: 'var(--color-text-secondary)', lineHeight: 1.7 }}>
+                  <strong style={{ color: 'var(--color-text-primary)' }}>Covers:</strong> Ultimate coating durability, best-in-range gloss retention, self-healing and ultimate chemical resistance. The pinnacle of our range — includes free wheel-face and glass coating. 10-year guarantee.
+                </p>
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
+                  {['Graphene + titanium', '10-year durability', 'Self-healing', 'Ultimate gloss retention', 'Free wheel + glass coating'].map((f, i) => (
                     <span key={i} style={{ padding: '4px 12px', background: 'rgba(199,167,76,0.08)', borderRadius: 4, fontSize: 12, color: 'var(--color-accent)' }}>{f}</span>
                   ))}
                 </div>
@@ -349,14 +352,14 @@ export default function WarrantyPage() {
 
           <div style={{ padding: '16px 20px', background: 'var(--color-surface)', borderRadius: 4, border: '1px solid var(--color-border)', marginBottom: 16 }}>
             <p style={{ color: 'var(--color-text-secondary)', fontSize: 14, lineHeight: 1.7 }}>
-              <strong>Conditions:</strong> NXTZEN Certified Applicator required. Recommended care standards must be followed. Warranty void if abrasive compounds used.
+              <strong>Conditions:</strong> Accredited/certified applicator required. Recommended care standards must be followed, and any manufacturer registration or inspection requirements completed. Guarantee void if abrasive compounds or unapproved products are used.
             </p>
           </div>
 
           <div style={{ marginBottom: 24 }}>
             <h4 style={{ fontSize: 13, fontWeight: 600, marginBottom: 10, color: 'var(--color-text-muted)' }}>NOT COVERED</h4>
             <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: 8 }}>
-              {['Hard water spotting', 'Tree sap damage', 'Hydrophobic loss over time', 'Paint overspray', 'Stone chips', 'Clear coat failure'].map((item, i) => (
+              {['Stone chips & impact damage', 'Hard water spotting', 'Tree sap & neglect damage', 'Hydrophobic loss over time', 'Accident / collision damage', 'Clear coat failure'].map((item, i) => (
                 <li key={i} style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
                   <X size={12} color="var(--color-text-muted)" style={{ flexShrink: 0 }} />
                   <span style={{ color: 'var(--color-text-secondary)', fontSize: 13 }}>{item}</span>
@@ -367,83 +370,15 @@ export default function WarrantyPage() {
         </div>
       </section>
 
-      {/* SECTION 6: WINDOW TINTING WARRANTY */}
-      <section className="section" style={{ background: 'var(--color-bg-secondary)' }}>
-        <div className="container" style={{ maxWidth: 900 }}>
-          <p style={{ fontSize: 'var(--size-label)', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--color-text-muted)', marginBottom: 12 }}>Window Tinting</p>
-          <h2 className="font-display" style={{ fontSize: 'var(--size-h2)', marginBottom: 40 }}>Window Film Warranties</h2>
-
-          <div style={{ display: 'grid', gap: 32 }}>
-            {/* Solar Gard */}
-            <div className="card" style={{ padding: '32px 28px' }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: 12, marginBottom: 20 }}>
-                <div>
-                  <h3 style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: 24, letterSpacing: '0.02em' }}>Solar Gard VTX PRO</h3>
-                  <p style={{ color: 'var(--color-text-muted)', fontSize: 13 }}>Automotive Window Tinting</p>
-                </div>
-                <span style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: 28, color: 'var(--color-accent)' }}>Lifetime Warranty</span>
-              </div>
-              <div style={{ marginBottom: 16 }}>
-                <p style={{ fontSize: 13, color: 'var(--color-text-secondary)', lineHeight: 1.7 }}>
-                  <strong style={{ color: 'var(--color-text-primary)' }}>Covers:</strong> Bubbling, peeling, discolouration, edge lifting. Lifetime of ownership.
-                </p>
-              </div>
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
-                {['Nano-ceramic technology', 'Heat rejection up to 60%', '99% UV rejection', 'Glare reduction', 'Shatter retention', 'QLD-legal VLT options'].map((f, i) => (
-                  <span key={i} style={{ padding: '4px 12px', background: 'rgba(199,167,76,0.08)', borderRadius: 4, fontSize: 12, color: 'var(--color-accent)' }}>{f}</span>
-                ))}
-              </div>
-            </div>
-
-            {/* 3M Residential */}
-            <div className="card" style={{ padding: '32px 28px' }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: 12, marginBottom: 20 }}>
-                <div>
-                  <h3 style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: 24, letterSpacing: '0.02em' }}>3M Night Vision/Frosted</h3>
-                  <p style={{ color: 'var(--color-text-muted)', fontSize: 13 }}>Residential Window Tinting</p>
-                </div>
-                <span style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: 28, color: 'var(--color-accent)' }}>Lifetime Warranty</span>
-              </div>
-              <div style={{ marginBottom: 16 }}>
-                <p style={{ fontSize: 13, color: 'var(--color-text-secondary)', lineHeight: 1.7 }}>
-                  <strong style={{ color: 'var(--color-text-primary)' }}>Covers:</strong> Delamination, adhesive failure, discolouration, bubbling, cracking. Lifetime of property ownership.
-                </p>
-              </div>
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
-                {['Non-metallized multi-layer optical film', 'Up to 97% infrared rejection', '99.9% UV rejection', 'No WiFi interference', 'Skin Cancer Foundation recommended', 'Carbon negative in 6 months'].map((f, i) => (
-                  <span key={i} style={{ padding: '4px 12px', background: 'rgba(199,167,76,0.08)', borderRadius: 4, fontSize: 12, color: 'var(--color-accent)' }}>{f}</span>
-                ))}
-              </div>
-            </div>
-
-            {/* 3M Commercial */}
-            <div className="card" style={{ padding: '32px 28px' }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: 12, marginBottom: 20 }}>
-                <div>
-                  <h3 style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: 24, letterSpacing: '0.02em' }}>3M Commercial Films</h3>
-                  <p style={{ color: 'var(--color-text-muted)', fontSize: 13 }}>Commercial Window Tinting</p>
-                </div>
-                <span style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: 28, color: 'var(--color-accent)' }}>Lifetime Warranty</span>
-              </div>
-              <div>
-                <p style={{ fontSize: 13, color: 'var(--color-text-secondary)', lineHeight: 1.7 }}>
-                  <strong style={{ color: 'var(--color-text-primary)' }}>Covers:</strong> Delamination, adhesive failure, discolouration. Lifetime warranty.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* SECTION 7: AUTHORISED VS NON-AUTHORISED */}
+      {/* SECTION 6: AUTHORISED VS NON-AUTHORISED */}
       <section className="section" style={{ background: 'var(--color-bg-primary)' }}>
         <div className="container" style={{ maxWidth: 900 }}>
           <p style={{ fontSize: 'var(--size-label)', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--color-text-muted)', marginBottom: 12 }}>Why It Matters</p>
-          <h2 className="font-display" style={{ fontSize: 'var(--size-h2)', marginBottom: 40 }}>Authorised vs Non-Authorised Installer</h2>
+          <h2 className="font-display" style={{ fontSize: 'var(--size-h2)', marginBottom: 40 }}>Accredited vs Non-Accredited Installer</h2>
 
           <div className="grid-2col" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 0, borderRadius: 8, overflow: 'hidden', border: '1px solid var(--color-border)' }}>
             <div style={{ background: '#0C3B2A', padding: '24px 20px' }}>
-              <p style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: 18, color: '#C7A74C', letterSpacing: '0.03em', marginBottom: 20 }}>Glossed Out Detailing (Authorised)</p>
+              <p style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: 18, color: '#C7A74C', letterSpacing: '0.03em', marginBottom: 20 }}>Glossed Out Detailing (Accredited)</p>
               <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: 14 }}>
                 {comparisonData.map((row, i) => (
                   <li key={i} style={{ display: 'flex', gap: 10, alignItems: 'flex-start' }}>
@@ -454,7 +389,7 @@ export default function WarrantyPage() {
               </ul>
             </div>
             <div style={{ background: 'var(--color-surface)', padding: '24px 20px' }}>
-              <p style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: 18, color: 'var(--color-text-muted)', letterSpacing: '0.03em', marginBottom: 20 }}>Non-Authorised Installer</p>
+              <p style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: 18, color: 'var(--color-text-muted)', letterSpacing: '0.03em', marginBottom: 20 }}>Non-Accredited Installer</p>
               <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: 14 }}>
                 {comparisonData.map((row, i) => (
                   <li key={i} style={{ display: 'flex', gap: 10, alignItems: 'flex-start' }}>
@@ -468,7 +403,7 @@ export default function WarrantyPage() {
         </div>
       </section>
 
-      {/* SECTION 8: FAQ */}
+      {/* SECTION 7: FAQ */}
       <section className="section" style={{ background: 'var(--color-bg-secondary)' }}>
         <div className="container" style={{ maxWidth: 780 }}>
           <p style={{ fontSize: 'var(--size-label)', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--color-text-muted)', marginBottom: 12 }}>FAQ</p>
@@ -477,11 +412,11 @@ export default function WarrantyPage() {
         </div>
       </section>
 
-      {/* SECTION 9: CTA */}
+      {/* SECTION 8: CTA */}
       <section className="section" style={{ background: 'var(--color-bg-primary)', textAlign: 'center' }}>
         <div className="container" style={{ maxWidth: 700 }}>
           <p style={{ color: 'var(--color-text-secondary)', fontSize: 'clamp(15px, 2vw, 18px)', lineHeight: 1.7, marginBottom: 40 }}>
-            Every installation comes with a manufacturer warranty, aftercare guide, and our commitment to getting it right.
+            Every ceramic coating comes with a manufacturer-backed guarantee, a written aftercare guide, and our commitment to getting the prep and application right.
           </p>
         </div>
       </section>
@@ -495,10 +430,10 @@ export default function WarrantyPage() {
               <p style={{ fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--color-text-muted)', marginBottom: 8 }}>Product Documentation</p>
               <h3 className="font-display" style={{ fontSize: 'clamp(22px, 3vw, 32px)', letterSpacing: '0.02em', marginBottom: 8 }}>Product Technical Data Sheets</h3>
               <p style={{ color: 'var(--color-text-secondary)', fontSize: 14, lineHeight: 1.65, maxWidth: 460 }}>
-                View full manufacturer-issued TDS for every product we install — specs, test data, and performance claims all in one place.
+                View the full spec for every coating we apply — Gtechniq, Magnum and Kraken — durability, technology and performance in one place.
               </p>
             </div>
-            <Link to="/next-level-protection-tds" className="btn-primary" style={{ whiteSpace: 'nowrap' }}>
+            <Link to="/product-tds" className="btn-primary" style={{ whiteSpace: 'nowrap' }}>
               <span className="btn-slide" /><span>View All TDS</span>
             </Link>
           </div>
@@ -510,10 +445,10 @@ export default function WarrantyPage() {
         <div className="container">
           <p style={{ fontSize: 'var(--size-label)', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--color-text-muted)', marginBottom: 16 }}>Related Services</p>
           <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap' }}>
-            <Link to="/ppf-brisbane" className="btn-ghost" style={{ padding: '10px 20px', fontSize: 13 }}>PPF Brisbane</Link>
-            <Link to="/ceramic-coating-brisbane" className="btn-ghost" style={{ padding: '10px 20px', fontSize: 13 }}>Ceramic Coating Brisbane</Link>
-            <Link to="/residential-window-tinting-brisbane" className="btn-ghost" style={{ padding: '10px 20px', fontSize: 13 }}>Residential Window Tinting</Link>
-            <Link to="/automotive-window-tinting-brisbane" className="btn-ghost" style={{ padding: '10px 20px', fontSize: 13 }}>Automotive Window Tinting</Link>
+            <Link to="/detailing-packages-melbourne#ceramic" className="btn-ghost" style={{ padding: '10px 20px', fontSize: 13 }}>Ceramic Coating</Link>
+            <Link to="/detailing-packages-melbourne#correction" className="btn-ghost" style={{ padding: '10px 20px', fontSize: 13 }}>Paint Correction</Link>
+            <Link to="/detailing-packages-melbourne#detailing" className="btn-ghost" style={{ padding: '10px 20px', fontSize: 13 }}>Detailing</Link>
+            <Link to="/product-tds" className="btn-ghost" style={{ padding: '10px 20px', fontSize: 13 }}>Product TDS</Link>
           </div>
         </div>
       </section>

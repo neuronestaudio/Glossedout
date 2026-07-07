@@ -268,14 +268,14 @@ export default function ProductTDSPage() {
       <PageMeta
         title="Ceramic Coating TDS — Glossed Out Detailing Melbourne"
         description="Technical data sheets for the ceramic coatings we apply — Gtechniq CSL, Magnum Graphene & Borophene, and Kraken Elite self-healing coatings. Durability, protection and specs."
-        canonical="https://glossedoutdetailing.com.au/next-level-protection-tds"
+        canonical="https://glossedoutdetailing.com.au/product-tds"
         jsonLd={[
           {
             "@context": "https://schema.org",
             "@type": "WebPage",
             "name": "Glossed Out Detailing — Ceramic Coating Technical Data Sheets Melbourne",
             "description": "Technical data for Gtechniq CSL, Magnum Graphene, Magnum Borophene and Kraken Elite ceramic coatings applied in Melbourne.",
-            "url": "https://glossedoutdetailing.com.au/next-level-protection-tds",
+            "url": "https://glossedoutdetailing.com.au/product-tds",
             "about": { "@id": "https://glossedoutdetailing.com.au/#business" },
             "dateModified": "2026-04-28",
             "inLanguage": "en-AU",
@@ -285,7 +285,7 @@ export default function ProductTDSPage() {
             "@type": "BreadcrumbList",
             "itemListElement": [
               { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://glossedoutdetailing.com.au/" },
-              { "@type": "ListItem", "position": 2, "name": "Product TDS", "item": "https://glossedoutdetailing.com.au/next-level-protection-tds" },
+              { "@type": "ListItem", "position": 2, "name": "Product TDS", "item": "https://glossedoutdetailing.com.au/product-tds" },
             ],
           },
         ]}
@@ -416,7 +416,7 @@ export default function ProductTDSPage() {
           <p style={{ fontSize: 'var(--size-label)', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--color-text-muted)', marginBottom: 16 }}>Related Pages</p>
           <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap' }}>
             <Link to="/detailing-packages-melbourne" className="btn-ghost" style={{ padding: '10px 20px', fontSize: 13 }}>Packages &amp; Pricing</Link>
-            <Link to="/ceramic-coating-brisbane" className="btn-ghost" style={{ padding: '10px 20px', fontSize: 13 }}>Ceramic Coating</Link>
+            <Link to="/ceramic-coating-melbourne" className="btn-ghost" style={{ padding: '10px 20px', fontSize: 13 }}>Ceramic Coating</Link>
             <Link to="/warranties" className="btn-ghost" style={{ padding: '10px 20px', fontSize: 13 }}>Warranties</Link>
             <Link to="/gallery" className="btn-ghost" style={{ padding: '10px 20px', fontSize: 13 }}>Gallery</Link>
             <Link to="/about" className="btn-ghost" style={{ padding: '10px 20px', fontSize: 13 }}>About</Link>

@@ -4,7 +4,7 @@ export default function PrivacyPolicyPage() {
   return (
     <>
       <PageMeta
-        title="Privacy Policy — Glossed Out Detailing Brisbane"
+        title="Privacy Policy — Glossed Out Detailing Melbourne"
         description="Privacy Policy for Glossed Out Detailing. How we collect, use and protect your personal information."
         canonical="https://glossedoutdetailing.com.au/privacy-policy"
       />
@@ -17,7 +17,7 @@ export default function PrivacyPolicyPage() {
           {[
             {
               heading: '1. Who We Are',
-              body: 'Glossed Out Detailing (ABN [ABN]) operates from Goodrich Ct, Craigieburn VIC 3064. We provide paint protection film, ceramic coating, and window tinting services in Brisbane. This policy explains how we handle your personal information when you interact with our website or contact us.',
+              body: 'Glossed Out Detailing (ABN [ABN]) operates from Goodrich Ct, Craigieburn VIC 3064. We provide paint protection film, ceramic coating, and window tinting services in Melbourne. This policy explains how we handle your personal information when you interact with our website or contact us.',
             },
             {
               heading: '2. Information We Collect',

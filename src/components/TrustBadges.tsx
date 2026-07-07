@@ -11,24 +11,13 @@ const RibbonIcon = () => (
   </svg>
 );
 
-export default function TrustBadges({ services = ['ppf', 'tint', 'window'] }: TrustBadgesProps) {
+export default function TrustBadges({ services = ['ceramic'] }: TrustBadgesProps) {
+  // Glossed Out's ceramic accreditations. All service pages currently request 'ceramic'.
   const badges = [
-    {
-      id: 'ppf',
-      label: 'SunTek Certified PPF',
-    },
-    {
-      id: 'ceramic',
-      label: 'NXTZEN Certified',
-    },
-    {
-      id: 'tint',
-      label: 'Solar Gard VTX PRO',
-    },
-    {
-      id: 'window',
-      label: '3M Warranty & Certified',
-    },
+    { id: 'ceramic', label: 'Gtechniq Accredited' },
+    { id: 'ceramic', label: 'Magnum Accredited' },
+    { id: 'ceramic', label: 'Kraken Certified' },
+    { id: 'ceramic', label: 'CarPro Certified' },
   ].filter(b => services.includes(b.id as any));
 
   return (
@@ -42,7 +31,7 @@ export default function TrustBadges({ services = ['ppf', 'tint', 'window'] }: Tr
     >
       {badges.map(b => (
         <div
-          key={b.id}
+          key={b.label}
           style={{
             flexShrink: 0,
             border: '1px solid rgba(255,255,255,0.08)',
