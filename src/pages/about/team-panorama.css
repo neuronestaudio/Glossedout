@@ -20,7 +20,10 @@
   z-index: 1;
 }
 @media (max-width: 768px) {
-  .nlp-pano--pull { margin-top: -14vh; }
+  /* Phone: the white handoff leaves a big void below the title, so pull the
+     photo up further to balance the space above/below "Meet the Detailer"
+     (without colliding the way the old -42vh did). */
+  .nlp-pano--pull { margin-top: -28vh; }
 }
 
 /* Viewport locked to the photo's aspect ratio — no letterboxing at any width. */
