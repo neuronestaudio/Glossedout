@@ -205,7 +205,7 @@ function PriceCard({ tier }: { tier: Tier }) {
 
 function PackageGroup({ id, eyebrow, title, intro, tiers }: { id: string; eyebrow: string; title: string; intro: string; tiers: Tier[] }) {
   return (
-    <section id={id} className="section" style={{ background: 'var(--color-bg-secondary)' }}>
+    <section id={id} className="section pkg-canvas">
       <div className="container">
         <p style={{ fontSize: 'var(--size-label)', textTransform: 'uppercase', letterSpacing: '0.12em', color: 'var(--brand-gold-dk)', marginBottom: 12 }}>{eyebrow}</p>
         <h2 className="font-display" style={{ fontSize: 'var(--size-h2)', color: 'var(--color-text-primary)', marginBottom: 14, lineHeight: 1.05 }}>{title}</h2>
@@ -236,7 +236,7 @@ const warranties: Warranty[] = [
 
 function WarrantyTable() {
   return (
-    <section id="warranties" className="section" style={{ background: 'var(--color-bg-secondary)' }}>
+    <section id="warranties" className="section pkg-canvas">
       <div className="container">
         <p style={{ display: 'inline-flex', alignItems: 'center', gap: 8, fontSize: 'var(--size-label)', textTransform: 'uppercase', letterSpacing: '0.12em', color: 'var(--brand-gold-dk)', marginBottom: 12 }}>
           <ShieldCheck size={15} /> Coating Warranties
@@ -399,7 +399,7 @@ Our Packages
       <WarrantyTable />
 
       {/* CERAMIC COATING (toggle) */}
-      <section id="ceramic" className="section" style={{ background: 'var(--color-bg-primary)' }}>
+      <section id="ceramic" className="section pkg-canvas">
         <div className="container">
           <p style={{ fontSize: 'var(--size-label)', textTransform: 'uppercase', letterSpacing: '0.12em', color: 'var(--brand-gold-dk)', marginBottom: 12 }}>Gtechniq · Magnum · Kraken Elite</p>
           <h2 className="font-display" style={{ fontSize: 'var(--size-h2)', color: 'var(--color-text-primary)', marginBottom: 14, lineHeight: 1.05 }}>Ceramic Coating Packages</h2>
