@@ -15,6 +15,7 @@ const ServicesPage               = lazy(() => import('./pages/ServicesPage'));
 const HomePageSportscar          = lazy(() => import('./pages/HomePageSportscar'));
 const HomePageIntro              = lazy(() => import('./pages/HomePageIntro'));
 const HomePageBanner             = lazy(() => import('./pages/HomePageBanner'));
+const HomePageBars               = lazy(() => import('./pages/HomePageBars'));
 const CeramicCoatingPage         = lazy(() => import('./pages/CeramicCoatingPage'));
 const CeramicQuestionsPage       = lazy(() => import('./pages/CeramicQuestionsPage'));
 const GalleryPage                = lazy(() => import('./pages/GalleryPage'));
@@ -120,6 +121,7 @@ export default function App() {
             <Route path="/home-sportscar" element={<HomePageSportscar />} />
             <Route path="/home-intro" element={<HomePageIntro />} />
             <Route path="/home-banner" element={<HomePageBanner />} />
+            <Route path="/home-demo2" element={<HomePageBars />} />
             <Route path="/ceramic-coating-melbourne" element={<CeramicCoatingPage />} />
             <Route path="/ceramic-coating-questions" element={<CeramicQuestionsPage />} />
             <Route path="/gallery" element={<GalleryPage />} />

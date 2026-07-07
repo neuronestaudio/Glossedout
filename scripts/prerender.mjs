@@ -20,6 +20,7 @@ const ROUTES = [
   '/home-sportscar',
   '/home-intro',
   '/home-banner',
+  '/home-demo2',
   '/ceramic-coating-melbourne',
   '/ceramic-coating-questions',
   '/gallery',
