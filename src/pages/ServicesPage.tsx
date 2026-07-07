@@ -246,7 +246,7 @@ function WarrantyTable() {
           Every ceramic package uses a named, professional-grade coating with a manufacturer-backed warranty — never a generic bottle. Here's exactly what each product covers and how long it's protected for.
         </p>
 
-        <div style={{ overflowX: 'auto', border: '1px solid var(--color-border)', borderRadius: 14, WebkitOverflowScrolling: 'touch' }}>
+        <div className="warranty-table-wrap">
           <table className="warranty-table">
             <thead>
               <tr>

@@ -271,17 +271,28 @@ a { color: inherit; text-decoration: none; }
 
 /* Cards */
 .card {
-  background: var(--color-surface);
-  backdrop-filter: var(--glass-blur);
-  -webkit-backdrop-filter: var(--glass-blur);
-  border: 1px solid var(--color-border);
-  border-radius: 16px;
-  box-shadow: 0 0 0 1px var(--color-border-subtle), 0 8px 32px rgba(0, 0, 0, 0.06), inset 0 1px 0 rgba(255,255,255,0.90);
-  transition: transform 220ms ease, box-shadow 220ms ease;
+  position: relative;
+  background: linear-gradient(155deg, rgba(255, 255, 255, 0.78) 0%, rgba(255, 255, 255, 0.52) 100%);
+  backdrop-filter: blur(24px) saturate(185%);
+  -webkit-backdrop-filter: blur(24px) saturate(185%);
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  border-radius: 18px;
+  box-shadow:
+    0 0 0 1px rgba(10, 43, 30, 0.06),
+    0 16px 44px rgba(10, 43, 30, 0.10),
+    0 4px 12px rgba(10, 43, 30, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.92),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.20);
+  transition: transform 240ms cubic-bezier(0.22, 1, 0.36, 1), box-shadow 240ms ease;
 }
 .card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 0 0 1px var(--color-border), 0 16px 48px rgba(0, 0, 0, 0.10), 0 0 32px var(--glow-blue), inset 0 1px 0 rgba(255,255,255,1);
+  transform: translateY(-4px);
+  box-shadow:
+    0 0 0 1px rgba(201, 162, 39, 0.25),
+    0 24px 60px rgba(10, 43, 30, 0.16),
+    0 6px 16px rgba(10, 43, 30, 0.07),
+    inset 0 1px 0 rgba(255, 255, 255, 1),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.28);
 }
 
 /* Form inputs */
@@ -575,6 +586,12 @@ label { display: block; font-size: var(--size-label); text-transform: uppercase;
 /* Banner hero (/home-banner) — the wordmark is baked into the background image,
    so on mobile we stack it: wordmark on top, eyebrow + CTAs in clear space below.
    Structurally cannot overlap. Desktop is untouched (all rules are mobile-only). */
+/* Feather the banner image's left/right edges so it blends into the green
+   background instead of a hard, blocky rectangle seam. */
+.home-hero-banner__bg {
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 13%, #000 87%, transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0%, #000 13%, #000 87%, transparent 100%);
+}
 .home-hero-banner__img { display: none; }
 @media (max-width: 768px) {
   .home-hero.home-hero-banner {
@@ -919,11 +936,24 @@ label { display: block; font-size: var(--size-label); text-transform: uppercase;
   filter: brightness(1.05);
 }
 
-/* Warranty products table */
+/* Warranty products table — glassmorphism panel */
+.warranty-table-wrap {
+  overflow-x: auto; -webkit-overflow-scrolling: touch;
+  border-radius: 18px;
+  background: linear-gradient(155deg, rgba(255, 255, 255, 0.72) 0%, rgba(255, 255, 255, 0.46) 100%);
+  backdrop-filter: blur(24px) saturate(185%);
+  -webkit-backdrop-filter: blur(24px) saturate(185%);
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  box-shadow:
+    0 0 0 1px rgba(10, 43, 30, 0.06),
+    0 18px 50px rgba(10, 43, 30, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
 .warranty-table { width: 100%; border-collapse: collapse; font-size: 14px; min-width: 640px; }
-.warranty-table thead th { text-align: left; padding: 15px 20px; background: var(--brand-green); color: var(--brand-gold-lt); font-size: 11px; text-transform: uppercase; letter-spacing: 0.09em; font-weight: 700; white-space: nowrap; }
-.warranty-table tbody td { padding: 18px 20px; border-top: 1px solid var(--color-border); color: var(--color-text-secondary); vertical-align: middle; line-height: 1.5; }
-.warranty-table tbody tr:nth-child(even) { background: rgba(27, 107, 74, 0.045); }
+.warranty-table thead th { text-align: left; padding: 15px 20px; background: rgba(12, 59, 42, 0.90); color: var(--brand-gold-lt); font-size: 11px; text-transform: uppercase; letter-spacing: 0.09em; font-weight: 700; white-space: nowrap; -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }
+.warranty-table tbody td { padding: 18px 20px; border-top: 1px solid rgba(10, 43, 30, 0.07); color: var(--color-text-secondary); vertical-align: middle; line-height: 1.5; }
+.warranty-table tbody tr:nth-child(even) { background: rgba(255, 255, 255, 0.35); }
+.warranty-table tbody tr:hover { background: rgba(201, 162, 39, 0.07); }
 .warranty-table .wt-product { display: block; font-weight: 700; color: var(--color-text-primary); font-size: 15px; }
 .warranty-table .wt-brand { display: block; color: var(--color-text-muted); font-size: 12px; margin-top: 2px; }
 .warranty-table .wt-years { display: inline-flex; align-items: center; padding: 6px 14px; border-radius: 100px; background: linear-gradient(135deg, #E4C766 0%, #C9A227 50%, #A17E12 100%); color: #0A2B1E; font-weight: 700; font-size: 12px; letter-spacing: 0.02em; white-space: nowrap; box-shadow: 0 4px 12px rgba(201, 162, 39, 0.28); }

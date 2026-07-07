@@ -17,6 +17,7 @@ const interfaceVersions = [
   { label: 'Home — Cinematic intro', href: '/home-intro' },
   { label: 'Home — Banner hero', href: '/home-banner' },
   { label: 'Home — Title Demo 2', href: '/home-demo2' },
+  { label: 'Home — Demo - White', href: '/home-white' },
 ];
 
 export default function Navbar() {

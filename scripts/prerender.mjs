@@ -21,6 +21,7 @@ const ROUTES = [
   '/home-intro',
   '/home-banner',
   '/home-demo2',
+  '/home-white',
   '/ceramic-coating-melbourne',
   '/ceramic-coating-questions',
   '/gallery',
