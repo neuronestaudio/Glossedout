@@ -3,7 +3,6 @@ import { Award, MapPin, Clock, Phone, Mail, Shield, Star } from 'lucide-react';
 import CTABlock from '../components/CTABlock';
 import PageMeta from '../components/PageMeta';
 import AboutHero from './about/AboutHero';
-import TeamPanorama from './about/TeamPanorama';
 import founderImg from '../assets/glossed/detailing-gen.jpg';
 import craftBg from '../assets/team/craft-bg.jpg';
 
@@ -50,16 +49,8 @@ export default function AboutPage() {
           scrubbed by scroll progress (Lenis smooth-scroll active site-wide). */}
       <AboutHero />
 
-      {/* Wide banner — the detailer at work (same photo as The Detailer feature) */}
-      <TeamPanorama
-        src={founderImg}
-        alt="Mohammed — Glossed Out Detailing"
-        caption="Craigieburn · Melbourne"
-        people={[]}
-        pullUp
-      />
-
-      {/* The Detailer — founder feature */}
+      {/* The Detailer — founder feature (flows straight out of the cinematic
+          "Meet the Detailer" handoff) */}
       <section className="section" style={{ background: 'var(--color-bg-secondary)' }}>
         <div className="container">
           <p style={{ fontSize: 'var(--size-label)', textTransform: 'uppercase', letterSpacing: '0.12em', color: 'var(--brand-gold-dk)', marginBottom: 12 }}>The Detailer</p>
