@@ -11,7 +11,7 @@ import PageMeta from '../components/PageMeta';
 const benefits = [
   { icon: TrendingUp, title: 'Buyers Pay More for Preserved Paint', desc: 'Paint condition is the first thing a serious buyer or dealer inspects. A vehicle with original glossy swirl-free paint with a documented ceramic history commands a measurable premium. Buyers accept lower offers when they see heavy swirling, oxidation, or paint defects — because they factor in correction costs.' },
   { icon: Eye, title: 'Interior-Grade Appearance Retention', desc: 'Ceramic-coated vehicles maintain a consistently clean exterior that reads as "well maintained" on inspection. Clean, protected paint combined with glass coating creates a presentation impact that uncared-for paint simply cannot match regardless of mechanical condition.' },
-  { icon: Shield, title: 'Documentation Adds Verifiable Value', desc: 'We provide clients with a certificate of ceramic application including the NXTZEN product name, date, applicator details, and warranty period. This document is presented at sale — it verifies the protection history and is an asset in negotiation, particularly when selling privately.' },
+  { icon: Shield, title: 'Documentation Adds Verifiable Value', desc: 'We provide clients with a certificate of ceramic application including the coating product name, date, applicator details, and warranty period. This document is presented at sale — it verifies the protection history and is an asset in negotiation, particularly when selling privately.' },
   { icon: Droplets, title: 'Delays the Need for Pre-Sale Correction', desc: 'Most vehicles require detailing or paint correction before sale to present well. Ceramic protects the paint throughout ownership, reducing or eliminating the need for pre-sale correction spend.' },
   { icon: CheckCircle, title: 'Factory Paint Preservation', desc: 'Verified factory paint is the highest resale value state for any vehicle. Ceramic reduces the risk of UV fade, oxidation, bird dropping etching, and water spot etching that would require respray to correct — each of which significantly reduces resale value when detected.' },
   { icon: Clock, title: 'ROI Over Ownership Duration', desc: 'If maintained correctly, the coating preserves paint condition that would otherwise require pre-sale correction or detailing spend. The ceramic typically returns its cost in preserved resale value — before factoring in the premium it commands from buyers.' },
@@ -21,7 +21,7 @@ const faqs = [
   { q: 'Does ceramic coating increase resale value?', a: 'Yes — in two ways. First, it prevents the paint degradation (oxidation, swirl marks, etching) that reduces resale value and requires pre-sale correction spend. Second, documented ceramic application history is a positive differentiator with informed buyers — particularly for prestige, performance, and luxury vehicles. The combination of preserved appearance and verifiable documentation supports a higher asking price.' },
   { q: 'How much does ceramic coating add to resale value?', a: 'It varies by vehicle segment. For prestige and performance vehicles (BMW, Mercedes, Porsche, Audi, Toyota Land Cruiser), ceramic history combined with excellent paint condition has been associated with meaningful premiums above equivalent non-coated vehicles in private sale. For volume vehicles, the primary benefit is avoiding correction costs that would otherwise be spent to prepare the car for sale.' },
   { q: 'Do buyers know what ceramic coating is?', a: 'Increasingly yes — particularly buyers of prestige and enthusiast vehicles. Younger buyers are typically more aware of ceramic coating than older buyers. The documentation we provide is useful because it explains the product, duration, and warranty in plain language — a buyer does not need prior knowledge to understand what they are receiving.' },
-  { q: 'What documentation do you provide with ceramic application?', a: 'We provide a ceramic application certificate stating: vehicle details, application date, NXTZEN product name and manufacturer details, installer name, warranty period, and warranty terms summary. This is a physical or digital document you can present to the buyer or dealer. Some of our clients attach it to the vehicle\'s service history folder.' },
+  { q: 'What documentation do you provide with ceramic application?', a: 'We provide a ceramic application certificate stating: vehicle details, application date, coating product name and manufacturer details, installer name, warranty period, and warranty terms summary. This is a physical or digital document you can present to the buyer or dealer. Some of our clients attach it to the vehicle\'s service history folder.' },
   { q: 'Should I get ceramic before selling my car?', a: 'If the paint is in good condition and the car will not sell immediately, yes — ceramic 12+ months before sale is the correct timing. A coating applied one week before sale has not had time to cure fully and the hydrophobic performance is not yet at peak. If sale is imminent, a professional decontamination and one-step correction is typically the better investment. Contact us with timing and we\'ll advise the right approach.' },
   { q: 'Does ceramic coating matter for trade-in value?', a: 'Less than private sale — dealers assess trade-in mechanically and will apply their own detailing and preparation regardless. Ceramic coating does not typically extract its full resale premium from a dealer trade-in. The primary value at trade-in is the clean paint condition that positions the vehicle in the dealer\'s highest inspection grade. Private sale returns the full resale benefit of documented ceramic history.' },
 ];
@@ -46,17 +46,17 @@ export default function CeramicResalePage() {
   return (
     <>
       <PageMeta
-        title="Ceramic Coating & Resale Value Brisbane"
-        description="How ceramic coating protects resale value in Brisbane. Preserved paint condition in Queensland's harsh UV climate. Glossed Out Detailing."
-        canonical="https://glossedoutdetailing.com.au/ceramic-coating-resale-brisbane"
+        title="Ceramic Coating & Resale Value Melbourne"
+        description="How ceramic coating protects resale value in Melbourne. Preserved paint condition in Victoria's harsh UV climate. Glossed Out Detailing."
+        canonical="https://glossedoutdetailing.com.au/ceramic-coating-resale-melbourne"
       />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
         "@context": "https://schema.org",
         "@type": "Service",
-        "name": "Ceramic Coating for Resale Value Brisbane",
+        "name": "Ceramic Coating for Resale Value Melbourne",
         "provider": { "@type": "LocalBusiness", "name": "Glossed Out Detailing", "telephone": "0481327250", "address": { "@type": "PostalAddress", "streetAddress": "Goodrich Ct", "addressLocality": "Craigieburn", "addressRegion": "VIC", "postalCode": "3064" }},
-        "areaServed": "Brisbane",
-        "description": "Ceramic coating to protect and increase resale value in Brisbane. Documented application history, paint preservation, and buyer-facing certification. Acacia Ridge.",
+        "areaServed": "Melbourne",
+        "description": "Ceramic coating to protect and increase resale value in Melbourne. Documented application history, paint preservation, and buyer-facing certification. Craigieburn.",
       })}} />
 
       <section ref={heroRef} style={{ position: 'relative', height: '100dvh', overflow: 'hidden', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', padding: '0 8vw 10vh' }}>
@@ -73,9 +73,9 @@ export default function CeramicResalePage() {
           </p>
           <div className="hero-anim" style={{ display: 'flex', gap: 16, marginTop: 32, flexWrap: 'wrap' }}>
             <Link to="/get-a-quote" className="btn-primary"><span className="btn-slide" /><span>Book Ceramic Coating</span></Link>
-            <Link to="/ceramic-coating-brisbane" className="btn-ghost">View All Packages</Link>
+            <Link to="/ceramic-coating-melbourne" className="btn-ghost">View All Packages</Link>
             <Link to="/warranties" className="btn-ghost">View Warranties</Link>
-            <Link to="/next-level-protection-tds" className="btn-ghost">View Product TDS</Link>
+            <Link to="/product-tds" className="btn-ghost">View Product TDS</Link>
           </div>
         </div>
       </section>
@@ -146,9 +146,9 @@ export default function CeramicResalePage() {
         <div className="container">
           <p style={{ fontSize: 'var(--size-label)', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--color-text-muted)', marginBottom: 16 }}>Related</p>
           <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap' }}>
-            <Link to="/ceramic-coating-brisbane" className="btn-ghost" style={{ padding: '10px 20px', fontSize: 13 }}>All Ceramic Packages</Link>
-            <Link to="/ceramic-coating-longevity-brisbane" className="btn-ghost" style={{ padding: '10px 20px', fontSize: 13 }}>Coating Longevity</Link>
-            <Link to="/ppf-resale-value-brisbane" className="btn-ghost" style={{ padding: '10px 20px', fontSize: 13 }}>PPF for Resale</Link>
+            <Link to="/ceramic-coating-melbourne" className="btn-ghost" style={{ padding: '10px 20px', fontSize: 13 }}>All Ceramic Packages</Link>
+            <Link to="/ceramic-coating-longevity-melbourne" className="btn-ghost" style={{ padding: '10px 20px', fontSize: 13 }}>Coating Longevity</Link>
+            <Link to="/detailing-packages-melbourne" className="btn-ghost" style={{ padding: '10px 20px', fontSize: 13 }}>PPF for Resale</Link>
           </div>
         </div>
       </section>

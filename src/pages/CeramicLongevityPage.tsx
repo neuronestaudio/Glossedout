@@ -10,7 +10,7 @@ import PageMeta from '../components/PageMeta';
 
 const benefits = [
   { icon: Shield, title: 'Warranty Is the Key Differentiator', desc: '12-month, 3-year, 5-year, and 7-year options correspond to different product tiers and preparation levels. The warranty period is set by the manufacturer of the coating product, not arbitrarily — it reflects the tested durability of that product under Australian conditions.' },
-  { icon: Sun, title: 'Brisbane Degrades Budget Coatings Faster', desc: 'Budget spray ceramics and dealership sealants degrade under Brisbane\'s UV within months. Professional coatings with 3–7 year warranties use higher-concentration SiO₂ formulations and catalysts that resist UV degradation — the product chemistry is fundamentally different.' },
+  { icon: Sun, title: 'Melbourne Degrades Budget Coatings Faster', desc: 'Budget spray ceramics and dealership sealants degrade under Melbourne\'s UV within months. Professional coatings with 3–7 year warranties use higher-concentration SiO₂ formulations and catalysts that resist UV degradation — the product chemistry is fundamentally different.' },
   { icon: Eye, title: 'Preparation Matters as Much as Product', desc: 'A high-grade coating applied over contaminated or swirled paint will underperform a mid-grade coating applied over correctly prepared paint. Our decontamination and clay bar prep is standard on every package — the product\'s rated durability assumes correct preparation.' },
   { icon: Clock, title: 'Top-Up Services Extend the Life', desc: 'Annual maintenance ceramic top-up services can extend performance beyond the original warranty period for customers who maintain their car correctly. Contact us about maintenance coating services if your original ceramic is approaching its warranty anniversary.' },
   { icon: TrendingUp, title: 'Longer Warranty = Better Economics Per Year', desc: 'The per-year cost of protection decreases as you move up tiers — a longer warranty period means better value over your ownership. Contact us to compare packages.' },
@@ -18,12 +18,12 @@ const benefits = [
 ];
 
 const faqs = [
-  { q: 'How long does ceramic coating last in Brisbane?', a: 'Package-dependent: Essential 12 months, Protection 3 years, Elite 5 years, Signature 7 years. These are manufacturer warranty periods. In Brisbane\'s high-UV environment, the 3-year and above packages use coatings specifically formulated for high-UV performance. Budget spray ceramics from car parts stores are not comparable products.' },
-  { q: 'What affects ceramic coating longevity?', a: 'Four factors determine how long a ceramic coating performs: (1) Product quality — professional-grade vs spray product. (2) Preparation — a correctly decontaminated surface bonds and holds longer. (3) Maintenance — pH-neutral washing, no wax or sealant on top, no automatic car washes. (4) Environment — outdoor parking in Brisbane UV vs covered parking. All four matter.' },
+  { q: 'How long does ceramic coating last in Melbourne?', a: 'Package-dependent: Essential 12 months, Protection 3 years, Elite 5 years, Signature 7 years. These are manufacturer warranty periods. In Melbourne\'s high-UV environment, the 3-year and above packages use coatings specifically formulated for high-UV performance. Budget spray ceramics from car parts stores are not comparable products.' },
+  { q: 'What affects ceramic coating longevity?', a: 'Four factors determine how long a ceramic coating performs: (1) Product quality — professional-grade vs spray product. (2) Preparation — a correctly decontaminated surface bonds and holds longer. (3) Maintenance — pH-neutral washing, no wax or sealant on top, no automatic car washes. (4) Environment — outdoor parking in Melbourne UV vs covered parking. All four matter.' },
   { q: 'Can ceramic coating be reapplied when it starts to fail?', a: 'Yes. When a coating begins to lose hydrophobic performance, a maintenance ceramic can be applied over the existing coating to extend protection. For coatings that have fully failed, the surface is stripped and recoated from fresh. We offer maintenance services — contact us with your coating age and current condition.' },
   { q: 'Does ceramic coating fade or peel?', a: 'Professional ceramic coatings do not peel — they don\'t have an edge to lift. They degrade gradually from UV exposure and wash contact, losing hydrophobic performance first, then chemical resistance. This is a slow process over years on a quality product. Peel and flake is a sign of a non-ceramic film product (vinyl) being misrepresented as ceramic.' },
   { q: 'What maintenance is required to maximise ceramic coating lifespan?', a: 'pH-neutral shampoo only — alkaline or acidic products break down the coating chemistry. Clean microfibre — abrasive cloths scratch the coating surface. Avoid automatic car washes with brushes. No wax, sealant, or spray detailer on top of ceramic (these products coat the ceramic surface, not the paint, and degrade the coating\'s hydrophobic performance). Rinse after driving through heavy contamination.' },
-  { q: 'Will ceramic coating last longer on a garaged car?', a: 'Yes — UV exposure is the primary accelerant of coating degradation. A car garaged overnight and parked undercover during the day will extend coating life significantly beyond the warranty period. A car parked fully outdoors in Brisbane all day will use the full warranty term as its practical lifespan.' },
+  { q: 'Will ceramic coating last longer on a garaged car?', a: 'Yes — UV exposure is the primary accelerant of coating degradation. A car garaged overnight and parked undercover during the day will extend coating life significantly beyond the warranty period. A car parked fully outdoors in Melbourne all day will use the full warranty term as its practical lifespan.' },
 ];
 
 
@@ -46,17 +46,17 @@ export default function CeramicLongevityPage() {
   return (
     <>
       <PageMeta
-        title="How Long Does Ceramic Coating Last? Brisbane Guide"
-        description="Ceramic coating longevity in Brisbane's climate. Warranties from 1 to 7 years depending on package. Glossed Out Detailing, Acacia Ridge."
-        canonical="https://glossedoutdetailing.com.au/ceramic-coating-longevity-brisbane"
+        title="How Long Does Ceramic Coating Last? Melbourne Guide"
+        description="Ceramic coating longevity in Melbourne's climate. Warranties from 1 to 7 years depending on package. Glossed Out Detailing, Craigieburn."
+        canonical="https://glossedoutdetailing.com.au/ceramic-coating-longevity-melbourne"
       />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
         "@context": "https://schema.org",
         "@type": "Service",
-        "name": "How Long Does Ceramic Coating Last Brisbane",
+        "name": "How Long Does Ceramic Coating Last Melbourne",
         "provider": { "@type": "LocalBusiness", "name": "Glossed Out Detailing", "telephone": "0481327250", "address": { "@type": "PostalAddress", "streetAddress": "Goodrich Ct", "addressLocality": "Craigieburn", "addressRegion": "VIC", "postalCode": "3064" }},
-        "areaServed": "Brisbane",
-        "description": "Ceramic coating durability in Brisbane. 12-month to 7-year warranty options. How long ceramic coating lasts in Queensland UV conditions. Acacia Ridge studio.",
+        "areaServed": "Melbourne",
+        "description": "Ceramic coating durability in Melbourne. 12-month to 7-year warranty options. How long ceramic coating lasts in Victoria UV conditions. Craigieburn studio.",
       })}} />
 
       <section ref={heroRef} style={{ position: 'relative', height: '100dvh', overflow: 'hidden', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', padding: '0 8vw 10vh' }}>
@@ -73,9 +73,9 @@ export default function CeramicLongevityPage() {
           </p>
           <div className="hero-anim" style={{ display: 'flex', gap: 16, marginTop: 32, flexWrap: 'wrap' }}>
             <Link to="/get-a-quote" className="btn-primary"><span className="btn-slide" /><span>Get a Quote</span></Link>
-            <Link to="/ceramic-coating-brisbane" className="btn-ghost">View All Packages</Link>
+            <Link to="/ceramic-coating-melbourne" className="btn-ghost">View All Packages</Link>
             <Link to="/warranties" className="btn-ghost">View Warranties</Link>
-            <Link to="/next-level-protection-tds" className="btn-ghost">View Product TDS</Link>
+            <Link to="/product-tds" className="btn-ghost">View Product TDS</Link>
           </div>
         </div>
       </section>
@@ -89,7 +89,7 @@ export default function CeramicLongevityPage() {
           <div style={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
             {[
               { package: 'Essential', duration: '12 Months', costPerYear: 'Contact us', typical: 'Entry ceramic. Daily driver, covered parking, or short-term ownership.' },
-              { package: 'Protection', duration: '3 Years', costPerYear: 'Contact us', typical: 'Full exterior. Most popular for Brisbane daily drivers parked outdoors.', recommended: true },
+              { package: 'Protection', duration: '3 Years', costPerYear: 'Contact us', typical: 'Full exterior. Most popular for Melbourne daily drivers parked outdoors.', recommended: true },
               { package: 'Elite', duration: '5 Years', costPerYear: 'Contact us', typical: 'With paint correction. Best value per year for cars with existing marks.' },
               { package: 'Signature', duration: '7 Years', costPerYear: 'Contact us', typical: 'Full vehicle. Prestige and long-term ownership — lowest cost per year at scale.' },
             ].map((row, i) => (
@@ -137,8 +137,8 @@ export default function CeramicLongevityPage() {
         <div className="container">
           <p style={{ fontSize: 'var(--size-label)', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--color-text-muted)', marginBottom: 16 }}>Related</p>
           <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap' }}>
-            <Link to="/ceramic-coating-brisbane" className="btn-ghost" style={{ padding: '10px 20px', fontSize: 13 }}>All Ceramic Packages</Link>
-            <Link to="/ceramic-coating-cost-brisbane" className="btn-ghost" style={{ padding: '10px 20px', fontSize: 13 }}>Ceramic Coating Cost</Link>
+            <Link to="/ceramic-coating-melbourne" className="btn-ghost" style={{ padding: '10px 20px', fontSize: 13 }}>All Ceramic Packages</Link>
+            <Link to="/ceramic-coating-cost-melbourne" className="btn-ghost" style={{ padding: '10px 20px', fontSize: 13 }}>Ceramic Coating Cost</Link>
             <Link to="/ceramic-coating-questions" className="btn-ghost" style={{ padding: '10px 20px', fontSize: 13 }}>Ceramic Q&amp;A</Link>
           </div>
         </div>

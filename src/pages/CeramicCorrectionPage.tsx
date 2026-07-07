@@ -47,17 +47,17 @@ export default function CeramicCorrectionPage() {
   return (
     <>
       <PageMeta
-        title="Ceramic Coating & Paint Correction Brisbane"
-        description="Paint correction before ceramic coating in Brisbane. Remove swirl marks and scratches before sealing under ceramic. Elite and Signature packages available."
-        canonical="https://glossedoutdetailing.com.au/ceramic-coating-paint-correction-brisbane"
+        title="Ceramic Coating & Paint Correction Melbourne"
+        description="Paint correction before ceramic coating in Melbourne. Remove swirl marks and scratches before sealing under ceramic. Elite and Signature packages available."
+        canonical="https://glossedoutdetailing.com.au/ceramic-coating-paint-correction-melbourne"
       />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
         "@context": "https://schema.org",
         "@type": "Service",
-        "name": "Paint Correction Brisbane — Before Ceramic Coating",
+        "name": "Paint Correction Melbourne — Before Ceramic Coating",
         "provider": { "@type": "LocalBusiness", "name": "Glossed Out Detailing", "telephone": "0481327250", "address": { "@type": "PostalAddress", "streetAddress": "Goodrich Ct", "addressLocality": "Craigieburn", "addressRegion": "VIC", "postalCode": "3064" }},
-        "areaServed": "Brisbane",
-        "description": "Paint correction in Brisbane before ceramic coating. Stage 1 and multi-stage correction — swirl removal, oxidation, scratches. Quoted separately, assessed at inspection. Acacia Ridge.",
+        "areaServed": "Melbourne",
+        "description": "Paint correction in Melbourne before ceramic coating. Stage 1 and multi-stage correction — swirl removal, oxidation, scratches. Quoted separately, assessed at inspection. Craigieburn.",
       })}} />
 
       <section ref={heroRef} style={{ position: 'relative', height: '100dvh', overflow: 'hidden', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', padding: '0 8vw 10vh' }}>
@@ -66,7 +66,7 @@ export default function CeramicCorrectionPage() {
         <div ref={heroContentRef} style={{ position: 'relative', zIndex: 2 }}>
           <div className="hero-anim"><TrustBadges services={['ceramic']} /></div>
           <h1 style={{ marginTop: 28 }}>
-            <span className="hero-anim font-display hero-text-mono" style={{ fontSize: 'var(--size-h1)', color: 'var(--color-text-primary)', lineHeight: 1 }}>Paint Correction Brisbane</span>
+            <span className="hero-anim font-display hero-text-mono" style={{ fontSize: 'var(--size-h1)', color: 'var(--color-text-primary)', lineHeight: 1 }}>Paint Correction Melbourne</span>
             <span className="hero-anim font-display" style={{ display: 'block', fontSize: 'var(--size-hero)', color: 'var(--color-accent)', lineHeight: 0.95, marginTop: 4 }}>Fix It. Then Seal It.</span>
           </h1>
           <p className="hero-anim" style={{ color: 'var(--color-text-secondary)', fontSize: 'clamp(15px, 2vw, 18px)', marginTop: 20, maxWidth: 560 }}>
@@ -74,7 +74,7 @@ export default function CeramicCorrectionPage() {
           </p>
           <div className="hero-anim" style={{ display: 'flex', gap: 16, marginTop: 32, flexWrap: 'wrap' }}>
             <Link to="/get-a-quote" className="btn-primary"><span className="btn-slide" /><span>Book an Inspection</span></Link>
-            <Link to="/ceramic-coating-brisbane" className="btn-ghost">View Ceramic Packages</Link>
+            <Link to="/ceramic-coating-melbourne" className="btn-ghost">View Ceramic Packages</Link>
           </div>
         </div>
       </section>
@@ -138,8 +138,8 @@ export default function CeramicCorrectionPage() {
         <div className="container">
           <p style={{ fontSize: 'var(--size-label)', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--color-text-muted)', marginBottom: 16 }}>Related</p>
           <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap' }}>
-            <Link to="/ceramic-coating-brisbane" className="btn-ghost" style={{ padding: '10px 20px', fontSize: 13 }}>All Ceramic Packages</Link>
-            <Link to="/ceramic-coating-cost-brisbane" className="btn-ghost" style={{ padding: '10px 20px', fontSize: 13 }}>Ceramic Coating Cost</Link>
+            <Link to="/ceramic-coating-melbourne" className="btn-ghost" style={{ padding: '10px 20px', fontSize: 13 }}>All Ceramic Packages</Link>
+            <Link to="/ceramic-coating-cost-melbourne" className="btn-ghost" style={{ padding: '10px 20px', fontSize: 13 }}>Ceramic Coating Cost</Link>
             <Link to="/ceramic-coating-questions" className="btn-ghost" style={{ padding: '10px 20px', fontSize: 13 }}>Ceramic Coating Q&amp;A</Link>
           </div>
         </div>

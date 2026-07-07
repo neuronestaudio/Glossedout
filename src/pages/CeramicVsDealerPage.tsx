@@ -45,17 +45,17 @@ export default function CeramicVsDealerPage() {
   return (
     <>
       <PageMeta
-        title="Ceramic Coating vs Dealer Paint Protection Brisbane"
-        description="How professional ceramic coating compares to dealer-applied paint protection in Brisbane. Independent vs. in-dealership application explained."
-        canonical="https://glossedoutdetailing.com.au/ceramic-vs-dealer-paint-protection-brisbane"
+        title="Ceramic Coating vs Dealer Paint Protection Melbourne"
+        description="How professional ceramic coating compares to dealer-applied paint protection in Melbourne. Independent vs. in-dealership application explained."
+        canonical="https://glossedoutdetailing.com.au/ceramic-vs-dealer-paint-protection-melbourne"
       />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
         "@context": "https://schema.org",
         "@type": "Service",
-        "name": "Ceramic Coating vs Dealer Paint Protection Brisbane",
+        "name": "Ceramic Coating vs Dealer Paint Protection Melbourne",
         "provider": { "@type": "LocalBusiness", "name": "Glossed Out Detailing", "telephone": "0481327250", "address": { "@type": "PostalAddress", "streetAddress": "Goodrich Ct", "addressLocality": "Craigieburn", "addressRegion": "VIC", "postalCode": "3064" }},
-        "areaServed": "Brisbane",
-        "description": "Ceramic coating vs dealership paint protection in Brisbane. Why most dealer packages are sealants, not ceramic. Professional ceramic with manufacturer warranty. Acacia Ridge.",
+        "areaServed": "Melbourne",
+        "description": "Ceramic coating vs dealership paint protection in Melbourne. Why most dealer packages are sealants, not ceramic. Professional ceramic with manufacturer warranty. Craigieburn.",
       })}} />
 
       <section ref={heroRef} style={{ position: 'relative', height: '100dvh', overflow: 'hidden', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', padding: '0 8vw 10vh' }}>
@@ -72,9 +72,9 @@ export default function CeramicVsDealerPage() {
           </p>
           <div className="hero-anim" style={{ display: 'flex', gap: 16, marginTop: 32, flexWrap: 'wrap' }}>
             <Link to="/get-a-quote" className="btn-primary"><span className="btn-slide" /><span>Book Professional Ceramic</span></Link>
-            <Link to="/ceramic-coating-brisbane" className="btn-ghost">View All Packages</Link>
+            <Link to="/ceramic-coating-melbourne" className="btn-ghost">View All Packages</Link>
             <Link to="/warranties" className="btn-ghost">View Warranties</Link>
-            <Link to="/next-level-protection-tds" className="btn-ghost">View Product TDS</Link>
+            <Link to="/product-tds" className="btn-ghost">View Product TDS</Link>
           </div>
         </div>
       </section>
@@ -97,7 +97,7 @@ export default function CeramicVsDealerPage() {
               <tbody>
                 {[
                   { factor: 'Product Type', dealer: 'Typically sealant or polymer coating', pro: 'Professional-grade cured ceramic (SiO₂)' },
-                  { factor: 'Durability', dealer: '3–12 months in Brisbane conditions', pro: '1–7 years — manufacturer warranted' },
+                  { factor: 'Durability', dealer: '3–12 months in Melbourne conditions', pro: '1–7 years — manufacturer warranted' },
                   { factor: 'Warranty', dealer: 'Dealer-backed only — no manufacturer', pro: 'Manufacturer warranty (independent of installer)' },
                   { factor: 'Preparation', dealer: 'Applied over factory paint, minimal prep', pro: 'Full decontamination, clay bar, correction if needed' },
                   { factor: 'Environment', dealer: 'Applied in showroom or service bay', pro: 'Controlled studio — humidity and contamination managed' },
@@ -146,9 +146,9 @@ export default function CeramicVsDealerPage() {
         <div className="container">
           <p style={{ fontSize: 'var(--size-label)', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--color-text-muted)', marginBottom: 16 }}>Related</p>
           <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap' }}>
-            <Link to="/ceramic-coating-brisbane" className="btn-ghost" style={{ padding: '10px 20px', fontSize: 13 }}>All Ceramic Packages</Link>
-            <Link to="/ceramic-coating-new-car-brisbane" className="btn-ghost" style={{ padding: '10px 20px', fontSize: 13 }}>Ceramic for New Cars</Link>
-            <Link to="/ceramic-coating-cost-brisbane" className="btn-ghost" style={{ padding: '10px 20px', fontSize: 13 }}>Ceramic Coating Cost</Link>
+            <Link to="/ceramic-coating-melbourne" className="btn-ghost" style={{ padding: '10px 20px', fontSize: 13 }}>All Ceramic Packages</Link>
+            <Link to="/ceramic-coating-new-car-melbourne" className="btn-ghost" style={{ padding: '10px 20px', fontSize: 13 }}>Ceramic for New Cars</Link>
+            <Link to="/ceramic-coating-cost-melbourne" className="btn-ghost" style={{ padding: '10px 20px', fontSize: 13 }}>Ceramic Coating Cost</Link>
           </div>
         </div>
       </section>

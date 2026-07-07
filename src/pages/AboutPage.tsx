@@ -209,8 +209,8 @@ export default function AboutPage() {
           <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap' }}>
             <Link to="/detailing-packages-melbourne" className="btn-ghost" style={{ padding: '10px 20px', fontSize: 13 }}>Packages &amp; Pricing</Link>
             <Link to="/gallery" className="btn-ghost" style={{ padding: '10px 20px', fontSize: 13 }}>View Gallery</Link>
-            <Link to="/ceramic-coating-brisbane" className="btn-ghost" style={{ padding: '10px 20px', fontSize: 13 }}>Ceramic Coating</Link>
-            <Link to="/next-level-protection-tds" className="btn-ghost" style={{ padding: '10px 20px', fontSize: 13 }}>Coating TDS</Link>
+            <Link to="/ceramic-coating-melbourne" className="btn-ghost" style={{ padding: '10px 20px', fontSize: 13 }}>Ceramic Coating</Link>
+            <Link to="/product-tds" className="btn-ghost" style={{ padding: '10px 20px', fontSize: 13 }}>Coating TDS</Link>
           </div>
         </div>
       </section>

@@ -10,10 +10,10 @@ import PageMeta from '../components/PageMeta';
 
 const benefits = [
   { icon: Shield, title: 'First Coat Is Easiest', desc: 'Factory paint that has never been exposed to UV or contamination bonds the most effectively with ceramic. The coating fills microscopic imperfections in fresh clear coat for a stronger, longer-lasting bond than on weathered paint.' },
-  { icon: Sun, title: 'Block Brisbane UV Before It Starts', desc: 'A new car\'s clear coat is at peak thickness at delivery. UV oxidation begins immediately. Applying ceramic coating in the first 30 days captures that factory condition and holds it for the coating\'s full warranty period.' },
+  { icon: Sun, title: 'Block Melbourne UV Before It Starts', desc: 'A new car\'s clear coat is at peak thickness at delivery. UV oxidation begins immediately. Applying ceramic coating in the first 30 days captures that factory condition and holds it for the coating\'s full warranty period.' },
   { icon: Droplets, title: 'Avoid Dealership Products', desc: 'Most dealership paint protection packages use sealant or wax applied over factory paint — not ceramic. They are not comparable in durability or protection. A single-stage ceramic applied by a specialist outperforms any dealership package.' },
   { icon: Clock, title: 'No Paint Correction Cost', desc: 'Paint correction is required when swirl marks or scratches are present before coating. New cars that are ceramic coated within the first few weeks rarely need any correction — avoiding a prep cost that is entirely preventable.' },
-  { icon: TrendingUp, title: 'Preserves Resale Value', desc: 'A ceramic-protected car in Brisbane retains paint condition that an unprotected car loses within 2–3 years. At resale, factory-condition paint holds more value and eliminates paint-condition negotiation.' },
+  { icon: TrendingUp, title: 'Preserves Resale Value', desc: 'A ceramic-protected car in Melbourne retains paint condition that an unprotected car loses within 2–3 years. At resale, factory-condition paint holds more value and eliminates paint-condition negotiation.' },
   { icon: Eye, title: 'Factory Gloss, Amplified', desc: 'Ceramic coating adds gloss depth beyond the factory finish. On metallic and pearl paints, the ceramic layer reveals colour depth that the standard clear coat alone cannot produce.' },
 ];
 
@@ -47,17 +47,17 @@ export default function CeramicNewCarPage() {
   return (
     <>
       <PageMeta
-        title="Ceramic Coating for New Cars Brisbane | Glossed Out Detailing"
-        description="Ceramic coating for new cars in Brisbane. Protect your new car's paint before Queensland's UV causes damage. Glossed Out Detailing, Acacia Ridge."
-        canonical="https://glossedoutdetailing.com.au/ceramic-coating-new-car-brisbane"
+        title="Ceramic Coating for New Cars Melbourne | Glossed Out Detailing"
+        description="Ceramic coating for new cars in Melbourne. Protect your new car's paint before Victoria's UV causes damage. Glossed Out Detailing, Craigieburn."
+        canonical="https://glossedoutdetailing.com.au/ceramic-coating-new-car-melbourne"
       />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
         "@context": "https://schema.org",
         "@type": "Service",
-        "name": "Ceramic Coating for New Cars Brisbane",
+        "name": "Ceramic Coating for New Cars Melbourne",
         "provider": { "@type": "LocalBusiness", "name": "Glossed Out Detailing", "telephone": "0481327250", "address": { "@type": "PostalAddress", "streetAddress": "Goodrich Ct", "addressLocality": "Craigieburn", "addressRegion": "VIC", "postalCode": "3064" }},
-        "areaServed": "Brisbane",
-        "description": "Ceramic coating for new cars in Brisbane. Apply within 30 days of delivery — no paint correction required, strongest bond, full warranty. Acacia Ridge studio.",
+        "areaServed": "Melbourne",
+        "description": "Ceramic coating for new cars in Melbourne. Apply within 30 days of delivery — no paint correction required, strongest bond, full warranty. Craigieburn studio.",
       })}} />
 
       <section ref={heroRef} style={{ position: 'relative', height: '100dvh', overflow: 'hidden', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', padding: '0 8vw 10vh' }}>
@@ -67,16 +67,16 @@ export default function CeramicNewCarPage() {
           <div className="hero-anim"><TrustBadges services={['ceramic']} /></div>
           <h1 style={{ marginTop: 28 }}>
             <span className="hero-anim font-display hero-text-mono" style={{ fontSize: 'var(--size-h1)', color: 'var(--color-text-primary)', lineHeight: 1 }}>Ceramic Coating for New Cars</span>
-            <span className="hero-anim font-display" style={{ display: 'block', fontSize: 'var(--size-hero)', color: 'var(--color-accent)', lineHeight: 0.95, marginTop: 4 }}>Brisbane. First 30 Days.</span>
+            <span className="hero-anim font-display" style={{ display: 'block', fontSize: 'var(--size-hero)', color: 'var(--color-accent)', lineHeight: 0.95, marginTop: 4 }}>Melbourne. First 30 Days.</span>
           </h1>
           <p className="hero-anim" style={{ color: 'var(--color-text-secondary)', fontSize: 'clamp(15px, 2vw, 18px)', marginTop: 20, maxWidth: 560 }}>
             Factory paint in its first month bonds most effectively with ceramic. No correction required. Skip the dealership sealant — do it right from day one.
           </p>
           <div className="hero-anim" style={{ display: 'flex', gap: 16, marginTop: 32, flexWrap: 'wrap' }}>
             <Link to="/get-a-quote" className="btn-primary"><span className="btn-slide" /><span>Book a New Car Ceramic</span></Link>
-            <Link to="/ceramic-coating-brisbane" className="btn-ghost">View All Packages</Link>
+            <Link to="/ceramic-coating-melbourne" className="btn-ghost">View All Packages</Link>
             <Link to="/warranties" className="btn-ghost">View Warranties</Link>
-            <Link to="/next-level-protection-tds" className="btn-ghost">View Product TDS</Link>
+            <Link to="/product-tds" className="btn-ghost">View Product TDS</Link>
           </div>
         </div>
       </section>
@@ -138,9 +138,9 @@ export default function CeramicNewCarPage() {
         <div className="container">
           <p style={{ fontSize: 'var(--size-label)', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--color-text-muted)', marginBottom: 16 }}>Related</p>
           <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap' }}>
-            <Link to="/ceramic-coating-brisbane" className="btn-ghost" style={{ padding: '10px 20px', fontSize: 13 }}>All Ceramic Packages</Link>
-            <Link to="/ceramic-coating-cost-brisbane" className="btn-ghost" style={{ padding: '10px 20px', fontSize: 13 }}>Ceramic Coating Cost</Link>
-            <Link to="/ppf-new-car-brisbane" className="btn-ghost" style={{ padding: '10px 20px', fontSize: 13 }}>PPF for New Cars</Link>
+            <Link to="/ceramic-coating-melbourne" className="btn-ghost" style={{ padding: '10px 20px', fontSize: 13 }}>All Ceramic Packages</Link>
+            <Link to="/ceramic-coating-cost-melbourne" className="btn-ghost" style={{ padding: '10px 20px', fontSize: 13 }}>Ceramic Coating Cost</Link>
+            <Link to="/detailing-packages-melbourne" className="btn-ghost" style={{ padding: '10px 20px', fontSize: 13 }}>PPF for New Cars</Link>
           </div>
         </div>
       </section>

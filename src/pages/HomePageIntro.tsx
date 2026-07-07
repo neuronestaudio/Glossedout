@@ -149,7 +149,7 @@ export default function HomePageIntro() {
           </div>
           <div style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: 16, marginTop: 'clamp(40px, 6vw, 56px)' }}>
             <Link to="/detailing-packages-melbourne" className="btn-emerald">View Packages</Link>
-            <Link to="/next-level-protection-tds" className="btn-emerald">Coating TDS</Link>
+            <Link to="/product-tds" className="btn-emerald">Coating TDS</Link>
           </div>
         </div>
       </section>

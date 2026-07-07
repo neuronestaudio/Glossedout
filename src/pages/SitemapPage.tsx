@@ -6,63 +6,40 @@ const sections = [
     heading: 'Main Pages',
     links: [
       { label: 'Home', href: '/' },
-      { label: 'Glossed Out Detailing Brisbane', href: '/next-level-protection-brisbane' },
+      { label: 'Packages & Pricing', href: '/detailing-packages-melbourne' },
       { label: 'Gallery', href: '/gallery' },
       { label: 'About', href: '/about' },
       { label: 'Get a Quote', href: '/get-a-quote' },
       { label: 'Warranties', href: '/warranties' },
-      { label: 'Product TDS', href: '/next-level-protection-tds' },
+      { label: 'Product TDS', href: '/product-tds' },
       { label: 'Privacy Policy', href: '/privacy-policy' },
     ],
   },
   {
-    heading: 'Paint Protection Film (PPF)',
+    heading: 'Services',
     links: [
-      { label: 'PPF Brisbane', href: '/ppf-brisbane' },
-      { label: 'SunTek PPF Brisbane', href: '/suntek-ppf-brisbane' },
-      { label: 'PPF for New Cars', href: '/ppf-new-car-brisbane' },
-      { label: 'PPF for Dark Paint', href: '/ppf-dark-paint-brisbane' },
-      { label: 'Stone Chip Protection', href: '/ppf-stone-chip-protection-brisbane' },
-      { label: 'PPF & Resale Value', href: '/ppf-resale-value-brisbane' },
-      { label: 'PPF Cost Brisbane', href: '/ppf-cost-brisbane' },
-      { label: 'PPF Warranty Brisbane', href: '/ppf-warranty-brisbane' },
-      { label: 'Partial PPF Brisbane', href: '/partial-ppf-brisbane' },
-      { label: 'Self-Healing PPF', href: '/ppf-self-healing-brisbane' },
-      { label: 'Gloss vs Matte PPF', href: '/gloss-vs-matte-ppf-brisbane' },
-      { label: 'PPF Near Me Brisbane', href: '/ppf-near-me-brisbane' },
-      { label: 'PPF Questions', href: '/ppf-questions' },
+      { label: 'Car Detailing', href: '/detailing-packages-melbourne#detailing' },
+      { label: 'Paint Correction', href: '/detailing-packages-melbourne#correction' },
+      { label: 'Ceramic Coating', href: '/detailing-packages-melbourne#ceramic' },
     ],
   },
   {
     heading: 'Ceramic Coating',
     links: [
-      { label: 'Ceramic Coating Brisbane', href: '/ceramic-coating-brisbane' },
-      { label: 'Ceramic Coating for New Cars', href: '/ceramic-coating-new-car-brisbane' },
-      { label: 'Ceramic Coating Cost Brisbane', href: '/ceramic-coating-cost-brisbane' },
-      { label: 'Ceramic UV Protection Brisbane', href: '/ceramic-coating-uv-brisbane' },
-      { label: 'Paint Correction + Ceramic', href: '/ceramic-coating-paint-correction-brisbane' },
-      { label: 'Ceramic Glass Coating', href: '/ceramic-glass-coating-brisbane' },
-      { label: 'Ceramic Wheel Coating', href: '/ceramic-coating-wheels-brisbane' },
-      { label: 'PPF + Ceramic Combo', href: '/ceramic-ppf-brisbane' },
-      { label: 'How Long Does Ceramic Last?', href: '/ceramic-coating-longevity-brisbane' },
-      { label: 'Ceramic vs Dealer Paint Protection', href: '/ceramic-vs-dealer-paint-protection-brisbane' },
-      { label: 'Ceramic on Matte Paint', href: '/ceramic-coating-matte-paint-brisbane' },
-      { label: 'Ceramic Coating Maintenance', href: '/ceramic-coating-maintenance-brisbane' },
-      { label: 'Ceramic & Resale Value', href: '/ceramic-coating-resale-brisbane' },
-      { label: 'Ceramic Coating Near Me Brisbane', href: '/ceramic-coating-near-me-brisbane' },
+      { label: 'Ceramic Coating Melbourne', href: '/ceramic-coating-melbourne' },
+      { label: 'Ceramic Coating for New Cars', href: '/ceramic-coating-new-car-melbourne' },
+      { label: 'Ceramic Coating Cost Melbourne', href: '/ceramic-coating-cost-melbourne' },
+      { label: 'Ceramic UV Protection Melbourne', href: '/ceramic-coating-uv-melbourne' },
+      { label: 'Paint Correction + Ceramic', href: '/ceramic-coating-paint-correction-melbourne' },
+      { label: 'Ceramic Glass Coating', href: '/ceramic-glass-coating-melbourne' },
+      { label: 'Ceramic Wheel Coating', href: '/ceramic-coating-wheels-melbourne' },
+      { label: 'How Long Does Ceramic Last?', href: '/ceramic-coating-longevity-melbourne' },
+      { label: 'Ceramic vs Dealer Paint Protection', href: '/ceramic-vs-dealer-paint-protection-melbourne' },
+      { label: 'Ceramic on Matte Paint', href: '/ceramic-coating-matte-paint-melbourne' },
+      { label: 'Ceramic Coating Maintenance', href: '/ceramic-coating-maintenance-melbourne' },
+      { label: 'Ceramic & Resale Value', href: '/ceramic-coating-resale-melbourne' },
+      { label: 'Ceramic Coating Near Me Melbourne', href: '/ceramic-coating-near-me-melbourne' },
       { label: 'Ceramic Coating Questions', href: '/ceramic-coating-questions' },
-    ],
-  },
-  {
-    heading: 'Window Tinting',
-    links: [
-      { label: 'Automotive Window Tinting Brisbane', href: '/automotive-window-tinting-brisbane' },
-      { label: 'Residential Window Tinting Brisbane', href: '/residential-window-tinting-brisbane' },
-      { label: 'Commercial Window Tinting Brisbane', href: '/commercial-window-tinting-brisbane' },
-      { label: '3M Commercial Window Film Brisbane', href: '/3m-commercial-window-film-brisbane' },
-      { label: 'Automotive Tinting Questions', href: '/automotive-tinting-questions' },
-      { label: 'Residential Tinting Questions', href: '/residential-tinting-questions' },
-      { label: 'Commercial Tinting Questions', href: '/commercial-tinting-questions' },
     ],
   },
 ];
@@ -71,8 +48,8 @@ export default function SitemapPage() {
   return (
     <>
       <PageMeta
-        title="Sitemap — Glossed Out Detailing Brisbane"
-        description="Full sitemap for Glossed Out Detailing — all PPF, ceramic coating, and window tinting pages for Brisbane."
+        title="Sitemap — Glossed Out Detailing Melbourne"
+        description="Full sitemap for Glossed Out Detailing — car detailing, paint correction and ceramic coating pages for Melbourne."
         canonical="https://glossedoutdetailing.com.au/sitemap"
         noindex
       />

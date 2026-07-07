@@ -11,7 +11,7 @@ import PageMeta from '../components/PageMeta';
 const benefits = [
   { icon: Shield, title: 'Brake Dust Resistance', desc: 'Brake dust is hot, acidic, and abrasive. On bare alloy, it bonds rapidly and etches the surface. Ceramic-coated wheels resist adhesion — dust sits on the surface rather than bonding to it, and lifts with a basic rinse.' },
   { icon: Droplets, title: 'Faster Wheel Maintenance', desc: 'Coated wheels rinse clean in a fraction of the time of bare alloy. Weekly wheel cleaning drops from a scrubbing job to a 60-second rinse at the hose. This alone changes the practical maintenance frequency.' },
-  { icon: Clock, title: 'Corrosion and Road Salt Resistance', desc: 'Queensland conditions — humid heat, occasional coastal driving — accelerate corrosion on bare alloy. Ceramic coating seals the alloy surface against moisture and road contaminants that cause pitting over time.' },
+  { icon: Clock, title: 'Corrosion and Road Salt Resistance', desc: 'Victoria conditions — humid heat, occasional coastal driving — accelerate corrosion on bare alloy. Ceramic coating seals the alloy surface against moisture and road contaminants that cause pitting over time.' },
   { icon: Eye, title: 'Deep Gloss on Polished Alloy', desc: 'Ceramic coating on polished or machined alloy adds a depth of gloss and a wet look that clear coat alone cannot achieve. The hydrophobic surface also prevents the dull surface oxidation that makes polished alloy look flat within months of purchase.' },
   { icon: TrendingUp, title: 'Preserves Kerbing Appearance', desc: 'Wheels with existing light kerb rash coated with ceramic still look cleaner for longer — the coated surface around the damage resists further contamination build-up, keeping the rash from looking worse than it is.' },
   { icon: Zap, title: 'Included in Protection Package', desc: 'Ceramic coating for all four wheels is included in the Protection, Elite, and Signature packages. It is not available as a standalone service — wheels are coated as part of a complete ceramic package.' },
@@ -46,17 +46,17 @@ export default function CeramicWheelsPage() {
   return (
     <>
       <PageMeta
-        title="Ceramic Wheels Coating Brisbane | Brake Dust Protection"
-        description="Ceramic coating for wheels in Brisbane. Resist brake dust bonding and keep wheels cleaner longer. Glossed Out Detailing, Acacia Ridge."
-        canonical="https://glossedoutdetailing.com.au/ceramic-coating-wheels-brisbane"
+        title="Ceramic Wheels Coating Melbourne | Brake Dust Protection"
+        description="Ceramic coating for wheels in Melbourne. Resist brake dust bonding and keep wheels cleaner longer. Glossed Out Detailing, Craigieburn."
+        canonical="https://glossedoutdetailing.com.au/ceramic-coating-wheels-melbourne"
       />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
         "@context": "https://schema.org",
         "@type": "Service",
-        "name": "Ceramic Coating for Wheels Brisbane",
+        "name": "Ceramic Coating for Wheels Melbourne",
         "provider": { "@type": "LocalBusiness", "name": "Glossed Out Detailing", "telephone": "0481327250", "address": { "@type": "PostalAddress", "streetAddress": "Goodrich Ct", "addressLocality": "Craigieburn", "addressRegion": "VIC", "postalCode": "3064" }},
-        "areaServed": "Brisbane",
-        "description": "Ceramic coating for car wheels in Brisbane. Brake dust resistance — rinses clean with water. Included in Protection, Elite, and Signature ceramic packages. Acacia Ridge studio.",
+        "areaServed": "Melbourne",
+        "description": "Ceramic coating for car wheels in Melbourne. Brake dust resistance — rinses clean with water. Included in Protection, Elite, and Signature ceramic packages. Craigieburn studio.",
       })}} />
 
       <section ref={heroRef} style={{ position: 'relative', height: '100dvh', overflow: 'hidden', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', padding: '0 8vw 10vh' }}>
@@ -73,9 +73,9 @@ export default function CeramicWheelsPage() {
           </p>
           <div className="hero-anim" style={{ display: 'flex', gap: 16, marginTop: 32, flexWrap: 'wrap' }}>
             <Link to="/get-a-quote" className="btn-primary"><span className="btn-slide" /><span>Get a Quote</span></Link>
-            <Link to="/ceramic-coating-brisbane" className="btn-ghost">View All Packages</Link>
+            <Link to="/ceramic-coating-melbourne" className="btn-ghost">View All Packages</Link>
             <Link to="/warranties" className="btn-ghost">View Warranties</Link>
-            <Link to="/next-level-protection-tds" className="btn-ghost">View Product TDS</Link>
+            <Link to="/product-tds" className="btn-ghost">View Product TDS</Link>
           </div>
         </div>
       </section>
@@ -111,9 +111,9 @@ export default function CeramicWheelsPage() {
         <div className="container">
           <p style={{ fontSize: 'var(--size-label)', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--color-text-muted)', marginBottom: 16 }}>Related</p>
           <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap' }}>
-            <Link to="/ceramic-coating-brisbane" className="btn-ghost" style={{ padding: '10px 20px', fontSize: 13 }}>All Ceramic Packages</Link>
-            <Link to="/ceramic-glass-coating-brisbane" className="btn-ghost" style={{ padding: '10px 20px', fontSize: 13 }}>Ceramic Glass Coating</Link>
-            <Link to="/ceramic-coating-cost-brisbane" className="btn-ghost" style={{ padding: '10px 20px', fontSize: 13 }}>Ceramic Coating Cost</Link>
+            <Link to="/ceramic-coating-melbourne" className="btn-ghost" style={{ padding: '10px 20px', fontSize: 13 }}>All Ceramic Packages</Link>
+            <Link to="/ceramic-glass-coating-melbourne" className="btn-ghost" style={{ padding: '10px 20px', fontSize: 13 }}>Ceramic Glass Coating</Link>
+            <Link to="/ceramic-coating-cost-melbourne" className="btn-ghost" style={{ padding: '10px 20px', fontSize: 13 }}>Ceramic Coating Cost</Link>
           </div>
         </div>
       </section>

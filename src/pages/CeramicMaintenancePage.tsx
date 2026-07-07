@@ -13,7 +13,7 @@ const benefits = [
   { icon: Shield, title: 'Avoid Automatic Car Washes', desc: 'Rotating brushes in automatic car washes introduce surface marring — micro-scratches in the clear coat that accumulate over repeated washes. Hand washing with ceramic-safe shampoo and a quality wash mitt removes this risk entirely and preserves coating performance.' },
   { icon: Sun, title: 'Annual Coating Inspection', desc: 'We recommend an annual condition check — hydrophobic performance test, visual inspection under studio lighting, and topcoat boost if required. Catching early degradation and applying a maintenance layer extends overall coating life at a fraction of recoat cost.' },
   { icon: CheckCircle, title: 'Ceramic Boost Spray', desc: 'Between full maintenance services, a ceramic spray booster applied after washing every 3–4 months adds a sacrificial hydrophobic layer on top of the base coat. This maintains beading performance and reduces contamination adhesion without requiring studio reapplication.' },
-  { icon: TrendingUp, title: 'Decontamination Service', desc: 'Brisbane\'s industrial corridor around the southern suburbs deposits iron and tar contamination that bonds to paint over time. An annual iron fallout treatment and tar removal keeps the surface chemically clean and prevents contamination build-up from degrading the coating from underneath.' },
+  { icon: TrendingUp, title: 'Decontamination Service', desc: 'Melbourne\'s industrial corridor around the southern suburbs deposits iron and tar contamination that bonds to paint over time. An annual iron fallout treatment and tar removal keeps the surface chemically clean and prevents contamination build-up from degrading the coating from underneath.' },
   { icon: Clock, title: 'Correct Timing Extends Life by Years', desc: 'A coating maintained annually with correct products and a boost layer at 18–24 months will consistently outlast its rated durability by 20–40%. A coating that receives no maintenance, or is washed with incorrect products, often degrades before the warranty period ends.' },
 ];
 
@@ -22,7 +22,7 @@ const faqs = [
   { q: 'Can I take my ceramic coated car through a drive-through car wash?', a: 'We recommend against it. Rotating brush automatic washes introduce swirl marks and surface marring that accumulate over repeat visits — in ceramic coated or uncoated paint. Touchless automatic washes are less damaging but use high-alkalinity detergents that degrade the hydrophobic surface layer. Hand washing with pH-neutral product is the correct approach.' },
   { q: 'How often do I need to come back for a top-up?', a: 'For our Protection package (3-year warranty) and Elite package (5-year warranty), we recommend an inspection and maintenance layer at 18 months. For the Signature package (7-year warranty), a maintenance service at 24–30 months maintains peak performance. Annual decontamination is recommended for all tiers. Between services, ceramic boost spray used at home every 3–4 months maintains surface performance.' },
   { q: 'What products can I use at home to maintain ceramic coating?', a: 'At home, use: pH-neutral ceramic-safe shampoo (Gyeon Q²M Bathe, Koch Chemie GSF, or similar), a quality lambswool or microfibre wash mitt, microfibre drying towels, and a SiO₂-based ceramic spray booster. Avoid waxes, all-in-one polishes, and any product marketed as "gloss enhancing" — these leave residue that interferes with the ceramic surface performance.' },
-  { q: 'Does ceramic coating require any special care in Brisbane\'s climate?', a: 'Yes — Brisbane\'s high UV index (11–13) means vehicles parked outdoors accumulate UV exposure faster than southern cities. While ceramic provides UV blocking, parking under cover extends coating life. Brisbane\'s industrial contamination (brake dust, iron fallout, industrial particulate from the southern corridor) means an iron decontamination treatment annually is particularly relevant for Acacia Ridge, Rocklea, and surrounds.' },
+  { q: 'Does ceramic coating require any special care in Melbourne\'s climate?', a: 'Yes — Melbourne\'s high UV index (11–13) means vehicles parked outdoors accumulate UV exposure faster than southern cities. While ceramic provides UV blocking, parking under cover extends coating life. Melbourne\'s industrial contamination (brake dust, iron fallout, industrial particulate from the southern corridor) means an iron decontamination treatment annually is particularly relevant for Craigieburn, Rocklea, and surrounds.' },
   { q: 'What happens if I don\'t maintain the ceramic coating?', a: 'Without maintenance, contamination builds up on and below the coating surface. The coating\'s hydrophobic performance degrades as the surface layer is consumed by contamination and incorrect wash products. Coatings without any maintenance typically perform noticeably below rated duration — water beading reduces, surface appearance dulls, and the protective barrier thins. Correct maintenance is a condition of our warranty.' },
 ];
 
@@ -46,17 +46,17 @@ export default function CeramicMaintenancePage() {
   return (
     <>
       <PageMeta
-        title="Ceramic Coating Maintenance Brisbane | Aftercare Guide"
-        description="How to maintain ceramic coating in Brisbane. Washing tips, maintenance schedule, and aftercare guide. Glossed Out Detailing."
-        canonical="https://glossedoutdetailing.com.au/ceramic-coating-maintenance-brisbane"
+        title="Ceramic Coating Maintenance Melbourne | Aftercare Guide"
+        description="How to maintain ceramic coating in Melbourne. Washing tips, maintenance schedule, and aftercare guide. Glossed Out Detailing."
+        canonical="https://glossedoutdetailing.com.au/ceramic-coating-maintenance-melbourne"
       />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
         "@context": "https://schema.org",
         "@type": "Service",
-        "name": "Ceramic Coating Maintenance Brisbane",
+        "name": "Ceramic Coating Maintenance Melbourne",
         "provider": { "@type": "LocalBusiness", "name": "Glossed Out Detailing", "telephone": "0481327250", "address": { "@type": "PostalAddress", "streetAddress": "Goodrich Ct", "addressLocality": "Craigieburn", "addressRegion": "VIC", "postalCode": "3064" }},
-        "areaServed": "Brisbane",
-        "description": "Ceramic coating maintenance and top-up services in Brisbane. Annual inspection, decontamination, and maintenance layer services. Acacia Ridge studio.",
+        "areaServed": "Melbourne",
+        "description": "Ceramic coating maintenance and top-up services in Melbourne. Annual inspection, decontamination, and maintenance layer services. Craigieburn studio.",
       })}} />
 
       <section ref={heroRef} style={{ position: 'relative', height: '100dvh', overflow: 'hidden', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', padding: '0 8vw 10vh' }}>
@@ -73,9 +73,9 @@ export default function CeramicMaintenancePage() {
           </p>
           <div className="hero-anim" style={{ display: 'flex', gap: 16, marginTop: 32, flexWrap: 'wrap' }}>
             <Link to="/get-a-quote" className="btn-primary"><span className="btn-slide" /><span>Book Maintenance Service</span></Link>
-            <Link to="/ceramic-coating-brisbane" className="btn-ghost">View All Packages</Link>
+            <Link to="/ceramic-coating-melbourne" className="btn-ghost">View All Packages</Link>
             <Link to="/warranties" className="btn-ghost">View Warranties</Link>
-            <Link to="/next-level-protection-tds" className="btn-ghost">View Product TDS</Link>
+            <Link to="/product-tds" className="btn-ghost">View Product TDS</Link>
           </div>
         </div>
       </section>
@@ -146,9 +146,9 @@ export default function CeramicMaintenancePage() {
         <div className="container">
           <p style={{ fontSize: 'var(--size-label)', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--color-text-muted)', marginBottom: 16 }}>Related</p>
           <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap' }}>
-            <Link to="/ceramic-coating-longevity-brisbane" className="btn-ghost" style={{ padding: '10px 20px', fontSize: 13 }}>Ceramic Longevity</Link>
-            <Link to="/ceramic-coating-brisbane" className="btn-ghost" style={{ padding: '10px 20px', fontSize: 13 }}>All Ceramic Packages</Link>
-            <Link to="/ceramic-coating-cost-brisbane" className="btn-ghost" style={{ padding: '10px 20px', fontSize: 13 }}>Ceramic Coating Cost</Link>
+            <Link to="/ceramic-coating-longevity-melbourne" className="btn-ghost" style={{ padding: '10px 20px', fontSize: 13 }}>Ceramic Longevity</Link>
+            <Link to="/ceramic-coating-melbourne" className="btn-ghost" style={{ padding: '10px 20px', fontSize: 13 }}>All Ceramic Packages</Link>
+            <Link to="/ceramic-coating-cost-melbourne" className="btn-ghost" style={{ padding: '10px 20px', fontSize: 13 }}>Ceramic Coating Cost</Link>
           </div>
         </div>
       </section>

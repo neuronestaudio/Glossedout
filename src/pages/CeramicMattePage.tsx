@@ -46,17 +46,17 @@ export default function CeramicMattePage() {
   return (
     <>
       <PageMeta
-        title="Ceramic Coating for Matte Paint Brisbane"
-        description="Ceramic coating for matte and satin paint in Brisbane. Correct product for matte finishes — no gloss, no damage. Glossed Out Detailing."
-        canonical="https://glossedoutdetailing.com.au/ceramic-coating-matte-paint-brisbane"
+        title="Ceramic Coating for Matte Paint Melbourne"
+        description="Ceramic coating for matte and satin paint in Melbourne. Correct product for matte finishes — no gloss, no damage. Glossed Out Detailing."
+        canonical="https://glossedoutdetailing.com.au/ceramic-coating-matte-paint-melbourne"
       />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
         "@context": "https://schema.org",
         "@type": "Service",
-        "name": "Ceramic Coating for Matte Paint Brisbane",
+        "name": "Ceramic Coating for Matte Paint Melbourne",
         "provider": { "@type": "LocalBusiness", "name": "Glossed Out Detailing", "telephone": "0481327250", "address": { "@type": "PostalAddress", "streetAddress": "Goodrich Ct", "addressLocality": "Craigieburn", "addressRegion": "VIC", "postalCode": "3064" }},
-        "areaServed": "Brisbane",
-        "description": "Ceramic coating for matte and satin paint in Brisbane. Matte-specific formulation preserves finish appearance. Glossed Out Detailing, Acacia Ridge."
+        "areaServed": "Melbourne",
+        "description": "Ceramic coating for matte and satin paint in Melbourne. Matte-specific formulation preserves finish appearance. Glossed Out Detailing, Craigieburn."
       })}} />
 
       <section ref={heroRef} style={{ position: 'relative', height: '100dvh', overflow: 'hidden', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', padding: '0 8vw 10vh' }}>
@@ -73,9 +73,9 @@ export default function CeramicMattePage() {
           </p>
           <div className="hero-anim" style={{ display: 'flex', gap: 16, marginTop: 32, flexWrap: 'wrap' }}>
             <Link to="/get-a-quote" className="btn-primary"><span className="btn-slide" /><span>Book Matte Ceramic</span></Link>
-            <Link to="/ceramic-coating-brisbane" className="btn-ghost">View All Packages</Link>
+            <Link to="/ceramic-coating-melbourne" className="btn-ghost">View All Packages</Link>
             <Link to="/warranties" className="btn-ghost">View Warranties</Link>
-            <Link to="/next-level-protection-tds" className="btn-ghost">View Product TDS</Link>
+            <Link to="/product-tds" className="btn-ghost">View Product TDS</Link>
           </div>
         </div>
       </section>
@@ -131,9 +131,9 @@ export default function CeramicMattePage() {
         <div className="container">
           <p style={{ fontSize: 'var(--size-label)', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--color-text-muted)', marginBottom: 16 }}>Related</p>
           <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap' }}>
-            <Link to="/ceramic-coating-brisbane" className="btn-ghost" style={{ padding: '10px 20px', fontSize: 13 }}>All Ceramic Packages</Link>
-            <Link to="/gloss-vs-matte-ppf-brisbane" className="btn-ghost" style={{ padding: '10px 20px', fontSize: 13 }}>Gloss vs Matte PPF</Link>
-            <Link to="/ceramic-ppf-brisbane" className="btn-ghost" style={{ padding: '10px 20px', fontSize: 13 }}>Ceramic + PPF Combo</Link>
+            <Link to="/ceramic-coating-melbourne" className="btn-ghost" style={{ padding: '10px 20px', fontSize: 13 }}>All Ceramic Packages</Link>
+            <Link to="/detailing-packages-melbourne" className="btn-ghost" style={{ padding: '10px 20px', fontSize: 13 }}>Gloss vs Matte PPF</Link>
+            <Link to="/ceramic-coating-melbourne" className="btn-ghost" style={{ padding: '10px 20px', fontSize: 13 }}>Ceramic + PPF Combo</Link>
           </div>
         </div>
       </section>
