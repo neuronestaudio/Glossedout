@@ -20,7 +20,7 @@ export default function CarDetailingServicePage() {
       eyebrow="Signature Detailing · Melbourne"
       title="Car Detailing"
       lead="Hand-washed, steam-cleaned and finished by hand — from a light maintenance reset to a full showroom transformation. Mobile across Melbourne, never rushed."
-      heroImg="/glossed/detailing-gen.jpg"
+      heroImg="/covers/detailing-cover.jpg"
       tiers={detailing}
       carouselTitle="Detailing Packages"
       carouselIntro="From a light maintenance reset to a full showroom transformation — hand-washed, steam-cleaned and finished by hand, never rushed."

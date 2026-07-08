@@ -20,7 +20,7 @@ export default function PaintCorrectionServicePage() {
       eyebrow="Machine Polishing · Melbourne"
       title="Paint Correction"
       lead="Swirls, oxidation and scratches removed with the right level of machine correction for your paint — from a gloss-boosting enhancement to a full multi-stage restoration."
-      heroImg="/glossed/paint-correction-altima.jpg"
+      heroImg="/covers/correction-cover.jpg"
       tiers={correction}
       carouselTitle="Paint Correction Packages"
       carouselIntro="Choose the level of correction your paint needs — a light enhancement, a one-step cut & polish, or a full multi-stage restoration."

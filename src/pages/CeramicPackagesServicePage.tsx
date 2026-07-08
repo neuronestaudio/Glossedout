@@ -20,7 +20,7 @@ export default function CeramicPackagesServicePage() {
       eyebrow="Gtechniq · Magnum · Kraken Elite"
       title="Ceramic Coating"
       lead="Long-term gloss, UV protection and hydrophobic self-cleaning, backed by up to a 10-year manufacturer coating. Every package includes decontamination and a full one-step paint correction."
-      heroImg="/glossed/porsche.jpg"
+      heroImg="/covers/ceramic-cover.jpg"
       tiers={ceramicUsed}
       carouselTitle="Ceramic Coating Packages"
       carouselIntro="Named, professional-grade coatings from a 5-year Gtechniq CSL up to 10-year self-healing Kraken Elite — choose the protection and longevity that suits your car."
