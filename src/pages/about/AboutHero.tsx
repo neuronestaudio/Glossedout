@@ -10,12 +10,11 @@ if (typeof window !== 'undefined') {
 }
 
 // ---- Scene config ----
-// High-res UHD render (0706), 1600x900 frames, star removed.
-const FRAMES_DIR = 'about-frames-uhd';
-const FRAME_COUNT = 228;
-const MAX_FRAME_INDEX = 227;
+const FRAMES_DIR = 'about-frames';
+const FRAME_COUNT = 240;
+const MAX_FRAME_INDEX = 239;
 // Total experience length in viewport-heights (1 visible + the rest scrubbed).
-const SCROLL_VH = 340;
+const SCROLL_VH = 440;
 
 // ---- Act windows (fractions of pinned scroll progress 0..1) ----
 const INTRO_OUT_START = 0.08;
@@ -26,11 +25,31 @@ const WHITE_IN_START = 0.76;
 const WHITE_IN_END = 0.90;
 const TEAM_TEXT_IN = 0.86;
 
-// Chapter captions removed — the UHD render carries its own branding, so the
-// About intro is now a clean branded scroll-scrub (no competing overlays).
-const CHAPTERS: { eyebrow: string; heading: string; sub: string }[] = [];
-const CHAPTER_LABELS: string[] = [];
-const CHAPTER_TIMINGS: { in: number; out: number }[] = [];
+const CHAPTERS = [
+  {
+    eyebrow: '01 · The Studio',
+    heading: 'Based in\nCraigieburn.',
+    sub: 'A car detailing, paint correction and ceramic coating studio in Melbourne — mobile across the city, every job done properly and never rushed.',
+  },
+  {
+    eyebrow: '02 · The Standard',
+    heading: 'No shortcuts\non prep.',
+    sub: 'Ten years of hands-on experience. Every car is decontaminated and corrected before any coating goes on — no coating over contamination or swirl marks.',
+  },
+  {
+    eyebrow: '03 · Accredited',
+    heading: 'Coating\nspecialist.',
+    sub: 'A ceramic coating specialist accredited in Gtechniq, Magnum, Kraken and CarPro — so your durability comes from the coating, not a self-issued guarantee.',
+  },
+];
+
+const CHAPTER_LABELS = ['Studio', 'Standard', 'Certified'];
+
+const CHAPTER_TIMINGS = [
+  { in: 0.21, out: 0.35 },
+  { in: 0.40, out: 0.54 },
+  { in: 0.58, out: 0.69 },
+];
 
 const clamp01 = (v: number) => Math.max(0, Math.min(1, v));
 const ramp = (p: number, a: number, b: number) => clamp01((p - a) / (b - a));
