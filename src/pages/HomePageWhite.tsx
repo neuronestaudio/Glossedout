@@ -90,39 +90,40 @@ export default function HomePageWhite() {
         noindex
       />
 
-      {/* HERO — white / light variant (Demo - White) */}
+      {/* HERO — white / light variant (Demo - White): photo fades to white,
+          green-gradient wordmark sits on the faded base. */}
       <section
         ref={heroRef}
         className="home-hero"
-        style={{ position: 'relative', minHeight: '82dvh', overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center', textAlign: 'center', background: 'radial-gradient(120% 90% at 50% 0%, #FFFFFF 0%, #F5F8F6 55%, #ECF1EE 100%)' }}
+        style={{ position: 'relative', height: '100dvh', overflow: 'hidden', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', padding: '0 8vw 11vh' }}
         aria-label="Hero — Car Detailing & Ceramic Coating Melbourne"
       >
-        {/* soft brand-tinted corner veils */}
+        {/* Photo background (parallax) */}
         <div
           ref={heroBgRef}
           aria-hidden="true"
           style={{
-            position: 'absolute', inset: 0, zIndex: 0, pointerEvents: 'none',
-            background: 'radial-gradient(55% 45% at 0% 0%, rgba(201,162,39,0.12), transparent 60%), radial-gradient(55% 45% at 100% 100%, rgba(27,107,74,0.10), transparent 60%)',
+            position: 'absolute', inset: '-20% 0 0 0', zIndex: 0,
+            backgroundImage: "url('/glossed/hero-maserati-mc20.webp')",
+            backgroundSize: 'cover', backgroundPosition: 'center',
           }}
         />
+        {/* Fade to white at the bottom — the whole point of the look */}
+        <div aria-hidden="true" style={{ position: 'absolute', inset: 0, zIndex: 1, background: 'linear-gradient(to top, var(--color-bg-primary) 0%, rgba(248,249,251,0.86) 24%, rgba(248,249,251,0.35) 46%, transparent 78%)' }} />
         {/* Content */}
-        <div ref={heroContentRef} style={{ position: 'relative', zIndex: 2, maxWidth: 980, padding: '0 24px' }}>
-          <div className="hero-anim" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 14, marginBottom: 22 }}>
+        <div ref={heroContentRef} style={{ position: 'relative', zIndex: 2, maxWidth: 920 }}>
+          <div className="hero-anim" style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 16 }}>
             <span style={{ width: 44, height: 1, background: 'linear-gradient(to right, transparent, var(--brand-gold))' }} />
-            <span style={{ color: 'var(--brand-gold-dk)', fontSize: 12, fontWeight: 700, letterSpacing: '0.22em', textTransform: 'uppercase' }}>Melbourne · Est. 2014</span>
-            <span style={{ width: 44, height: 1, background: 'linear-gradient(to left, transparent, var(--brand-gold))' }} />
+            <span style={{ color: 'var(--brand-gold-dk)', fontSize: 12, fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase' }}>Melbourne · Prestige Mobile Detailer</span>
           </div>
-          <h1 className="hero-anim font-display" style={{ fontSize: 'clamp(56px, 12vw, 150px)', letterSpacing: '-0.01em', lineHeight: 0.9, color: 'var(--brand-green)', margin: 0 }}>
-            GLOSSED OUT
+          <h1 className="hero-anim" style={{ margin: 0, lineHeight: 0.9 }}>
+            <span className="font-display title-green-grad" style={{ display: 'block', fontSize: 'clamp(52px, 11vw, 132px)', letterSpacing: '-0.01em' }}>GLOSSED OUT</span>
+            <span className="font-display title-green-grad" style={{ display: 'block', fontSize: 'clamp(22px, 4vw, 46px)', letterSpacing: '0.3em', marginTop: 8, paddingLeft: '0.3em' }}>DETAILING</span>
           </h1>
-          <p className="hero-anim" style={{ marginTop: 12, color: 'var(--brand-gold-dk)', fontFamily: 'Bebas Neue, sans-serif', fontSize: 'clamp(16px, 3vw, 30px)', letterSpacing: '0.5em', textTransform: 'uppercase', paddingLeft: '0.5em' }}>
-            Detailing
+          <p className="hero-anim" style={{ color: 'var(--color-text-secondary)', fontSize: 'clamp(15px, 1.9vw, 18px)', lineHeight: 1.65, marginTop: 22, maxWidth: 560 }}>
+            Melbourne's <span style={{ color: 'var(--brand-gold-dk)', fontWeight: 600 }}>prestige mobile detailer</span> — 10+ years' experience and a ceramic coating specialist. Where precision meets passion.
           </p>
-          <p className="hero-anim" style={{ color: 'var(--color-text-muted)', fontSize: 'clamp(13px, 2vw, 16px)', fontWeight: 600, marginTop: 26, letterSpacing: '0.14em', textTransform: 'uppercase' }}>
-            Melbourne's prestige mobile detailer · 10+ years
-          </p>
-          <div className="hero-anim hero-cta-group" style={{ display: 'flex', gap: 12, marginTop: 32, justifyContent: 'center', flexWrap: 'wrap' }}>
+          <div className="hero-anim hero-cta-group" style={{ display: 'flex', gap: 12, marginTop: 30, flexWrap: 'wrap' }}>
             <Link to="/get-a-quote" className="btn-primary" style={{ padding: '11px 26px', fontSize: 14, border: '1px solid var(--brand-gold)' }}>
               <span className="btn-slide" />
               <span>Contact Us</span>

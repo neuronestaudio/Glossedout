@@ -8,7 +8,7 @@ import PageMeta from '../components/PageMeta';
 
 /* Coating range + durability mirror the Product TDS (/product-tds) and are cross-checked
    against each manufacturer's published guarantee:
-     - Gtechniq CSL (Crystal Serum Light): 5-year guarantee via Gtechniq Accredited Detailer
+     - Gtechniq CSL (Crystal Serum Light): 5-year guarantee via Gtechniq Detailer
      - Magnum Graphene: 7-year · Magnum Borophene: 10-year (accredited applicator + annual inspection)
      - Kraken Elite Plus (graphene, self-healing): 7-year · Kraken Graphene Titanium: 10-year
    Formal warranty mechanics (transferability, registration specifics) are noted as
@@ -17,7 +17,7 @@ const brands = [
   {
     name: 'Gtechniq',
     desc: 'British-engineered SiO₂ ceramic coatings. Crystal Serum Light is a benchmark accredited-installer coating, backed by a 5-year guarantee.',
-    status: 'Gtechniq Accredited Detailer',
+    status: 'Gtechniq Detailer',
   },
   {
     name: 'Magnum',
@@ -49,6 +49,21 @@ const warrantyTable = [
     { product: 'Glass Coating', warranty: 'Coating-dependent', covers: 'Hydrophobic windscreen and side glass', backedBy: 'Included on premium tiers' },
     { product: 'Leather & Fabric Coating', warranty: 'Coating-dependent', covers: 'Interior stain and UV-fade protection', backedBy: 'Included on new-car packages' },
   ]},
+  { category: 'GLASS COATING', items: [
+    { product: 'Magnum Glass Armour Pro', warranty: '1–2 Years', covers: 'Hydrophobic windscreen & side glass — rain beads and clears at speed', backedBy: 'Magnum' },
+    { product: 'CarPro DQUARTZ GForce', warranty: '1–2 Years', covers: 'Hydrophobic glass coating — strong water release', backedBy: 'CarPro' },
+  ]},
+  { category: 'WHEEL COATING', items: [
+    { product: 'Magnum Rim Guard Pro', warranty: '1–2 Years', covers: 'Brake-dust & grime resistance on wheel faces; heat resistant', backedBy: 'Magnum' },
+    { product: 'CarPro DLUX', warranty: '1–2 Years', covers: 'Wheel & plastic-trim coating — brake-dust resistance and trim protection', backedBy: 'CarPro' },
+  ]},
+  { category: 'LEATHER COATING', items: [
+    { product: 'Magnum Leather Guard Pro', warranty: '1–2 Years', covers: 'Leather stain, UV-fade and wear protection', backedBy: 'Magnum' },
+    { product: 'CarPro CQUARTZ Leather 2.0 — Leather & Vinyl Coating', warranty: '1–2 Years', covers: 'Leather & vinyl stain and UV protection', backedBy: 'CarPro' },
+  ]},
+  { category: 'FABRIC COATING', items: [
+    { product: 'CarPro CQUARTZ Fabric 2.0 — Water & Stain Resistant Coating', warranty: 'Up to 12 Months', covers: 'Water & stain resistance for fabric upholstery and carpets', backedBy: 'CarPro' },
+  ]},
 ];
 
 const comparisonData = [
@@ -62,7 +77,7 @@ const comparisonData = [
 ];
 
 const faqs = [
-  { q: 'What does an \'Accredited Applicator\' actually mean?', a: 'It means the installer has been vetted, trained and certified by the coating manufacturer. Only accredited applicators can register the full manufacturer guarantee — the brand has verified the installer meets their standards for surface prep, application and materials. Glossed Out Detailing holds accredited/certified status with Gtechniq, Magnum and Kraken, and is CarPro certified.' },
+  { q: 'What does an \'Accredited Applicator\' actually mean?', a: 'It means the installer has been vetted, trained and certified by the coating manufacturer. Only accredited applicators can register the full manufacturer guarantee — the brand has verified the installer meets their standards for surface prep, application and materials. Glossed Out Detailing holds accredited/certified status with Magnum and Kraken, and works with Gtechniq and CarPro professional coatings.' },
   { q: 'Is the guarantee transferable if I sell my car?', a: 'Transferability varies by coating brand and should be confirmed at handover. We keep records of every application to support a transfer or a future claim — please ask us for the specifics of your coating before you sell.' },
   { q: 'What do I need to do to keep the guarantee valid?', a: 'Follow the written aftercare guide we provide at handover. Some manufacturers (for example Magnum) also require online guarantee registration and periodic inspections during the guarantee period. We\'ll walk you through any registration or inspection requirements that apply to your coating.' },
   { q: 'What is and isn\'t covered?', a: 'The guarantee covers the coating\'s durability — its gloss, hydrophobic performance and UV resistance — for the stated period when properly maintained. It does not cover stone chips, accident or impact damage, neglect, use of abrasive or unapproved products, hard-water spotting, or failure of the underlying clear coat/paint.' },
@@ -287,7 +302,7 @@ export default function WarrantyPage() {
             <ExpandableSection title="Gtechniq CSL (Crystal Serum Light) — 5-Year Guarantee">
               <div style={{ display: 'grid', gap: 16 }}>
                 <p style={{ fontSize: 13, color: 'var(--color-text-secondary)', lineHeight: 1.7 }}>
-                  <strong style={{ color: 'var(--color-text-primary)' }}>Covers:</strong> Coating durability, gloss retention, UV protection and hydrophobic performance. Backed by a 5-year guarantee when applied by a Gtechniq Accredited Detailer.
+                  <strong style={{ color: 'var(--color-text-primary)' }}>Covers:</strong> Coating durability, gloss retention, UV protection and hydrophobic performance. Backed by a 5-year guarantee when applied by a Gtechniq Detailer.
                 </p>
                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
                   {['SiO₂ ceramic', 'High gloss', 'Hydrophobic', 'UV protection', 'Made in the UK'].map((f, i) => (
