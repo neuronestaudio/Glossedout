@@ -129,10 +129,20 @@ export default function FrameSequence({
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
+    let lastW = 0;
+    let lastH = 0;
     const resize = () => {
-      const dpr = Math.min(window.devicePixelRatio || 1, 2);
       const w = window.innerWidth;
       const h = window.innerHeight;
+      // On mobile, scrolling shows/hides the URL bar and fires 'resize' with a
+      // changed HEIGHT only — resizing the canvas then re-centres the frame,
+      // which reads as the footage "jumping" up/down on scroll direction change.
+      // Ignore height-only changes (keep the canvas stable); only react to a real
+      // width change (rotate / genuine resize).
+      if (w === lastW && Math.abs(h - lastH) < 160) return;
+      lastW = w;
+      lastH = h;
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
       canvas.width = Math.round(w * dpr);
       canvas.height = Math.round(h * dpr);
       canvas.style.width = `${w}px`;

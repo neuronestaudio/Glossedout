@@ -72,6 +72,7 @@ export default function AboutHero() {
   const vignetteRef = useRef<HTMLDivElement>(null);
   const whiteRef = useRef<HTMLDivElement>(null);
   const teamTextRef = useRef<HTMLDivElement>(null);
+  const founderRef = useRef<HTMLDivElement>(null);
 
   const [activeChapter, setActiveChapter] = useState(0);
 
@@ -143,7 +144,9 @@ export default function AboutHero() {
 
           if (vignetteRef.current) vignetteRef.current.style.opacity = String(ramp(p, FOOTAGE_OUT, WHITE_IN_START));
           if (whiteRef.current) whiteRef.current.style.opacity = String(ramp(p, WHITE_IN_START, WHITE_IN_END));
-          if (teamTextRef.current) teamTextRef.current.style.opacity = String(ramp(p, TEAM_TEXT_IN, 0.985));
+          // "Meet the Detailer" reveals, holds, then fades out as the founder photo fades in.
+          if (teamTextRef.current) teamTextRef.current.style.opacity = String(ramp(p, TEAM_TEXT_IN, 0.9) * (1 - ramp(p, 0.9, 0.965)));
+          if (founderRef.current) founderRef.current.style.opacity = String(ramp(p, 0.9, 0.995));
 
           if (railWrapRef.current) {
             railWrapRef.current.style.opacity = String(
@@ -241,6 +244,16 @@ export default function AboutHero() {
               The People
             </span>
             <h2 className="nlp-cine__white-title">Meet the Detailer</h2>
+          </div>
+        </div>
+
+        {/* Founder photo — "Meet the Detailer" fades into this */}
+        <div ref={founderRef} className="nlp-cine__founder" aria-hidden="true">
+          <div className="nlp-cine__founder-photo" style={{ backgroundImage: "url('/glossed/detailing-gen.jpg')" }} />
+          <div className="nlp-cine__founder-grad" />
+          <div className="nlp-cine__founder-name">
+            <span className="nlp-cine__founder-label">Founder &amp; Detailer</span>
+            <span className="nlp-cine__founder-title">Mohammed</span>
           </div>
         </div>
 

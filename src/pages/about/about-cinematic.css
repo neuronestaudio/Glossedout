@@ -94,15 +94,33 @@
 
 /* --- Scroll cue --- */
 .nlp-cine__cue {
-  position: absolute; bottom: 6vh; left: 50%; transform: translateX(-50%);
-  z-index: 30; pointer-events: none;
-  display: flex; flex-direction: column; align-items: center; gap: 8px;
+  position: absolute; bottom: 5vh; left: 50%;
+  z-index: 34; pointer-events: none;
+  display: flex; flex-direction: column; align-items: center; gap: 10px;
   font-family: var(--font-body), sans-serif;
   font-size: 10px; letter-spacing: 0.32em; text-transform: uppercase;
-  color: rgba(245, 246, 247, 0.55);
+  color: rgba(245, 246, 247, 0.8);
   transition: opacity 600ms ease-out;
+  animation: cueBob 1.9s ease-in-out infinite;
 }
-.nlp-cine__cue-line { display: block; width: 1px; height: 32px; background: rgba(245, 246, 247, 0.35); }
+@keyframes cueBob {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50%      { transform: translateX(-50%) translateY(7px); }
+}
+.nlp-cine__cue-line {
+  display: block; width: 1px; height: 42px; position: relative; overflow: hidden;
+  background: rgba(245, 246, 247, 0.22);
+}
+.nlp-cine__cue-line::after {
+  content: ''; position: absolute; left: 0; top: 0; width: 100%; height: 55%;
+  background: linear-gradient(to bottom, transparent, #E4C766);
+  animation: cueTrail 1.9s ease-in-out infinite;
+}
+@keyframes cueTrail {
+  0%   { transform: translateY(-100%); opacity: 0; }
+  35%  { opacity: 1; }
+  100% { transform: translateY(230%); opacity: 0; }
+}
 
 /* --- Chapter indicator (right rail) --- */
 .nlp-cine__rail {
@@ -145,6 +163,23 @@
 }
 
 /* --- Intro wordmark --- */
+/* Founder photo — the "Meet the Detailer" screen crossfades into this */
+.nlp-cine__founder { position: absolute; inset: 0; z-index: 37; opacity: 0; pointer-events: none; }
+.nlp-cine__founder-photo { position: absolute; inset: 0; background-size: cover; background-position: center; }
+.nlp-cine__founder-grad {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(6, 28, 20, 0.88) 0%, rgba(6, 28, 20, 0.12) 45%, rgba(6, 28, 20, 0.4) 100%);
+}
+.nlp-cine__founder-name { position: absolute; left: 8vw; bottom: 13vh; z-index: 1; }
+.nlp-cine__founder-label {
+  display: block; color: var(--brand-gold-lt, #E4C766); font-size: 12px; font-weight: 700;
+  letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 8px;
+}
+.nlp-cine__founder-title {
+  display: block; font-family: 'Bebas Neue', sans-serif; font-size: clamp(2.6rem, 7vw, 5rem);
+  color: #fff; line-height: 1; letter-spacing: 0.01em;
+}
+
 .nlp-cine__intro {
   position: absolute; inset: 0; z-index: 30; pointer-events: none;
   display: flex; flex-direction: column; align-items: center; justify-content: center;
