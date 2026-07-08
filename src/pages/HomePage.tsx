@@ -7,6 +7,7 @@ import CTABlock from '../components/CTABlock';
 import PageMeta from '../components/PageMeta';
 import ServicesShowcase from '../components/ServicesShowcase';
 import HomeSplash from '../components/HomeSplash';
+import PremiumHeroBg from '../components/PremiumHeroBg';
 import { galleryPhotos } from '../data/galleryPhotos';
 
 const services = [
@@ -91,68 +92,28 @@ export default function HomePage() {
         canonical="https://glossedoutdetailing.com.au/"
       />
 
-      {/* HERO */}
+      {/* HERO — premium white background with gold trim (SVG, no video) */}
       <section
         ref={heroRef}
-        className="home-hero"
-        style={{ position: 'relative', height: '85dvh', overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center', textAlign: 'center' }}
+        className="home-hero-premium"
+        style={{ position: 'relative', minHeight: '90dvh', overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center', textAlign: 'center' }}
         aria-label="Hero — Car Detailing & Ceramic Coating Melbourne"
       >
-        {/* Background video (parallax) — poster falls back to the still while it loads */}
-        <div
-          ref={heroBgRef}
-          style={{ position: 'absolute', inset: '-20% 0 0 0', zIndex: 0 }}
-          aria-hidden="true"
-        >
-          <video
-            autoPlay
-            loop
-            muted
-            playsInline
-            poster="/about-frames/f001.webp"
-            style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 30%', display: 'block' }}
-          >
-            <source src="/glossed/hero.mp4" type="video/mp4" />
-          </video>
-        </div>
-        {/* Grain overlay at 50% opacity */}
-        <div
-          style={{
-            position: 'absolute', inset: 0, zIndex: 1,
-            pointerEvents: 'none',
-            opacity: 0.5,
-            backgroundImage:
-              'url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'400\' height=\'400\' viewBox=\'0 0 400 400\'><filter id=\'noise\'><feTurbulence type=\'fractalNoise\' baseFrequency=\'0.8\' numOctaves=\'4\' stitchTiles=\'stitch\'/></filter><rect width=\'400\' height=\'400\' filter=\'url(%23noise)\' opacity=\'0.7\'/></svg>")',
-            backgroundRepeat: 'repeat',
-            backgroundSize: 'auto',
-          }}
-          aria-hidden="true"
-        />
-        {/* Gradient overlay — dark cinematic */}
-        <div style={{ position: 'absolute', inset: 0, zIndex: 2, background: 'linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.25) 40%, rgba(0,0,0,0.25) 60%, rgba(0,0,0,0.7) 100%)' }} aria-hidden="true" />
-        {/* Feathered bottom edge — blends into brand bar */}
-        <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: 120, zIndex: 2, background: 'linear-gradient(to bottom, transparent 0%, #0A2B1E 100%)' }} aria-hidden="true" />
+        <PremiumHeroBg />
 
         {/* Content */}
-        <div ref={heroContentRef} style={{ position: 'relative', zIndex: 2, maxWidth: 900, padding: '0 24px' }}>
-          <h1 style={{ marginTop: 0, marginBottom: 0 }}>
-            <span
-              className="hero-anim font-display hero-text-mono"
-              style={{ fontSize: 'clamp(48px, 8vw, 96px)', letterSpacing: '-0.02em', lineHeight: 0.95, WebkitTextStroke: '0.5px rgba(255,255,255,0.01)' }}
-            >
-              Glossed Out{' '}<span style={{ color: '#fff' }}>Detailing.</span>
-            </span>
+        <div ref={heroContentRef} style={{ position: 'relative', zIndex: 2, maxWidth: 980, padding: '0 24px' }}>
+          <p className="hero-anim" style={{ color: 'var(--brand-gold-dk)', fontSize: 'clamp(12px, 1.6vw, 14px)', fontWeight: 700, margin: '0 0 18px', letterSpacing: '0.2em', textTransform: 'uppercase' }}>
+            Melbourne's Prestige Mobile Detailer · 10+ Years
+          </p>
+          <h1 style={{ margin: 0, lineHeight: 0.9 }}>
+            <span className="hero-anim font-display title-green-grad" style={{ display: 'block', fontSize: 'clamp(52px, 11vw, 140px)', letterSpacing: '-0.01em' }}>GLOSSED OUT</span>
+            <span className="hero-anim font-display title-green-grad" style={{ display: 'block', fontSize: 'clamp(22px, 4vw, 44px)', letterSpacing: '0.34em', marginTop: 10, paddingLeft: '0.34em' }}>DETAILING</span>
           </h1>
-
-          <p className="hero-anim" style={{ color: 'rgba(255,255,255,0.6)', fontSize: 'clamp(15px, 2vw, 18px)', fontWeight: 400, margin: 0, marginTop: 20, letterSpacing: '0.12em', textTransform: 'uppercase' }}>
-            Detailing · Paint Correction · Ceramic Coating — Melbourne
+          <p className="hero-anim" style={{ color: 'var(--color-text-secondary)', fontSize: 'clamp(15px, 1.8vw, 18px)', margin: '24px auto 0', lineHeight: 1.65, maxWidth: 620 }}>
+            Melbourne's <span style={{ color: 'var(--brand-gold-dk)', fontWeight: 600 }}>prestige mobile detailer</span> — 10+ years' experience and a ceramic coating specialist. Where precision meets passion.
           </p>
-
-          <p className="hero-anim" style={{ color: 'rgba(255,255,255,0.85)', fontSize: 'clamp(15px, 1.8vw, 18px)', margin: '16px auto 0', lineHeight: 1.6, maxWidth: 620 }}>
-            Melbourne's <span style={{ color: 'var(--brand-gold-lt)', fontWeight: 600 }}>prestige mobile detailer</span> — 10+ years' experience and a ceramic coating specialist. Where precision meets passion.
-          </p>
-
-          <div className="hero-anim hero-cta-group" style={{ display: 'flex', gap: 12, marginTop: 36, justifyContent: 'center', flexWrap: 'wrap' }}>
+          <div className="hero-anim hero-cta-group" style={{ display: 'flex', gap: 12, marginTop: 34, justifyContent: 'center', flexWrap: 'wrap' }}>
             <Link to="/get-a-quote" className="btn-primary" style={{ padding: '11px 26px', fontSize: 14, border: '1px solid var(--brand-gold)' }}>
               <span className="btn-slide" />
               <span>Contact Us</span>
