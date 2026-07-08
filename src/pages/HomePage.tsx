@@ -104,8 +104,8 @@ export default function HomePage() {
 
         {/* Content */}
         <div ref={heroContentRef} style={{ position: 'relative', zIndex: 2, maxWidth: 980, padding: '0 24px' }}>
-          <p className="hero-anim" style={{ color: 'var(--brand-gold-dk)', fontSize: 'clamp(12px, 1.6vw, 14px)', fontWeight: 700, margin: '0 0 18px', letterSpacing: '0.2em', textTransform: 'uppercase' }}>
-            Melbourne's Prestige Mobile Detailer · 10+ Years
+          <p className="hero-anim" style={{ color: 'var(--brand-gold-dk)', fontSize: 'clamp(12px, 1.6vw, 14px)', fontWeight: 700, margin: '0 0 18px', letterSpacing: '0.2em', textTransform: 'uppercase', lineHeight: 1.6 }}>
+            Melbourne's Prestige Mobile Detailer<br />10+ Years Experience
           </p>
           <h1 style={{ margin: 0, lineHeight: 0.9 }}>
             <span className="hero-anim font-display title-green-grad" style={{ display: 'block', fontSize: 'clamp(52px, 11vw, 140px)', letterSpacing: '-0.01em' }}>GLOSSED OUT</span>

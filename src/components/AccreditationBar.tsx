@@ -1,13 +1,12 @@
 /**
- * Manufacturer accreditation badges — real brand logos on adaptive tiles
- * (dark tile for the silver Magnum badge, light tiles for the rest). Uniform
- * grid, reflows to 2×2 on mobile.
+ * Manufacturer accreditation badges — real brand logos on uniform white
+ * "cube" tiles, always 4 across (mobile + web), logos scaled to fit.
  */
 const BADGES = [
-  { name: 'Magnum', file: '/accreditations/magnum.png', dark: true, alt: 'Magnum Ceramic Coating' },
-  { name: 'Kraken', file: '/accreditations/kraken.png', dark: false, alt: 'Kraken Coatings' },
-  { name: 'Gtechniq', file: '/accreditations/gtechniq.jpg', dark: false, alt: 'Gtechniq' },
-  { name: 'CarPro', file: '/accreditations/carpro.png', dark: false, alt: 'CarPro' },
+  { name: 'Magnum', file: '/accreditations/magnum.png', alt: 'Magnum Ceramic Coating' },
+  { name: 'Kraken', file: '/accreditations/kraken.png', alt: 'Kraken Coatings' },
+  { name: 'Gtechniq', file: '/accreditations/gtechniq.jpg', alt: 'Gtechniq' },
+  { name: 'CarPro', file: '/accreditations/carpro.png', alt: 'CarPro' },
 ];
 
 export default function AccreditationBar({ background = '#0A2B1E' }: { background?: string }) {
@@ -15,7 +14,7 @@ export default function AccreditationBar({ background = '#0A2B1E' }: { backgroun
     <div className="acc-bar" style={{ background }}>
       <div className="acc-bar__inner">
         {BADGES.map(b => (
-          <div key={b.name} className={`acc-tile${b.dark ? ' acc-tile--dark' : ''}`}>
+          <div key={b.name} className="acc-tile">
             <img src={b.file} alt={b.alt} loading="lazy" />
           </div>
         ))}

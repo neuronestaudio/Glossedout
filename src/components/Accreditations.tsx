@@ -46,11 +46,11 @@ export default function Accreditations({
         )}
         <div
           style={{
-            display: 'flex',
-            flexWrap: 'wrap',
-            justifyContent: 'center',
-            alignItems: 'center',
-            gap: 18,
+            display: 'grid',
+            gridTemplateColumns: 'repeat(4, 1fr)',
+            gap: 'clamp(8px, 1.4vw, 16px)',
+            maxWidth: 720,
+            margin: '0 auto',
           }}
         >
           {brands.map(b => (
@@ -58,23 +58,23 @@ export default function Accreditations({
               key={b.name}
               title={b.name}
               style={{
-                background: b.dark ? 'linear-gradient(135deg, #103a2a 0%, #061c14 100%)' : '#fff',
-                borderRadius: 12,
-                padding: '18px 26px',
-                minWidth: 180,
-                minHeight: 92,
+                background: '#fff',
+                borderRadius: 14,
+                aspectRatio: '1',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
+                overflow: 'hidden',
+                padding: 'clamp(8px, 1.8vw, 18px)',
                 boxShadow: dark ? '0 6px 20px rgba(0,0,0,0.25)' : '0 4px 18px rgba(0,0,0,0.06)',
-                border: b.dark ? '1px solid rgba(201,162,39,0.28)' : '1px solid var(--color-border)',
+                border: '1px solid var(--color-border)',
               }}
             >
               <img
                 src={b.file}
                 alt={b.name}
                 loading="lazy"
-                style={{ height: b.dark ? 58 : 44, width: 'auto', maxWidth: 200, objectFit: 'contain' }}
+                style={{ maxHeight: '74%', maxWidth: '86%', width: 'auto', height: 'auto', objectFit: 'contain', display: 'block' }}
               />
             </div>
           ))}
