@@ -137,8 +137,8 @@ export default function HomePageWhite() {
         {[
           { slug: 'magnum', alt: 'Magnum Ceramic Coating' },
           { slug: 'kraken', alt: 'Kraken Self-Healing Coatings' },
-          { slug: 'gtechniq', alt: 'Gtechniq Accredited' },
-          { slug: 'carpro', alt: 'CarPro' },
+          { slug: 'gtechniq', alt: 'Gtechniq' },
+          { slug: 'carpro', alt: 'CarPro Trained' },
         ].map(logo => (
           <div key={logo.slug} style={{ background: '#fff', borderRadius: 10, padding: '10px 18px', display: 'flex', alignItems: 'center' }}>
             <img

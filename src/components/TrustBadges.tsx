@@ -14,10 +14,10 @@ const RibbonIcon = () => (
 export default function TrustBadges({ services = ['ceramic'] }: TrustBadgesProps) {
   // Glossed Out's ceramic accreditations. All service pages currently request 'ceramic'.
   const badges = [
-    { id: 'ceramic', label: 'Gtechniq Accredited' },
+    { id: 'ceramic', label: 'Gtechniq' },
     { id: 'ceramic', label: 'Magnum Accredited' },
     { id: 'ceramic', label: 'Kraken Certified' },
-    { id: 'ceramic', label: 'CarPro Certified' },
+    { id: 'ceramic', label: 'CarPro Trained' },
   ].filter(b => services.includes(b.id as any));
 
   return (

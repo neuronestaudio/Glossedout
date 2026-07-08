@@ -7,8 +7,8 @@
 const brands = [
   { slug: 'magnum', name: 'Magnum Ceramic Coating' },
   { slug: 'kraken', name: 'Kraken Self-Healing Coatings' },
-  { slug: 'gtechniq', name: 'Gtechniq Accredited' },
-  { slug: 'carpro', name: 'CarPro' },
+  { slug: 'gtechniq', name: 'Gtechniq' },
+  { slug: 'carpro', name: 'CarPro Trained' },
 ];
 
 interface AccreditationsProps {

@@ -8,7 +8,7 @@ import founderImg from '../assets/glossed/detailing-gen.jpg';
 import craftBg from '../assets/team/craft-bg.jpg';
 
 const certifications = [
-  { title: 'Gtechniq Accredited', desc: 'Accredited to apply Gtechniq coatings (including CSL) to manufacturer specification, so the durability and warranty hold.' },
+  { title: 'Gtechniq', desc: 'Applies Gtechniq coatings (including CSL) to manufacturer specification, so the durability and warranty hold.' },
   { title: 'Magnum Certified', desc: 'Certified in the Magnum range — Graphene (7-year) and Borophene (10-year) ceramic coatings.' },
   { title: 'Kraken Certified', desc: 'Certified in Kraken self-healing graphene and graphene-titanium coatings, up to 10 years of protection.' },
   { title: 'CarPro Trained', desc: 'Trained in CarPro professional surface-care products used through the detailing and prep process.' },

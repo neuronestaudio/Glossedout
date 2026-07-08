@@ -30,9 +30,9 @@ const brands = [
     status: 'Kraken Certified Installer',
   },
   {
-    name: 'CarPro',
+    name: 'CarPro Trained',
     desc: 'Globally recognised coating and detailing chemistry — used through our decontamination, correction and protection process.',
-    status: 'CarPro Certified',
+    status: 'CarPro Trained',
   },
 ];
 
@@ -135,7 +135,7 @@ export default function WarrantyPage() {
         <div style={{ position: 'absolute', inset: 0, zIndex: 1, background: 'linear-gradient(to top, #000 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.6) 100%)' }} aria-hidden="true" />
         <div ref={heroContentRef} style={{ position: 'relative', zIndex: 2 }}>
           <div className="hero-anim" style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
-            {['Gtechniq Accredited', 'Magnum Applicator', 'Kraken Certified', 'CarPro Certified'].map(b => (
+            {['Gtechniq', 'Magnum Applicator', 'Kraken Certified', 'CarPro Trained'].map(b => (
               <span key={b} style={{ display: 'inline-flex', alignItems: 'center', gap: 8, border: '1px solid rgba(255,255,255,0.08)', borderRadius: 100, padding: '9px 16px', background: '#0C3B2A', color: '#fff', fontSize: 13, fontWeight: 500, letterSpacing: '0.02em' }}>
                 <Award size={14} color="var(--color-accent)" /> {b}
               </span>
