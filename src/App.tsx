@@ -17,6 +17,9 @@ const HomePageIntro              = lazy(() => import('./pages/HomePageIntro'));
 const HomePageBanner             = lazy(() => import('./pages/HomePageBanner'));
 const HomePageBars               = lazy(() => import('./pages/HomePageBars'));
 const HomePageWhite              = lazy(() => import('./pages/HomePageWhite'));
+const CarDetailingServicePage    = lazy(() => import('./pages/CarDetailingServicePage'));
+const PaintCorrectionServicePage = lazy(() => import('./pages/PaintCorrectionServicePage'));
+const CeramicPackagesServicePage = lazy(() => import('./pages/CeramicPackagesServicePage'));
 const CeramicCoatingPage         = lazy(() => import('./pages/CeramicCoatingPage'));
 const CeramicQuestionsPage       = lazy(() => import('./pages/CeramicQuestionsPage'));
 const GalleryPage                = lazy(() => import('./pages/GalleryPage'));
@@ -119,6 +122,9 @@ export default function App() {
           <Route element={<Layout />}>
             <Route path="/" element={<HomePage />} />
             <Route path="/detailing-packages-melbourne" element={<ServicesPage />} />
+            <Route path="/car-detailing-melbourne" element={<CarDetailingServicePage />} />
+            <Route path="/paint-correction-melbourne" element={<PaintCorrectionServicePage />} />
+            <Route path="/ceramic-coating-packages-melbourne" element={<CeramicPackagesServicePage />} />
             <Route path="/home-sportscar" element={<HomePageSportscar />} />
             <Route path="/home-intro" element={<HomePageIntro />} />
             <Route path="/home-banner" element={<HomePageBanner />} />

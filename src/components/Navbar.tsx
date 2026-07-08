@@ -4,9 +4,9 @@ import { Menu, X, ChevronDown } from 'lucide-react';
 import { gsap } from 'gsap';
 
 const services = [
-  { label: 'Car Detailing', href: '/detailing-packages-melbourne#detailing' },
-  { label: 'Paint Correction', href: '/detailing-packages-melbourne#correction' },
-  { label: 'Ceramic Coating', href: '/detailing-packages-melbourne#ceramic' },
+  { label: 'Car Detailing', href: '/car-detailing-melbourne' },
+  { label: 'Paint Correction', href: '/paint-correction-melbourne' },
+  { label: 'Ceramic Coating', href: '/ceramic-coating-packages-melbourne' },
 ];
 
 // Preview links so we can swap between home-page interfaces easily.
