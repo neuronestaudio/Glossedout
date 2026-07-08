@@ -104,7 +104,7 @@ export default function HomePageWhite() {
           aria-hidden="true"
           style={{
             position: 'absolute', inset: '-20% 0 0 0', zIndex: 0,
-            backgroundImage: "url('/glossed/hero-maserati-mc20.webp')",
+            backgroundImage: "url('/glossed/benz.jpg')",
             backgroundSize: 'cover', backgroundPosition: 'center',
           }}
         />
