@@ -106,8 +106,8 @@ export default function AboutPage() {
                   <p style={{ color: 'var(--color-text-muted)', fontSize: 12, textTransform: 'uppercase', letterSpacing: '0.08em', marginTop: 4 }}>Five-star reviews</p>
                 </div>
                 <div>
-                  <p className="font-display" style={{ fontSize: 34, color: 'var(--brand-green)', lineHeight: 1 }}>4</p>
-                  <p style={{ color: 'var(--color-text-muted)', fontSize: 12, textTransform: 'uppercase', letterSpacing: '0.08em', marginTop: 4 }}>Coatings accredited</p>
+                  <p className="font-display" style={{ fontSize: 22, color: 'var(--brand-green)', lineHeight: 1.1, letterSpacing: '0.01em' }}>Ceramic Coating<br />Specialist</p>
+                  <p style={{ color: 'var(--color-text-muted)', fontSize: 12, textTransform: 'uppercase', letterSpacing: '0.08em', marginTop: 6 }}>Multi-Accreditation</p>
                 </div>
               </div>
             </div>

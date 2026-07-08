@@ -1,7 +1,12 @@
 import { Link } from 'react-router-dom';
 import { Phone, Mail, MapPin } from 'lucide-react';
 
-const accreditations = ['magnum', 'kraken', 'gtechniq', 'carpro'];
+const accreditations = [
+  { file: '/accreditations/magnum.png', name: 'Magnum' },
+  { file: '/accreditations/kraken.png', name: 'Kraken' },
+  { file: '/accreditations/gtechniq.jpg', name: 'Gtechniq' },
+  { file: '/accreditations/carpro.png', name: 'CarPro' },
+];
 
 const quickLinks = [
   { label: 'Car Detailing', href: '/detailing-packages-melbourne#detailing' },
@@ -41,10 +46,10 @@ export default function Footer() {
               Melbourne's prestige auto detailer — detailing, paint correction &amp; ceramic coating.
             </p>
             <p style={{ color: '#6a746c', fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.12em', marginBottom: 14 }}>Certified &amp; Accredited</p>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap' }}>
-              {accreditations.map(slug => (
-                <div key={slug} style={{ background: '#fff', borderRadius: 8, padding: '8px 12px', display: 'flex', alignItems: 'center', border: '1px solid rgba(0,0,0,0.08)', boxShadow: '0 2px 8px rgba(0,0,0,0.06)' }}>
-                  <img src={`/accreditations/${slug}.svg`} alt={slug} style={{ height: 22, width: 'auto', maxWidth: 120, objectFit: 'contain' }} />
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 8, maxWidth: 300 }}>
+              {accreditations.map(b => (
+                <div key={b.name} title={b.name} style={{ background: '#fff', borderRadius: 8, aspectRatio: '1', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden', padding: 7, border: '1px solid rgba(0,0,0,0.08)', boxShadow: '0 2px 8px rgba(0,0,0,0.06)' }}>
+                  <img src={b.file} alt={b.name} style={{ maxHeight: '76%', maxWidth: '86%', width: 'auto', height: 'auto', objectFit: 'contain', display: 'block' }} />
                 </div>
               ))}
             </div>
