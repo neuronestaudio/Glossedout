@@ -145,9 +145,10 @@ export default function WarrantyPage() {
       />
 
       {/* SECTION 1: HERO */}
-      <section ref={heroRef} style={{ position: 'relative', height: '100dvh', overflow: 'hidden', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', padding: '0 8vw 10vh', background: '#000' }}>
-        <div ref={heroBgRef} style={{ position: 'absolute', inset: '-20% 0 0 0', zIndex: 0, pointerEvents: 'none', background: 'radial-gradient(ellipse 90% 70% at 50% 20%, #0E4636 0%, #072A20 55%, #000 100%)' }} aria-hidden="true" />
-        <div style={{ position: 'absolute', inset: 0, zIndex: 1, background: 'linear-gradient(to top, #000 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.6) 100%)' }} aria-hidden="true" />
+      <section ref={heroRef} style={{ position: 'relative', height: '100dvh', overflow: 'hidden', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', padding: '0 8vw 10vh', background: '#0A2B1E' }}>
+        <div ref={heroBgRef} style={{ position: 'absolute', inset: '-20% 0 0 0', zIndex: 0, pointerEvents: 'none', background: 'radial-gradient(ellipse 90% 80% at 50% 15%, #12543A 0%, #0A2B1E 50%, #061c14 100%)' }} aria-hidden="true" />
+        <div aria-hidden="true" style={{ position: 'absolute', inset: 0, zIndex: 1, backgroundImage: 'url(/carbon-bg.jpg)', backgroundSize: 'cover', backgroundPosition: 'center', opacity: 0.18 }} />
+        <div style={{ position: 'absolute', inset: 0, zIndex: 1, background: 'linear-gradient(to top, rgba(6,28,20,0.6) 0%, transparent 55%)' }} aria-hidden="true" />
         <div ref={heroContentRef} style={{ position: 'relative', zIndex: 2 }}>
           <div className="hero-anim" style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
             {['Gtechniq', 'Magnum Applicator', 'Kraken Certified', 'CarPro Trained'].map(b => (
