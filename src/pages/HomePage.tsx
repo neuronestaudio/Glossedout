@@ -6,6 +6,7 @@ import GoogleReviews from '../components/GoogleReviews';
 import CTABlock from '../components/CTABlock';
 import PageMeta from '../components/PageMeta';
 import ServicesShowcase from '../components/ServicesShowcase';
+import HomeSplash from '../components/HomeSplash';
 import { galleryPhotos } from '../data/galleryPhotos';
 
 const services = [
@@ -83,6 +84,7 @@ export default function HomePage() {
 
   return (
     <>
+      <HomeSplash />
       <PageMeta
         title="Glossed Out Detailing — Car Detailing, Paint Correction & Ceramic Coating Melbourne"
         description="Melbourne car detailing, paint correction and ceramic coating — based in Craigieburn. Gtechniq, Magnum & Kraken certified. 113 five-star Google reviews."

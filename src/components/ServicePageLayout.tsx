@@ -28,20 +28,21 @@ export default function ServicePageLayout({
     <>
       <PageMeta title={meta.title} description={meta.description} canonical={meta.canonical} />
 
-      {/* HERO — photo fades to white, green wordmark on the faded base */}
-      <section style={{ position: 'relative', height: '84dvh', overflow: 'hidden', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', padding: '0 8vw 10vh' }}>
+      {/* HERO — car photo with a deep-green vignette; light text for contrast */}
+      <section style={{ position: 'relative', height: '88dvh', overflow: 'hidden', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', padding: '0 8vw 12vh', background: '#0A2B1E' }}>
         <div aria-hidden="true" style={{ position: 'absolute', inset: 0, zIndex: 0, backgroundImage: `url('${heroImg}')`, backgroundSize: 'cover', backgroundPosition: 'center' }} />
-        <div aria-hidden="true" style={{ position: 'absolute', inset: 0, zIndex: 1, background: 'linear-gradient(to top, var(--color-bg-primary) 0%, rgba(248,249,251,0.88) 24%, rgba(248,249,251,0.4) 46%, transparent 80%)' }} />
+        <div aria-hidden="true" style={{ position: 'absolute', inset: 0, zIndex: 1, background: 'linear-gradient(to top, #0A2B1E 0%, rgba(10,43,30,0.88) 26%, rgba(10,43,30,0.35) 56%, rgba(10,43,30,0.12) 100%)' }} />
+        <div aria-hidden="true" style={{ position: 'absolute', inset: 0, zIndex: 1, background: 'linear-gradient(to right, rgba(10,43,30,0.6) 0%, transparent 62%)' }} />
         <div style={{ position: 'relative', zIndex: 2, maxWidth: 840 }}>
-          <p style={{ color: 'var(--brand-gold-dk)', fontSize: 12, fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', marginBottom: 14 }}>{eyebrow}</p>
-          <h1 className="font-display title-green-grad" style={{ fontSize: 'var(--size-h1)', lineHeight: 0.95, marginBottom: 18 }}>{title}</h1>
-          <p style={{ color: 'var(--color-text-secondary)', fontSize: 'clamp(15px, 1.9vw, 18px)', lineHeight: 1.65, maxWidth: 600, marginBottom: 28 }}>{lead}</p>
+          <p style={{ color: 'var(--brand-gold-lt)', fontSize: 12, fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', marginBottom: 14 }}>{eyebrow}</p>
+          <h1 className="font-display hero-text-mono" style={{ fontSize: 'var(--size-h1)', lineHeight: 0.95, marginBottom: 18 }}>{title}</h1>
+          <p style={{ color: 'rgba(255,255,255,0.82)', fontSize: 'clamp(15px, 1.9vw, 18px)', lineHeight: 1.65, maxWidth: 600, marginBottom: 28 }}>{lead}</p>
           <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
             <Link to="/get-a-quote" className="btn-primary" style={{ padding: '11px 26px', fontSize: 14, border: '1px solid var(--brand-gold)' }}>
               <span className="btn-slide" /><span>Get a Quote</span>
             </Link>
-            <Link to="/detailing-packages-melbourne" className="btn-ghost">All Packages</Link>
-            <Link to="/warranties" className="btn-ghost">Warranties</Link>
+            <Link to="/detailing-packages-melbourne" className="btn-ghost" style={{ borderColor: 'rgba(255,255,255,0.4)', color: '#fff' }}>All Packages</Link>
+            <Link to="/warranties" className="btn-ghost" style={{ borderColor: 'rgba(255,255,255,0.4)', color: '#fff' }}>Warranties</Link>
           </div>
         </div>
       </section>
