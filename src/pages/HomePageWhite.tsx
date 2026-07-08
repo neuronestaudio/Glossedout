@@ -5,6 +5,7 @@ import { Shield, Car, Sparkles, Armchair, Instagram } from 'lucide-react';
 import GoogleReviews from '../components/GoogleReviews';
 import CTABlock from '../components/CTABlock';
 import PageMeta from '../components/PageMeta';
+import AccreditationBar from '../components/AccreditationBar';
 import ServicesShowcase from '../components/ServicesShowcase';
 import { galleryPhotos } from '../data/galleryPhotos';
 
@@ -133,23 +134,7 @@ export default function HomePageWhite() {
         </div>
       </section>
 
-      {/* BRAND BAR — accreditations, flush below hero */}
-      <div className="brand-bar" style={{ height: 'auto', flexWrap: 'wrap', gap: 14, padding: '22px 6vw' }}>
-        {[
-          { slug: 'magnum', alt: 'Magnum Ceramic Coating' },
-          { slug: 'kraken', alt: 'Kraken Self-Healing Coatings' },
-          { slug: 'gtechniq', alt: 'Gtechniq' },
-          { slug: 'carpro', alt: 'CarPro Trained' },
-        ].map(logo => (
-          <div key={logo.slug} style={{ background: '#fff', borderRadius: 10, padding: '10px 18px', display: 'flex', alignItems: 'center' }}>
-            <img
-              src={`/accreditations/${logo.slug}.svg`}
-              alt={logo.alt}
-              style={{ height: 30, width: 'auto', maxWidth: 150, objectFit: 'contain' }}
-            />
-          </div>
-        ))}
-      </div>
+      <AccreditationBar />
 
       {/* SERVICES GRID */}
       <section ref={servicesRef} className="section services-wave-bg" style={{ position: 'relative', overflow: 'hidden' }}>

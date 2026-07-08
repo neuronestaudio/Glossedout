@@ -5,10 +5,10 @@
  */
 
 const brands = [
-  { slug: 'magnum', name: 'Magnum Ceramic Coating' },
-  { slug: 'kraken', name: 'Kraken Self-Healing Coatings' },
-  { slug: 'gtechniq', name: 'Gtechniq' },
-  { slug: 'carpro', name: 'CarPro Trained' },
+  { file: '/accreditations/magnum.png', name: 'Magnum Ceramic Coating', dark: true },
+  { file: '/accreditations/kraken.png', name: 'Kraken Coatings', dark: false },
+  { file: '/accreditations/gtechniq.jpg', name: 'Gtechniq', dark: false },
+  { file: '/accreditations/carpro.png', name: 'CarPro', dark: false },
 ];
 
 interface AccreditationsProps {
@@ -55,25 +55,26 @@ export default function Accreditations({
         >
           {brands.map(b => (
             <div
-              key={b.slug}
+              key={b.name}
               title={b.name}
               style={{
-                background: '#fff',
+                background: b.dark ? 'linear-gradient(135deg, #103a2a 0%, #061c14 100%)' : '#fff',
                 borderRadius: 12,
                 padding: '18px 26px',
                 minWidth: 180,
+                minHeight: 92,
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
                 boxShadow: dark ? '0 6px 20px rgba(0,0,0,0.25)' : '0 4px 18px rgba(0,0,0,0.06)',
-                border: '1px solid var(--color-border)',
+                border: b.dark ? '1px solid rgba(201,162,39,0.28)' : '1px solid var(--color-border)',
               }}
             >
               <img
-                src={`/accreditations/${b.slug}.svg`}
+                src={b.file}
                 alt={b.name}
                 loading="lazy"
-                style={{ height: 40, width: 'auto', maxWidth: 200, objectFit: 'contain' }}
+                style={{ height: b.dark ? 58 : 44, width: 'auto', maxWidth: 200, objectFit: 'contain' }}
               />
             </div>
           ))}
