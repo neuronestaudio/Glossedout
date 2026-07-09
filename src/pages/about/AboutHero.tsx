@@ -14,16 +14,17 @@ const FRAMES_DIR = 'about-frames';
 const FRAME_COUNT = 240;
 const MAX_FRAME_INDEX = 239;
 // Total experience length in viewport-heights (1 visible + the rest scrubbed).
-const SCROLL_VH = 440;
+const SCROLL_VH = 540;
 
 // ---- Act windows (fractions of pinned scroll progress 0..1) ----
-const INTRO_OUT_START = 0.08;
-const FOOTAGE_IN = 0.15;
-// Vignette begins the instant chapter 3 fades — no extra footage scroll.
-const FOOTAGE_OUT = 0.70;
-const WHITE_IN_START = 0.76;
-const WHITE_IN_END = 0.90;
-const TEAM_TEXT_IN = 0.86;
+// Intro dissolves into the footage almost immediately; the "Meet the Detailer"
+// screen then holds for a good beat before the founder photo crossfade.
+const INTRO_OUT_START = 0.0;
+const FOOTAGE_IN = 0.05;
+const FOOTAGE_OUT = 0.60;
+const WHITE_IN_START = 0.64;
+const WHITE_IN_END = 0.74;
+const TEAM_TEXT_IN = 0.68;
 
 const CHAPTERS = [
   {
@@ -46,9 +47,9 @@ const CHAPTERS = [
 const CHAPTER_LABELS = ['Studio', 'Standard', 'Certified'];
 
 const CHAPTER_TIMINGS = [
-  { in: 0.21, out: 0.35 },
-  { in: 0.40, out: 0.54 },
-  { in: 0.58, out: 0.69 },
+  { in: 0.12, out: 0.25 },
+  { in: 0.29, out: 0.42 },
+  { in: 0.46, out: 0.58 },
 ];
 
 const clamp01 = (v: number) => Math.max(0, Math.min(1, v));
@@ -144,9 +145,9 @@ export default function AboutHero() {
 
           if (vignetteRef.current) vignetteRef.current.style.opacity = String(ramp(p, FOOTAGE_OUT, WHITE_IN_START));
           if (whiteRef.current) whiteRef.current.style.opacity = String(ramp(p, WHITE_IN_START, WHITE_IN_END));
-          // "Meet the Detailer" reveals, holds, then fades out as the founder photo fades in.
-          if (teamTextRef.current) teamTextRef.current.style.opacity = String(ramp(p, TEAM_TEXT_IN, 0.9) * (1 - ramp(p, 0.9, 0.965)));
-          if (founderRef.current) founderRef.current.style.opacity = String(ramp(p, 0.9, 0.995));
+          // "Meet the Detailer" reveals, HOLDS (0.74–0.88), then fades out as the founder photo fades in.
+          if (teamTextRef.current) teamTextRef.current.style.opacity = String(ramp(p, TEAM_TEXT_IN, 0.74) * (1 - ramp(p, 0.88, 0.95)));
+          if (founderRef.current) founderRef.current.style.opacity = String(ramp(p, 0.88, 0.99));
 
           if (railWrapRef.current) {
             railWrapRef.current.style.opacity = String(
@@ -219,8 +220,8 @@ export default function AboutHero() {
 
         {/* Scroll cue */}
         <div ref={cueRef} className="nlp-cine__cue">
-          <span>Scroll</span>
-          <span className="nlp-cine__cue-line" />
+          <span>Scroll to explore</span>
+          <span className="nlp-cine__cue-arrow" />
         </div>
 
         {/* Right rail indicator */}
