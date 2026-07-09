@@ -131,14 +131,18 @@ a { color: inherit; text-decoration: none; }
   animation: marbleSweep 6.5s ease-in-out infinite;
 }
 
-/* Green gradient title fill — professional look for light/white heroes */
-/* Home hero only — slight gold trim echoing the gold button outline.
-   paint-order draws the stroke behind the gradient fill so only a thin gold rim shows. */
-.home-hero-premium .title-green-grad {
-  -webkit-text-stroke: 0.1px var(--brand-gold);
-  paint-order: stroke fill;
+/* Home hero eyebrow — keep it to a clean 2 lines on mobile (shrink type +
+   tighten tracking so "Melbourne's Prestige Mobile Detailer" stays on one line).
+   !important overrides the inline clamp/letter-spacing. */
+@media (max-width: 560px) {
+  .hero-eyebrow {
+    font-size: 11px !important;
+    letter-spacing: 0.08em !important;
+    padding: 9px 16px !important;
+  }
 }
 
+/* Green gradient title fill — professional look for light/white heroes */
 .title-green-grad {
   /* Top layer = moving highlight sweep; bottom layer = the static green gradient */
   background:
