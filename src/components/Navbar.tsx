@@ -14,12 +14,9 @@ const services = [
 // Preview links so we can swap between home-page interfaces easily.
 // TODO: remove this block before final client hand-off.
 const interfaceVersions = [
-  { label: 'Home — Video hero', href: '/' },
-  { label: 'Home — Sports-car hero', href: '/home-sportscar' },
+  { label: 'Home — Sports', href: '/home-sportscar' },
   { label: 'Home — Cinematic intro', href: '/home-intro' },
   { label: 'Home — Banner hero', href: '/home-banner' },
-  { label: 'Home — Title Demo 2', href: '/home-demo2' },
-  { label: 'Home — Demo - White', href: '/home-white' },
 ];
 
 export default function Navbar() {

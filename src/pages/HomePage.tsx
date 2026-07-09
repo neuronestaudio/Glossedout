@@ -114,14 +114,14 @@ export default function HomePage() {
 
         {/* Content */}
         <div ref={heroContentRef} style={{ position: 'relative', zIndex: 2, maxWidth: 980, padding: '0 24px' }}>
-          <p className="hero-anim" style={{ color: 'var(--brand-gold-dk)', fontSize: 'clamp(12px, 1.6vw, 14px)', fontWeight: 700, margin: '0 0 18px', letterSpacing: '0.2em', textTransform: 'uppercase', lineHeight: 1.6 }}>
+          <p className="hero-anim" style={{ display: 'inline-block', color: 'var(--brand-gold-dk)', fontSize: 'clamp(12px, 1.6vw, 14px)', fontWeight: 700, margin: '0 0 18px', letterSpacing: '0.2em', textTransform: 'uppercase', lineHeight: 1.6, padding: '10px 24px', borderRadius: 999, background: 'rgba(255,255,255,0.38)', backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)', border: '1px solid rgba(255,255,255,0.55)', boxShadow: '0 6px 22px rgba(12,59,42,0.10)' }}>
             Melbourne's Prestige Mobile Detailer<br />10+ Years Experience
           </p>
           <h1 style={{ margin: 0, lineHeight: 0.9 }}>
             <span className="hero-anim font-display title-green-grad" style={{ display: 'block', fontSize: 'clamp(52px, 11vw, 140px)', letterSpacing: '-0.01em' }}>GLOSSED OUT</span>
             <span className="hero-anim font-display title-green-grad" style={{ display: 'block', fontSize: 'clamp(22px, 4vw, 44px)', letterSpacing: '0.34em', marginTop: 10, paddingLeft: '0.34em' }}>DETAILING</span>
           </h1>
-          <p className="hero-anim" style={{ color: 'var(--color-text-secondary)', fontSize: 'clamp(15px, 1.8vw, 18px)', margin: '24px auto 0', lineHeight: 1.65, maxWidth: 620 }}>
+          <p className="hero-anim" style={{ display: 'inline-block', color: 'var(--color-text-secondary)', fontSize: 'clamp(15px, 1.8vw, 18px)', margin: '24px 0 0', lineHeight: 1.65, maxWidth: 620, padding: '16px 28px', borderRadius: 24, background: 'rgba(255,255,255,0.36)', backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)', border: '1px solid rgba(255,255,255,0.5)', boxShadow: '0 6px 22px rgba(12,59,42,0.08)' }}>
             Melbourne's <span style={{ color: 'var(--brand-gold-dk)', fontWeight: 600 }}>prestige mobile detailer</span> — 10+ years' experience and a ceramic coating specialist. Where precision meets passion.
           </p>
           <div className="hero-anim hero-cta-group" style={{ display: 'flex', gap: 12, marginTop: 34, justifyContent: 'center', flexWrap: 'wrap' }}>
