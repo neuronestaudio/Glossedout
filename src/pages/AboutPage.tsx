@@ -4,8 +4,9 @@ import { Award, MapPin, Clock, Phone, Mail, Shield, Star } from 'lucide-react';
 import CTABlock from '../components/CTABlock';
 import PageMeta from '../components/PageMeta';
 import AboutHero from './about/AboutHero';
-import founderImg from '../assets/glossed/detailing-gen.jpg';
 import craftBg from '../assets/team/craft-bg.jpg';
+
+const founderImg = '/glossed/founder.png';
 
 const certifications = [
   { title: 'Gtechniq', desc: 'Applies Gtechniq coatings (including CSL) to manufacturer specification, so the durability and warranty hold.' },

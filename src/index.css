@@ -135,7 +135,7 @@ a { color: inherit; text-decoration: none; }
 /* Home hero only — slight gold trim echoing the gold button outline.
    paint-order draws the stroke behind the gradient fill so only a thin gold rim shows. */
 .home-hero-premium .title-green-grad {
-  -webkit-text-stroke: 1px var(--brand-gold);
+  -webkit-text-stroke: 0.1px var(--brand-gold);
   paint-order: stroke fill;
 }
 
