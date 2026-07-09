@@ -8,7 +8,6 @@ import PageMeta from '../components/PageMeta';
 import AccreditationBar from '../components/AccreditationBar';
 import ServicesShowcase from '../components/ServicesShowcase';
 import HomeSplash from '../components/HomeSplash';
-import PremiumHeroBg from '../components/PremiumHeroBg';
 import { galleryPhotos } from '../data/galleryPhotos';
 
 const services = [
@@ -93,14 +92,25 @@ export default function HomePage() {
         canonical="https://glossedoutdetailing.com.au/"
       />
 
-      {/* HERO — premium white background with gold trim (SVG, no video) */}
+      {/* HERO — Glossed Out banner intro video (white / premium) */}
       <section
         ref={heroRef}
         className="home-hero-premium"
-        style={{ position: 'relative', minHeight: '90dvh', overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center', textAlign: 'center' }}
+        style={{ position: 'relative', minHeight: '90dvh', overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center', textAlign: 'center', background: '#eef1f1' }}
         aria-label="Hero — Car Detailing & Ceramic Coating Melbourne"
       >
-        <PremiumHeroBg />
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          poster="/glossed/glossed-intro-poster.jpg"
+          style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', zIndex: 0 }}
+        >
+          <source src="/glossed/glossed-intro.mp4" type="video/mp4" />
+        </video>
+        {/* Soft white scrim — keeps the premium white feel and lifts the text */}
+        <div aria-hidden="true" style={{ position: 'absolute', inset: 0, zIndex: 1, background: 'radial-gradient(ellipse 74% 64% at 50% 50%, rgba(255,255,255,0.62) 0%, rgba(255,255,255,0.3) 46%, rgba(255,255,255,0.08) 100%)' }} />
 
         {/* Content */}
         <div ref={heroContentRef} style={{ position: 'relative', zIndex: 2, maxWidth: 980, padding: '0 24px' }}>
