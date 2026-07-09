@@ -127,7 +127,7 @@ export default function HomePage() {
       <AccreditationBar />
 
       {/* SERVICES GRID */}
-      <section ref={servicesRef} className="section services-wave-bg" style={{ position: 'relative', overflow: 'hidden' }}>
+      <section ref={servicesRef} className="section services-wave-bg" style={{ position: 'relative', overflow: 'hidden', paddingTop: 'clamp(28px, 4vw, 44px)' }}>
         {/* Carbon-fibre background texture — feathered in from the top */}
         <div
           aria-hidden="true"
