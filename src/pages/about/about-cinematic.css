@@ -160,23 +160,6 @@
 }
 
 /* --- Intro wordmark --- */
-/* Founder photo — the "Meet the Detailer" screen crossfades into this */
-.nlp-cine__founder { position: absolute; inset: 0; z-index: 37; opacity: 0; pointer-events: none; }
-.nlp-cine__founder-photo { position: absolute; inset: 0; background-size: cover; background-position: center; }
-.nlp-cine__founder-grad {
-  position: absolute; inset: 0;
-  background: linear-gradient(to top, rgba(6, 28, 20, 0.88) 0%, rgba(6, 28, 20, 0.12) 45%, rgba(6, 28, 20, 0.4) 100%);
-}
-.nlp-cine__founder-name { position: absolute; left: 8vw; bottom: 13vh; z-index: 1; }
-.nlp-cine__founder-label {
-  display: block; color: var(--brand-gold-lt, #E4C766); font-size: 12px; font-weight: 700;
-  letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 8px;
-}
-.nlp-cine__founder-title {
-  display: block; font-family: 'Bebas Neue', sans-serif; font-size: clamp(2.6rem, 7vw, 5rem);
-  color: #fff; line-height: 1; letter-spacing: 0.01em;
-}
-
 .nlp-cine__intro {
   position: absolute; inset: 0; z-index: 30; pointer-events: none;
   display: flex; flex-direction: column; align-items: center; justify-content: center;
