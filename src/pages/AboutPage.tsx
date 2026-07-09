@@ -174,7 +174,7 @@ export default function AboutPage() {
 
       <section className="section" style={{ background: 'var(--color-bg-secondary)' }}>
         <div className="container">
-          <h2 className="font-display" style={{ fontSize: 'var(--size-h2)', marginBottom: 40 }}>Accreditations</h2>
+          <h2 className="font-display" style={{ fontSize: 'var(--size-h2)', marginBottom: 40 }}>Ceramic Coating Specialist</h2>
           <div className="grid-2col" style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 20, maxWidth: 880 }}>
             {certifications.map((c, i) => (
               <div key={i} className="card" style={{ padding: '28px 24px' }}>
