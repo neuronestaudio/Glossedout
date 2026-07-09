@@ -122,7 +122,7 @@ export default function HomePage() {
             <span className="hero-anim font-display title-green-grad" style={{ display: 'block', fontSize: 'clamp(22px, 4vw, 44px)', letterSpacing: '0.34em', marginTop: 10, paddingLeft: '0.34em' }}>DETAILING</span>
           </h1>
           <p className="hero-anim" style={{ color: 'var(--brand-green)', fontWeight: 600, fontSize: 'clamp(16px, 2vw, 20px)', margin: '24px auto 0', lineHeight: 1.5, maxWidth: 640, letterSpacing: '0.01em' }}>
-            Ceramic Coating and Paint Protection Specialist.
+            Ceramic Coating &amp;<br />Paint Protection Specialist
           </p>
           <div className="hero-anim hero-cta-group" style={{ display: 'flex', gap: 12, marginTop: 34, justifyContent: 'center', flexWrap: 'wrap' }}>
             <Link to="/get-a-quote" className="btn-primary" style={{ padding: '11px 26px', fontSize: 14, border: '1px solid var(--brand-gold)' }}>
