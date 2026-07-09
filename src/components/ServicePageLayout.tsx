@@ -41,8 +41,8 @@ export default function ServicePageLayout({
             <Link to="/get-a-quote" className="btn-primary" style={{ padding: '11px 26px', fontSize: 14, border: '1px solid var(--brand-gold)' }}>
               <span className="btn-slide" /><span>Get a Quote</span>
             </Link>
-            <Link to="/detailing-packages-melbourne" className="btn-ghost" style={{ borderColor: 'rgba(255,255,255,0.4)', color: '#fff' }}>All Packages</Link>
-            <Link to="/warranties" className="btn-ghost" style={{ borderColor: 'rgba(255,255,255,0.4)', color: '#fff' }}>Warranties</Link>
+            <Link to="/detailing-packages-melbourne" className="btn-ghost" style={{ color: 'var(--brand-green)' }}>All Packages</Link>
+            <Link to="/warranties" className="btn-ghost" style={{ color: 'var(--brand-green)' }}>Warranties</Link>
           </div>
         </div>
       </section>

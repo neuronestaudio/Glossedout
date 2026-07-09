@@ -4,7 +4,8 @@ import PageMeta from '../components/PageMeta';
 export default function GetAQuotePage() {
 
   return (
-    <main style={{ background: 'var(--color-bg-primary)', minHeight: '100dvh', paddingTop: 100, paddingBottom: 80 }}>
+    <main style={{ position: 'relative', overflow: 'hidden', background: '#0A2B1E', minHeight: '100dvh', paddingTop: 100, paddingBottom: 80 }}>
+      <div aria-hidden="true" style={{ position: 'absolute', inset: 0, backgroundImage: 'url(/carbon-bg.jpg)', backgroundSize: 'cover', backgroundPosition: 'center', opacity: 0.22, zIndex: 0, pointerEvents: 'none' }} />
       <PageMeta
         title="Get a Quote — Glossed Out Detailing Melbourne"
         description="Request a quote for PPF, ceramic coating or window tinting in Melbourne. We respond within 2 business hours."
@@ -28,14 +29,14 @@ export default function GetAQuotePage() {
           },
         ]}
       />
-      <section style={{ padding: '40px var(--section-padding-x) 60px', maxWidth: 780, margin: '0 auto', textAlign: 'center' }}>
-        <p style={{ color: 'var(--color-accent)', fontSize: 12, letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: 16 }}>Glossed Out Detailing — Melbourne</p>
-        <h1 className="font-display" style={{ fontSize: 'var(--size-h1)', lineHeight: 1, marginBottom: 20 }}>Get a Quote</h1>
-        <p style={{ color: 'var(--color-text-secondary)', fontSize: 16, lineHeight: 1.75, maxWidth: 520, margin: '0 auto 0' }}>
+      <section style={{ position: 'relative', zIndex: 2, padding: '40px var(--section-padding-x) 60px', maxWidth: 780, margin: '0 auto', textAlign: 'center' }}>
+        <p style={{ color: 'var(--brand-gold-lt)', fontSize: 12, letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: 16 }}>Glossed Out Detailing — Melbourne</p>
+        <h1 className="font-display" style={{ fontSize: 'var(--size-h1)', lineHeight: 1, marginBottom: 20, color: '#fff' }}>Get a Quote</h1>
+        <p style={{ color: 'rgba(255,255,255,0.72)', fontSize: 16, lineHeight: 1.75, maxWidth: 520, margin: '0 auto 0' }}>
           Tell us about your vehicle or property and we'll come back to you with a detailed quote. Usually within one business day.
         </p>
       </section>
-      <section style={{ padding: '0 var(--section-padding-x)', maxWidth: 600, margin: '0 auto' }}>
+      <section style={{ position: 'relative', zIndex: 2, padding: '0 var(--section-padding-x)', maxWidth: 600, margin: '0 auto' }}>
         <div className="card" style={{ padding: 'clamp(24px, 5vw, 40px) clamp(16px, 4vw, 36px)' }}>
           <QuoteForm />
         </div>
