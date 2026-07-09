@@ -541,7 +541,7 @@ export default function ProductTDSPage() {
         <div className="container">
           <p style={{ fontSize: 'var(--size-label)', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--color-text-muted)', marginBottom: 16 }}>Related Pages</p>
           <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap' }}>
-            <Link to="/detailing-packages-melbourne" className="btn-ghost" style={{ padding: '10px 20px', fontSize: 13 }}>Packages &amp; Pricing</Link>
+            <Link to="/detailing-packages-melbourne" className="btn-ghost" style={{ padding: '10px 20px', fontSize: 13 }}>Our Services</Link>
             <Link to="/ceramic-coating-melbourne" className="btn-ghost" style={{ padding: '10px 20px', fontSize: 13 }}>Ceramic Coating</Link>
             <Link to="/warranties" className="btn-ghost" style={{ padding: '10px 20px', fontSize: 13 }}>Warranties</Link>
             <Link to="/gallery" className="btn-ghost" style={{ padding: '10px 20px', fontSize: 13 }}>Gallery</Link>

@@ -6,7 +6,7 @@ const sections = [
     heading: 'Main Pages',
     links: [
       { label: 'Home', href: '/' },
-      { label: 'Packages & Pricing', href: '/detailing-packages-melbourne' },
+      { label: 'Our Services', href: '/detailing-packages-melbourne' },
       { label: 'Gallery', href: '/gallery' },
       { label: 'About', href: '/about' },
       { label: 'Get a Quote', href: '/get-a-quote' },

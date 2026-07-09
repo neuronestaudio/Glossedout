@@ -7,6 +7,8 @@ const services = [
   { label: 'Car Detailing', href: '/car-detailing-melbourne' },
   { label: 'Paint Correction', href: '/paint-correction-melbourne' },
   { label: 'Ceramic Coating', href: '/ceramic-coating-packages-melbourne' },
+  { label: 'Warranties', href: '/warranties' },
+  { label: 'Product TDS', href: '/product-tds' },
 ];
 
 // Preview links so we can swap between home-page interfaces easily.
@@ -247,7 +249,7 @@ export default function Navbar() {
             </Link>
           ))}
           <div style={{ height: 1, background: 'var(--color-border)', margin: '16px 0' }} />
-          {[{ label: 'Packages & Pricing', href: '/detailing-packages-melbourne' }, { label: 'Gallery', href: '/gallery' }, { label: 'About', href: '/about' }].map(l => (
+          {[{ label: 'Our Services', href: '/detailing-packages-melbourne' }, { label: 'Gallery', href: '/gallery' }, { label: 'About', href: '/about' }].map(l => (
             <Link key={l.href} to={l.href} style={{ fontSize: 'clamp(24px, 5vw, 36px)', fontFamily: 'Bebas Neue, sans-serif', color: 'var(--color-text-secondary)', letterSpacing: '0.02em', padding: '8px 0', minHeight: 44, display: 'flex', alignItems: 'center' }}>
               {l.label}
             </Link>

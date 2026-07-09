@@ -12,7 +12,7 @@ const quickLinks = [
   { label: 'Car Detailing', href: '/detailing-packages-melbourne#detailing' },
   { label: 'Paint Correction', href: '/detailing-packages-melbourne#correction' },
   { label: 'Ceramic Coating', href: '/detailing-packages-melbourne#ceramic' },
-  { label: 'Packages & Pricing', href: '/detailing-packages-melbourne' },
+  { label: 'Our Services', href: '/detailing-packages-melbourne' },
   { label: 'Get a Quote', href: '/get-a-quote' },
 ];
 

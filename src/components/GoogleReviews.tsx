@@ -66,8 +66,8 @@ export default function GoogleReviews({ reviews, googleUrl, rating = '5.0', coun
             </div>
           </div>
 
-          <h2 className="font-display" style={{ fontSize: 'clamp(28px, 4vw, 48px)', color: 'var(--color-text-primary)', lineHeight: 1.05, marginTop: 'clamp(28px, 4vw, 40px)', maxWidth: 760, marginLeft: 'auto', marginRight: 'auto' }}>
-            The kind of finish people <span style={{ color: 'var(--brand-gold-dk)' }}>write home about.</span>
+          <h2 className="font-display" style={{ fontSize: 'clamp(28px, 4vw, 48px)', color: 'var(--color-text-primary)', lineHeight: 1.1, marginTop: 'clamp(28px, 4vw, 40px)', maxWidth: 760, marginLeft: 'auto', marginRight: 'auto', textAlign: 'center' }}>
+            The kind of finish people<br /><span style={{ color: 'var(--brand-gold-dk)' }}>write home about.</span>
           </h2>
         </div>
 
