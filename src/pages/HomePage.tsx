@@ -114,7 +114,7 @@ export default function HomePage() {
 
         {/* Content */}
         <div ref={heroContentRef} style={{ position: 'relative', zIndex: 2, maxWidth: 980, padding: '0 24px' }}>
-          <p className="hero-anim hero-eyebrow" style={{ display: 'inline-block', color: 'var(--brand-gold-dk)', fontSize: 'clamp(12px, 1.6vw, 14px)', fontWeight: 700, margin: '0 0 36px', letterSpacing: '0.2em', textTransform: 'uppercase', lineHeight: 1.6, padding: '10px 24px', borderRadius: 999, background: 'rgba(255,255,255,0.38)', backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)', border: '1px solid rgba(255,255,255,0.55)', boxShadow: '0 6px 22px rgba(12,59,42,0.10)' }}>
+          <p className="hero-anim hero-eyebrow" style={{ display: 'inline-block', color: 'var(--brand-gold-dk)', fontSize: 'clamp(12px, 1.6vw, 14px)', fontWeight: 700, margin: '0 0 60px', letterSpacing: '0.2em', textTransform: 'uppercase', lineHeight: 1.6, padding: '10px 24px', borderRadius: 999, background: 'rgba(255,255,255,0.38)', backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)', border: '1px solid rgba(255,255,255,0.55)', boxShadow: '0 6px 22px rgba(12,59,42,0.10)' }}>
             Melbourne's Prestige Mobile Detailer<br />10+ Years Experience
           </p>
           <h1 style={{ margin: 0, lineHeight: 0.9 }}>
