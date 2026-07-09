@@ -220,7 +220,7 @@ export default function AboutHero() {
 
         {/* Scroll cue */}
         <div ref={cueRef} className="nlp-cine__cue">
-          <span>Scroll to explore</span>
+          <span>Scroll to continue</span>
           <span className="nlp-cine__cue-arrow" />
         </div>
 
