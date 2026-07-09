@@ -53,9 +53,10 @@ export default function ServicesPage() {
           position: 'relative',
           overflow: 'hidden',
           padding: '160px var(--section-padding-x) 90px',
-          background: 'radial-gradient(ellipse 90% 80% at 50% 0%, #0E4636 0%, #0A2B1E 55%, #061c14 100%)',
+          background: '#0A2B1E',
         }}
       >
+        <div aria-hidden="true" style={{ position: 'absolute', inset: 0, backgroundImage: 'url(/carbon-bg.jpg)', backgroundSize: 'cover', backgroundPosition: 'center', opacity: 0.22, zIndex: 0, pointerEvents: 'none' }} />
         <div className="container" style={{ position: 'relative', zIndex: 2, textAlign: 'center' }}>
           <p style={{ display: 'inline-flex', alignItems: 'center', gap: 8, fontSize: 'var(--size-label)', textTransform: 'uppercase', letterSpacing: '0.14em', color: 'var(--brand-gold-lt)', marginBottom: 18 }}>
             <Sparkles size={14} /> Glossed Out Detailing — Melbourne
