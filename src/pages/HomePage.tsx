@@ -37,7 +37,7 @@ const services = [
     title: 'Interior Detailing',
     desc: 'Deep interior clean and protection — leather, fabric and trim refreshed, UV protected and odour neutralised.',
     href: '/car-detailing-melbourne',
-    img: '/glossed/gallery-3.jpg',
+    img: '/glossed/interior.jpeg',
   },
 ];
 
