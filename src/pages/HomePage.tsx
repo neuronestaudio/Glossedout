@@ -119,7 +119,7 @@ export default function HomePage() {
           </p>
           <h1 style={{ margin: 0, lineHeight: 0.9 }}>
             <span className="hero-anim font-display title-green-grad" style={{ display: 'block', fontSize: 'clamp(52px, 11vw, 140px)', letterSpacing: '-0.01em' }}>GLOSSED OUT</span>
-            <span className="hero-anim font-display title-green-grad" style={{ display: 'block', fontSize: 'clamp(22px, 4vw, 44px)', letterSpacing: '0.34em', marginTop: 10, paddingLeft: '0.34em' }}>DETAILING</span>
+            <span className="hero-anim hero-script-gold" style={{ display: 'block', fontSize: 'clamp(44px, 9vw, 104px)', letterSpacing: 'normal', marginTop: 2, lineHeight: 1.05 }}>Detailing</span>
           </h1>
           <p className="hero-anim hero-sub-shine" style={{ fontWeight: 700, fontSize: 'clamp(16px, 2vw, 20px)', margin: '24px auto 0', lineHeight: 1.5, maxWidth: 640, letterSpacing: '0.01em' }}>
             Ceramic Coating &amp;<br />Paint Protection Specialist
