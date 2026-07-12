@@ -142,18 +142,9 @@ a { color: inherit; text-decoration: none; }
   }
 }
 
-/* Home hero — "Detailing" in a premium gold script under the bold wordmark */
-.hero-script-gold {
-  font-family: 'Great Vibes', cursive;
-  font-weight: 400;
-  background: linear-gradient(120deg, #E4C766 0%, #C9A227 46%, #A17E12 100%);
-  -webkit-background-clip: text; background-clip: text;
-  -webkit-text-fill-color: transparent; color: transparent;
-  filter: drop-shadow(0 2px 6px rgba(161, 126, 18, 0.25));
-}
-
-/* Home hero subtitle — emerald text with the same glossy shine sweep as the title */
+/* Home hero subtitle — modern emerald cursive with the same glossy shine sweep as the title */
 .hero-sub-shine {
+  font-family: 'Dancing Script', cursive;
   background:
     linear-gradient(115deg, rgba(255,255,255,0) 42%, rgba(255,255,255,0.65) 50%, rgba(255,255,255,0) 58%),
     linear-gradient(155deg, #14523A 0%, #0C3B2A 60%, #14523A 100%);
