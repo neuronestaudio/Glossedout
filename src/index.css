@@ -145,7 +145,7 @@ a { color: inherit; text-decoration: none; }
 /* Home hero subtitle — modern gold cursive: super-thin gold outline, shiny metallic
    gradient fill, moving highlight sweep + warm gold glow so it stands out. */
 .hero-sub-shine {
-  font-family: 'Dancing Script', cursive;
+  font-family: 'Allura', cursive;
   background:
     linear-gradient(112deg, rgba(255,255,255,0) 40%, rgba(255,255,255,0.9) 50%, rgba(255,255,255,0) 60%),
     linear-gradient(160deg, #F6E29A 0%, #E4C766 20%, #C9A227 46%, #EAD07A 60%, #A8831A 100%);
@@ -154,7 +154,7 @@ a { color: inherit; text-decoration: none; }
   background-repeat: no-repeat;
   -webkit-background-clip: text; background-clip: text;
   -webkit-text-fill-color: transparent; color: transparent;
-  -webkit-text-stroke: 0.4px #8C6D0F;
+  -webkit-text-stroke: 0.3px #8C6D0F;
   filter:
     drop-shadow(0 0 12px rgba(201, 162, 39, 0.45))
     drop-shadow(0 2px 3px rgba(10, 43, 30, 0.45));
