@@ -142,17 +142,21 @@ a { color: inherit; text-decoration: none; }
   }
 }
 
-/* Home hero subtitle — modern emerald cursive with the same glossy shine sweep as the title */
+/* Home hero subtitle — modern gold cursive with a glossy shine sweep.
+   Dark emerald drop-shadow glow keeps the gold readable on the light hero bg. */
 .hero-sub-shine {
   font-family: 'Dancing Script', cursive;
   background:
-    linear-gradient(115deg, rgba(255,255,255,0) 42%, rgba(255,255,255,0.65) 50%, rgba(255,255,255,0) 58%),
-    linear-gradient(155deg, #14523A 0%, #0C3B2A 60%, #14523A 100%);
+    linear-gradient(115deg, rgba(255,255,255,0) 42%, rgba(255,255,255,0.7) 50%, rgba(255,255,255,0) 58%),
+    linear-gradient(150deg, #E8CE77 0%, #C9A227 48%, #9A7A16 100%);
   background-size: 240% 100%, 100% 100%;
   background-position: 220% 0, 0 0;
   background-repeat: no-repeat;
   -webkit-background-clip: text; background-clip: text;
   -webkit-text-fill-color: transparent; color: transparent;
+  filter:
+    drop-shadow(0 1px 1px rgba(10, 43, 30, 0.45))
+    drop-shadow(0 3px 14px rgba(10, 43, 30, 0.35));
   animation: marbleSweep 5.5s ease-in-out infinite;
 }
 @media (prefers-reduced-motion: reduce) {
