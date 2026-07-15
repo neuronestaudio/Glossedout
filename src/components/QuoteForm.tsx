@@ -138,7 +138,7 @@ export default function QuoteForm({ defaultService }: QuoteFormProps) {
               onChange={e => setMobile(e.target.value.replace(/\D/g, '').slice(0, 10))}
               aria-required="true"
               aria-invalid={!!errors.mobile}
-              placeholder="04XXXXXXXX"
+              placeholder="0400 123 456"
             />
             {errors.mobile && <FieldError msg={errors.mobile} />}
           </div>
