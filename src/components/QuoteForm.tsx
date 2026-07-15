@@ -219,7 +219,7 @@ export default function QuoteForm({ defaultService }: QuoteFormProps) {
       )}
 
       <div style={{ marginTop: 28 }}>
-        <button type="submit" className="btn-primary" disabled={loading} style={{ minWidth: 160, width: '100%', justifyContent: 'center' }}>
+        <button type="submit" className="btn-primary btn-shine" disabled={loading} style={{ minWidth: 160, width: '100%', justifyContent: 'center' }}>
           <span className="btn-slide" />
           {loading ? (
             <span style={{ display: 'flex', alignItems: 'center', gap: 8, position: 'relative', zIndex: 1 }}>

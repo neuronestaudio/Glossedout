@@ -338,6 +338,33 @@ a { color: inherit; text-decoration: none; }
 .btn-primary:hover .btn-slide { transform: translateX(0); }
 .btn-primary > *:last-child { position: relative; z-index: 1; }
 
+/* Gold shine bar sweeping across a button (opt-in via .btn-shine).
+   z-index 2 puts it above the label so the gleam passes over the text;
+   the button's overflow:hidden clips it to the pill. */
+.btn-shine::after {
+  content: '';
+  position: absolute; top: -50%; left: -60%;
+  width: 38%; height: 200%;
+  z-index: 2; pointer-events: none;
+  transform: skewX(-20deg);
+  background: linear-gradient(
+    90deg,
+    rgba(201, 162, 39, 0) 0%,
+    rgba(228, 199, 102, 0.50) 40%,
+    rgba(255, 244, 205, 0.85) 50%,
+    rgba(228, 199, 102, 0.50) 60%,
+    rgba(201, 162, 39, 0) 100%
+  );
+  animation: btnShine 3.4s ease-in-out infinite;
+}
+@keyframes btnShine {
+  0%, 8%   { left: -60%; }
+  55%, 100% { left: 120%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .btn-shine::after { animation: none; opacity: 0; }
+}
+
 @keyframes gradientShift {
   0%   { background-position: 0% 50%; }
   50%  { background-position: 100% 50%; }
