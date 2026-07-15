@@ -35,6 +35,9 @@ export default function GetAQuotePage() {
         <p style={{ color: 'rgba(255,255,255,0.72)', fontSize: 16, lineHeight: 1.75, maxWidth: 520, margin: '0 auto 0' }}>
           Tell us about your vehicle or property and we'll come back to you with a detailed quote. Usually within one business day.
         </p>
+        <p style={{ display: 'inline-block', margin: '26px auto 0', padding: '12px 26px', borderRadius: 999, background: 'rgba(201,162,39,0.14)', border: '1px solid var(--brand-gold)', color: 'var(--brand-gold-lt)', fontSize: 'clamp(13px, 1.7vw, 15px)', fontWeight: 700, lineHeight: 1.5, letterSpacing: '0.02em', boxShadow: '0 6px 24px rgba(201,162,39,0.14)' }}>
+          Up to $600 Savings on Ceramic Coating Packages Until July 31
+        </p>
       </section>
       <section style={{ position: 'relative', zIndex: 2, padding: '0 var(--section-padding-x)', maxWidth: 600, margin: '0 auto' }}>
         <div className="card" style={{ padding: 'clamp(24px, 5vw, 40px) clamp(16px, 4vw, 36px)' }}>
