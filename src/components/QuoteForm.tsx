@@ -5,6 +5,25 @@ import { pushGtmEvent } from '../lib/gtm';
 
 const GHL_WEBHOOK = 'https://services.leadconnectorhq.com/hooks/ed6fxFrV8P1iGtkwL7D7/webhook-trigger/I3moCd8GTaDTsQUIdzvF';
 
+// `value` is sent to GHL and MUST match the dropdown option's Value column exactly
+// (not its label) or the custom field silently saves blank. `label` is what we show
+// on the site and send as *Label for readable notes.
+const BUDGET_OPTIONS = [
+  { label: 'Entry Level (Under $1000)', value: 'entry_level_under_1000' },
+  { label: 'Standard Range ($1000 - $2500)', value: 'standard_range_1000__2500' },
+  { label: 'Elite Protection ($2,500+)', value: 'elite_protection_2500' },
+];
+
+const SERVICE_OPTIONS = [
+  { label: 'Drop my car off', value: 'drop_my_car_off' },
+  { label: 'Request mobile service at my postcode', value: 'mobile_service' },
+];
+
+const MOBILE = 'mobile_service';
+
+const labelFor = (opts: { label: string; value: string }[], value: string) =>
+  opts.find(o => o.value === value)?.label ?? '';
+
 interface QuoteFormProps {
   defaultService?: string;
 }
@@ -25,6 +44,11 @@ export default function QuoteForm({ defaultService }: QuoteFormProps) {
   const [carModel, setCarModel] = useState('');
   const [inquiry, setInquiry] = useState('');
   const [referral, setReferral] = useState('');
+  const [budget, setBudget] = useState('');
+  const [serviceLocation, setServiceLocation] = useState('');
+  const [postcode, setPostcode] = useState('');
+
+  const wantsMobile = serviceLocation === MOBILE;
 
   const validate = () => {
     const errs: Record<string, string> = {};
@@ -33,6 +57,11 @@ export default function QuoteForm({ defaultService }: QuoteFormProps) {
     else if (mobile.replace(/\D/g, '').length < 10) errs.mobile = 'Enter a valid Australian mobile number.';
     if (!email.trim()) errs.email = 'Email is required.';
     else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) errs.email = 'Enter a valid email address.';
+    if (!serviceLocation) errs.serviceLocation = 'Please choose drop-off or mobile service.';
+    if (wantsMobile) {
+      if (!postcode.trim()) errs.postcode = 'Postcode is required for mobile service.';
+      else if (!/^\d{4}$/.test(postcode.trim())) errs.postcode = 'Enter a valid 4-digit postcode.';
+    }
     return errs;
   };
 
@@ -52,6 +81,11 @@ export default function QuoteForm({ defaultService }: QuoteFormProps) {
         carModel: carModel.trim(),
         inquiry: inquiry.trim(),
         referral: referral || 'Not specified',
+        budget,
+        budgetLabel: labelFor(BUDGET_OPTIONS, budget),
+        serviceLocation,
+        serviceLocationLabel: labelFor(SERVICE_OPTIONS, serviceLocation),
+        postcode: wantsMobile ? postcode.trim() : '',
         service: defaultService || 'General',
         source: 'Website Quote Form',
         page: window.location.pathname,
@@ -118,6 +152,55 @@ export default function QuoteForm({ defaultService }: QuoteFormProps) {
           <label htmlFor="carModel">Car Model</label>
           <input id="carModel" value={carModel} onChange={e => setCarModel(e.target.value)} placeholder="e.g. 2024 Toyota Camry" />
         </div>
+        <fieldset className="qf-fieldset">
+          <legend className="qf-legend">Budget</legend>
+          <div style={{ display: 'grid', gap: 10 }}>
+            {BUDGET_OPTIONS.map(o => (
+              <label key={o.value} className={`qf-radio${budget === o.value ? ' is-checked' : ''}`}>
+                <input type="radio" name="budget" value={o.value} checked={budget === o.value} onChange={() => setBudget(o.value)} />
+                <span>{o.label}</span>
+              </label>
+            ))}
+          </div>
+        </fieldset>
+
+        <fieldset className="qf-fieldset">
+          <legend className="qf-legend">Service option *</legend>
+          <div style={{ display: 'grid', gap: 10 }}>
+            {SERVICE_OPTIONS.map(o => (
+              <label key={o.value} className={`qf-radio${serviceLocation === o.value ? ' is-checked' : ''}`}>
+                <input
+                  type="radio"
+                  name="serviceLocation"
+                  value={o.value}
+                  checked={serviceLocation === o.value}
+                  onChange={() => { setServiceLocation(o.value); if (o.value !== MOBILE) setPostcode(''); }}
+                  aria-required="true"
+                />
+                <span>{o.label}</span>
+              </label>
+            ))}
+          </div>
+          {errors.serviceLocation && <FieldError msg={errors.serviceLocation} />}
+        </fieldset>
+
+        <div>
+          <label htmlFor="postcode">Postcode{wantsMobile ? ' *' : ''}</label>
+          <input
+            id="postcode"
+            inputMode="numeric"
+            maxLength={4}
+            value={postcode}
+            onChange={e => setPostcode(e.target.value.replace(/\D/g, '').slice(0, 4))}
+            disabled={!wantsMobile}
+            aria-required={wantsMobile}
+            aria-invalid={!!errors.postcode}
+            placeholder={wantsMobile ? 'e.g. 3064' : 'Select mobile service to enter your postcode'}
+            style={{ opacity: wantsMobile ? 1 : 0.55, cursor: wantsMobile ? 'text' : 'not-allowed' }}
+          />
+          {errors.postcode && <FieldError msg={errors.postcode} />}
+        </div>
+
         <div>
           <label htmlFor="inquiry">Inquiry</label>
           <textarea id="inquiry" rows={4} value={inquiry} onChange={e => setInquiry(e.target.value)} placeholder="Tell us what you're after — service, coverage, any questions…" style={{ resize: 'vertical' }} />
