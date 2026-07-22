@@ -45,7 +45,7 @@ export default function Navbar() {
     if (!mobileMenuRef.current) return;
     if (mobileOpen) {
       const links = mobileLinksRef.current?.querySelectorAll('a, button');
-      if (links) {
+      if (links?.length) {
         gsap.fromTo(links, { y: -20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.4, stagger: 0.06, ease: 'power3.out' });
       }
     }

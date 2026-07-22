@@ -60,7 +60,7 @@ export default function HomePageBars() {
     const ctx = gsap.context(() => {
       // Hero entrance
       const heroEls = heroContentRef.current?.querySelectorAll('.hero-anim');
-      if (heroEls) {
+      if (heroEls?.length) {
         gsap.from(heroEls, { y: 40, opacity: 0, duration: 0.9, ease: 'power3.out', stagger: 0.12, delay: 0.3 });
       }
       // Hero parallax
