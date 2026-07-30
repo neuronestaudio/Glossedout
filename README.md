@@ -324,7 +324,7 @@ Frames live in `public/` and are **not** Vite assets — paths are built as `/${
 | `scroll_depth` | 25 / 50 / 75 / 90 % thresholds, once each per page |
 | `high_intent_time_on_page` | 60s on a page |
 | `phone_call_cta_click` + `contact` | any `a[href^="tel:"]` click — delegated listener bound once in `main.tsx` |
-| `quote_form_submit`, `generate_lead`, `quote_form_click` | successful quote submission only |
+| `quote_form_submit`, `generate_lead` | **only** after GHL returns 2xx. Never on a failed submit — an uncaptured lead is not a lead. |
 
 ### Quote submission
 

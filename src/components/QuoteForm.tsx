@@ -1,9 +1,30 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Loader2 } from 'lucide-react';
 import { pushGtmEvent } from '../lib/gtm';
 
 const GHL_WEBHOOK = 'https://services.leadconnectorhq.com/hooks/ed6fxFrV8P1iGtkwL7D7/webhook-trigger/I3moCd8GTaDTsQUIdzvF';
+
+/* Without this a hung request never settles, so the button would sit on
+   "Processing…" forever and the visitor would never see a way to retry. */
+const REQUEST_TIMEOUT_MS = 10_000;
+
+const CONTACT_PHONE = '0481 327 250';
+
+/**
+ * Failure logging, deliberately free of personal information — what went wrong,
+ * how long it took, and which page it happened on. Never the name, phone,
+ * email, postcode or free-text message.
+ */
+function logSubmitFailure(detail: {
+  reason: 'http_error' | 'timeout' | 'network_error';
+  status: number | null;
+  durationMs: number;
+  page: string;
+  service: string;
+}) {
+  console.warn('[quote] submission failed', detail);
+}
 
 // `value` is sent to GHL and MUST match the dropdown option's Value column exactly
 // (not its label) or the custom field silently saves blank. `label` is what we show
@@ -48,6 +69,12 @@ export default function QuoteForm({ defaultService }: QuoteFormProps) {
   const [serviceLocation, setServiceLocation] = useState('');
   const [postcode, setPostcode] = useState('');
 
+  /* Double-submit guard. This has to be a ref, not `loading` state: state isn't
+     visible until the next render, so two submits dispatched in the same tick
+     (fast double-click, or Enter held down) would both get past a state check
+     and post the lead twice. */
+  const inFlightRef = useRef(false);
+
   const wantsMobile = serviceLocation === MOBILE;
 
   const validate = () => {
@@ -67,39 +94,74 @@ export default function QuoteForm({ defaultService }: QuoteFormProps) {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (inFlightRef.current) return;
+
     const errs = validate();
     if (Object.keys(errs).length) { setErrors(errs); return; }
     setErrors({});
     setSubmitError('');
+
+    inFlightRef.current = true;
     setLoading(true);
 
-    try {
-      const payload = {
-        name: name.trim(),
-        phone: mobile.trim(),
-        email: email.trim(),
-        carModel: carModel.trim(),
-        inquiry: inquiry.trim(),
-        referral: referral || 'Not specified',
-        budget,
-        budgetLabel: labelFor(BUDGET_OPTIONS, budget),
-        serviceLocation,
-        serviceLocationLabel: labelFor(SERVICE_OPTIONS, serviceLocation),
-        postcode: wantsMobile ? postcode.trim() : '',
-        service: defaultService || 'General',
-        source: 'Website Quote Form',
-        page: window.location.pathname,
-      };
+    const page = window.location.pathname;
+    const service = defaultService || 'General';
 
+    const payload = {
+      name: name.trim(),
+      phone: mobile.trim(),
+      email: email.trim(),
+      carModel: carModel.trim(),
+      inquiry: inquiry.trim(),
+      referral: referral || 'Not specified',
+      budget,
+      budgetLabel: labelFor(BUDGET_OPTIONS, budget),
+      serviceLocation,
+      serviceLocationLabel: labelFor(SERVICE_OPTIONS, serviceLocation),
+      postcode: wantsMobile ? postcode.trim() : '',
+      service,
+      source: 'Website Quote Form',
+      page,
+    };
+
+    /* Field state is deliberately left untouched on every failure path below,
+       so the visitor keeps everything they typed and can just press the button
+       again. */
+    const failWithRetry = () => {
+      setSubmitError(
+        `We couldn't send your request just now — your details are still here. ` +
+        `Please press “Get My Quote” to try again, or call us on ${CONTACT_PHONE}.`
+      );
+      inFlightRef.current = false;
+      setLoading(false);
+    };
+
+    // AbortController rather than AbortSignal.timeout, for wider browser support.
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS);
+    const started = Date.now();
+
+    try {
       const res = await fetch(GHL_WEBHOOK, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
+        signal: controller.signal,
       });
 
-      if (!res.ok) throw new Error('Submission failed');
+      if (!res.ok) {
+        logSubmitFailure({
+          reason: 'http_error',
+          status: res.status,
+          durationMs: Date.now() - started,
+          page,
+          service,
+        });
+        failWithRetry();
+        return;
+      }
 
-      // Fire tracking only after successful submission
+      // GHL returned 2xx — the lead is captured, so the conversion is real.
       pushGtmEvent('quote_form_submit', {
         form_name: 'get_a_quote',
         service_context: defaultService || 'general',
@@ -107,13 +169,24 @@ export default function QuoteForm({ defaultService }: QuoteFormProps) {
         page_title: document.title,
       });
       pushGtmEvent('generate_lead', { currency: 'AUD', value: 0 });
-      pushGtmEvent('quote_form_click', { page_path: window.location.pathname });
 
+      /* inFlightRef stays latched and loading stays set. The component is about
+         to unmount, and leaving them set is what guarantees the events above
+         fire exactly once — a second submit can't slip through the gap before
+         navigation completes. */
       navigate('/thank-you', { state: { fromSubmit: true } });
-    } catch {
-      setSubmitError('Something went wrong. Please call us directly or try again.');
+    } catch (err) {
+      const timedOut = err instanceof Error && err.name === 'AbortError';
+      logSubmitFailure({
+        reason: timedOut ? 'timeout' : 'network_error',
+        status: null,
+        durationMs: Date.now() - started,
+        page,
+        service,
+      });
+      failWithRetry();
     } finally {
-      setLoading(false);
+      clearTimeout(timer);
     }
   };
 
