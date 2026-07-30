@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { Fragment, useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { gsap } from 'gsap';
 import { Shield, Award, Check, ChevronDown, X } from 'lucide-react';
@@ -190,8 +190,9 @@ export default function WarrantyPage() {
               </thead>
               <tbody>
                 {warrantyTable.map((cat, ci) => (
-                  <>{/* eslint-disable-next-line react/jsx-key */}
-                    <tr key={`cat-${ci}`}>
+                  /* Fragment, not <>, so the row group can carry the key a table needs. */
+                  <Fragment key={cat.category}>
+                    <tr>
                       <td colSpan={4} style={{ padding: '20px 16px 8px', fontFamily: 'Bebas Neue, sans-serif', fontSize: 18, letterSpacing: '0.05em', color: 'var(--color-accent)', borderBottom: '1px solid var(--color-border)' }}>
                         {cat.category}
                       </td>
@@ -204,7 +205,7 @@ export default function WarrantyPage() {
                         <td style={{ padding: '14px 16px', fontSize: 13, color: 'var(--color-text-secondary)' }}>{item.backedBy}</td>
                       </tr>
                     ))}
-                  </>
+                  </Fragment>
                 ))}
               </tbody>
             </table>
