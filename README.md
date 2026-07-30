@@ -1,179 +1,385 @@
 # Glossed Out Detailing — Website
 
-Premium automotive detailing, paint protection film, ceramic coating and window tinting.
-**Stack:** React 19 · Vite 7 · TypeScript (strict) · React Router DOM · GSAP · Lucide React · Vercel
+Melbourne prestige auto detailing: car detailing, paint correction and ceramic coating.
+Live at **https://glossedoutdetailing.com.au**
 
-> **Rebrand note:** this site was built from the Next LVL Protection template and rebranded to
-> Glossed Out Detailing. Brand name, domain, contact details and colour system have been swapped;
-> business details are currently **placeholders** (`[Street address]`, `0400 000 000`,
-> `hello@glossedoutdetailing.com.au`, `@glossedoutdetailing`) and analytics is disabled in
-> `index.html` until real IDs are added. Service copy, geography ("Brisbane" / suburb names),
-> team members, partner certifications and photos are still from the template and need a content pass.
+**Stack:** React 19 · Vite 7 · TypeScript 5.9 (strict) · React Router 7 · GSAP 3 · Lenis · Lucide React · Vercel
+
+Rendering is a **static pre-render** — Vite builds an SSR bundle, `scripts/prerender.mjs` walks
+every route in Node and writes real HTML into `dist/<route>/index.html`. No server runtime,
+no `react-helmet`; head tags are captured through a small module-level store (`src/lib/headStore.ts`).
+
+---
+
+## Business details
+
+| Field | Value | Files |
+|---|---|---|
+| Phone | `0481 327 250` / `tel:0481327250` | **21** |
+| Address | Goodrich Ct, Craigieburn VIC 3064 | **17** |
+| Email | `admin@glossedoutdetailing.com.au` | **5** |
+| Hours | 08:00–20:00, 7 days | `index.html` JSON-LD |
+| Instagram / Facebook | `@glossedoutdetailing` | `Footer.tsx`, `index.html` JSON-LD |
+| Accreditations | Gtechniq · Magnum · Kraken · CarPro | `TrustBadges.tsx`, `Accreditations.tsx`, `Footer.tsx`, `public/accreditations/` |
+
+NAP details are **hardcoded, not centralised** — the phone number and address are repeated in visible
+copy (`Navbar`, `Footer`, `CTABlock`, `PackageVisualizer`, `AboutPage`) *and* in the per-page
+`LocalBusiness` JSON-LD on every ceramic page. Changing them means a full grep:
+
+```bash
+grep -rln "0481327250\|0481 327 250" src index.html
+grep -rln "Goodrich Ct" src index.html
+```
+
+> The `<!-- TODO: replace all placeholder business details -->` comment above the JSON-LD in
+> `index.html` is **stale** — the details below it are real. Safe to delete.
 
 ---
 
 ## Dev
 
 ```bash
-npm run dev      # localhost:5173
-npm run build    # production build → dist/
-npx tsc --noEmit # type-check only (must be clean before commit)
-vercel --prod    # deploy to production
+npm install
+npm run dev       # localhost:5173 (client only — no pre-render)
+npm run build     # tsc -b → client build → SSR build → pre-render (must pass before deploy)
+npm run preview   # serve dist/ locally, closest thing to production
+npm run lint      # eslint
+npx tsc --noEmit  # type-check only
+vercel --prod     # deploy
+```
+
+`npm run build` is a four-stage chain and **fails the build if any route fails to pre-render**:
+
+```
+tsc -b
+vite build                                       → dist/
+vite build --ssr src/entry-server.tsx            → dist/server/entry-server.js
+node scripts/prerender.mjs                       → dist/<route>/index.html + dist/404.html
 ```
 
 ---
 
-## Design System (`src/index.css`)
+## Project structure
 
-### Colour Palette
+```
+index.html            shell — GTM, fonts, sitewide AutomotiveBusiness JSON-LD
+src/
+  main.tsx            client entry (hydrate + initPhoneCtaTracking)
+  App.tsx             BrowserRouter, lazy routes, Layout, floating "Enquire Now" CTA
+  entry-server.tsx    SSR route table (eager imports, StaticRouter) — must mirror App.tsx
+  index.css           whole design system, ~1230 lines, no CSS framework
+  components/         18 shared components
+  pages/              33 page components (32 routes + 404)
+  pages/about/        cinematic about page (scroll-scrubbed canvas frame sequences)
+  data/galleryPhotos.ts
+  lib/gtm.ts          dataLayer helpers + event tracking
+  lib/headStore.ts    module-level head capture consumed by the pre-renderer
+  assets/             imported images (hashed by Vite)
+scripts/prerender.mjs route list + head-tag injection
+public/               static passthrough — frames, logos, robots.txt, sitemap.xml
+vercel.json           build config + 37 legacy 301 redirects
+```
+
+Styling is **inline styles + `index.css` utility classes**. There is no Tailwind, CSS module or
+styled-components — matching that pattern matters when adding components.
+
+---
+
+## Routes
+
+All routes are defined in **three places that must stay in sync**:
+`src/App.tsx` · `src/entry-server.tsx` · `scripts/prerender.mjs` (plus `public/sitemap.xml` for indexed pages).
+
+### Core (5)
+| Route | File |
+|---|---|
+| `/` | `HomePage.tsx` |
+| `/detailing-packages-melbourne` | `ServicesPage.tsx` |
+| `/gallery` | `GalleryPage.tsx` |
+| `/about` | `AboutPage.tsx` |
+| `/get-a-quote` | `GetAQuotePage.tsx` |
+
+### Service pages (3) — all built on `ServicePageLayout`
+| Route | File | Tiers from `PackagesKit` |
+|---|---|---|
+| `/car-detailing-melbourne` | `CarDetailingServicePage.tsx` | `detailing` |
+| `/paint-correction-melbourne` | `PaintCorrectionServicePage.tsx` | `correction` |
+| `/ceramic-coating-packages-melbourne` | `CeramicPackagesServicePage.tsx` | `ceramicUsed` |
+
+### Ceramic SEO cluster (14)
+`/ceramic-coating-melbourne` (hub) · `/ceramic-coating-questions` · and 12 variation pages:
+
+`/ceramic-coating-new-car-melbourne`, `/ceramic-coating-cost-melbourne`,
+`/ceramic-coating-uv-melbourne` (file: `CeramicMelbournePage.tsx`),
+`/ceramic-coating-paint-correction-melbourne`, `/ceramic-glass-coating-melbourne`,
+`/ceramic-coating-wheels-melbourne`, `/ceramic-coating-longevity-melbourne`,
+`/ceramic-vs-dealer-paint-protection-melbourne`, `/ceramic-coating-matte-paint-melbourne`,
+`/ceramic-coating-maintenance-melbourne`, `/ceramic-coating-resale-melbourne`,
+`/ceramic-coating-near-me-melbourne`
+
+### Support (5)
+`/warranties` · `/product-tds` · `/sitemap` · `/privacy-policy` · `/thank-you` (noindex, guarded)
+
+### Home-page demos (5) — `noindex`, internal only
+`/home-sportscar` · `/home-intro` · `/home-banner` · `/home-demo2` · `/home-white`
+
+Reachable from an "Interface versions" dropdown in `Navbar.tsx` (marked
+`TODO: remove this block before final client hand-off`). Not in `sitemap.xml`.
+
+### 404
+`*` → `NotFoundPage.tsx`. The pre-renderer also emits `dist/404.html`, which Vercel serves with a
+real HTTP 404 for unmatched paths.
+
+### Redirects
+`vercel.json` holds **37 permanent (301) redirects** from the previous Next LVL Protection URL set —
+`*-brisbane` ceramic paths → their `*-melbourne` equivalents, and all PPF / window-tint paths →
+`/detailing-packages-melbourne` (the site no longer offers those services).
+
+---
+
+## SEO & head management
+
+`react-helmet` is not used. `PageMeta` does double duty:
+
+```tsx
+<PageMeta
+  title="…"
+  description="…"
+  canonical="https://glossedoutdetailing.com.au/…"
+  noindex          // optional
+  jsonLd={[{ '@type': 'FAQPage', … }]}   // optional, array of objects
+/>
+```
+
+- **During pre-render** it calls `recordHead()` synchronously into `headStore`; `entry-server.tsx`
+  wraps each render in `startCapture()` / `endCapture()` and returns the captured head to
+  `prerender.mjs`, which injects `<title>`, description, canonical, OG, Twitter and JSON-LD tags.
+- **In the browser** a `useEffect` writes the same tags into `document.head` on navigation.
+
+Every page must render exactly one `PageMeta`. OG image is `/NLP-Shop.jpeg` (hardcoded in both
+`PageMeta.tsx` and `prerender.mjs` — change both).
+
+`public/sitemap.xml` lists **25 indexable URLs** and is maintained by hand. `public/robots.txt`
+allows everything and points at it.
+
+---
+
+## Design system (`src/index.css`)
+
+### Colour tokens
 
 | Token | Value | Usage |
 |---|---|---|
-| `--color-bg-primary` | `#F8FAF9` | Page background (near-white) |
-| `--color-bg-secondary` | `#FFFFFF` | Section backgrounds |
-| `--brand-green` / `--color-accent` | `#0C3B2A` | Deep forest green — headings, buttons, badges |
+| `--brand-green` / `--color-accent` | `#0C3B2A` | Deep forest green — primary |
+| `--brand-green-dk` / `--color-accent-bright` | `#072A20` | Near-black green |
 | `--brand-emerald` | `#1B6B4A` | Mid emerald — gradients, hover |
-| `--brand-gold` | `#C9A227` | Metallic gold — accents, dividers, highlights |
-| `--brand-gold-lt` | `#E4C766` | Light gold highlight |
-| `--brand-dark` | `#0A2B1E` | Very dark green — dark sections, footer |
+| `--brand-emerald-lt` | `#2E8560` | Light emerald |
+| `--brand-dark` | `#0A2B1E` | Very dark green — dark sections, hero vignettes |
+| `--brand-gold` | `#C9A227` | Metallic gold — accents, borders, dividers |
+| `--brand-gold-lt` | `#E4C766` | Light gold — eyebrows on dark |
+| `--brand-gold-dk` | `#A17E12` | Deep gold — gold text on light |
+| `--color-bg-primary` | `#F8FAF9` | Page background |
+| `--color-bg-secondary` | `#FFFFFF` | Section backgrounds |
+| `--color-bg-tertiary` | `#EDF2EF` | Alt sections |
 | `--color-text-primary` | `#0D1613` | Body copy |
 | `--color-text-secondary` | `#445048` | Subtext |
+| `--color-text-muted` | `#869089` | Captions |
 | `--gradient-brand` | `135deg #0C3B2A → #1B6B4A → #C9A227` | Green→gold brand gradient |
+
+`body` also carries three fixed radial-gradient washes (green, gold, pale mint) for depth.
 
 ### Typography
 
-| Token | Value |
+Loaded in `index.html`: **Bebas Neue**, **DM Sans**, **Syne**, **Allura**, **Instrument Sans**.
+
+| Token / class | Value |
 |---|---|
 | `--font-display` | `'Syne', sans-serif` |
 | `--font-body` | `'DM Sans', sans-serif` |
+| `.font-display` | **Bebas Neue** — the condensed headline face used for nearly all H1/H2 |
+| `.font-syne` | Syne |
 | `--size-hero` | `clamp(72px, 12vw, 160px)` |
 | `--size-h1` | `clamp(40px, 6vw, 80px)` |
 | `--size-h2` | `clamp(28px, 4vw, 48px)` |
+| `--size-h3` | `clamp(18px, 2.5vw, 24px)` |
 
-### Utility Classes
+> Naming trap: `--font-display` is Syne, but the `.font-display` **class** is Bebas Neue. Headings
+> use the class. Don't "fix" one to match the other without checking every heading.
+
+### Layout & surface classes
 
 | Class | Effect |
 |---|---|
-| `.hero-text-mono` | `linear-gradient(160deg, #0D1117 0%, #667085 100%)` — monochrome gradient clipped to text |
-| `.text-gradient` | Brand gradient clipped to text (defined, currently unused) |
-| `.section` | Full-width section with `--section-padding-y` vertical padding + flowing wave SVG `::before` overlay |
-| `.container` | `max-width: 1280px`, centred, horizontal padding |
-| `.card` | Glassmorphism surface — white 80% + blur + border |
-| `.btn-primary` | Dark navy pill button with left-to-right slate wipe on hover (see below) |
-| `.btn-ghost` | Frosted white pill button |
+| `.section` | `--section-padding-y` / `--section-padding-x` padding, `position: relative` |
+| `.container` | `max-width: 1280px`, centred |
+| `.card` | Glass surface — white ~80% + blur + hairline border |
+| `.services-wave-bg` | Dark green (`#0A2B1E`) section; overrides `.card` to gold-on-green |
+| `.services-grid` / `.gold-grid` / `.tier-grid` | Responsive grids (4→2→1, 3→2→1) |
+| `.section-number` | Giant ghosted numeral, 4% opacity, absolutely positioned |
+
+> The old flowing-wave SVG `::before` overlay on `.section` has been **removed** —
+> `.section::before { content: none }`. Sections are flat now.
+
+### Buttons
+
+| Class | Look |
+|---|---|
+| `.btn-primary` | Deep green pill, emerald wipe on hover |
+| `.btn-emerald` | Emerald fill |
+| `.btn-gold` | Gold gradient fill (used on "Get My Quote") |
+| `.btn-gold-outline` | Gold border, transparent fill |
+| `.btn-ghost` | Frosted white pill |
+| `.btn-shine` | **Modifier** — adds a looping diagonal gleam sweep via `::after` |
+
+The wipe mechanic: the base gradient sits on the button, a `<span class="btn-slide" />` child holds
+the hover gradient at `translateX(-100%)` and slides to `0` on hover (out-expo), and the label sits
+at `z-index: 1` above both. **Every wipe button needs the `<span className="btn-slide" />` child** or
+the hover does nothing.
+
+### Text effects
+
+| Class | Effect |
+|---|---|
+| `.hero-text-mono` | White marble gradient clipped to text with a 6.5s shine sweep (`marbleSweep`) |
+| `.hero-gradient` | Brand green→gold gradient clipped to text |
+| `.title-green-grad` | Green gradient headline |
+| `.hero-sub-shine` / `.shine-anim-accent` | Animated highlight sweeps |
+| `.text-gradient` | Brand gradient text (defined, largely unused) |
+
+All sweep animations are disabled under `@media (prefers-reduced-motion: reduce)`.
 
 ---
 
 ## Components (`src/components/`)
 
-### `TrustBadges`
+| Component | Props | Notes |
+|---|---|---|
+| `Navbar` | — | Transparent → frosted on scroll (>60px). Services dropdown, mobile hamburger, GSAP stagger. Also holds the temporary "Interface versions" demo dropdown. |
+| `Footer` | — | 4-column (brand + accreditation tiles, Quick Links, Popular, Contact). Collapses at 900px / 560px. |
+| `PageMeta` | `title, description, canonical, noindex?, jsonLd?` | See SEO section. One per page. |
+| `QuoteForm` | `defaultService?` | Posts to GoHighLevel. See Lead flow. |
+| `CTABlock` | `defaultService` | Full-width CTA band feeding the quote page. |
+| `ServicePageLayout` | `meta, eyebrow, title, lead, heroImg, tiers, carouselTitle, carouselIntro, carouselNote?, faqs, faqTitle, showWarranty?, ctaService` | Whole-page template for the 3 service pages: 88dvh photo hero + vignette → package carousel → optional warranty table → FAQ → CTA. |
+| `PackagesKit` | — | Exports `Tier` type, the `detailing` / `correction` / `ceramicUsed` tier data, plus `PriceCard`, `PackageCarousel` and `WarrantyTable`. **Pricing lives here.** |
+| `PackageVisualizer` | `tiers: PackageTier[]` | Horizontal tier selector with animated highlight. |
+| `ServicesShowcase` | `services: ServiceItem[]` | Image-card grid with hover reveal. |
+| `TrustBadges` | `services?: ('ppf'\|'tint'\|'window'\|'ceramic')[]` — defaults `['ceramic']` | Dark green pills + orange ribbon icon: Gtechniq, Magnum Accredited, Kraken Certified, CarPro Trained. |
+| `Accreditations` | `variant?: 'light'\|'dark'`, `heading?`, `subtext?` | Logo strip from `public/accreditations/`. |
+| `AccreditationBar` | `background?` (default `#0A2B1E`) | Compact 4-logo bar used under hero sections. |
+| `GoogleReviews` | `reviews, googleUrl, rating?` (`'5.0'`) `count?` (`'113'`) | Review cards + Google link-out. |
+| `Reviews` | `reviews` | Plain static review grid. |
+| `FAQAccordion` | `items: { q, a }[]` | GSAP height accordion. Pair with `FAQPage` JSON-LD via `PageMeta`. |
+| `BeforeAfterSlider` | `before, after, alt?, height?` (360) | Drag-to-reveal comparison. |
+| `HomeSplash` | — | Logo splash intro on the home page. |
+| `PremiumHeroBg` | — | Static, mirror-symmetric SVG hero background — silver wave panels, gold trim curves, centre kept clear for the wordmark. |
 
-Dark navy pill badges with ribbon SVG icon in `#E07B3A` (warm orange).
+> `TrustBadges` still declares the `'ppf' \| 'tint' \| 'window'` union from the template, but all
+> four badges are tagged `'ceramic'` — passing anything else renders nothing.
 
-```tsx
-<TrustBadges services={['ppf', 'tint', 'window']} />
-// services accepts: 'ppf' | 'tint' | 'window' | 'ceramic'
-// defaults to ['ppf', 'tint', 'window'] — 'ceramic' is also valid
+### About page (`src/pages/about/`)
+
+The most complex page. `IntroCineHero` and `AboutHero` drive `FrameSequence` — a canvas that paints
+a scroll-scrubbed WebP image sequence (Lenis smooth scroll + GSAP ScrollTrigger pin), then cross-fades
+typographic "sayings" over a radial emerald fade.
+
+`TeamPanorama` annotates a single group photo: each person gets a connector dot placed on their
+shoulder at hand-measured `%` coordinates, with an elbow line running out to a staggered label.
+Those coordinates are tuned to **that exact photo** — swapping the image means re-measuring every
+`sx/sy/lx/ly` in the `PEOPLE` array.
+
+Styles are in `about-cinematic.css` / `team-panorama.css`.
+
+Frames live in `public/` and are **not** Vite assets — paths are built as `/${framesDir}/f000.webp`:
+
+| Dir | Frames | Used by |
+|---|---|---|
+| `public/intro-frames/` | 228 | `IntroCineHero` |
+| `public/about-frames/` | 240 | `AboutHero` |
+| `public/about-frames-uhd/` | 228 | high-DPI variant |
+
+---
+
+## Content & data
+
+- **Pricing** — `src/components/PackagesKit.tsx`. Detailing $229 / $350 / $699 · Correction from $450 ·
+  Ceramic $1,299–$2,699 (Gtechniq CSL, Magnum Graphene/Borophene, Kraken Elite Plus / Elite Titanium).
+- **Gallery** — `src/data/galleryPhotos.ts`, 10 photos categorised `Detailing | Paint Correction | Ceramic`,
+  imported from `src/assets/glossed/`.
+- **Warranty matrix** — `WarrantyPage.tsx` + `WarrantyTable` in `PackagesKit`. Coating range and
+  durability are cross-checked against `/product-tds`; keep the two in step.
+- **Coating TDS** — `ProductTDSPage.tsx`.
+
+---
+
+## Analytics & lead flow
+
+**Google Tag Manager `GTM-WR8SVWC3`** is live in `index.html` (head script + noscript iframe).
+
+`src/lib/gtm.ts` pushes to `dataLayer`:
+
+| Event | Fired by |
+|---|---|
+| `page_view` | every route change (`ScrollToTop` in `App.tsx`) |
+| `key_service_page_view` | `/detailing-packages-melbourne`, `/ceramic-coating-melbourne` |
+| `scroll_depth` | 25 / 50 / 75 / 90 % thresholds, once each per page |
+| `high_intent_time_on_page` | 60s on a page |
+| `phone_call_cta_click` + `contact` | any `a[href^="tel:"]` click — delegated listener bound once in `main.tsx` |
+| `quote_form_submit`, `generate_lead`, `quote_form_click` | successful quote submission only |
+
+### Quote submission
+
+`QuoteForm` POSTs JSON straight to a **GoHighLevel webhook** (hardcoded at the top of
+`QuoteForm.tsx` — no env var, no server route):
+
+```
+https://services.leadconnectorhq.com/hooks/ed6fxFrV8P1iGtkwL7D7/webhook-trigger/I3moCd8GTaDTsQUIdzvF
 ```
 
-**Badge labels:**
-- `ppf` → SunTek Certified PPF
-- `tint` → Solar Gard VTX PRO
-- `window` → 3M Window Films
-- `ceramic` → Ceramic Pro Certified
+Fields: name\*, mobile\* (10 digits, stripped to numerals), email\*, car model, budget,
+service option\* (drop-off / mobile), postcode (required + only enabled when mobile service is
+chosen), inquiry, referral source.
 
-### `btn-primary` Hover Effect
+> **Gotcha:** `budget` and `serviceLocation` send GHL *option values* (`entry_level_under_1000`,
+> `mobile_service`, …), not labels — these must match the GHL dropdown's Value column exactly or the
+> custom field silently saves blank. Human-readable `budgetLabel` / `serviceLocationLabel` are sent
+> alongside for the notes.
 
-The button uses a two-layer wipe mechanic:
-
-1. **Base layer** — `linear-gradient(135deg, #0C3B2A → #14523A)` (deep green)
-2. **Slide layer** (`.btn-slide` `<span>`) — `linear-gradient(135deg, #1B6B4A → #2E8560)` (emerald), starts `translateX(-100%)`, animates to `translateX(0)` on hover via `cubic-bezier(0.22, 1, 0.36, 1)` (out-expo)
-3. **Text** sits on `z-index: 1` above both layers
-4. On hover: `scale(1.03)` + `box-shadow` glow in green with a gold ring
-
-To change the wipe colour, edit `.btn-primary .btn-slide { background: ... }` in `index.css`.
-
-### `Navbar`
-
-Transparent on scroll-top → frosted white on scroll. Mobile hamburger menu.
-
-### `FAQAccordion`
-
-Accepts `{ q: string; a: string }[]`. Used on all Q&A variation pages.
-
-### `PackageVisualizer`
-
-Horizontal package tier selector with animated highlight.
-
-### `BeforeAfterSlider`
-
-Drag-to-reveal before/after image comparison component.
-
-### `Reviews`
-
-Static review cards grid. Data passed as props or imported from `src/data/`.
-
-### `CTABlock`
-
-Full-width CTA banner. Accepts `heading`, `sub`, `btnText`, `btnHref`.
-
-### `QuoteForm`
-
-Contact / quote request form with validation.
-
-### `PageMeta`
-
-Thin wrapper around `<Helmet>` for `<title>`, `<meta description>`, `<link rel="canonical">`.
-
----
-
-## Page Architecture
-
-### Money Pages (5)
-| Route | File |
-|---|---|
-| `/ppf-brisbane` | `PPFPage.tsx` |
-| `/ceramic-coating-brisbane` | `CeramicCoatingPage.tsx` |
-| `/automotive-window-tinting-brisbane` | `AutomotiveTintPage.tsx` |
-| `/residential-window-tinting-brisbane` | `ResidentialTintPage.tsx` |
-| `/commercial-window-tinting-brisbane` | `CommercialTintPage.tsx` |
-
-### Q&A Pages (5)
-`PPFQuestionsPage`, `CeramicQuestionsPage`, `AutoTintQuestionsPage`, `ResidentialTintQuestionsPage`, `CommercialTintQuestionsPage`
-
-### B1 — PPF Variation Pages (11) ✅
-`/ppf-cost-brisbane`, `/ppf-near-me-brisbane`, `/ppf-new-car-brisbane`, `/ppf-partial-brisbane`, `/ppf-self-healing-brisbane`, `/ppf-stone-chip-brisbane`, `/ppf-warranty-brisbane`, `/ppf-dark-paint-brisbane`, `/ppf-gloss-matte-brisbane`, `/ppf-resale-value-brisbane`, `/suntek-ppf-brisbane`
-
-### B2 — Ceramic Variation Pages (13) ✅
-`/ceramic-coating-cost-brisbane`, `/ceramic-coating-near-me-brisbane`, `/ceramic-coating-new-car-brisbane`, `/ceramic-coating-brisbane-south`, `/ceramic-coating-longevity-brisbane`, `/ceramic-coating-maintenance-brisbane`, `/ceramic-coating-resale-brisbane`, `/ceramic-coating-matte-brisbane`, `/ceramic-coating-wheels-brisbane`, `/ceramic-glass-coating-brisbane`, `/ceramic-vs-dealer-brisbane`, `/ceramic-ppf-combo-brisbane`, `/paint-correction-brisbane`
-
-### B3 — Auto Tint Variation Pages ❌ (pending)
-Planned routes: `/window-tinting-cost-brisbane`, `/car-window-tinting-brisbane`, `/automotive-tint-shades-brisbane`, `/window-tint-legal-brisbane`, `/solar-gard-tint-brisbane`, `/window-tint-heat-rejection-brisbane`, `/window-tint-uv-protection-brisbane`, `/window-tint-privacy-brisbane`, `/window-tint-new-car-brisbane`, `/window-tint-warranty-brisbane`, `/window-tinting-near-me-brisbane`, `/window-tint-vs-ppf-brisbane`
-
-### B4 — Residential Tint Variation Pages ❌ (pending, ~12 pages)
-
-### B5 — Commercial Tint Variation Pages ❌ (pending, ~11 pages)
-
-### Section C — Bundle Pages ❌ (pending, ~10 pages)
-
-### Section D — Comparison Pages ❌ (pending, ~15 pages)
-
----
-
-## Section Wave Texture
-
-All `.section` elements get a flowing SVG wave overlay via `::before` pseudo-element (18 paths, 0.6px stroke, 7% opacity). Children are `position: relative; z-index: 1` to sit above it.
-
-To override for a specific section, add `position: relative; overflow: hidden` to the section and inject an absolutely-positioned `<div>` with a custom inline SVG.
+On success it navigates to `/thank-you` with `state.fromSubmit`. `ThankYouPage` redirects back to
+`/get-a-quote` without that state, so the page can't be hit directly or refreshed.
 
 ---
 
 ## Deployment
 
-Hosted on **Vercel** — project `dannys-projects-e4c45659`.
+Vercel project **`glossed-out-detailing`**. `vercel.json` sets `buildCommand`, `outputDirectory: dist`,
+`trailingSlash: false` and the redirect table. `dist/` is gitignored.
 
 ```bash
+npm run build   # verify the pre-render passes all routes first
 vercel --prod
 ```
 
-Last production commit: `110cd52` — B2 Ceramic complete.
+---
+
+## Known gaps
+
+- **`entry-server.tsx` is missing 5 routes that `prerender.mjs` renders**:
+  `/car-detailing-melbourne`, `/paint-correction-melbourne`, `/ceramic-coating-packages-melbourne`,
+  `/home-demo2`, `/home-white`. They fall through to the wildcard, so their pre-rendered HTML is the
+  **404 page** (`dist/car-detailing-melbourne/index.html` currently has
+  `<title>Page Not Found…</title>`). The client router recovers on hydration, but crawlers and
+  first paint see the 404. The first three are real, sitemap-listed service pages — fix by adding
+  their `<Route>` entries to `entry-server.tsx`.
+- **No Google Ads conversion is wired up.** The placeholder `send_to: 'AW-XXXXXXXXX/…'` gtag call has
+  been removed from `ThankYouPage.tsx` — it was dead code (`window.gtag` is never defined, since the
+  site loads GTM rather than gtag.js). Conversions should be configured **inside GTM** off the
+  `generate_lead` / `quote_form_submit` events that `QuoteForm` pushes on successful submit.
+  `fireGadsConversion()` in `gtm.ts` is still exported but called from nowhere.
+- **13 `[Confirm from official TDS]` placeholders** remain in `ProductTDSPage.tsx`.
+- **Demo home pages** (`/home-*`) and the Navbar "Interface versions" dropdown should be removed
+  before final hand-off.
+- **Template job titles on the team** — `TeamPanorama` still lists "PPF & Tint Installer" and
+  "PPF & Tint Specialist", but the site no longer sells PPF or window tinting (those URLs all 301
+  away in `vercel.json`).
+- **Stale TODO comment** above the JSON-LD in `index.html` — the business details are real.
+- `sitemap.xml` is hand-maintained and can drift from the route table.
