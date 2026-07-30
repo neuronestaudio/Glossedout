@@ -12,8 +12,14 @@ const REQUEST_TIMEOUT_MS = 10_000;
 const CONTACT_PHONE = '0481 327 250';
 
 /* Long enough that the visitor sees their choice highlight before the step
-   changes — advancing instantly reads as though the click did something else. */
-const AUTO_ADVANCE_MS = 260;
+   changes — advancing instantly reads as though the click did something else.
+   Kept tight because the outgoing step adds its own beat on top. */
+const AUTO_ADVANCE_MS = 200;
+
+/* The outgoing step clears before the incoming one is mounted. Short and
+   sharply eased — this half is "get out of the way", not a feature. Must stay
+   in step with the .qf-step.is-out animation duration in index.css. */
+const STEP_OUT_MS = 130;
 
 /**
  * Failure logging, deliberately free of personal information — what went wrong,
@@ -78,6 +84,10 @@ export default function QuoteForm({ defaultService }: QuoteFormProps) {
   const [submitError, setSubmitError] = useState('');
 
   const [step, setStep] = useState(0);
+  /* Which way the content travels. Forward and back reading differently is most
+     of what makes a stepper feel considered rather than a series of jump cuts. */
+  const [direction, setDirection] = useState<1 | -1>(1);
+  const [phase, setPhase] = useState<'in' | 'out'>('in');
 
   const [name, setName] = useState('');
   const [mobile, setMobile] = useState('');
@@ -103,10 +113,32 @@ export default function QuoteForm({ defaultService }: QuoteFormProps) {
   const headingRef = useRef<HTMLParagraphElement>(null);
   const steppedRef = useRef(false);
   const advanceTimerRef = useRef<number | null>(null);
+  const phaseTimerRef = useRef<number | null>(null);
+  const wrapRef = useRef<HTMLDivElement>(null);
+  const innerRef = useRef<HTMLDivElement>(null);
 
   // Don't leave a pending step change to fire against an unmounted form.
   useEffect(() => () => {
     if (advanceTimerRef.current !== null) window.clearTimeout(advanceTimerRef.current);
+    if (phaseTimerRef.current !== null) window.clearTimeout(phaseTimerRef.current);
+  }, []);
+
+  /* Drive the panel's height from its content so it eases between steps of
+     different lengths instead of snapping — step 4 is roughly twice the height
+     of step 1, and that jump is the jankiest thing about a naive stepper.
+     Writes the height straight to the node rather than through state: this
+     reacts to layout, and a render pass here would just add a frame of lag.
+     The observed element is stable (`key` sits on its child) so the observer
+     survives step changes, which also gets the postcode reveal animating free. */
+  useEffect(() => {
+    const wrap = wrapRef.current;
+    const inner = innerRef.current;
+    if (!wrap || !inner || typeof ResizeObserver === 'undefined') return;
+    const sync = () => { wrap.style.height = `${inner.offsetHeight}px`; };
+    sync();
+    const ro = new ResizeObserver(sync);
+    ro.observe(inner);
+    return () => ro.disconnect();
   }, []);
 
   const wantsMobile = serviceLocation === MOBILE;
@@ -157,9 +189,19 @@ export default function QuoteForm({ defaultService }: QuoteFormProps) {
 
   const goTo = (n: number) => {
     cancelAdvance();
+    if (n === step) return;
+    if (phaseTimerRef.current !== null) window.clearTimeout(phaseTimerRef.current);
+
+    setDirection(n > step ? 1 : -1);
     setErrors({});
     setSubmitError('');
-    setStep(n);
+    // Let the current step clear out before the next one is mounted.
+    setPhase('out');
+    phaseTimerRef.current = window.setTimeout(() => {
+      setStep(n);
+      setPhase('in');
+      phaseTimerRef.current = null;
+    }, STEP_OUT_MS);
   };
 
   /**
@@ -332,7 +374,15 @@ export default function QuoteForm({ defaultService }: QuoteFormProps) {
         })}
       </ol>
 
-      <div className="qf-step pkg-carousel__anim" key={step} role="group" aria-labelledby="qf-step-heading">
+      {/* wrap = animated height · inner = stable observer target · step = keyed content */}
+      <div className="qf-step-wrap" ref={wrapRef}>
+      <div ref={innerRef}>
+      <div
+        className={`qf-step${direction === -1 ? ' is-back' : ''}${phase === 'out' ? ' is-out' : ''}`}
+        key={step}
+        role="group"
+        aria-labelledby="qf-step-heading"
+      >
         <p className="qf-step__heading" id="qf-step-heading" ref={headingRef} tabIndex={-1}>
           {step === 0 && 'How would you like the work done?'}
           {step === 1 && 'What are you after?'}
@@ -430,7 +480,7 @@ export default function QuoteForm({ defaultService }: QuoteFormProps) {
 
         {/* STEP 4 — details */}
         {step === 3 && (
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
+          <div className="qf-step__fields" style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
             <div className="grid-2col" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
               <div>
                 <label htmlFor="fullName">Name *</label>
@@ -476,6 +526,8 @@ export default function QuoteForm({ defaultService }: QuoteFormProps) {
             </div>
           </div>
         )}
+      </div>
+      </div>
       </div>
 
       {submitError && (
