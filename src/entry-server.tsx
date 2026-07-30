@@ -1,6 +1,11 @@
 /**
  * SSR entry point — used at build time to pre-render each route to static HTML.
  * Uses StaticRouter (no browser APIs) and eager imports (no lazy/Suspense).
+ *
+ * KEEP IN SYNC with the route tables in App.tsx and scripts/prerender.mjs.
+ * A route that prerender.mjs renders but this file doesn't match falls through
+ * to the "*" wildcard, so its static HTML is silently written as the 404 page —
+ * noindex, canonical /404 — while the build still reports it as pre-rendered.
  */
 import { renderToString } from 'react-dom/server';
 import { StaticRouter } from 'react-router-dom';
@@ -11,9 +16,14 @@ import { startCapture, endCapture, type HeadData } from './lib/headStore';
 
 import HomePage from './pages/HomePage';
 import ServicesPage from './pages/ServicesPage';
+import CarDetailingServicePage from './pages/CarDetailingServicePage';
+import PaintCorrectionServicePage from './pages/PaintCorrectionServicePage';
+import CeramicPackagesServicePage from './pages/CeramicPackagesServicePage';
 import HomePageSportscar from './pages/HomePageSportscar';
 import HomePageIntro from './pages/HomePageIntro';
 import HomePageBanner from './pages/HomePageBanner';
+import HomePageBars from './pages/HomePageBars';
+import HomePageWhite from './pages/HomePageWhite';
 import CeramicCoatingPage from './pages/CeramicCoatingPage';
 import CeramicQuestionsPage from './pages/CeramicQuestionsPage';
 import GalleryPage from './pages/GalleryPage';
@@ -59,9 +69,14 @@ export function render(url: string): { html: string; head: HeadData } {
           <Route element={<Layout />}>
             <Route path="/" element={<HomePage />} />
             <Route path="/detailing-packages-melbourne" element={<ServicesPage />} />
+            <Route path="/car-detailing-melbourne" element={<CarDetailingServicePage />} />
+            <Route path="/paint-correction-melbourne" element={<PaintCorrectionServicePage />} />
+            <Route path="/ceramic-coating-packages-melbourne" element={<CeramicPackagesServicePage />} />
             <Route path="/home-sportscar" element={<HomePageSportscar />} />
             <Route path="/home-intro" element={<HomePageIntro />} />
             <Route path="/home-banner" element={<HomePageBanner />} />
+            <Route path="/home-demo2" element={<HomePageBars />} />
+            <Route path="/home-white" element={<HomePageWhite />} />
             <Route path="/ceramic-coating-melbourne" element={<CeramicCoatingPage />} />
             <Route path="/ceramic-coating-questions" element={<CeramicQuestionsPage />} />
             <Route path="/gallery" element={<GalleryPage />} />
