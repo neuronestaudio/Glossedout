@@ -1,22 +1,13 @@
-import { useEffect } from 'react';
 import { useLocation, Navigate } from 'react-router-dom';
 import { CheckCircle, Phone } from 'lucide-react';
 import PageMeta from '../components/PageMeta';
 
+/* Conversion tracking is handled in GTM off the `generate_lead` / `quote_form_submit`
+   events that QuoteForm pushes on successful submit — not with a gtag call here. */
+
 export default function ThankYouPage() {
   const location = useLocation();
   const fromSubmit = (location.state as { fromSubmit?: boolean })?.fromSubmit;
-
-  useEffect(() => {
-    // TODO: replace with Glossed Out's real Google Ads conversion ID before enabling analytics
-    if (typeof window.gtag === 'function') {
-      window.gtag('event', 'conversion', {
-        send_to: 'AW-XXXXXXXXX/XXXXXXXXXXXXXXXXXXX',
-        value: 1.0,
-        currency: 'AUD',
-      });
-    }
-  }, []);
 
   const meta = (
     <PageMeta
