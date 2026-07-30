@@ -363,13 +363,23 @@ vercel --prod
 
 ## Known gaps
 
-- **`entry-server.tsx` is missing 5 routes that `prerender.mjs` renders**:
-  `/car-detailing-melbourne`, `/paint-correction-melbourne`, `/ceramic-coating-packages-melbourne`,
-  `/home-demo2`, `/home-white`. They fall through to the wildcard, so their pre-rendered HTML is the
-  **404 page** (`dist/car-detailing-melbourne/index.html` currently has
-  `<title>Page Not Found…</title>`). The client router recovers on hydration, but crawlers and
-  first paint see the 404. The first three are real, sitemap-listed service pages — fix by adding
-  their `<Route>` entries to `entry-server.tsx`.
+- **The route tables can drift silently.** `App.tsx`, `entry-server.tsx` and `prerender.mjs` are
+  three hand-maintained lists. A route in `prerender.mjs` that `entry-server.tsx` doesn't match
+  falls through to the `*` wildcard, so its static HTML is written as the **404 page** —
+  `noindex,nofollow`, canonical `/404`, none of the real content — and the build still prints ✅ for
+  it. This bit three live service pages until it was fixed; the structural risk remains. Check
+  parity after adding any route:
+
+  ```bash
+  diff <(grep -o 'path="[^"]*"' src/App.tsx | sort) \
+       <(grep -o 'path="[^"]*"' src/entry-server.tsx | sort)
+  ```
+
+  The durable fix is one exported route array that all three import. Not done yet.
+- **`npm run lint` currently fails** — 9 pre-existing errors across `BeforeAfterSlider`,
+  `HomeSplash`, `Navbar`, `PackagesKit`, `TrustBadges` and `entry-server` (ref-during-render,
+  setState-in-effect, fast-refresh export rules, one `any`). None block the build, which runs
+  `tsc -b`, not eslint.
 - **No Google Ads conversion is wired up.** The placeholder `send_to: 'AW-XXXXXXXXX/…'` gtag call has
   been removed from `ThankYouPage.tsx` — it was dead code (`window.gtag` is never defined, since the
   site loads GTM rather than gtag.js). Conversions should be configured **inside GTM** off the
