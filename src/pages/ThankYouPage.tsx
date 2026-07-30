@@ -18,7 +18,12 @@ export default function ThankYouPage() {
     />
   );
 
-  if (!fromSubmit) return <>{meta}<Navigate to="/get-a-quote" replace /></>;
+  // The redirect is client-only: <Navigate> on a StaticRouter's initial render is a
+  // no-op that warns during the pre-render. This page is noindex and only reachable
+  // after a submit, so the pre-rendered output is just the meta.
+  if (!fromSubmit) {
+    return <>{meta}{typeof window !== 'undefined' && <Navigate to="/get-a-quote" replace />}</>;
+  }
 
   return (
     <main style={{ background: 'var(--color-bg-primary)', minHeight: '100dvh', paddingTop: 100, paddingBottom: 80 }}>
