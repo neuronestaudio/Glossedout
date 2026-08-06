@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ArrowLeft, ArrowRight, Check, Loader2 } from 'lucide-react';
 import { pushGtmEvent } from '../lib/gtm';
+import { createSubmissionId, getStoredAttribution } from '../lib/attribution';
 
 const GHL_WEBHOOK = 'https://services.leadconnectorhq.com/hooks/ed6fxFrV8P1iGtkwL7D7/webhook-trigger/I3moCd8GTaDTsQUIdzvF';
 
@@ -267,6 +268,12 @@ export default function QuoteForm({ defaultService }: QuoteFormProps) {
 
     const page = window.location.pathname;
 
+    /* First-touch attribution, read from storage — never throws, and returns
+       empty strings when unavailable, so a storage failure cannot block a lead.
+       One id per submission attempt. Neither is sent to the dataLayer. */
+    const attribution = getStoredAttribution();
+    const submissionId = createSubmissionId();
+
     const payload = {
       name: name.trim(),
       phone: mobile.trim(),
@@ -282,6 +289,13 @@ export default function QuoteForm({ defaultService }: QuoteFormProps) {
       service,
       source: 'Website Quote Form',
       page,
+      utm_source: attribution.utm_source,
+      utm_medium: attribution.utm_medium,
+      utm_campaign: attribution.utm_campaign,
+      utm_content: attribution.utm_content,
+      fbclid: attribution.fbclid,
+      first_landing_page: attribution.first_landing_page,
+      submission_id: submissionId,
     };
 
     /* Field state is deliberately left untouched on every failure path below,
