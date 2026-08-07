@@ -293,7 +293,12 @@ export default function QuoteForm({ defaultService }: QuoteFormProps) {
       utm_medium: attribution.utm_medium,
       utm_campaign: attribution.utm_campaign,
       utm_content: attribution.utm_content,
+      utm_term: attribution.utm_term,
+      gclid: attribution.gclid,
+      gbraid: attribution.gbraid,
+      wbraid: attribution.wbraid,
       fbclid: attribution.fbclid,
+      msclkid: attribution.msclkid,
       first_landing_page: attribution.first_landing_page,
       submission_id: submissionId,
     };

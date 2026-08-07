@@ -16,13 +16,31 @@
 
 const STORAGE_KEY = 'glossed_out_attribution';
 
-/** The five URL-derived fields, in the order they are sent to the CRM. */
+/**
+ * The URL-derived fields, in the order they are sent to the CRM.
+ *
+ * The click IDs are all four the ad platforms currently issue, not just the one
+ * whose channel happens to be running today. They cost an empty string each
+ * while a channel is dormant, and capturing one late is not recoverable: a
+ * visitor who lands before the field exists already has a record, so gap-fill
+ * will never backfill them. `gclid` in particular is what makes an offline
+ * conversion import back into Google Ads possible at all.
+ *
+ * `gbraid` / `wbraid` are the iOS privacy-era replacements Google sends instead
+ * of `gclid` (app-to-web and web-to-web respectively) — a campaign can return
+ * all three across different visitors.
+ */
 const PARAM_FIELDS = [
   'utm_source',
   'utm_medium',
   'utm_campaign',
   'utm_content',
+  'utm_term',
+  'gclid',
+  'gbraid',
+  'wbraid',
   'fbclid',
+  'msclkid',
 ] as const;
 
 type ParamField = (typeof PARAM_FIELDS)[number];
@@ -38,14 +56,26 @@ function emptyRecord(): AttributionRecord {
     utm_medium: '',
     utm_campaign: '',
     utm_content: '',
+    utm_term: '',
+    gclid: '',
+    gbraid: '',
+    wbraid: '',
     fbclid: '',
+    msclkid: '',
     first_landing_page: '',
   };
 }
 
 const isBrowser = () => typeof window !== 'undefined';
 
-/** Coerce anything read out of storage into a known-good shape. */
+/**
+ * Coerce anything read out of storage into a known-good shape.
+ *
+ * Starting from `emptyRecord()` and copying only the fields actually present is
+ * also what makes adding a field safe: a record written by an earlier, shorter
+ * version of PARAM_FIELDS loads with the new fields empty, which leaves them
+ * eligible for gap-fill on the visitor's next tagged visit rather than stuck.
+ */
 function normalise(value: unknown): AttributionRecord {
   const record = emptyRecord();
   if (!value || typeof value !== 'object') return record;
