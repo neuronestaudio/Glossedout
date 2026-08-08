@@ -48,7 +48,7 @@ const BUDGET_OPTIONS = [
 
 const SERVICE_OPTIONS = [
   { label: 'Onsite - Drop my car off', value: 'drop_my_car_off' },
-  { label: 'Request mobile service at my postcode', value: 'mobile_service' },
+  { label: 'Request mobile service at my location', value: 'mobile_service' },
 ];
 
 /* Sent as the `service` field. These three strings are already what GHL receives
