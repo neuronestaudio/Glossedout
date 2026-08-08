@@ -25,7 +25,7 @@ const STEP_OUT_MS = 130;
 /**
  * Failure logging, deliberately free of personal information — what went wrong,
  * how long it took, and which page it happened on. Never the name, phone,
- * email, postcode or free-text message.
+ * email, address or free-text message.
  */
 function logSubmitFailure(detail: {
   reason: 'http_error' | 'timeout' | 'network_error';
@@ -98,7 +98,7 @@ export default function QuoteForm({ defaultService }: QuoteFormProps) {
   const [referral, setReferral] = useState('');
   const [budget, setBudget] = useState('');
   const [serviceLocation, setServiceLocation] = useState('');
-  const [postcode, setPostcode] = useState('');
+  const [address, setAddress] = useState('');
   /* Pre-selected when the page context names a real service, so a visitor on a
      ceramic page just presses Continue. Prop-derived, so it is SSR-safe. */
   const [service, setService] = useState(
@@ -130,7 +130,7 @@ export default function QuoteForm({ defaultService }: QuoteFormProps) {
      Writes the height straight to the node rather than through state: this
      reacts to layout, and a render pass here would just add a frame of lag.
      The observed element is stable (`key` sits on its child) so the observer
-     survives step changes, which also gets the postcode reveal animating free. */
+     survives step changes, which also gets the address reveal animating free. */
   useEffect(() => {
     const wrap = wrapRef.current;
     const inner = innerRef.current;
@@ -158,8 +158,8 @@ export default function QuoteForm({ defaultService }: QuoteFormProps) {
     if (n === 0) {
       if (!serviceLocation) errs.serviceLocation = 'Please choose drop-off or mobile service.';
       if (serviceLocation === MOBILE) {
-        if (!postcode.trim()) errs.postcode = 'Postcode is required for mobile service.';
-        else if (!/^\d{4}$/.test(postcode.trim())) errs.postcode = 'Enter a valid 4-digit postcode.';
+        if (!address.trim()) errs.address = 'Address is required for mobile service.';
+        else if (address.trim().length < 6) errs.address = 'Please enter your full address, including suburb.';
       }
     }
     if (n === 1 && !service) errs.service = 'Please choose the service you\'re after.';
@@ -285,7 +285,7 @@ export default function QuoteForm({ defaultService }: QuoteFormProps) {
       budgetLabel: labelFor(BUDGET_OPTIONS, budget),
       serviceLocation,
       serviceLocationLabel: labelFor(SERVICE_OPTIONS, serviceLocation),
-      postcode: wantsMobile ? postcode.trim() : '',
+      address: wantsMobile ? address.trim() : '',
       service,
       source: 'Website Quote Form',
       page,
@@ -422,8 +422,8 @@ export default function QuoteForm({ defaultService }: QuoteFormProps) {
                       name="serviceLocation"
                       value={o.value}
                       checked={serviceLocation === o.value}
-                      onChange={() => { setServiceLocation(o.value); if (o.value !== MOBILE) setPostcode(''); }}
-                      /* Mobile service still needs a postcode, so it stays put —
+                      onChange={() => { setServiceLocation(o.value); if (o.value !== MOBILE) setAddress(''); }}
+                      /* Mobile service still needs an address, so it stays put —
                          and cancels an advance already queued by a drop-off click. */
                       onClick={e => (o.value === MOBILE ? cancelAdvance() : autoAdvance(e, 0))}
                       aria-required="true"
@@ -437,18 +437,19 @@ export default function QuoteForm({ defaultService }: QuoteFormProps) {
 
             {wantsMobile && (
               <div style={{ marginTop: 16 }}>
-                <label htmlFor="postcode">Your postcode *</label>
+                <label htmlFor="address">Your address *</label>
                 <input
-                  id="postcode"
-                  inputMode="numeric"
-                  maxLength={4}
-                  value={postcode}
-                  onChange={e => setPostcode(e.target.value.replace(/\D/g, '').slice(0, 4))}
+                  id="address"
+                  type="text"
+                  autoComplete="street-address"
+                  maxLength={200}
+                  value={address}
+                  onChange={e => setAddress(e.target.value)}
                   aria-required="true"
-                  aria-invalid={!!errors.postcode}
-                  placeholder="e.g. 3064"
+                  aria-invalid={!!errors.address}
+                  placeholder="e.g. 12 Smith Street, Craigieburn VIC 3064"
                 />
-                {errors.postcode && <FieldError msg={errors.postcode} />}
+                {errors.address && <FieldError msg={errors.address} />}
               </div>
             )}
           </>
