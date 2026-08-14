@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { gsap } from 'gsap';
 import { Shield, Car, Sparkles, Armchair, Instagram } from 'lucide-react';
 import GoogleReviews from '../components/GoogleReviews';
+import { reviews } from '../data/reviews';
 import CTABlock from '../components/CTABlock';
 import PageMeta from '../components/PageMeta';
 import AccreditationBar from '../components/AccreditationBar';
@@ -43,12 +44,6 @@ const services = [
 // NOTE: sourced from Glossed Out's real Google reviews (110+ five-star).
 // Names shown as "Google review" to avoid attributing text to invented people —
 // swap in the real reviewer names when convenient.
-const reviews = [
-  { name: 'Google review', suburb: 'Craigieburn', service: 'Ceramic Coating', text: 'Muhammad was a champion — very happy with what he did. He went above and beyond, and the car looked as new.' },
-  { name: 'Google review', suburb: 'Melbourne', service: 'Full Detail', text: 'Amazing outcome — very satisfied with how the car turned out. Highly recommended!' },
-  { name: 'Google review', suburb: 'Craigieburn', service: 'Car Detailing', text: 'Excellent car detailing — the car looks like new. Great effort done inside and out.' },
-  { name: 'Google review', suburb: 'Melbourne', service: 'Ceramic Coating', text: 'Booked in for a ceramic coating and couldn\'t be happier — great communication start to finish and the gloss on the paint is unreal. Highly recommend.' },
-];
 
 export default function HomePageWhite() {
   const heroRef = useRef<HTMLElement>(null);

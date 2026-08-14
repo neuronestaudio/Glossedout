@@ -1203,6 +1203,59 @@ label { display: block; font-size: var(--size-label); text-transform: uppercase;
 /* Reviews 2x2 grid → single column on small screens */
 @media (max-width: 640px) { .reviews-grid { grid-template-columns: 1fr !important; } }
 
+/* ── Reviews marquee — single row, seamless infinite loop ────────────────── */
+
+.rev-marquee {
+  position: relative;
+  overflow: hidden;
+  /* Cards fade at the edges rather than being sliced by the container — that's
+     what makes it read as a continuous strip instead of a clipped row. */
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 7%, #000 93%, transparent 100%);
+  mask-image: linear-gradient(90deg, transparent 0, #000 7%, #000 93%, transparent 100%);
+}
+
+.rev-track {
+  display: flex;
+  width: max-content;
+  animation: revScroll 45s linear infinite;
+  will-change: transform;
+}
+/* Give people a way to actually finish reading one */
+.rev-marquee:hover .rev-track,
+.rev-marquee:focus-within .rev-track { animation-play-state: paused; }
+
+.rev-set { display: flex; gap: 24px; padding-right: 24px; }
+
+/* Travels exactly one set width — see MARQUEE_COPIES in GoogleReviews.tsx.
+   Keep the two in step: this fraction must equal 1 / copies. */
+@keyframes revScroll {
+  from { transform: translate3d(0, 0, 0); }
+  to   { transform: translate3d(-25%, 0, 0); }
+}
+
+.rev-card {
+  position: relative;
+  flex: 0 0 clamp(270px, 78vw, 360px);
+  padding: 34px 28px 28px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  overflow: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  /* No auto-scroll — hand it back as a normal swipeable row instead. */
+  .rev-track { animation: none; }
+  .rev-marquee {
+    overflow-x: auto;
+    -webkit-mask-image: none; mask-image: none;
+    scroll-snap-type: x mandatory;
+  }
+  .rev-card { scroll-snap-align: center; }
+}
+
 /* Gold-outline pill button (on dark sections) */
 .btn-gold-outline {
   display: inline-flex; align-items: center; gap: 8px;

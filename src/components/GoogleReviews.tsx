@@ -1,11 +1,5 @@
 import { Star, Quote, ArrowUpRight } from 'lucide-react';
-
-interface Review {
-  name: string;
-  suburb: string;
-  service: string;
-  text: string;
-}
+import type { Review } from '../data/reviews';
 
 interface GoogleReviewsProps {
   reviews: Review[];
@@ -22,6 +16,41 @@ function GoogleG({ size = 20 }: { size?: number }) {
       <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
       <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
     </svg>
+  );
+}
+
+/* Each copy is one full pass of the review list. The keyframe shifts the track
+   by exactly 1/MARQUEE_COPIES, so the second copy arrives where the first began
+   and the loop is invisible. Four copies keeps the track wider than any viewport
+   even with only a handful of reviews. */
+const MARQUEE_COPIES = 4;
+
+function ReviewCard({ review }: { review: Review }) {
+  return (
+    <div className="card rev-card">
+      {/* Gold top accent */}
+      <div aria-hidden="true" style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 3, background: 'linear-gradient(to right, transparent, var(--brand-gold), transparent)' }} />
+      <Quote size={30} style={{ color: 'var(--brand-gold)', opacity: 0.55, marginBottom: 14 }} fill="currentColor" />
+      <div>
+        <div style={{ display: 'flex', gap: 3, marginBottom: 14, justifyContent: 'center' }}>
+          {Array.from({ length: 5 }).map((_, j) => (
+            <Star key={j} size={15} fill="#C9A227" color="#C9A227" strokeWidth={0} />
+          ))}
+        </div>
+        <p style={{ color: 'var(--color-text-secondary)', lineHeight: 1.7, marginBottom: 22, fontSize: 16 }}>
+          “{review.text}”
+        </p>
+      </div>
+      <div style={{ borderTop: '1px solid var(--color-border)', paddingTop: 16, width: '100%' }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 10 }}>
+          <GoogleG size={16} />
+          <div style={{ textAlign: 'left' }}>
+            <p style={{ fontWeight: 600, color: 'var(--color-text-primary)', fontSize: 14 }}>{review.name}</p>
+            <p style={{ color: 'var(--color-text-muted)', fontSize: 12, marginTop: 1 }}>Google review · {review.timeAgo}</p>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }
 
@@ -71,47 +100,21 @@ export default function GoogleReviews({ reviews, googleUrl, rating = '5.0', coun
           </h2>
         </div>
 
-        {/* Testimonial cards */}
-        <div className="reviews-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 24, marginBottom: 44, maxWidth: 920, marginLeft: 'auto', marginRight: 'auto' }}>
-          {reviews.slice(0, 4).map((r, i) => (
-            <div
-              key={i}
-              className="card"
-              style={{
-                position: 'relative',
-                padding: '34px 28px 28px',
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'space-between',
-                alignItems: 'center',
-                textAlign: 'center',
-                overflow: 'hidden',
-              }}
-            >
-              {/* Gold top accent */}
-              <div aria-hidden="true" style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 3, background: 'linear-gradient(to right, transparent, var(--brand-gold), transparent)' }} />
-              <Quote size={30} style={{ color: 'var(--brand-gold)', opacity: 0.55, marginBottom: 14 }} fill="currentColor" />
-              <div>
-                <div style={{ display: 'flex', gap: 3, marginBottom: 14, justifyContent: 'center' }}>
-                  {Array.from({ length: 5 }).map((_, j) => (
-                    <Star key={j} size={15} fill="#C9A227" color="#C9A227" strokeWidth={0} />
-                  ))}
-                </div>
-                <p style={{ color: 'var(--color-text-secondary)', lineHeight: 1.7, marginBottom: 22, fontSize: 16 }}>
-                  “{r.text}”
-                </p>
+        {/* Testimonial marquee — single row, seamless loop, pauses on hover */}
+        <div className="rev-marquee" style={{ marginBottom: 44 }}>
+          <div className="rev-track">
+            {/* The set is repeated so the loop has no seam. The animation travels
+                exactly one set-width, so copy 2 lands where copy 1 started.
+                Only the first set is exposed to assistive tech — the rest are
+                visual duplicates and would otherwise be read out repeatedly. */}
+            {Array.from({ length: MARQUEE_COPIES }).map((_, copy) => (
+              <div className="rev-set" key={copy} aria-hidden={copy > 0 || undefined}>
+                {reviews.map((r, i) => (
+                  <ReviewCard key={`${copy}-${i}`} review={r} />
+                ))}
               </div>
-              <div style={{ borderTop: '1px solid var(--color-border)', paddingTop: 16, width: '100%' }}>
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 10 }}>
-                  <GoogleG size={16} />
-                  <div style={{ textAlign: 'left' }}>
-                    <p style={{ fontWeight: 600, color: 'var(--color-text-primary)', fontSize: 14 }}>{r.name}</p>
-                    <p style={{ color: 'var(--color-text-muted)', fontSize: 12, marginTop: 1 }}>{r.suburb} · {r.service}</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
 
         {/* CTA */}
