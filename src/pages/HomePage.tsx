@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { gsap } from 'gsap';
 import { Shield, Car, Sparkles, Armchair, Instagram } from 'lucide-react';
 import GoogleReviews from '../components/GoogleReviews';
+import CeramicProcess from '../components/CeramicProcess';
 import { reviews } from '../data/reviews';
 import CTABlock from '../components/CTABlock';
 import PageMeta from '../components/PageMeta';
@@ -162,6 +163,9 @@ export default function HomePage() {
         reviews={reviews}
         googleUrl="https://www.google.com/maps/search/Glossed+Out+Detailing+Craigieburn"
       />
+
+      {/* CERAMIC PROCESS — how the finish is actually achieved */}
+      <CeramicProcess />
 
       {/* INSTAGRAM GALLERY */}
       <section className="section" style={{ background: '#0A2B1E', position: 'relative', overflow: 'hidden', paddingTop: 'clamp(40px, 5vw, 64px)' }}>
