@@ -1482,10 +1482,13 @@ label { display: block; font-size: var(--size-label); text-transform: uppercase;
   background: var(--brand-dark);
 }
 .proc__glow {
-  position: absolute; inset: 0; z-index: 0; pointer-events: none;
+  position: absolute; inset: 0; z-index: 1; pointer-events: none;
   background:
     radial-gradient(ellipse 70% 60% at 50% 0%, rgba(201, 162, 39, 0.16), transparent 65%),
-    radial-gradient(ellipse 60% 50% at 15% 100%, rgba(27, 107, 74, 0.35), transparent 70%);
+    radial-gradient(ellipse 60% 50% at 15% 100%, rgba(27, 107, 74, 0.35), transparent 70%),
+    /* Scrim. The footage is atmosphere, the copy is the subject — without this
+       the text sits on whatever happens to be in frame. */
+    linear-gradient(180deg, rgba(10,43,30,0.90) 0%, rgba(10,43,30,0.80) 45%, rgba(10,43,30,0.92) 100%);
 }
 
 .proc__eyebrow {
@@ -1561,3 +1564,65 @@ label { display: block; font-size: var(--size-label); text-transform: uppercase;
   color: rgba(255, 255, 255, 0.74); font-size: 15px; line-height: 1.75; margin-bottom: 22px;
 }
 .proc__cta { color: var(--brand-green) !important; }
+
+/* Footage behind the process section. Kept well back so the copy stays the
+   subject — the gradient above it does the legibility work. */
+.proc__video {
+  position: absolute; inset: 0; z-index: 0;
+  width: 100%; height: 100%; object-fit: cover;
+  opacity: 0.9;
+  pointer-events: none;
+}
+@media (prefers-reduced-motion: reduce) { .proc__video { display: none; } }
+
+/* ── Instagram gallery — two counter-scrolling rows ──────────────────────── */
+
+.ig-marquee {
+  position: relative;
+  display: flex; flex-direction: column; gap: 8px;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 6%, #000 94%, transparent 100%);
+  mask-image: linear-gradient(90deg, transparent 0, #000 6%, #000 94%, transparent 100%);
+}
+
+.ig-row {
+  display: flex; width: max-content;
+  animation: igScroll 48s linear infinite;
+  will-change: transform;
+}
+/* Second row runs the other way. Same keyframe, reversed — so the two rows can
+   never drift into sync and start reading as a single block. */
+.ig-row--reverse { animation-direction: reverse; animation-duration: 58s; }
+
+.ig-marquee:hover .ig-row,
+.ig-marquee:focus-within .ig-row { animation-play-state: paused; }
+
+.ig-set { display: flex; gap: 8px; padding-right: 8px; }
+
+/* Travels exactly one set width — four copies, so 25%. */
+@keyframes igScroll {
+  from { transform: translate3d(0, 0, 0); }
+  to   { transform: translate3d(-25%, 0, 0); }
+}
+
+.ig-tile {
+  display: block; flex: 0 0 clamp(140px, 20vw, 220px);
+  aspect-ratio: 1; overflow: hidden;
+  border: 2px solid #ffffff;
+  text-decoration: none;
+}
+.ig-tile img {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+  transition: transform 0.4s ease;
+}
+.ig-tile:hover img { transform: scale(1.06); }
+
+@media (prefers-reduced-motion: reduce) {
+  .ig-row { animation: none; }
+  .ig-marquee {
+    overflow-x: auto;
+    -webkit-mask-image: none; mask-image: none;
+    scroll-snap-type: x proximity;
+  }
+  .ig-tile { scroll-snap-align: center; }
+}

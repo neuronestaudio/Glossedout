@@ -1,4 +1,4 @@
-﻿import { useEffect, useRef, useState } from 'react';
+﻿import { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { gsap } from 'gsap';
 import { Shield, Car, Sparkles, Armchair, Instagram } from 'lucide-react';
@@ -52,7 +52,6 @@ export default function HomePage() {
   const heroBgRef = useRef<HTMLDivElement>(null);
   const heroContentRef = useRef<HTMLDivElement>(null);
   const servicesRef = useRef<HTMLElement>(null);
-  const [galleryExpanded, setGalleryExpanded] = useState(false);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -191,30 +190,32 @@ export default function HomePage() {
             </a>
           </div>
 
-          <a href="https://instagram.com/glossedoutdetailing/" target="_blank" rel="noopener noreferrer" className={`ig-grid${galleryExpanded ? ' ig-grid-expanded' : ''}`} style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 8, textDecoration: 'none' }}>
-            {galleryPhotos.slice(0, 9).map((photo, i) => (
-              <div key={i} className={i >= 4 ? 'gallery-extra' : undefined} style={{ overflow: 'hidden', aspectRatio: '1', border: '2px solid #ffffff' }}>
-                <img
-                  src={photo.src}
-                  alt={photo.alt}
-                  loading="lazy"
-                  style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', transition: 'transform 0.4s ease' }}
-                  onMouseEnter={e => (e.currentTarget.style.transform = 'scale(1.04)')}
-                  onMouseLeave={e => (e.currentTarget.style.transform = 'scale(1)')}
-                />
+          {/* Two rows travelling opposite ways — the counter-motion is what stops
+              it reading as one long strip and keeps the eye moving. Row two is
+              offset by half the set so the two rows never line up. */}
+          <div className="ig-marquee">
+            {[0, 1].map(row => (
+              <div className={`ig-row${row === 1 ? ' ig-row--reverse' : ''}`} key={row}>
+                {Array.from({ length: 4 }).map((_, copy) => (
+                  <div className="ig-set" key={copy} aria-hidden={copy > 0 || undefined}>
+                    {galleryPhotos
+                      .filter((_, i) => (row === 0 ? i % 2 === 0 : i % 2 === 1))
+                      .map((photo, i) => (
+                        <a
+                          className="ig-tile"
+                          key={`${copy}-${i}`}
+                          href="https://instagram.com/glossedoutdetailing/"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          tabIndex={copy > 0 ? -1 : undefined}
+                        >
+                          <img src={photo.src} alt={photo.alt} loading="lazy" />
+                        </a>
+                      ))}
+                  </div>
+                ))}
               </div>
             ))}
-          </a>
-          {/* Mobile-only expand toggle — shows 4 photos collapsed */}
-          <div className="gallery-toggle-wrap" style={{ textAlign: 'center', marginTop: 20 }}>
-            <button
-              type="button"
-              className="btn-ghost"
-              onClick={() => setGalleryExpanded(v => !v)}
-              style={{ borderColor: 'rgba(0,0,0,0.16)', color: 'var(--color-accent)' }}
-            >
-              {galleryExpanded ? 'Show less' : 'Show more'}
-            </button>
           </div>
         </div>
       </section>

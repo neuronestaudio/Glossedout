@@ -32,7 +32,20 @@ const STAGES = [
 export default function CeramicProcess() {
   return (
     <section className="section proc" aria-labelledby="proc-heading">
-      {/* Warm gold wash, same treatment as the reviews section above */}
+      {/* Glossed Out's own footage, sitting under the gold wash. Muted, looping
+          and decorative — the section reads fine without it, so it never blocks
+          content and carries no controls. */}
+      <video
+        className="proc__video"
+        aria-hidden="true"
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="metadata"
+      >
+        <source src="/glossed/hero.mp4" type="video/mp4" />
+      </video>
       <div aria-hidden="true" className="proc__glow" />
 
       <div className="container" style={{ position: 'relative', zIndex: 2 }}>
