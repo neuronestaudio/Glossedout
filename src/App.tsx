@@ -22,6 +22,7 @@ const PaintCorrectionServicePage = lazy(() => import('./pages/PaintCorrectionSer
 const CeramicPackagesServicePage = lazy(() => import('./pages/CeramicPackagesServicePage'));
 const CeramicCoatingPage         = lazy(() => import('./pages/CeramicCoatingPage'));
 const CeramicQuestionsPage       = lazy(() => import('./pages/CeramicQuestionsPage'));
+const CeramicProcessPage         = lazy(() => import('./pages/CeramicProcessPage'));
 const GalleryPage                = lazy(() => import('./pages/GalleryPage'));
 const AboutPage                  = lazy(() => import('./pages/AboutPage'));
 const GetAQuotePage              = lazy(() => import('./pages/GetAQuotePage'));
@@ -132,6 +133,7 @@ export default function App() {
             <Route path="/home-white" element={<HomePageWhite />} />
             <Route path="/ceramic-coating-melbourne" element={<CeramicCoatingPage />} />
             <Route path="/ceramic-coating-questions" element={<CeramicQuestionsPage />} />
+            <Route path="/ceramic-coating-process" element={<CeramicProcessPage />} />
             <Route path="/gallery" element={<GalleryPage />} />
             <Route path="/about" element={<AboutPage />} />
             <Route path="/get-a-quote" element={<GetAQuotePage />} />

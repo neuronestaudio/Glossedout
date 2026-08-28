@@ -27,6 +27,7 @@ const ROUTES = [
   '/home-white',
   '/ceramic-coating-melbourne',
   '/ceramic-coating-questions',
+  '/ceramic-coating-process',
   '/gallery',
   '/about',
   '/get-a-quote',

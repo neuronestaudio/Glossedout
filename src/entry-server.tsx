@@ -26,6 +26,7 @@ import HomePageBars from './pages/HomePageBars';
 import HomePageWhite from './pages/HomePageWhite';
 import CeramicCoatingPage from './pages/CeramicCoatingPage';
 import CeramicQuestionsPage from './pages/CeramicQuestionsPage';
+import CeramicProcessPage from './pages/CeramicProcessPage';
 import GalleryPage from './pages/GalleryPage';
 import AboutPage from './pages/AboutPage';
 import GetAQuotePage from './pages/GetAQuotePage';
@@ -79,6 +80,7 @@ export function render(url: string): { html: string; head: HeadData } {
             <Route path="/home-white" element={<HomePageWhite />} />
             <Route path="/ceramic-coating-melbourne" element={<CeramicCoatingPage />} />
             <Route path="/ceramic-coating-questions" element={<CeramicQuestionsPage />} />
+            <Route path="/ceramic-coating-process" element={<CeramicProcessPage />} />
             <Route path="/gallery" element={<GalleryPage />} />
             <Route path="/about" element={<AboutPage />} />
             <Route path="/get-a-quote" element={<GetAQuotePage />} />
