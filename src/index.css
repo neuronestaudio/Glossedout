@@ -1167,61 +1167,55 @@ label { display: block; font-size: var(--size-label); text-transform: uppercase;
   box-shadow: 0 22px 46px rgba(0, 0, 0, .45), inset 0 1px 0 rgba(255, 255, 255, .35);
 }
 
+/* Split, not overlay: the photos carry their own burned-in headlines, so the
+   copy sits beside them rather than on top. */
 .svc-slide {
-  position: absolute;
-  inset: 4px;
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+  align-items: stretch;
+  min-height: clamp(330px, 34vw, 440px);
   border-radius: 16px;
   overflow: hidden;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity .5s ease, visibility .5s ease;
+  background: linear-gradient(135deg, #0B3728 0%, #072A20 55%, #052018 100%);
+  animation: svcFade .45s cubic-bezier(.22, 1, .36, 1) both;
 }
-.svc-slide[data-on='true'] { opacity: 1; visibility: visible; }
-
-.svc-slide__img {
-  position: absolute;
-  inset: 0;
-  background-size: cover;
-  background-position: center;
-  transform: scale(1.06);
-  transition: transform 6s ease-out;
-}
-.svc-slide[data-on='true'] .svc-slide__img { transform: scale(1); }
-
-.svc-slide__scrim {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to top, rgba(4, 16, 11, .94) 0%, rgba(4, 16, 11, .78) 34%, rgba(4, 16, 11, .28) 66%, rgba(4, 16, 11, .1) 100%);
+@keyframes svcFade {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: none; }
 }
 
-.svc-slide__body {
-  position: absolute;
-  left: 0; right: 0; bottom: 0;
-  padding: clamp(20px, 3vw, 36px);
-  max-width: 620px;
+.svc-copy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding: clamp(22px, 3vw, 44px);
+  /* Keeps the arrows, which sit top-right, off the first line of copy. */
+  padding-right: clamp(22px, 3vw, 40px);
 }
-.svc-slide__icon {
+.svc-copy__icon {
   display: grid;
   place-items: center;
   width: 46px; height: 46px;
   border-radius: 12px;
-  margin-bottom: 14px;
-  background: rgba(9, 46, 33, .82);
+  margin-bottom: 16px;
+  background: rgba(9, 46, 33, .9);
   border: 1px solid rgba(201, 162, 39, .5);
 }
-.svc-slide__title {
+.svc-copy__title {
   color: #FFFFFF;
-  font-size: clamp(26px, 3.4vw, 40px);
+  font-size: clamp(26px, 3.2vw, 40px);
   line-height: 1.04;
-  margin: 0 0 10px;
+  margin: 0 0 12px;
 }
-.svc-slide__desc {
-  color: rgba(255, 255, 255, .78);
-  font-size: clamp(14px, 1.4vw, 16px);
-  line-height: 1.65;
-  margin: 0 0 18px;
+.svc-copy__desc {
+  color: rgba(255, 255, 255, .74);
+  font-size: clamp(14px, 1.35vw, 16px);
+  line-height: 1.7;
+  margin: 0 0 22px;
 }
-.svc-slide__cta {
+.svc-copy__cta {
   display: inline-flex;
   align-items: center;
   gap: 8px;
@@ -1235,7 +1229,64 @@ label { display: block; font-size: var(--size-label); text-transform: uppercase;
   box-shadow: 0 8px 24px rgba(201, 162, 39, .32);
   transition: transform .16s ease, box-shadow .16s ease;
 }
-.svc-slide__cta:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(201, 162, 39, .45); }
+.svc-copy__cta:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(201, 162, 39, .45); }
+
+.svc-shots { position: relative; overflow: hidden; }
+.svc-shot {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .55s ease, visibility .55s ease;
+}
+.svc-shot[data-on='true'] { opacity: 1; visibility: visible; }
+/* A blurred, over-scaled copy of the same frame fills what containing leaves
+   over, so a square graphic in a tall box never sits on flat bars. */
+.svc-shot__fill {
+  position: absolute;
+  inset: -10%;
+  background-size: cover;
+  background-position: center;
+  filter: blur(26px) brightness(.5) saturate(1.1);
+  transform: scale(1.1);
+}
+.svc-shot__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  /* Contained, never cropped — cropping would cut the very headlines these
+     graphics were made for. */
+  object-fit: contain;
+}
+
+.svc-dots {
+  position: absolute;
+  left: 0; right: 0; bottom: 12px;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  gap: 7px;
+}
+.svc-dot {
+  width: 22px; height: 4px;
+  border-radius: 99px;
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+  background: rgba(255, 255, 255, .34);
+  transition: background .2s ease, width .2s ease;
+}
+.svc-dot:hover { background: rgba(255, 255, 255, .6); }
+.svc-dot[data-on='true'] { background: var(--brand-gold); width: 30px; }
+.svc-dot:focus-visible { outline: 2px solid var(--brand-gold); outline-offset: 3px; }
+
+@media (max-width: 860px) {
+  /* Photo first: it is what tells you what the service looks like. */
+  .svc-slide { grid-template-columns: minmax(0, 1fr); min-height: 0; }
+  .svc-shots { order: -1; aspect-ratio: 1 / 1; }
+  .svc-copy { padding: 22px; padding-top: 24px; }
+}
 
 .svc-arrow {
   position: absolute;
