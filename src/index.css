@@ -1151,47 +1151,168 @@ label { display: block; font-size: var(--size-label); text-transform: uppercase;
    Brushed-gold ingot look: outer bevelled rail + inner panel,
    dark-green icon medallion, dark-green text on gold.
    ============================================================ */
-/* ── Services marquee ────────────────────────────────────────────────────
-   Same construction as the reviews strip: N identical sets on one flex track,
-   travelling exactly one set width. Only shown at >768px, where the cards are
-   in play and a pointer can hover to stop it. */
-.svc-marquee {
+/* ── Services carousel ───────────────────────────────────────────────────
+   One service shown large, the other three named on the tabs beneath it.
+   Panels are stacked and cross-faded; `visibility` (not just opacity) is what
+   takes the inactive ones out of the tab order and the accessibility tree. */
+.svc-car { display: grid; gap: clamp(14px, 1.8vw, 20px); }
+
+.svc-stage {
   position: relative;
+  min-height: clamp(340px, 38vw, 460px);
+  border-radius: 20px;
   overflow: hidden;
-  /* Cards fade at the edges rather than being sliced, so it reads as a strip
-     rather than a clipped row. */
-  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 6%, #000 94%, transparent 100%);
-  mask-image: linear-gradient(90deg, transparent 0, #000 6%, #000 94%, transparent 100%);
+  padding: 4px;
+  background: linear-gradient(135deg, #8a6a14 0%, #dcb84a 14%, #f7ecb0 30%, #c99a1e 50%, #f7ecb0 68%, #b88a1c 86%, #7a5c12 100%);
+  box-shadow: 0 22px 46px rgba(0, 0, 0, .45), inset 0 1px 0 rgba(255, 255, 255, .35);
 }
-.svc-track {
+
+.svc-slide {
+  position: absolute;
+  inset: 4px;
+  border-radius: 16px;
+  overflow: hidden;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .5s ease, visibility .5s ease;
+}
+.svc-slide[data-on='true'] { opacity: 1; visibility: visible; }
+
+.svc-slide__img {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  transform: scale(1.06);
+  transition: transform 6s ease-out;
+}
+.svc-slide[data-on='true'] .svc-slide__img { transform: scale(1); }
+
+.svc-slide__scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(4, 16, 11, .94) 0%, rgba(4, 16, 11, .78) 34%, rgba(4, 16, 11, .28) 66%, rgba(4, 16, 11, .1) 100%);
+}
+
+.svc-slide__body {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  padding: clamp(20px, 3vw, 36px);
+  max-width: 620px;
+}
+.svc-slide__icon {
+  display: grid;
+  place-items: center;
+  width: 46px; height: 46px;
+  border-radius: 12px;
+  margin-bottom: 14px;
+  background: rgba(9, 46, 33, .82);
+  border: 1px solid rgba(201, 162, 39, .5);
+}
+.svc-slide__title {
+  color: #FFFFFF;
+  font-size: clamp(26px, 3.4vw, 40px);
+  line-height: 1.04;
+  margin: 0 0 10px;
+}
+.svc-slide__desc {
+  color: rgba(255, 255, 255, .78);
+  font-size: clamp(14px, 1.4vw, 16px);
+  line-height: 1.65;
+  margin: 0 0 18px;
+}
+.svc-slide__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 22px;
+  border-radius: 100px;
+  font-weight: 700;
+  font-size: 14px;
+  text-decoration: none;
+  color: #06150F;
+  background: linear-gradient(135deg, #E4C766 0%, #C9A227 50%, #A17E12 100%);
+  box-shadow: 0 8px 24px rgba(201, 162, 39, .32);
+  transition: transform .16s ease, box-shadow .16s ease;
+}
+.svc-slide__cta:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(201, 162, 39, .45); }
+
+.svc-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 3;
+  display: grid;
+  place-items: center;
+  /* 44px is the smallest reliable touch target. */
+  width: 44px; height: 44px;
+  border-radius: 999px;
+  cursor: pointer;
+  color: #F4EFE2;
+  background: rgba(6, 21, 15, .58);
+  border: 1px solid rgba(201, 162, 39, .5);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  transition: background .18s ease, color .18s ease, border-color .18s ease;
+}
+.svc-arrow:hover { background: rgba(201, 162, 39, .9); color: #06150F; border-color: var(--brand-gold); }
+.svc-arrow:focus-visible { outline: 2px solid var(--brand-gold); outline-offset: 3px; }
+/* Top-right, as a pair. Centred on the sides they landed on top of the
+   service title, which sits bottom-left. The tabs are the primary control
+   anyway — these are the shortcut. */
+.svc-arrow--prev { top: 16px; right: 68px; transform: none; }
+.svc-arrow--next { top: 16px; right: 16px; transform: none; }
+
+/* Tabs — the four service names, always on screen and always clickable. */
+.svc-tabs {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+}
+.svc-tab {
   display: flex;
-  width: max-content;
-  animation: svcScroll 52s linear infinite;
-  will-change: transform;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  min-height: 52px;
+  padding: 10px 14px;
+  border-radius: 14px;
+  cursor: pointer;
+  text-align: left;
+  font-size: 14px;
+  font-weight: 700;
+  color: rgba(255, 255, 255, .68);
+  background: rgba(255, 255, 255, .05);
+  border: 1px solid rgba(255, 255, 255, .12);
+  transition: color .2s ease, background .2s ease, border-color .2s ease, transform .2s ease;
 }
-/* These are links, so stopping has to be easy — otherwise you are asked to hit
-   a moving target. Focus pauses it too, for anyone tabbing through. */
-.svc-marquee:hover .svc-track,
-.svc-marquee:focus-within .svc-track { animation-play-state: paused; }
+.svc-tab:hover { color: #FFFFFF; background: rgba(255, 255, 255, .09); border-color: rgba(201, 162, 39, .45); }
+.svc-tab:focus-visible { outline: 2px solid var(--brand-gold); outline-offset: 2px; }
+.svc-tab[data-on='true'] {
+  color: #06150F;
+  background: linear-gradient(135deg, #E4C766 0%, #C9A227 50%, #A17E12 100%);
+  border-color: transparent;
+  box-shadow: 0 10px 24px rgba(201, 162, 39, .3);
+}
+.svc-tab svg { flex: none; }
 
-.svc-set { display: flex; gap: 18px; padding-right: 18px; }
-.svc-set .gold-card { flex: none; width: 300px; }
-
-/* Travels exactly one set width — see MARQUEE_COPIES in ServicesShowcase.tsx.
-   Keep the two in step: this fraction must equal 1 / copies. */
-@keyframes svcScroll {
-  from { transform: translate3d(0, 0, 0); }
-  to   { transform: translate3d(-25%, 0, 0); }
+@media (max-width: 860px) {
+  /* Two rows of two beats four squeezed columns — the names stay readable
+     rather than wrapping into three lines each. */
+  .svc-tabs { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .svc-tab { min-height: 48px; font-size: 13px; }
+}
+@media (max-width: 520px) {
+  .svc-stage { min-height: 380px; }
+  .svc-tab span { font-size: 12.5px; }
+  .svc-arrow { width: 40px; height: 40px; }
+  .svc-arrow--prev { top: 10px; right: 58px; }
+  .svc-arrow--next { top: 10px; right: 10px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .svc-track { animation: none; }
-  .svc-marquee {
-    overflow-x: auto;
-    -webkit-mask-image: none; mask-image: none;
-    scroll-snap-type: x mandatory;
-  }
-  .svc-set .gold-card { scroll-snap-align: center; }
+  .svc-slide, .svc-slide__img, .svc-tab, .svc-arrow, .svc-slide__cta { transition: none; }
+  .svc-slide__img { transform: none; }
 }
 
 /* Thin horizontal gold bars — compact services variant (Title Demo 2) */
@@ -1234,12 +1355,6 @@ label { display: block; font-size: var(--size-label); text-transform: uppercase;
 }
 
 /* Desktop shows cards, mobile shows the compact bars — everywhere. */
-.services-mobile { display: none; }
-@media (max-width: 768px) {
-  .services-desktop { display: none; }
-  .services-mobile { display: flex; }
-}
-
 .gold-card {
   position: relative;
   display: block;
