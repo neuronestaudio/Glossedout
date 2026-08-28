@@ -1179,7 +1179,9 @@ label { display: block; font-size: var(--size-label); text-transform: uppercase;
   min-height: clamp(330px, 34vw, 440px);
   border-radius: 16px;
   overflow: hidden;
-  background: linear-gradient(135deg, #0B3728 0%, #072A20 55%, #052018 100%);
+  /* Sits below the section colour (#0A2B1E), not above it — at #0B3728 the
+     panel read as a lighter patch on the page rather than a card in it. */
+  background: linear-gradient(135deg, #07271C 0%, #051E16 55%, #03150F 100%);
   animation: svcFade .45s cubic-bezier(.22, 1, .36, 1) both;
 }
 @keyframes svcFade {

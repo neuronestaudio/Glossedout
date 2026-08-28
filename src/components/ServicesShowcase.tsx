@@ -97,6 +97,31 @@ export default function ServicesShowcase({ services }: { services: ServiceItem[]
 
   return (
     <div className="svc-car">
+      <div className="svc-tabs" role="tablist" aria-label="Our services" onKeyDown={onKeyDown}>
+        {services.map((s, i) => {
+          const TabIcon = s.icon;
+          const on = i === active;
+          return (
+            <button
+              type="button"
+              key={s.title}
+              ref={el => { tabRefs.current[i] = el; }}
+              className="svc-tab"
+              data-on={on}
+              role="tab"
+              id={`${uid}-tab-${i}`}
+              aria-selected={on}
+              aria-controls={`${uid}-panel-${i}`}
+              /* Roving tabindex: the strip is one tab stop, arrows move within it. */
+              tabIndex={on ? 0 : -1}
+              onClick={() => go(i, true)}
+            >
+              <TabIcon size={17} strokeWidth={2} aria-hidden="true" />
+              <span>{s.title}</span>
+            </button>
+          );
+        })}
+      </div>
       <div className="svc-stage">
         <article
           className="svc-slide"
@@ -158,31 +183,6 @@ export default function ServicesShowcase({ services }: { services: ServiceItem[]
         </button>
       </div>
 
-      <div className="svc-tabs" role="tablist" aria-label="Our services" onKeyDown={onKeyDown}>
-        {services.map((s, i) => {
-          const TabIcon = s.icon;
-          const on = i === active;
-          return (
-            <button
-              type="button"
-              key={s.title}
-              ref={el => { tabRefs.current[i] = el; }}
-              className="svc-tab"
-              data-on={on}
-              role="tab"
-              id={`${uid}-tab-${i}`}
-              aria-selected={on}
-              aria-controls={`${uid}-panel-${i}`}
-              /* Roving tabindex: the strip is one tab stop, arrows move within it. */
-              tabIndex={on ? 0 : -1}
-              onClick={() => go(i, true)}
-            >
-              <TabIcon size={17} strokeWidth={2} aria-hidden="true" />
-              <span>{s.title}</span>
-            </button>
-          );
-        })}
-      </div>
     </div>
   );
 }
