@@ -872,10 +872,12 @@ label { display: block; font-size: var(--size-label); text-transform: uppercase;
 
 .ba-row {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: clamp(16px, 2.4vw, 28px);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(14px, 2vw, 24px);
 }
-@media (max-width: 900px) { .ba-row { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+/* Two-up rather than four squeezed columns — below this the frames get too
+   narrow for the divider to be worth dragging. */
+@media (max-width: 1100px) { .ba-row { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 620px) { .ba-row { grid-template-columns: minmax(0, 1fr); max-width: 380px; margin-inline: auto; } }
 
 @media (prefers-reduced-motion: reduce) {
