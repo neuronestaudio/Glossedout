@@ -9,8 +9,10 @@ import CTABlock from '../components/CTABlock';
 import PageMeta from '../components/PageMeta';
 import AccreditationBar from '../components/AccreditationBar';
 import ServicesShowcase from '../components/ServicesShowcase';
+import BeforeAfterSlider from '../components/BeforeAfterSlider';
 import HomeSplash from '../components/HomeSplash';
 import { galleryPhotos } from '../data/galleryPhotos';
+import { beforeAfterPairs } from '../data/beforeAfter';
 
 const services = [
   {
@@ -162,6 +164,38 @@ export default function HomePage() {
         reviews={reviews}
         googleUrl="https://www.google.com/maps/search/Glossed+Out+Detailing+Craigieburn"
       />
+
+      {/* BEFORE & AFTER — the reviews claim it, these show it. Drag to compare. */}
+      <section className="section" style={{ background: 'var(--color-bg-primary)', position: 'relative' }}>
+        <div className="container">
+          <div style={{ textAlign: 'center', marginBottom: 'clamp(32px, 4.5vw, 52px)', maxWidth: 680, marginLeft: 'auto', marginRight: 'auto' }}>
+            <p style={{ fontSize: 'var(--size-label)', textTransform: 'uppercase', letterSpacing: '0.14em', color: 'var(--brand-gold-dk)', fontWeight: 700, marginBottom: 14 }}>
+              Drag to compare
+            </p>
+            <h2 className="font-display" style={{ fontSize: 'var(--size-h2)', lineHeight: 1.05, marginBottom: 16 }}>
+              The half nobody<br />
+              <span style={{ color: 'var(--brand-gold-dk)' }}>photographs.</span>
+            </h2>
+            <p style={{ color: 'var(--color-text-secondary)', fontSize: 16, lineHeight: 1.75 }}>
+              Real jobs, shot before the work started and again once it was finished.
+              Pull the handle across.
+            </p>
+          </div>
+
+          <div className="ba-row">
+            {beforeAfterPairs.map(pair => (
+              <BeforeAfterSlider
+                key={pair.slug}
+                before={pair.before}
+                after={pair.after}
+                alt={`${pair.area.toLowerCase()} of a ${pair.vehicle}`}
+                area={pair.area}
+                vehicle={pair.vehicle}
+              />
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* CERAMIC PROCESS — the four-stage carousel, same component as
           /ceramic-coating-process so the two can never drift apart */}

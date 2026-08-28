@@ -1,76 +1,79 @@
-import { useRef, useState, useEffect } from 'react';
+import { useId, useState, type CSSProperties } from 'react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 interface BeforeAfterSliderProps {
   before: string;
   after: string;
+  /** Describes the subject. Becomes the slider's accessible name. */
   alt?: string;
+  /** Optional caption under the frame — the part of the car, and the car. */
+  area?: string;
+  vehicle?: string;
+  /** Fixed pixel height. Omit for the default 4:5 box. */
   height?: number;
 }
 
-export default function BeforeAfterSlider({ before, after, alt = 'Before and after', height = 360 }: BeforeAfterSliderProps) {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const handleRef = useRef<HTMLDivElement>(null);
-  const afterRef = useRef<HTMLDivElement>(null);
+/* The handle is a real <input type="range"> stretched over the whole image and
+   made invisible. That buys click-anywhere, drag, touch and full keyboard
+   support (arrows, Home/End) from the platform instead of from a pile of
+   pointer handlers, and screen readers announce it as the slider it is. The
+   previous hand-rolled version had `role="slider"` with nothing focusable
+   behind it, so it could not be operated by keyboard at all. */
+export default function BeforeAfterSlider({
+  before,
+  after,
+  alt = 'Before and after',
+  area,
+  vehicle,
+  height,
+}: BeforeAfterSliderProps) {
   const [pos, setPos] = useState(50);
-  const dragging = useRef(false);
-
-  const updatePos = (clientX: number) => {
-    if (!containerRef.current) return;
-    const rect = containerRef.current.getBoundingClientRect();
-    const pct = Math.max(0, Math.min(100, ((clientX - rect.left) / rect.width) * 100));
-    setPos(pct);
-  };
-
-  const onPointerDown = (e: React.PointerEvent) => {
-    dragging.current = true;
-    (e.currentTarget as HTMLElement).setPointerCapture(e.pointerId);
-  };
-  const onPointerMove = (e: React.PointerEvent) => { if (dragging.current) updatePos(e.clientX); };
-  const onPointerUp = () => { dragging.current = false; };
-
-  const onMouseDown = () => { dragging.current = true; };
-  const onMouseMove = (e: React.MouseEvent) => { if (dragging.current) updatePos(e.clientX); };
-  const onMouseUp = () => { dragging.current = false; };
-
-  useEffect(() => {
-    if (afterRef.current) afterRef.current.style.width = `${pos}%`;
-    if (handleRef.current) handleRef.current.style.left = `${pos}%`;
-  }, [pos]);
+  const id = useId();
+  const fixedHeight = typeof height === 'number';
 
   return (
-    <div
-      ref={containerRef}
-      className="ba-slider"
-      style={{ height, cursor: 'ew-resize' }}
-      onMouseDown={onMouseDown}
-      onMouseMove={onMouseMove}
-      onMouseUp={onMouseUp}
-      onMouseLeave={onMouseUp}
-      role="slider"
-      aria-label={alt}
-      aria-valuenow={Math.round(pos)}
-      aria-valuemin={0}
-      aria-valuemax={100}
-    >
-      {/* Before image */}
-      <img src={before} alt={`Before — ${alt}`} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} loading="lazy" />
-      <span className="ba-chip" style={{ left: 10 }}>Before</span>
-
-      {/* After image */}
-      <div ref={afterRef} className="ba-after" style={{ width: `${pos}%` }}>
-        <img src={after} alt={`After — ${alt}`} style={{ width: containerRef.current?.offsetWidth + 'px' || '100%', height: '100%', objectFit: 'cover', display: 'block' }} loading="lazy" />
-      </div>
-      <span className="ba-chip" style={{ right: 10 }}>After</span>
-
-      {/* Handle */}
+    <figure className="ba">
       <div
-        ref={handleRef}
-        className="ba-handle"
-        style={{ left: `${pos}%` }}
-        onPointerDown={onPointerDown}
-        onPointerMove={onPointerMove}
-        onPointerUp={onPointerUp}
-      />
-    </div>
+        className={`ba-frame${fixedHeight ? ' ba-frame--fixed' : ''}`}
+        style={{ '--ba-pos': `${pos}%`, ...(fixedHeight ? { height } : null) } as CSSProperties}
+      >
+        <img className="ba-img" src={after} alt={`${alt} — after`} loading="lazy" decoding="async" />
+        {/* The same frame, clipped rather than resized, so the two halves always
+            line up pixel for pixel. `alt=""` because it is the other half of a
+            comparison the slider itself already announces. */}
+        <div className="ba-clip">
+          <img className="ba-img" src={before} alt="" loading="lazy" decoding="async" />
+        </div>
+
+        <span className="ba-tag ba-tag--before" aria-hidden="true">Before</span>
+        <span className="ba-tag ba-tag--after" aria-hidden="true">After</span>
+
+        <input
+          id={id}
+          className="ba-range"
+          type="range"
+          min={0}
+          max={100}
+          step={0.1}
+          value={pos}
+          onChange={e => setPos(Number(e.target.value))}
+          aria-label={`Reveal the before and after: ${alt}`}
+        />
+
+        <div className="ba-divider" aria-hidden="true">
+          <span className="ba-knob">
+            <ChevronLeft size={15} strokeWidth={3} />
+            <ChevronRight size={15} strokeWidth={3} />
+          </span>
+        </div>
+      </div>
+
+      {(area || vehicle) && (
+        <figcaption className="ba-cap">
+          {area && <span className="ba-cap__area">{area}</span>}
+          {vehicle && <span className="ba-cap__veh">{vehicle}</span>}
+        </figcaption>
+      )}
+    </figure>
   );
 }
