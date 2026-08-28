@@ -1690,3 +1690,74 @@ label { display: block; font-size: var(--size-label); text-transform: uppercase;
 @media (prefers-reduced-transparency: reduce) {
   .coat-panel { -webkit-backdrop-filter: none; backdrop-filter: none; background: rgba(7, 42, 32, .95); }
 }
+
+/* ── Scroll-triggered video ──────────────────────────────────────────────
+   A 9:16 clip beside its copy. The frame is a fixed aspect box so the page
+   never reflows when the video finally loads — the poster, the video and the
+   empty state all occupy exactly the same space. */
+.svid {
+  display: grid;
+  grid-template-columns: minmax(0, 380px) minmax(0, 1fr);
+  gap: clamp(28px, 5vw, 68px);
+  align-items: center;
+}
+.svid-frame {
+  position: relative;
+  aspect-ratio: 9 / 16;
+  border-radius: 20px;
+  overflow: hidden;
+  background: #06150F;
+  border: 1px solid var(--color-border);
+  box-shadow: 0 26px 70px rgba(0, 0, 0, .5);
+}
+.svid-frame video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+/* Buttons sit above the video and clear the iOS home indicator. */
+.svid-btn {
+  position: absolute;
+  display: grid;
+  place-items: center;
+  border-radius: 999px;
+  color: #F4EFE2;
+  background: rgba(6, 21, 15, .62);
+  border: 1px solid rgba(201, 162, 39, .5);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  cursor: pointer;
+  transition: background .18s ease, transform .18s ease, border-color .18s ease;
+}
+.svid-btn:hover { background: rgba(201, 162, 39, .85); color: #06150F; border-color: var(--brand-gold); }
+.svid-btn:focus-visible { outline: 2px solid var(--brand-gold); outline-offset: 3px; }
+/* 44px is the smallest reliable touch target on a phone. */
+.svid-btn--mute { right: 12px; bottom: 12px; width: 44px; height: 44px; }
+.svid-btn--play {
+  top: 50%; left: 50%;
+  width: 72px; height: 72px;
+  transform: translate(-50%, -50%);
+  padding-left: 4px;
+}
+.svid-btn--play:hover { transform: translate(-50%, -50%) scale(1.06); }
+
+@media (max-width: 900px) {
+  .svid { grid-template-columns: minmax(0, 1fr); gap: 30px; }
+  /* Size the frame from the viewport HEIGHT, not the width. A 9:16 box capped
+     only by width is 569px tall at 320px wide — taller than what's left between
+     the sticky header and the Call/Quote/Directions bar on a short phone, so the
+     burned-in captions in the lower third end up behind that bar. Driving the
+     width off svh (which excludes the browser's own retracting chrome) keeps the
+     whole frame on screen at every phone size. */
+  .svid-frame {
+    width: min(320px, 32vh); /* fallback for browsers without svh */
+    width: min(320px, 32svh);
+    max-width: 100%;
+    margin-inline: auto;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .svid-btn { transition: none; }
+  .svid-btn--play:hover { transform: translate(-50%, -50%); }
+}
