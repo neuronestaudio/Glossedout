@@ -180,15 +180,14 @@ export default function HomePage() {
         <div className="container">
           <div style={{ textAlign: 'center', marginBottom: 'clamp(32px, 4.5vw, 52px)', maxWidth: 680, marginLeft: 'auto', marginRight: 'auto' }}>
             <p style={{ fontSize: 'var(--size-label)', textTransform: 'uppercase', letterSpacing: '0.14em', color: 'var(--brand-gold-dk)', fontWeight: 700, marginBottom: 14 }}>
-              Drag to compare
+              Before &amp; After
             </p>
             <h2 className="font-display" style={{ fontSize: 'var(--size-h2)', lineHeight: 1.05, marginBottom: 16 }}>
-              The half nobody<br />
-              <span style={{ color: 'var(--brand-gold-dk)' }}>photographs.</span>
+              Attention to detail<br />
+              <span style={{ color: 'var(--brand-gold-dk)' }}>in every job.</span>
             </h2>
             <p style={{ color: 'var(--color-text-secondary)', fontSize: 16, lineHeight: 1.75 }}>
-              Real jobs, shot before the work started and again once it was finished.
-              Pull the handle across.
+              Real jobs, photographed before and after. Drag the handle to compare.
             </p>
           </div>
 
