@@ -40,8 +40,10 @@ const services = [
     title: 'Paint Correction',
     desc: 'Machine polishing that removes swirls, oxidation and scratches — from a gloss enhancement to a full multi-stage cut.',
     href: '/paint-correction-melbourne',
-    img: '/services/paint-1.webp',
-    imgs: ['/services/paint-1.webp', '/services/paint-2.webp'],
+    img: '/services/paint-2.webp',
+    // The macro of the badge leads: it shows the finish paint correction
+    // actually produces. Numbering follows the source files, not the order.
+    imgs: ['/services/paint-2.webp', '/services/paint-1.webp'],
   },
   {
     icon: Armchair,
