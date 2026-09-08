@@ -207,8 +207,16 @@ export default function HomePage() {
       </section>
 
       {/* CERAMIC PROCESS — the four-stage carousel, same component as
-          /ceramic-coating-process so the two can never drift apart */}
-      <CoatingProcess />
+          /ceramic-coating-process so the two can never drift apart. The home
+          page is the one that links onward to the full page. */}
+      <CoatingProcess
+        footer={
+          <Link to="/ceramic-coating-process" className="coat-cta">
+            See the full ceramic coating process
+            <span aria-hidden="true">&rarr;</span>
+          </Link>
+        }
+      />
 
       {/* INSTAGRAM GALLERY */}
       <section className="section" style={{ background: '#0A2B1E', position: 'relative', overflow: 'hidden', paddingTop: 'clamp(40px, 5vw, 64px)' }}>

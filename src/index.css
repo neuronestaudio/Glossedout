@@ -1960,6 +1960,23 @@ label { display: block; font-size: var(--size-label); text-transform: uppercase;
 }
 .coat-count { margin: 0; font-size: .78rem; color: var(--color-text-muted); letter-spacing: .04em; }
 
+.coat-footer { margin-top: clamp(1.4rem, 3vw, 2rem); }
+.coat-cta {
+  display: inline-flex; align-items: center; gap: .6rem;
+  padding: .85rem 1.6rem; border-radius: 999px;
+  font-weight: 700; font-size: .9rem; text-decoration: none;
+  color: #06150F;
+  background: linear-gradient(135deg, #E4C766 0%, #C9A227 50%, #A17E12 100%);
+  box-shadow: 0 10px 26px rgba(201, 162, 39, .34);
+  transition: transform .16s ease, box-shadow .16s ease;
+}
+.coat-cta:hover { transform: translateY(-2px); box-shadow: 0 14px 32px rgba(201, 162, 39, .46); }
+.coat-cta:focus-visible { outline: 2px solid var(--brand-gold); outline-offset: 3px; }
+@media (prefers-reduced-motion: reduce) {
+  .coat-cta { transition: none; }
+  .coat-cta:hover { transform: none; }
+}
+
 @media (max-width: 860px) {
   .coat-word { font-size: clamp(3rem, 18vw, 6rem); right: auto; left: 50%; translate: -50% 0; }
   .coat-card { grid-template-columns: 1fr; gap: .5rem; }

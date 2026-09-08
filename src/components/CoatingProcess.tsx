@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState, type ReactNode } from 'react';
 import { COATING_STAGES } from '../data/coatingStages';
 
 /**
@@ -21,7 +21,10 @@ import { COATING_STAGES } from '../data/coatingStages';
 
 const AUTO_MS = 7000;
 
-export default function CoatingProcess() {
+/* `footer` is for callers that want to send people somewhere after the
+   carousel — the home page links to the full process page. The process page
+   itself passes nothing, so it never links to itself. */
+export default function CoatingProcess({ footer }: { footer?: ReactNode }) {
   const [active, setActive] = useState(0);
   const [engaged, setEngaged] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
@@ -191,6 +194,8 @@ export default function CoatingProcess() {
             Stage {active + 1} of {last + 1} &mdash; {stage.label}
           </p>
         </div>
+
+        {footer && <div className="coat-footer">{footer}</div>}
       </div>
     </section>
   );

@@ -27,6 +27,7 @@ const sections = [
     heading: 'Ceramic Coating',
     links: [
       { label: 'Ceramic Coating Melbourne', href: '/ceramic-coating-melbourne' },
+      { label: 'The Ceramic Coating Process', href: '/ceramic-coating-process' },
       { label: 'Ceramic Coating for New Cars', href: '/ceramic-coating-new-car-melbourne' },
       { label: 'Ceramic Coating Cost Melbourne', href: '/ceramic-coating-cost-melbourne' },
       { label: 'Ceramic UV Protection Melbourne', href: '/ceramic-coating-uv-melbourne' },
