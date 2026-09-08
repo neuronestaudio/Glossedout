@@ -54,7 +54,7 @@ function ReviewCard({ review }: { review: Review }) {
   );
 }
 
-export default function GoogleReviews({ reviews, googleUrl, rating = '5.0', count = '113' }: GoogleReviewsProps) {
+export default function GoogleReviews({ reviews, googleUrl, rating = '5.0', count = '120+' }: GoogleReviewsProps) {
   return (
     <section className="section" style={{ position: 'relative', overflow: 'hidden', background: 'var(--color-bg-secondary)' }}>
       {/* soft warm glow at top */}

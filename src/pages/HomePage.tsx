@@ -55,9 +55,8 @@ const services = [
   },
 ];
 
-// NOTE: sourced from Glossed Out's real Google reviews (110+ five-star).
-// Names shown as "Google review" to avoid attributing text to invented people —
-// swap in the real reviewer names when convenient.
+// Reviews live in src/data/reviews.ts: real Google reviews, transcribed
+// verbatim under the reviewers' own names. Don't reword them there.
 
 export default function HomePage() {
   const heroRef = useRef<HTMLElement>(null);
@@ -95,7 +94,7 @@ export default function HomePage() {
       <HomeSplash />
       <PageMeta
         title="Glossed Out Detailing — Car Detailing, Paint Correction & Ceramic Coating Melbourne"
-        description="Melbourne car detailing, paint correction and ceramic coating — based in Craigieburn. Gtechniq, Magnum & Kraken certified. 113 five-star Google reviews."
+        description="Melbourne car detailing, paint correction and ceramic coating — based in Craigieburn. Gtechniq, Magnum & Kraken certified. 120+ five-star Google reviews."
         canonical="https://glossedoutdetailing.com.au/"
       />
 

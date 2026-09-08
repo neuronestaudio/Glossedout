@@ -42,9 +42,8 @@ const services = [
   },
 ];
 
-// NOTE: sourced from Glossed Out's real Google reviews (110+ five-star).
-// Names shown as "Google review" to avoid attributing text to invented people —
-// swap in the real reviewer names when convenient.
+// Reviews live in src/data/reviews.ts: real Google reviews, transcribed
+// verbatim under the reviewers' own names. Don't reword them there.
 
 export default function HomePageIntro() {
   const heroRef = useRef<HTMLElement>(null);

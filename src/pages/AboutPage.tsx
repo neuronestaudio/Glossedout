@@ -103,7 +103,7 @@ export default function AboutPage() {
                   <p style={{ color: 'var(--color-text-muted)', fontSize: 12, textTransform: 'uppercase', letterSpacing: '0.08em', marginTop: 4 }}>Years experience</p>
                 </div>
                 <div>
-                  <p className="font-display" style={{ fontSize: 34, color: 'var(--brand-green)', lineHeight: 1 }}>113</p>
+                  <p className="font-display" style={{ fontSize: 34, color: 'var(--brand-green)', lineHeight: 1 }}>120+</p>
                   <p style={{ color: 'var(--color-text-muted)', fontSize: 12, textTransform: 'uppercase', letterSpacing: '0.08em', marginTop: 4 }}>Five-star reviews</p>
                 </div>
                 <div>
