@@ -158,8 +158,8 @@ export default function QuoteForm({ defaultService }: QuoteFormProps) {
     if (n === 0) {
       if (!serviceLocation) errs.serviceLocation = 'Please choose drop-off or mobile service.';
       if (serviceLocation === MOBILE) {
-        if (!address.trim()) errs.address = 'Address is required for mobile service.';
-        else if (address.trim().length < 6) errs.address = 'Please enter your full address, including suburb.';
+        if (!address.trim()) errs.address = 'Suburb is required for mobile service.';
+        else if (address.trim().length < 2) errs.address = 'Please enter your suburb.';
       }
     }
     if (n === 1 && !service) errs.service = 'Please choose the service you\'re after.';
@@ -423,7 +423,7 @@ export default function QuoteForm({ defaultService }: QuoteFormProps) {
                       value={o.value}
                       checked={serviceLocation === o.value}
                       onChange={() => { setServiceLocation(o.value); if (o.value !== MOBILE) setAddress(''); }}
-                      /* Mobile service still needs an address, so it stays put —
+                      /* Mobile service still needs a suburb, so it stays put —
                          and cancels an advance already queued by a drop-off click. */
                       onClick={e => (o.value === MOBILE ? cancelAdvance() : autoAdvance(e, 0))}
                       aria-required="true"
@@ -437,17 +437,17 @@ export default function QuoteForm({ defaultService }: QuoteFormProps) {
 
             {wantsMobile && (
               <div style={{ marginTop: 16 }}>
-                <label htmlFor="address">Your address *</label>
+                <label htmlFor="address">Your suburb *</label>
                 <input
                   id="address"
                   type="text"
-                  autoComplete="street-address"
-                  maxLength={200}
+                  autoComplete="address-level2"
+                  maxLength={80}
                   value={address}
                   onChange={e => setAddress(e.target.value)}
                   aria-required="true"
                   aria-invalid={!!errors.address}
-                  placeholder="e.g. 12 Smith Street, Craigieburn VIC 3064"
+                  placeholder="e.g. Craigieburn"
                 />
                 {errors.address && <FieldError msg={errors.address} />}
               </div>
