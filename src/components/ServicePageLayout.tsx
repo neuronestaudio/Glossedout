@@ -30,7 +30,7 @@ export default function ServicePageLayout({
 
       {/* HERO — car photo with a deep-green vignette; light text for contrast */}
       <section style={{ position: 'relative', height: '88dvh', overflow: 'hidden', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', padding: '0 8vw 12vh', background: '#0A2B1E' }}>
-        <div aria-hidden="true" style={{ position: 'absolute', inset: 0, zIndex: 0, backgroundImage: `url('${heroImg}')`, backgroundSize: 'cover', backgroundPosition: 'center' }} />
+        <div aria-hidden="true" className="service-hero-bg" style={{ position: 'absolute', inset: 0, zIndex: 0, backgroundImage: `url('${heroImg}')`, backgroundSize: 'cover', backgroundPosition: 'center' }} />
         <div aria-hidden="true" style={{ position: 'absolute', inset: 0, zIndex: 1, background: 'linear-gradient(to top, #0A2B1E 0%, rgba(10,43,30,0.88) 26%, rgba(10,43,30,0.35) 56%, rgba(10,43,30,0.12) 100%)' }} />
         <div aria-hidden="true" style={{ position: 'absolute', inset: 0, zIndex: 1, background: 'linear-gradient(to right, rgba(10,43,30,0.6) 0%, transparent 62%)' }} />
         <div style={{ position: 'relative', zIndex: 2, maxWidth: 840 }}>

@@ -62,6 +62,7 @@ export default function GalleryPage() {
                   src={item.src}
                   alt={item.alt}
                   loading="lazy"
+                  className="gallery-photo"
                   style={{ width: '100%', height: 260, objectFit: 'cover', display: 'block' }}
                 />
                 <div style={{ padding: '16px 20px 18px' }}>

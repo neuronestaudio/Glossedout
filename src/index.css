@@ -1053,6 +1053,16 @@ label { display: block; font-size: var(--size-label); text-transform: uppercase;
 .home-hero-banner__bg {
   -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 13%, #000 87%, transparent 100%);
   mask-image: linear-gradient(to right, transparent 0%, #000 13%, #000 87%, transparent 100%);
+  transform: skewX(-6deg);
+  transform-origin: center 0;
+}
+.service-hero-bg {
+  transform: skewX(-6deg);
+  transform-origin: center 0;
+}
+.gallery-photo {
+  transform: skewX(-6deg);
+  transform-origin: center 0;
 }
 .home-hero-banner__img { display: none; }
 @media (max-width: 768px) {
