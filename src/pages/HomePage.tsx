@@ -260,7 +260,7 @@ export default function HomePage() {
                           rel="noopener noreferrer"
                           tabIndex={copy > 0 ? -1 : undefined}
                         >
-                          <img src={photo.src} alt={photo.alt} loading="lazy" />
+                          <img src={photo.src} alt={photo.alt} loading="lazy" className="gallery-photo" />
                         </a>
                       ))}
                   </div>
