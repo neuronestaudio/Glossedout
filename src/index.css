@@ -1809,7 +1809,7 @@ label { display: block; font-size: var(--size-label); text-transform: uppercase;
 
 .ig-tile {
   display: block; flex: 0 0 clamp(140px, 20vw, 220px);
-  aspect-ratio: 1; overflow: hidden;
+  aspect-ratio: 1;
   border: 2px solid #ffffff;
   text-decoration: none;
 }
