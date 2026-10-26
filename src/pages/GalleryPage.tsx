@@ -57,7 +57,7 @@ export default function GalleryPage() {
         <div className="container">
           <div className="gallery-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(min(400px, 100%), 1fr))', gap: 20 }}>
             {filtered.map((item, i) => (
-              <div key={i} className="card" style={{ overflow: 'hidden' }}>
+              <div key={i} className="card">
                 <img
                   src={item.src}
                   alt={item.alt}
