@@ -240,34 +240,34 @@ export default function HomePage() {
               Follow on Instagram
             </a>
           </div>
+        </div>
 
-          {/* Two rows travelling opposite ways — the counter-motion is what stops
-              it reading as one long strip and keeps the eye moving. Row two is
-              offset by half the set so the two rows never line up. */}
-          <div className="ig-marquee">
-            {[0, 1].map(row => (
-              <div className={`ig-row${row === 1 ? ' ig-row--reverse' : ''}`} key={row}>
-                {Array.from({ length: 4 }).map((_, copy) => (
-                  <div className="ig-set" key={copy} aria-hidden={copy > 0 || undefined}>
-                    {galleryPhotos
-                      .filter((_, i) => (row === 0 ? i % 2 === 0 : i % 2 === 1))
-                      .map((photo, i) => (
-                        <a
-                          className="ig-tile"
-                          key={`${copy}-${i}`}
-                          href="https://instagram.com/glossedoutdetailing/"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          tabIndex={copy > 0 ? -1 : undefined}
-                        >
-                          <img src={photo.src} alt={photo.alt} loading="lazy" className="gallery-photo" />
-                        </a>
-                      ))}
-                  </div>
+        {/* Diagonal strip — parallelogram cards with a thin slanted gap, full
+            bleed, gold glow at both edges. Four copies so the 25% loop never
+            shows a seam. */}
+        <div className="ig-strip">
+          <div className="ig-strip-track">
+            {Array.from({ length: 4 }).map((_, copy) => (
+              <div className="ig-set" key={copy} aria-hidden={copy > 0 || undefined}>
+                {galleryPhotos.map((photo, i) => (
+                  <a
+                    className="ig-tile"
+                    key={`${copy}-${i}`}
+                    href="https://instagram.com/glossedoutdetailing/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    tabIndex={copy > 0 ? -1 : undefined}
+                  >
+                    <img src={photo.src} alt={copy > 0 ? '' : photo.alt} loading="lazy" />
+                  </a>
                 ))}
               </div>
             ))}
           </div>
+        </div>
+
+        <div className="container ig-foot" style={{ position: 'relative', zIndex: 2 }}>
+          <span className="ig-tagline">Ceramic coatings <i>/</i> Paint correction <i>/</i> Full details</span>
         </div>
       </section>
 
