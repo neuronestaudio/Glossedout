@@ -105,7 +105,8 @@ export default function Footer() {
         {/* Bottom bar */}
         <div style={{ padding: '24px 0 28px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 16 }}>
           <p style={{ color: '#6a746c', fontSize: 13, margin: 0 }}>
-            Copyright © {new Date().getFullYear()} Glossed Out Detailing
+            Copyright © {new Date().getFullYear()} Glossed Out Detailing{' · '}
+            <Link to="/privacy-policy" style={{ color: 'inherit', textDecoration: 'underline' }} className="footer-link-light">Privacy Policy</Link>
           </p>
           <div style={{ display: 'flex', gap: 12 }}>
             <a href="https://www.instagram.com/glossedoutdetailing" target="_blank" rel="noopener noreferrer" aria-label="Instagram" style={{ width: 36, height: 36, borderRadius: '50%', background: 'var(--color-accent)', border: '1px solid rgba(0,0,0,0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'opacity 150ms ease' }}>
